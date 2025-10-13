@@ -1,5 +1,5 @@
-import { storyblokEditable } from "@storyblok/react"
-import { StoryblokComponent } from "@/types"
+import { StoryblokComponent } from "@/types";
+import { storyblokEditable } from "@storyblok/react";
 
 export default function Page({ blok }: StoryblokComponent) {
   return (
@@ -8,5 +8,5 @@ export default function Page({ blok }: StoryblokComponent) {
         <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
       ))}
     </main>
-  )
+  );
 }

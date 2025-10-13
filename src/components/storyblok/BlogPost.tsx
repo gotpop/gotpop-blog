@@ -1,9 +1,9 @@
-import { storyblokEditable } from "@storyblok/react"
-import { PostStoryblok } from "@/types"
-import RichText from "./RichText"
+import { PostStoryblok } from "@/types";
+import RichText from "./RichText";
+import { storyblokEditable } from "@storyblok/react";
 
 interface BlogPostProps {
-  blok: PostStoryblok
+  blok: PostStoryblok;
 }
 
 export default function BlogPost({ blok }: BlogPostProps) {
@@ -11,9 +11,9 @@ export default function BlogPost({ blok }: BlogPostProps) {
     <article {...storyblokEditable(blok)} className="blog-post">
       <h1>{blok.title}</h1>
       {blok.featured_image && (
-        <img 
-          src={blok.featured_image.filename} 
-          alt={blok.featured_image.alt} 
+        <img
+          src={blok.featured_image.filename}
+          alt={blok.featured_image.alt}
           className="featured-image"
         />
       )}
@@ -21,5 +21,5 @@ export default function BlogPost({ blok }: BlogPostProps) {
         <RichText content={blok.content} />
       </div>
     </article>
-  )
+  );
 }

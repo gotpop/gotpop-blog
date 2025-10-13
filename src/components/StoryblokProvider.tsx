@@ -1,17 +1,22 @@
-'use client'
+"use client";
 
-import { storyblokInit, apiPlugin } from '@storyblok/react'
-import { components } from '@/components/storyblok'
+import { apiPlugin, storyblokInit } from "@storyblok/react";
+
+import { components } from "@/components/storyblok";
 
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
   use: [apiPlugin],
   components,
   apiOptions: {
-    region: 'eu',
+    region: "eu",
   },
-})
+});
 
-export default function StoryblokProvider({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+export default function StoryblokProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
 }

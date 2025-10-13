@@ -1,36 +1,34 @@
-import StoryblokStory from '@storyblok/react/story'
-import { getStoryblokApi } from "@storyblok/react"
+import StoryblokStory from "@storyblok/react/story";
+import { getStoryblokApi } from "@storyblok/react";
 
-export const dynamicParams = true
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const storyblokApi = getStoryblokApi()
-  const { data } = await storyblokApi.get('cdn/stories', {
-    version: 'published',
-    excluding_slugs: 'config/*,global/*'
-  })
+  const storyblokApi = getStoryblokApi();
+  const { data } = await storyblokApi.get("cdn/stories", {
+    version: "published",
+    excluding_slugs: "config/*,global/*",
+  });
 
   return data.stories.map((story: any) => ({
-    slug: story.full_slug.split('/'),
-  }))
+    slug: story.full_slug.split("/"),
+  }));
 }
 
 interface PageParams {
   params: {
-    slug: string[]
-  }
+    slug: string[];
+  };
 }
 
 export default async function Page({ params }: PageParams) {
-  const storyblokApi = getStoryblokApi()
+  const storyblokApi = getStoryblokApi();
 
-  const slug = params.slug ? params.slug.join('/') : 'home'
-  
+  const slug = params.slug ? params.slug.join("/") : "home";
+
   const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
-    version: 'published',
-  })
+    version: "published",
+  });
 
-  return (
-    <StoryblokStory story={data.story} />
-  )
+  return <StoryblokStory story={data.story} />;
 }
