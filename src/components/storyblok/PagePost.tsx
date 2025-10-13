@@ -1,6 +1,6 @@
-import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
-
 import { PagePostStoryblok } from "@/types";
+import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
+import { storyblokEditable } from "@storyblok/react";
 
 interface PagePostProps {
   blok: PagePostStoryblok;
@@ -9,13 +9,13 @@ interface PagePostProps {
 export default function PagePost({ blok }: PagePostProps) {
   return (
     <div {...storyblokEditable(blok)} className="page-post">
-      <StoryblokComponent blok={blok.header} />
+      <StoryblokServerComponent blok={blok.header} />
       <main>
         {blok.content?.map((nestedBlok) => (
-          <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+          <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
         ))}
       </main>
-      <StoryblokComponent blok={blok.footer} />
+      <StoryblokServerComponent blok={blok.footer} />
     </div>
   );
 }

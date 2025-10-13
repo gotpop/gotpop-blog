@@ -1,6 +1,6 @@
-import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
-
 import { HeaderDefaultStoryblok } from "@/types";
+import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
+import { storyblokEditable } from "@storyblok/react";
 
 interface HeaderDefaultProps {
   blok: HeaderDefaultStoryblok;
@@ -9,8 +9,8 @@ interface HeaderDefaultProps {
 export default function HeaderDefault({ blok }: HeaderDefaultProps) {
   return (
     <header {...storyblokEditable(blok)} className="header">
-      <StoryblokComponent blok={blok.logo} />
-      <StoryblokComponent blok={blok.navigation} />
+      <StoryblokServerComponent blok={blok.logo} />
+      <StoryblokServerComponent blok={blok.navigation} />
     </header>
   );
 }
