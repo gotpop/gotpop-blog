@@ -1,4 +1,4 @@
-import StoryblokStory from "@storyblok/react/story";
+import { StoryblokComponent } from "@storyblok/react";
 import { getStoryblokApi } from "@storyblok/react";
 
 export const dynamicParams = true;
@@ -30,5 +30,5 @@ export default async function Page({ params }: PageParams) {
     version: "published",
   });
 
-  return <StoryblokStory story={data.story} />;
+  return <StoryblokComponent blok={data.blok} />;
 }
