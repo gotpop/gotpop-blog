@@ -16,3 +16,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: var(--font-weight-normal);
+}
+
+h1 {
+  font-family: var(--font-inter);
+  font-weight: var(--font-weight-bold);
+}

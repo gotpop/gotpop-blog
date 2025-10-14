@@ -1,19 +1,20 @@
 import "./globals.css"
 
-import { Geist, Geist_Mono } from "next/font/google"
-
 import type { Metadata } from "next"
 import Script from "next/script"
 import StoryblokProvider from "@/components/StoryblokProvider"
+import localFont from "next/font/local"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const inter = localFont({
+  src: "../fonts/inter/Inter.woff2",
+  variable: "--font-inter",
+  display: "swap",
 })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const monaspace = localFont({
+  src: "../fonts/monaspace/Monaspace.woff2",
+  variable: "--font-monaspace",
+  display: "swap",
 })
 
 export const metadata: Metadata = {
@@ -31,9 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${inter.variable} ${monaspace.variable} antialiased`}>
         <StoryblokProvider>{children}</StoryblokProvider>
         {/* Storyblok Bridge for Visual Editor */}
         <Script
