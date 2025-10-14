@@ -1,16 +1,16 @@
-import Link from "next/link";
-import { LogoDefaultStoryblok } from "@/types/storyblok-components";
-import { getInlineStyles } from "@/utils/inline-styles";
-import { getStoryblokLinkProps } from "@/utils/storyblok";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import Link from "next/link"
+import { LogoDefaultStoryblok } from "@/types/storyblok-components"
+import { getInlineStyles } from "@/utils/inline-styles"
+import { getStoryblokLinkProps } from "@/utils/storyblok"
+import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface LogoDefaultProps {
-  blok: LogoDefaultStoryblok;
+  blok: LogoDefaultStoryblok
 }
 
 export default function LogoDefault({ blok }: LogoDefaultProps) {
-  const linkProps = getStoryblokLinkProps(blok.link);
-  const styles = getInlineStyles("LogoDefault.css");
+  const linkProps = getStoryblokLinkProps(blok.link)
+  const styles = getInlineStyles("LogoDefault.css")
 
   return (
     <Link
@@ -23,5 +23,5 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
       <style>{styles}</style>
       <h1>Logo</h1>
     </Link>
-  );
+  )
 }

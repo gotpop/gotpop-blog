@@ -1,21 +1,21 @@
-import Link from "next/link";
-import { NavItemDefaultStoryblok } from "@/types/storyblok-components";
-import { storyblokEditable } from "@storyblok/react/rsc";
-import { getStoryblokLinkProps } from "@/utils/storyblok";
+import Link from "next/link"
+import { NavItemDefaultStoryblok } from "@/types/storyblok-components"
+import { storyblokEditable } from "@storyblok/react/rsc"
+import { getStoryblokLinkProps } from "@/utils/storyblok"
 
 interface NavItemDefaultProps {
-  blok: NavItemDefaultStoryblok;
+  blok: NavItemDefaultStoryblok
 }
 
 export default function NavItemDefault({ blok }: NavItemDefaultProps) {
-  const linkProps = getStoryblokLinkProps(blok.link);
+  const linkProps = getStoryblokLinkProps(blok.link)
 
   if (!blok.link || linkProps.href === "#") {
     return (
       <span {...storyblokEditable(blok)} className="nav-item">
         {blok.text}
       </span>
-    );
+    )
   }
 
   return (
@@ -28,5 +28,5 @@ export default function NavItemDefault({ blok }: NavItemDefaultProps) {
     >
       {blok.text}
     </Link>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import { HeroDefaultStoryblok } from "@/types/storyblok-components";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { HeroDefaultStoryblok } from "@/types/storyblok-components"
+import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface HeroDefaultProps {
-  blok: HeroDefaultStoryblok;
+  blok: HeroDefaultStoryblok
 }
 
 export default function HeroDefault({ blok }: HeroDefaultProps) {
@@ -24,5 +24,5 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
         {blok.subtitle && <p>{blok.subtitle}</p>}
       </div>
     </section>
-  );
+  )
 }

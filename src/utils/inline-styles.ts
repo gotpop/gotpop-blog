@@ -1,6 +1,6 @@
-import "server-only";
-import fs from "fs";
-import path from "path";
+import "server-only"
+import fs from "fs"
+import path from "path"
 
 /**
  * Read a CSS file from the file system (server-side only)
@@ -15,26 +15,26 @@ import path from "path";
  */
 export function getInlineStyles(cssFileName: string): string {
   try {
-    const basePath = path.join(process.cwd(), "src", "components", "storyblok");
+    const basePath = path.join(process.cwd(), "src", "components", "storyblok")
 
     // Try flat structure first (file in storyblok directory)
-    let cssPath = path.join(basePath, cssFileName);
+    let cssPath = path.join(basePath, cssFileName)
 
     if (!fs.existsSync(cssPath)) {
       // Try directory structure (file in component subdirectory)
-      const componentName = cssFileName.replace(".css", "");
-      cssPath = path.join(basePath, componentName, cssFileName);
+      const componentName = cssFileName.replace(".css", "")
+      cssPath = path.join(basePath, componentName, cssFileName)
     }
 
     if (!fs.existsSync(cssPath)) {
-      console.warn(`CSS file not found: ${cssFileName}`);
-      return "";
+      console.warn(`CSS file not found: ${cssFileName}`)
+      return ""
     }
 
-    const cssContent = fs.readFileSync(cssPath, "utf-8");
-    return cssContent;
+    const cssContent = fs.readFileSync(cssPath, "utf-8")
+    return cssContent
   } catch (error) {
-    console.warn(`Failed to read CSS file: ${cssFileName}`, error);
-    return "";
+    console.warn(`Failed to read CSS file: ${cssFileName}`, error)
+    return ""
   }
 }

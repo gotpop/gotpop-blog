@@ -1,29 +1,29 @@
-import HeaderDefault from "../HeaderDefault";
-import { PageDefaultStoryblok } from "@/types";
-import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import HeaderDefault from "../HeaderDefault"
+import { PageDefaultStoryblok } from "@/types"
+import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
+import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface PageDefaultProps {
-  blok: PageDefaultStoryblok;
+  blok: PageDefaultStoryblok
 }
 
 export default async function PageDefault({ blok }: PageDefaultProps) {
-  let headerData = null;
-  let footerTitle = null;
+  let headerData = null
+  let footerTitle = null
 
   // Fetch header story if UUID exists
   if (blok.Header) {
     try {
       const response = await fetch(
         `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_ACCESS_TOKEN}&by_uuids=${blok.Header}&version=draft`
-      );
-      const data = await response.json();
+      )
+      const data = await response.json()
 
       if (data.stories && data.stories[0]) {
-        headerData = data.stories[0].content; // Pass just the content
+        headerData = data.stories[0].content // Pass just the content
       }
     } catch (e) {
-      console.error("Failed to fetch header");
+      console.error("Failed to fetch header")
     }
   }
 
@@ -32,13 +32,13 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
     try {
       const response = await fetch(
         `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_ACCESS_TOKEN}&by_uuids=${blok.Footer}&version=draft`
-      );
-      const data = await response.json();
+      )
+      const data = await response.json()
       if (data.stories && data.stories[0]) {
-        footerTitle = data.stories[0].name;
+        footerTitle = data.stories[0].name
       }
     } catch (e) {
-      console.error("Failed to fetch footer");
+      console.error("Failed to fetch footer")
     }
   }
 
@@ -56,5 +56,5 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
         </footer>
       )}
     </div>
-  );
+  )
 }

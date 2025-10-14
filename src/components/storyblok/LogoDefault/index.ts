@@ -1,1 +1,1 @@
-export { default } from "./LogoDefault";
+export { default } from "./LogoDefault"

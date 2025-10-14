@@ -1,14 +1,14 @@
-import { NavDefaultStoryblok } from "@/types/storyblok-components";
-import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
-import { getInlineStyles } from "@/utils/inline-styles";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { NavDefaultStoryblok } from "@/types/storyblok-components"
+import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
+import { getInlineStyles } from "@/utils/inline-styles"
+import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface NavDefaultProps {
-  blok: NavDefaultStoryblok;
+  blok: NavDefaultStoryblok
 }
 
 export default function NavDefault({ blok }: NavDefaultProps) {
-  const styles = getInlineStyles("NavDefault.css");
+  const styles = getInlineStyles("NavDefault.css")
 
   return (
     <nav className="nav" {...storyblokEditable(blok)}>
@@ -17,5 +17,5 @@ export default function NavDefault({ blok }: NavDefaultProps) {
         <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
       ))}
     </nav>
-  );
+  )
 }

@@ -1,35 +1,30 @@
-import { components } from "@/components/storyblok";
+import { SbBlokData } from "@storyblok/react/rsc"
+import { components } from "@/components/storyblok"
 
-export function StoryblokServerComponent({ blok }: { blok: any }) {
-  // Handle null, undefined, or empty bloks
+interface StoryblokServerComponentProps {
+  blok: SbBlokData | null | undefined
+}
+
+export function StoryblokServerComponent({
+  blok,
+}: StoryblokServerComponentProps): React.JSX.Element | null {
   if (!blok) {
-    return null;
+    return null
   }
 
-  // If it's not a proper blok object, return null
-  if (typeof blok !== "object") {
-    return null;
+  if (typeof blok !== "object" || !blok.component) {
+    return null
   }
 
-  const Component = components[blok.component as keyof typeof components];
+  const Component = components[blok.component as keyof typeof components]
 
   if (!Component) {
-    console.warn(`Component ${blok} doesn't exist.`);
-    // console.log("Header data:", JSON.stringify(blok, null, 2));
+    console.warn(`Component ${blok.component} doesn't exist.`)
 
-    return (
-      <div
-        style={{
-          color: "black",
-          padding: "1rem",
-          background: "#fee",
-          border: "1px solid red",
-        }}
-      >
-        Component <code>{blok.component}</code> doesn&apos;t exist.
-      </div>
-    );
+    return null
   }
 
-  return <Component blok={blok} />;
+  // TypeScript can't infer the correct blok type for each component
+  // Safe to cast since we're checking the component exists
+  return <Component blok={blok as never} />
 }

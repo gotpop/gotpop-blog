@@ -1,13 +1,13 @@
-import Card from "./Card";
-import Cards from "./Cards";
-import FooterDefault from "./FooterDefault";
-import HeaderDefault from "./HeaderDefault";
-import HeroDefault from "./HeroDefault";
-import LogoDefault from "./LogoDefault";
-import NavDefault from "./NavDefault";
-import NavItemDefault from "./NavItemDefault";
-import PageDefault from "./PageDefault";
-import PagePost from "./PagePost";
+import Card from "./Card"
+import Cards from "./Cards"
+import FooterDefault from "./FooterDefault"
+import HeaderDefault from "./HeaderDefault"
+import HeroDefault from "./HeroDefault"
+import LogoDefault from "./LogoDefault"
+import NavDefault from "./NavDefault"
+import NavItemDefault from "./NavItemDefault"
+import PageDefault from "./PageDefault"
+import PagePost from "./PagePost"
 
 export const components = {
   card: Card,
@@ -20,4 +20,4 @@ export const components = {
   nav_item_default: NavItemDefault,
   page_default: PageDefault,
   page_post: PagePost,
-};
+}

@@ -1,14 +1,14 @@
-import { StoryblokStory } from "@storyblok/react/rsc";
-import { getStoryblokApi } from "@/lib/storyblok";
+import { StoryblokStory } from "@storyblok/react/rsc"
+import { getStoryblokApi } from "@/lib/storyblok"
 
-export const dynamicParams = true;
+export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const storyblokApi = getStoryblokApi();
+  const storyblokApi = getStoryblokApi()
   const { data } = await storyblokApi.get("cdn/stories", {
     version: "published",
     starts_with: "blog/",
-  });
+  })
 
   return data.stories
     .filter(
@@ -19,61 +19,61 @@ export async function generateStaticParams() {
     )
     .map((story: any) => ({
       slug: story.full_slug.replace("blog/", "").split("/"),
-    }));
+    }))
 }
 
 interface PageParams {
   params: Promise<{
-    slug?: string[];
-  }>;
+    slug?: string[]
+  }>
 }
 
 export default async function Page({ params }: PageParams) {
-  const { slug } = await params;
+  const { slug } = await params
 
   // Build the path from slug segments
-  let fullPath: string;
+  let fullPath: string
 
   if (!slug || slug.length === 0) {
     // Root path - use "blog/"
-    fullPath = "blog/";
+    fullPath = "blog/"
   } else {
     // Join the slug segments
-    const joinedSlug = slug.join("/");
+    const joinedSlug = slug.join("/")
 
     // Handle different cases:
     // 1. If slug is exactly "blog" (root page from Storyblok preview)
     if (joinedSlug === "blog") {
-      fullPath = "blog/";
+      fullPath = "blog/"
     }
     // 2. If the slug already starts with "blog/", use it as-is (from Storyblok preview)
     else if (joinedSlug.startsWith("blog/")) {
-      fullPath = joinedSlug;
+      fullPath = joinedSlug
     }
     // 3. Otherwise, prepend "blog/" (normal navigation)
     else {
-      fullPath = `blog/${joinedSlug}`;
+      fullPath = `blog/${joinedSlug}`
     }
   }
 
   try {
-    const storyblokApi = getStoryblokApi();
+    const storyblokApi = getStoryblokApi()
     const { data } = await storyblokApi.get(`cdn/stories/${fullPath}`, {
       version: "draft",
-    });
+    })
 
     // Use StoryblokStory component for automatic Visual Editor support
-    return <StoryblokStory story={data.story} />;
+    return <StoryblokStory story={data.story} />
   } catch (error: any) {
     // Try to get all stories to show what's available
-    let availableStories = [];
+    let availableStories = []
     try {
-      const storyblokApi = getStoryblokApi();
+      const storyblokApi = getStoryblokApi()
       const { data } = await storyblokApi.get("cdn/stories", {
         version: "draft",
         starts_with: "blog/",
-      });
-      availableStories = data.stories.map((s: any) => s.full_slug);
+      })
+      availableStories = data.stories.map((s: any) => s.full_slug)
     } catch (e) {
       // Ignore if we can't fetch stories
     }
@@ -104,6 +104,6 @@ export default async function Page({ params }: PageParams) {
           the &quot;blog&quot; folder.
         </p>
       </div>
-    );
+    )
   }
 }

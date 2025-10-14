@@ -1,20 +1,20 @@
-import "./globals.css";
+import "./globals.css"
 
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google"
 
-import type { Metadata } from "next";
-import Script from "next/script";
-import StoryblokProvider from "@/components/StoryblokProvider";
+import type { Metadata } from "next"
+import Script from "next/script"
+import StoryblokProvider from "@/components/StoryblokProvider"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-});
+})
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
+})
 
 export const metadata: Metadata = {
   title: "Blog - gotpop.io",
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -42,5 +42,5 @@ export default function RootLayout({
         />
       </body>
     </html>
-  );
+  )
 }

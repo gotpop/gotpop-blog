@@ -1,9 +1,9 @@
-import { CardsStoryblok } from "@/types/storyblok-components";
-import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { CardsStoryblok } from "@/types/storyblok-components"
+import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
+import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface CardsProps {
-  blok: CardsStoryblok;
+  blok: CardsStoryblok
 }
 
 export default function Cards({ blok }: CardsProps) {
@@ -13,5 +13,5 @@ export default function Cards({ blok }: CardsProps) {
         <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
       ))}
     </div>
-  );
+  )
 }

@@ -1,13 +1,13 @@
-import Image from "next/image";
-import { storyblokEditable } from "@storyblok/react/rsc";
-import { CardStoryblok } from "@/types";
+import Image from "next/image"
+import { storyblokEditable } from "@storyblok/react/rsc"
+import { CardStoryblok } from "@/types"
 
 interface CardProps {
-  blok: CardStoryblok;
+  blok: CardStoryblok
 }
 
 export default function Card({ blok }: CardProps) {
-  const hasDirectContent = blok.title || blok.description || blok.image;
+  const hasDirectContent = blok.title || blok.description || blok.image
 
   return (
     <div className="card" {...storyblokEditable(blok)}>
@@ -53,5 +53,5 @@ export default function Card({ blok }: CardProps) {
         )}
       </div>
     </div>
-  );
+  )
 }

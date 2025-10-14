@@ -1,9 +1,9 @@
-import { PagePostStoryblok } from "@/types/storyblok-components";
-import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { PagePostStoryblok } from "@/types/storyblok-components"
+import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
+import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface PagePostProps {
-  blok: PagePostStoryblok;
+  blok: PagePostStoryblok
 }
 
 export default function PagePost({ blok }: PagePostProps) {
@@ -17,5 +17,5 @@ export default function PagePost({ blok }: PagePostProps) {
       </main>
       <StoryblokServerComponent blok={blok.footer} />
     </div>
-  );
+  )
 }
