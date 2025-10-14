@@ -4,7 +4,7 @@ import FooterDefault from "./FooterDefault";
 import HeaderDefault from "./HeaderDefault";
 import HeroDefault from "./HeroDefault";
 import LogoDefault from "./LogoDefault";
-import NavDefault from "./NavDefault";
+import NavDefault from "./NavDefault/NavDefault";
 import NavItemDefault from "./NavItemDefault";
 import PageDefault from "./PageDefault";
 import PagePost from "./PagePost";

@@ -8,11 +8,8 @@ interface NavItemDefaultProps {
 }
 
 export default function NavItemDefault({ blok }: NavItemDefaultProps) {
-  console.log("NavItemDefault props:", JSON.stringify(blok, null, 2));
-
   const linkProps = getStoryblokLinkProps(blok.link);
 
-  // Handle null/undefined link - render as span
   if (!blok.link || linkProps.href === "#") {
     return (
       <span {...storyblokEditable(blok)} className="nav-item">

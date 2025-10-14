@@ -11,13 +11,11 @@ export default function NavDefault({ blok }: NavDefaultProps) {
   const styles = getInlineStyles("NavDefault.css");
 
   return (
-    <>
+    <nav className="nav" {...storyblokEditable(blok)}>
       <style>{styles}</style>
-      <nav {...storyblokEditable(blok)} className="nav">
-        {blok.nav_items?.map((nestedBlok) => (
-          <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
-        ))}
-      </nav>
-    </>
+      {blok.nav_items?.map((nestedBlok) => (
+        <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+      ))}
+    </nav>
   );
 }
