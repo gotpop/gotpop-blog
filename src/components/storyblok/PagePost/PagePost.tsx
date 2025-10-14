@@ -1,6 +1,7 @@
 import { PagePostStoryblok } from "@/types/storyblok-components"
 import RichText from "@/components/RichText"
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
+import { getInlineStyles } from "@/utils/inline-styles"
 import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface PagePostProps {
@@ -8,8 +9,11 @@ interface PagePostProps {
 }
 
 export default function PagePost({ blok }: PagePostProps) {
+  const styles = getInlineStyles("PagePost.css")
+
   return (
     <div {...storyblokEditable(blok)} className="page-post">
+      {styles && <style>{styles}</style>}
       <StoryblokServerComponent blok={blok.header} />
       <main>
         {blok.Heading && <h1>{blok.Heading}</h1>}

@@ -1,6 +1,7 @@
 import HeaderDefault from "../HeaderDefault"
 import { PageDefaultStoryblok } from "@/types/storyblok-components"
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
+import { getInlineStyles } from "@/utils/inline-styles"
 import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface PageDefaultProps {
@@ -8,6 +9,8 @@ interface PageDefaultProps {
 }
 
 export default async function PageDefault({ blok }: PageDefaultProps) {
+  const styles = getInlineStyles("PageDefault.css")
+
   let headerData = null
   let footerTitle = null
 
@@ -44,6 +47,7 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
 
   return (
     <div {...storyblokEditable(blok)} className="page">
+      {styles && <style>{styles}</style>}
       <HeaderDefault blok={headerData} />
       <main>
         {blok.body?.map((nestedBlok) => (

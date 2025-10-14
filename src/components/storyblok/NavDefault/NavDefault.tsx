@@ -12,7 +12,7 @@ export default function NavDefault({ blok }: NavDefaultProps) {
 
   return (
     <nav className="nav" {...storyblokEditable(blok)}>
-      <style>{styles}</style>
+      {styles && <style>{styles}</style>}
       {blok.nav_items?.map((nestedBlok) => (
         <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
       ))}

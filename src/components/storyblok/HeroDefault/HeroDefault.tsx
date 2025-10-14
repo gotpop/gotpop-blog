@@ -9,6 +9,7 @@ interface HeroDefaultProps {
 
 export default function HeroDefault({ blok }: HeroDefaultProps) {
   const styles = getInlineStyles("HeroDefault.css")
+
   return (
     <section {...storyblokEditable(blok)} className="hero">
       {styles && <style>{styles}</style>}
