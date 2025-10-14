@@ -1,4 +1,5 @@
 import { HeroDefaultStoryblok } from "@/types/storyblok-components"
+import { getInlineStyles } from "@/utils/inline-styles"
 import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface HeroDefaultProps {
@@ -6,10 +7,10 @@ interface HeroDefaultProps {
 }
 
 export default function HeroDefault({ blok }: HeroDefaultProps) {
-  // console.log("Hero blok:", JSON.stringify(blok, null, 2));
-
+  const styles = getInlineStyles("HeroDefault.css")
   return (
     <section {...storyblokEditable(blok)} className="hero">
+      {styles && <style>{styles}</style>}
       <div className="hero-content">
         {blok.heading && <h1>{blok.heading}</h1>}
         {blok.subheading && (
