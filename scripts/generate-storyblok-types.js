@@ -21,76 +21,109 @@ if (!STORYBLOK_TOKEN) {
 async function fetchComponents() {
   console.log("Fetching components from Storyblok...");
 
-  // Try the CDN endpoint first (works with preview tokens)
-  let response = await fetch(
-    `https://api.storyblok.com/v2/cdn/datasource_entries?datasource=components&token=${STORYBLOK_TOKEN}&version=draft`
+  const response = await fetch(
+    `https://api.storyblok.com/v2/cdn/stories?token=${STORYBLOK_TOKEN}&version=draft&per_page=100`
   );
 
-  // If that fails, try getting a sample story and extracting component info
   if (!response.ok) {
-    console.log("CDN components endpoint failed, fetching from stories...");
-    response = await fetch(
-      `https://api.storyblok.com/v2/cdn/stories?token=${STORYBLOK_TOKEN}&version=draft&per_page=100`
+    throw new Error(
+      `Failed to fetch stories: ${response.status} ${response.statusText}`
     );
-
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch stories: ${response.status} ${response.statusText}`
-      );
-    }
-
-    const data = await response.json();
-
-    // Extract unique component types from stories
-    const componentSet = new Set();
-    const extractComponents = (content) => {
-      if (!content || typeof content !== "object") return;
-
-      if (content.component) {
-        componentSet.add(content.component);
-      }
-
-      Object.values(content).forEach((value) => {
-        if (Array.isArray(value)) {
-          value.forEach((item) => extractComponents(item));
-        } else if (typeof value === "object" && value !== null) {
-          extractComponents(value);
-        }
-      });
-    };
-
-    data.stories.forEach((story) => extractComponents(story.content));
-
-    // Convert to component format
-    return Array.from(componentSet).map((name) => ({
-      name,
-      schema: {}, // We won't have schema info, but we can still generate basic types
-    }));
   }
 
   const data = await response.json();
-  return data.datasource_entries || [];
-}
 
-function mapFieldType(field) {
-  const fieldTypeMap = {
-    text: "string",
-    textarea: "string",
-    markdown: "string",
-    richtext: "RichtextStoryblok",
-    number: "number",
-    datetime: "string",
-    boolean: "boolean",
-    option: "string",
-    options: "string[]",
-    asset: "AssetStoryblok",
-    multiasset: "AssetStoryblok[]",
-    bloks: "StoryblokComponent[]",
-    multilink: "MultilinkStoryblok",
-    custom: "any",
+  // Extract unique component types from stories and collect sample data
+  const componentsMap = new Map();
+
+  const extractComponents = (content) => {
+    if (!content || typeof content !== "object") return;
+
+    if (content.component) {
+      const componentName = content.component;
+
+      // If we haven't seen this component, or we have a better sample, store it
+      if (!componentsMap.has(componentName)) {
+        componentsMap.set(componentName, { ...content });
+      } else {
+        // Merge properties to get a more complete picture
+        const existing = componentsMap.get(componentName);
+        componentsMap.set(componentName, { ...existing, ...content });
+      }
+    }
+
+    Object.values(content).forEach((value) => {
+      if (Array.isArray(value)) {
+        value.forEach((item) => extractComponents(item));
+      } else if (typeof value === "object" && value !== null) {
+        extractComponents(value);
+      }
+    });
   };
 
-  return fieldTypeMap[field.type] || "any";
+  data.stories.forEach((story) => extractComponents(story.content));
+
+  // Convert to component format with inferred schema
+  return Array.from(componentsMap.entries()).map(([name, sample]) => ({
+    name,
+    sample, // Include the actual data sample for type inference
+  }));
+}
+
+function inferFieldType(value) {
+  if (value === null || value === undefined) {
+    return "any";
+  }
+
+  if (typeof value === "string") {
+    return "string";
+  }
+
+  if (typeof value === "number") {
+    return "number";
+  }
+
+  if (typeof value === "boolean") {
+    return "boolean";
+  }
+
+  if (Array.isArray(value)) {
+    if (value.length === 0) return "any[]";
+
+    // Check if it's an array of bloks
+    if (value[0] && typeof value[0] === "object" && value[0].component) {
+      return "StoryblokComponent[]";
+    }
+
+    const firstItemType = inferFieldType(value[0]);
+    return `${firstItemType}[]`;
+  }
+
+  if (typeof value === "object") {
+    // Check for richtext structure
+    if (value.type && (value.type === "doc" || value.content)) {
+      return "RichtextStoryblok";
+    }
+
+    // Check for asset structure
+    if (value.filename) {
+      return "AssetStoryblok";
+    }
+
+    // Check for link structure
+    if (value.linktype || value.cached_url) {
+      return "MultilinkStoryblok";
+    }
+
+    // Check for blok structure
+    if (value.component && value._uid) {
+      return "StoryblokComponent";
+    }
+
+    return "any";
+  }
+
+  return "any";
 }
 
 function generateTypeDefinition(component) {
@@ -100,20 +133,23 @@ function generateTypeDefinition(component) {
       .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
       .join("") + "Storyblok";
 
-  let fields = component.schema ? Object.entries(component.schema) : [];
+  // Infer fields from the sample data
+  const sample = component.sample || {};
+  const ignoredFields = ["_uid", "_editable", "component"];
 
-  const fieldDefinitions = fields
-    .map(([key, field]) => {
-      const optional = !field.required ? "?" : "";
-      const type = mapFieldType(field);
-      return `  ${key}${optional}: ${type};`;
-    })
-    .join("\n");
+  const fields = Object.entries(sample)
+    .filter(([key]) => !ignoredFields.includes(key))
+    .map(([key, value]) => {
+      const type = inferFieldType(value);
+      // All fields are optional since we can't know which are required
+      return `  ${key}?: ${type};`;
+    });
+
+  const fieldDefinitions = fields.length > 0 ? fields.join("\n") + "\n" : "";
 
   return `export interface ${interfaceName} extends SbBlokData {
   component: '${component.name}';
-${fieldDefinitions}
-  _uid: string;
+${fieldDefinitions}  _uid: string;
   [k: string]: any;
 }`;
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NavItemDefaultStoryblok } from "@/types";
+import { NavItemDefaultStoryblok } from "@/types/storyblok-components";
 import { storyblokEditable } from "@storyblok/react";
 
 interface NavItemDefaultProps {

@@ -1,4 +1,4 @@
-import { CardsStoryblok } from "@/types";
+import { CardsStoryblok } from "@/types/storyblok-components";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
 import { storyblokEditable } from "@storyblok/react";
 

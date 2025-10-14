@@ -19,7 +19,7 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
       const data = await response.json();
 
       if (data.stories && data.stories[0]) {
-        headerData = data.stories[0];
+        headerData = data.stories[0].content; // Pass just the content
       }
     } catch (e) {
       console.error("Failed to fetch header");

@@ -1,4 +1,4 @@
-import { FooterDefaultStoryblok } from "@/types";
+import { FooterDefaultStoryblok } from "@/types/storyblok-components";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
 import { storyblokEditable } from "@storyblok/react";
 

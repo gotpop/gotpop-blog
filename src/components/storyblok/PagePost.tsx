@@ -1,4 +1,4 @@
-import { PagePostStoryblok } from "@/types";
+import { PagePostStoryblok } from "@/types/storyblok-components";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
 import { storyblokEditable } from "@storyblok/react";
 

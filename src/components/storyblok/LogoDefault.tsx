@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LogoDefaultStoryblok } from "@/types";
+import { LogoDefaultStoryblok } from "@/types/storyblok-components";
 import { storyblokEditable } from "@storyblok/react";
 
 interface LogoDefaultProps {

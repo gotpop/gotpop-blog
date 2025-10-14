@@ -1,4 +1,4 @@
-import { HeroDefaultStoryblok } from "@/types";
+import { HeroDefaultStoryblok } from "@/types/storyblok-components";
 import { storyblokEditable } from "@storyblok/react";
 
 interface HeroDefaultProps {
