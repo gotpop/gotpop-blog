@@ -2,12 +2,11 @@
 
 import { apiPlugin, storyblokInit } from "@storyblok/react";
 
-import { components } from "@/components/storyblok";
-
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
   use: [apiPlugin],
-  components,
+  // Don't register components here since we're using StoryblokServerComponent
+  // components are only needed for client-side rendering
   apiOptions: {
     region: "eu",
   },

@@ -1,0 +1,11 @@
+.nav-item {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-item:hover {
+  color: #0070f3;
+}
