@@ -11,7 +11,6 @@ export default function NavDefault({ blok }: NavDefaultProps) {
 
   return (
     <nav {...storyblokEditable(blok)} className="nav">
-      <h1>Nav</h1>
       {blok.nav_items?.map((nestedBlok) => (
         <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
       ))}

@@ -1,9 +1,10 @@
 import HeaderDefault from "./HeaderDefault";
+import { PageDefaultStoryblok } from "@/types";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
 import { storyblokEditable } from "@storyblok/react";
 
 interface PageDefaultProps {
-  blok: any;
+  blok: PageDefaultStoryblok;
 }
 
 export default async function PageDefault({ blok }: PageDefaultProps) {
@@ -13,7 +14,7 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
   // Fetch header story if UUID exists
   if (blok.Header) {
     try {
-      const response: any = await fetch(
+      const response = await fetch(
         `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_ACCESS_TOKEN}&by_uuids=${blok.Header}&version=draft`
       );
       const data = await response.json();
@@ -29,7 +30,7 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
   // Fetch footer story if UUID exists
   if (blok.Footer) {
     try {
-      const response: any = await fetch(
+      const response = await fetch(
         `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_ACCESS_TOKEN}&by_uuids=${blok.Footer}&version=draft`
       );
       const data = await response.json();
@@ -45,7 +46,7 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
     <div {...storyblokEditable(blok)} className="page">
       <HeaderDefault blok={headerData} />
       <main>
-        {blok.body?.map((nestedBlok: any) => (
+        {blok.body?.map((nestedBlok) => (
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
         ))}
       </main>

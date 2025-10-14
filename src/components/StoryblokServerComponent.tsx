@@ -14,8 +14,8 @@ export function StoryblokServerComponent({ blok }: { blok: any }) {
   const Component = components[blok.component as keyof typeof components];
 
   if (!Component) {
-    // console.warn(`Component ${blok} doesn't exist.`);
-    console.log("Header data:", JSON.stringify(blok, null, 2));
+    console.warn(`Component ${blok} doesn't exist.`);
+    // console.log("Header data:", JSON.stringify(blok, null, 2));
 
     return (
       <div
