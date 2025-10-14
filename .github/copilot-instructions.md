@@ -3,6 +3,7 @@
 ## Project Overview
 
 This is a Next.js 15.5.4 blog built with:
+
 - **Framework**: Next.js 15 with App Router and Turbopack
 - **CMS**: Storyblok with React Server Components
 - **Language**: TypeScript (strict mode)
@@ -41,13 +42,13 @@ src/components/storyblok/
 - **No CSS-in-JS**: Avoid styled-components, emotion, etc.
 - **Pattern**:
   ```tsx
-  const styles = getInlineStyles("HeroDefault");
+  const styles = getInlineStyles("HeroDefault")
   return (
     <>
       {styles && <style>{styles}</style>}
       <section className="hero">...</section>
     </>
-  );
+  )
   ```
 
 ## Coding Standards
@@ -56,7 +57,7 @@ src/components/storyblok/
 
 - **Console logs for objects**: Always use JSON.stringify with formatting:
   ```tsx
-  console.log("Header data:", JSON.stringify(data, null, 2));
+  console.log("Header data:", JSON.stringify(data, null, 2))
   ```
 - This makes objects readable in the console
 - Use descriptive labels before the colon
@@ -90,17 +91,17 @@ When creating new Storyblok components:
 ### Example Component Template
 
 ```tsx
-import { ComponentNameStoryblok } from "@/types/storyblok-components";
-import { storyblokEditable } from "@storyblok/react/rsc";
-import { getInlineStyles } from "@/utils/inline-styles";
+import { ComponentNameStoryblok } from "@/types/storyblok-components"
+import { storyblokEditable } from "@storyblok/react/rsc"
+import { getInlineStyles } from "@/utils/inline-styles"
 
 interface ComponentNameProps {
-  blok: ComponentNameStoryblok;
+  blok: ComponentNameStoryblok
 }
 
 export default function ComponentName({ blok }: ComponentNameProps) {
-  const styles = getInlineStyles("ComponentName");
-  
+  const styles = getInlineStyles("ComponentName")
+
   return (
     <>
       {styles && <style>{styles}</style>}
@@ -108,7 +109,7 @@ export default function ComponentName({ blok }: ComponentNameProps) {
         {/* Component content */}
       </div>
     </>
-  );
+  )
 }
 ```
 
@@ -130,8 +131,9 @@ export default function ComponentName({ blok }: ComponentNameProps) {
 ### Rich Text
 
 - Rich text fields have type `RichtextStoryblok`
-- Access content: `blok.richtext?.content?.[0]?.content?.[0]?.text`
-- Consider using `@storyblok/richtext` package for proper rendering
+- Use the `<RichText>` component from `@/components/RichText` for rendering
+- Example: `{blok.body && <RichText content={blok.body} />}`
+- Powered by `@storyblok/richtext` package with `richTextResolver()`
 
 ## Development Workflow
 
@@ -156,7 +158,7 @@ npm run kill-ports       # Kill processes on ports 3000 and 3010
 ❌ Use `dangerouslySetInnerHTML` (use inline styles pattern instead)  
 ❌ Import from `@storyblok/react` (use `@storyblok/react/rsc`)  
 ❌ Register components in `StoryblokProvider` (causes client/server issues)  
-❌ Pass full story object to components (pass `story.content` or specific blok)  
+❌ Pass full story object to components (pass `story.content` or specific blok)
 
 ## Do This Instead
 
@@ -165,7 +167,7 @@ npm run kill-ports       # Kill processes on ports 3000 and 3010
 ✅ Register components in `src/lib/storyblok.ts`  
 ✅ Use `getStoryblokApi()` for data fetching  
 ✅ Colocate CSS files with components  
-✅ Use type-safe props with auto-generated types  
+✅ Use type-safe props with auto-generated types
 
 ## Environment Variables
 

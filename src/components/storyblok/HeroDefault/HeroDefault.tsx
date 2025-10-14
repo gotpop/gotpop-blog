@@ -1,4 +1,5 @@
 import { HeroDefaultStoryblok } from "@/types/storyblok-components"
+import RichText from "@/components/RichText"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { storyblokEditable } from "@storyblok/react/rsc"
 
@@ -13,14 +14,7 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
       {styles && <style>{styles}</style>}
       <div className="hero-content">
         {blok.heading && <h1>{blok.heading}</h1>}
-        {blok.subheading && (
-          <div>
-            {/* Rich text field - we'll render it simply for now */}
-            {blok.subheading.content?.[0]?.content?.[0]?.text && (
-              <p>{blok.subheading.content[0].content[0].text}</p>
-            )}
-          </div>
-        )}
+        {blok.subheading && <RichText content={blok.subheading} />}
         {/* Fallback for subtitle field */}
         {blok.subtitle && <p>{blok.subtitle}</p>}
       </div>
