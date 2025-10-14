@@ -43,7 +43,7 @@ export default async function Page({ params }: PageParams) {
       version: "draft",
     });
 
-    console.log("Story data:", JSON.stringify(data.story.content, null, 2));
+    // console.log("Story data:", JSON.stringify(data.story.content, null, 2));
 
     return (
       <div style={{ minHeight: "100vh" }}>

@@ -10,13 +10,14 @@ interface LogoDefaultProps {
 export default function LogoDefault({ blok }: LogoDefaultProps) {
   return (
     <Link href={blok.link.url} {...storyblokEditable(blok)} className="logo">
-      <Image
+      <h1>Logo</h1>
+      {/* <Image
         src={blok.image.filename}
         alt={blok.image.alt}
         width={150}
         height={50}
         className="logo-image"
-      />
+      /> */}
     </Link>
   );
 }

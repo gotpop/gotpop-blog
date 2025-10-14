@@ -6,7 +6,7 @@ interface HeroDefaultProps {
 }
 
 export default function HeroDefault({ blok }: HeroDefaultProps) {
-  console.log("Hero blok:", JSON.stringify(blok, null, 2));
+  // console.log("Hero blok:", JSON.stringify(blok, null, 2));
 
   return (
     <section {...storyblokEditable(blok)} className="hero">

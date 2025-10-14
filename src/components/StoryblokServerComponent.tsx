@@ -7,17 +7,24 @@ export function StoryblokServerComponent({ blok }: { blok: any }) {
   }
 
   // If it's not a proper blok object, return null
-  if (typeof blok !== "object" || !blok.component) {
+  if (typeof blok !== "object") {
     return null;
   }
 
   const Component = components[blok.component as keyof typeof components];
 
   if (!Component) {
-    console.warn(`Component ${blok.component} doesn't exist.`);
+    // console.warn(`Component ${blok} doesn't exist.`);
+    console.log("Header data:", JSON.stringify(blok, null, 2));
+
     return (
       <div
-        style={{ padding: "1rem", background: "#fee", border: "1px solid red" }}
+        style={{
+          color: "black",
+          padding: "1rem",
+          background: "#fee",
+          border: "1px solid red",
+        }}
       >
         Component <code>{blok.component}</code> doesn&apos;t exist.
       </div>

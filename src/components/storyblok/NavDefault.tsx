@@ -7,8 +7,11 @@ interface NavDefaultProps {
 }
 
 export default function NavDefault({ blok }: NavDefaultProps) {
+  // console.log("Nav data:", JSON.stringify(blok, null, 2));
+
   return (
     <nav {...storyblokEditable(blok)} className="nav">
+      <h1>Nav</h1>
       {blok.nav_items?.map((nestedBlok) => (
         <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
       ))}

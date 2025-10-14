@@ -1,3 +1,4 @@
+import HeaderDefault from "./HeaderDefault";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
 import { storyblokEditable } from "@storyblok/react";
 
@@ -6,7 +7,7 @@ interface PageDefaultProps {
 }
 
 export default async function PageDefault({ blok }: PageDefaultProps) {
-  let headerTitle = null;
+  let headerData = null;
   let footerTitle = null;
 
   // Fetch header story if UUID exists
@@ -16,8 +17,9 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
         `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_ACCESS_TOKEN}&by_uuids=${blok.Header}&version=draft`
       );
       const data = await response.json();
+
       if (data.stories && data.stories[0]) {
-        headerTitle = data.stories[0].name;
+        headerData = data.stories[0];
       }
     } catch (e) {
       console.error("Failed to fetch header");
@@ -41,11 +43,7 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
 
   return (
     <div {...storyblokEditable(blok)} className="page">
-      {headerTitle && (
-        <header className="header">
-          <h2>{headerTitle}</h2>
-        </header>
-      )}
+      <HeaderDefault blok={headerData} />
       <main>
         {blok.body?.map((nestedBlok: any) => (
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
