@@ -118,12 +118,15 @@ export default function ComponentName({ blok }: ComponentNameProps) {
 ### Path Handling
 
 - Stories are under `blog/` folder in Storyblok
-- Page component handles path normalization (see `src/app/[[...slug]]/page.tsx`)
+- Use `getStoryPath(fullSlug)` from `src/lib/storyblok-utils.ts` to convert `full_slug` to clean URL paths
+- Automatically removes "blog/" prefix and ensures leading "/"
+- Use `normalizeStoryblokPath(slug)` for incoming route slugs
 - Home path ("home" or "blog") maps to `blog/`
 
 ### Link Handling
 
-- Use `getStoryblokLinkProps()` from `src/utils/storyblok.ts`
+- Use `getStoryblokLinkProps()` from `src/utils/storyblok.ts` for multilink fields
+- Use `getStoryPath()` from `src/lib/storyblok-utils.ts` for `full_slug` → URL conversion
 - Automatically converts "home" → "/"
 - Handles internal vs external links
 - Sets proper `target` and `rel` attributes

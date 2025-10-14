@@ -1,4 +1,5 @@
 import {
+  getStoryPath,
   normalizeStoryblokPath,
   shouldIncludeStory,
 } from "@/lib/storyblok-utils"
@@ -22,9 +23,12 @@ export async function generateStaticParams() {
     .filter((story: StoryblokStoryResponse) =>
       shouldIncludeStory(story.full_slug)
     )
-    .map((story: StoryblokStoryResponse) => ({
-      slug: story.full_slug.replace("blog/", "").split("/"),
-    }))
+    .map((story: StoryblokStoryResponse) => {
+      const path = getStoryPath(story.full_slug)
+      // Remove leading slash and split into array
+      const slug = path === "/" ? [] : path.slice(1).split("/")
+      return { slug }
+    })
 }
 
 interface PageParams {

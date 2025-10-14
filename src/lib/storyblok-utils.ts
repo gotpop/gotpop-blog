@@ -28,3 +28,15 @@ export function shouldIncludeStory(fullSlug: string): boolean {
     fullSlug !== "blog/"
   )
 }
+
+/**
+ * Converts a Storyblok full_slug to a clean URL path
+ * Removes the 'blog/' prefix and ensures it starts with '/'
+ */
+export function getStoryPath(fullSlug: string): string {
+  const path = fullSlug.startsWith("blog/")
+    ? fullSlug.replace("blog/", "")
+    : fullSlug
+
+  return path === "" || path === "/" ? "/" : `/${path}`
+}

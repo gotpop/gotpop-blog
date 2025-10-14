@@ -1,5 +1,6 @@
 import { CardStoryblok } from "@/types/storyblok-components"
 import Link from "next/link"
+import { getStoryPath } from "@/lib/storyblok-utils"
 import { getStoryblokApi } from "@/lib/storyblok"
 import { storyblokEditable } from "@storyblok/react/rsc"
 
@@ -29,10 +30,7 @@ export default async function Card({ blok }: CardProps) {
 
   // console.log("Card story data:", JSON.stringify(story, null, 2))
 
-  const linkPath = story.full_slug.startsWith("blog/")
-    ? `/${story.full_slug.replace("blog/", "")}`
-    : `/${story.full_slug}`
-
+  const linkPath = getStoryPath(story.full_slug)
   const title = story.content?.Heading || story.name
   const description = story.content?.description || ""
 
