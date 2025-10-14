@@ -1,7 +1,7 @@
 import { HeaderDefaultStoryblok } from "@/types/storyblok-components";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
 import { getInlineStyles } from "@/utils/inline-styles";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 
 interface HeaderDefaultProps {
   blok: HeaderDefaultStoryblok | null;

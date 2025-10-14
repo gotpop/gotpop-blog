@@ -1,7 +1,7 @@
 import HeaderDefault from "../HeaderDefault";
 import { PageDefaultStoryblok } from "@/types";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 
 interface PageDefaultProps {
   blok: PageDefaultStoryblok;

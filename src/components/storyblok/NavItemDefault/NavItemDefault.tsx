@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NavItemDefaultStoryblok } from "@/types/storyblok-components";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 import { getStoryblokLinkProps } from "@/utils/storyblok";
 
 interface NavItemDefaultProps {

@@ -1,5 +1,5 @@
 import { HeroDefaultStoryblok } from "@/types/storyblok-components";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 
 interface HeroDefaultProps {
   blok: HeroDefaultStoryblok;

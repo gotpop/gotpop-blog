@@ -1,6 +1,6 @@
 import { FooterDefaultStoryblok } from "@/types/storyblok-components";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 
 interface FooterDefaultProps {
   blok: FooterDefaultStoryblok;

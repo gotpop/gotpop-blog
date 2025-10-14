@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LogoDefaultStoryblok } from "@/types/storyblok-components";
 import { getInlineStyles } from "@/utils/inline-styles";
 import { getStoryblokLinkProps } from "@/utils/storyblok";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 
 interface LogoDefaultProps {
   blok: LogoDefaultStoryblok;

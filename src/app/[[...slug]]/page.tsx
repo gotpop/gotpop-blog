@@ -1,15 +1,11 @@
-import StoryblokClient from "storyblok-js-client";
-import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
-
-const Storyblok = new StoryblokClient({
-  accessToken: process.env.STORYBLOK_ACCESS_TOKEN || "",
-  region: "eu",
-});
+import { StoryblokStory } from "@storyblok/react/rsc";
+import { getStoryblokApi } from "@/lib/storyblok";
 
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const { data } = await Storyblok.get("cdn/stories", {
+  const storyblokApi = getStoryblokApi();
+  const { data } = await storyblokApi.get("cdn/stories", {
     version: "published",
     starts_with: "blog/",
   });
@@ -61,22 +57,19 @@ export default async function Page({ params }: PageParams) {
   }
 
   try {
-    const { data } = await Storyblok.get(`cdn/stories/${fullPath}`, {
+    const storyblokApi = getStoryblokApi();
+    const { data } = await storyblokApi.get(`cdn/stories/${fullPath}`, {
       version: "draft",
     });
 
-    // console.log("Story data:", JSON.stringify(data.story.content, null, 2));
-
-    return (
-      <div style={{ minHeight: "100vh" }}>
-        <StoryblokServerComponent blok={data.story.content} />
-      </div>
-    );
+    // Use StoryblokStory component for automatic Visual Editor support
+    return <StoryblokStory story={data.story} />;
   } catch (error: any) {
     // Try to get all stories to show what's available
     let availableStories = [];
     try {
-      const { data } = await Storyblok.get("cdn/stories", {
+      const storyblokApi = getStoryblokApi();
+      const { data } = await storyblokApi.get("cdn/stories", {
         version: "draft",
         starts_with: "blog/",
       });
