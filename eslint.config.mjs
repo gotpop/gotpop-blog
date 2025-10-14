@@ -18,6 +18,9 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      "src/types/storyblok-components.ts", // Auto-generated types file
+      "scripts/**", // Node.js scripts can use require()
+      "*.config.js", // Config files can use require()
     ],
   },
 ];

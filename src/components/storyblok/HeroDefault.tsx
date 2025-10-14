@@ -1,8 +1,8 @@
-import Image from "next/image";
+import { HeroDefaultStoryblok } from "@/types";
 import { storyblokEditable } from "@storyblok/react";
 
 interface HeroDefaultProps {
-  blok: any;
+  blok: HeroDefaultStoryblok;
 }
 
 export default function HeroDefault({ blok }: HeroDefaultProps) {
@@ -23,16 +23,6 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
         {/* Fallback for subtitle field */}
         {blok.subtitle && <p>{blok.subtitle}</p>}
       </div>
-      {blok.image && (
-        <Image
-          src={blok.image.filename}
-          alt={blok.image.alt || ""}
-          width={1200}
-          height={600}
-          className="hero-image"
-          priority
-        />
-      )}
     </section>
   );
 }
