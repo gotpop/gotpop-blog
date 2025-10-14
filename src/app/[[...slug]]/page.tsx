@@ -37,14 +37,14 @@ export default async function Page({ params }: PageParams) {
 
   // Build the path from slug segments
   let fullPath: string;
-  
+
   if (!slug || slug.length === 0) {
     // Root path - use "blog/"
     fullPath = "blog/";
   } else {
     // Join the slug segments
     const joinedSlug = slug.join("/");
-    
+
     // Handle different cases:
     // 1. If slug is exactly "blog" (root page from Storyblok preview)
     if (joinedSlug === "blog") {
