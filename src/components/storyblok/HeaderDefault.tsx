@@ -1,9 +1,9 @@
-import { HeaderDefaultStoryblok } from "@/types";
+import { HeaderDefaultStoryblok } from "@/types/storyblok-components";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
 import { storyblokEditable } from "@storyblok/react";
 
 interface HeaderDefaultProps {
-  blok: HeaderDefaultStoryblok | { content: HeaderDefaultStoryblok } | null;
+  blok: HeaderDefaultStoryblok | null;
 }
 
 export default function HeaderDefault({ blok }: HeaderDefaultProps) {
@@ -12,20 +12,15 @@ export default function HeaderDefault({ blok }: HeaderDefaultProps) {
     return null;
   }
 
-  // If blok is a story object with content, extract the content
-  const headerContent = (
-    "content" in blok ? blok.content : blok
-  ) as HeaderDefaultStoryblok;
+  console.log("Header content:", JSON.stringify(blok, null, 2));
 
-  console.log("Header content:", JSON.stringify(headerContent, null, 2));
-
-  const { nav, logo } = headerContent;
+  const { nav, logo } = blok;
 
   return (
-    <header {...storyblokEditable(headerContent)} className="header">
+    <header {...storyblokEditable(blok)} className="header">
       <h1>Liam Header</h1>
-      {logo && <StoryblokServerComponent blok={headerContent.logo[0]} />}
-      {nav && <StoryblokServerComponent blok={headerContent.nav[0]} />}
+      {logo && logo[0] && <StoryblokServerComponent blok={logo[0]} />}
+      {nav && nav[0] && <StoryblokServerComponent blok={nav[0]} />}
     </header>
   );
 }
