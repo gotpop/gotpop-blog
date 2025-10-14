@@ -1,0 +1,42 @@
+navigation-bar {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--spacing-base);
+  justify-content: space-between;
+  padding: 2rem;
+  background: --background(crosshatch);
+  background: --opacity(var(--primary-600), 0.03);
+}
+
+.group-filters {
+  align-items: start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  justify-self: start;
+  view-transition-name: attr(id type(<custom-ident>), none);
+}
+
+.button-filter {
+  --staggered-colour: oklch(
+    from var(--secondary-400) calc(l + sibling-index() * 0.05) c h
+  );
+
+  background-color: var(--staggered-colour);
+  color: var(--light-100);
+  cursor: pointer;
+  justify-content: center;
+  padding-inline: var(--spacing-base);
+  padding: calc(1rem - calc(1cap / 2)) var(--spacing-base);
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+  width: var(--round-up);
+  text-align: center;
+
+  &:hover {
+    background-color: var(--secondary-600);
+  }
+}

@@ -20,8 +20,37 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
       target={linkProps.target}
       {...storyblokEditable(blok)}
     >
-      <style>{styles}</style>
-      <h1>Logo</h1>
+      <div>
+        <figure className="logo" role="img" aria-label="GotPop Logo">
+          <style>{styles}</style>
+          <style></style>
+          <div className="circles">
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+          </div>
+          <span className="logo-text">GotPop</span>
+        </figure>
+        <button
+          aria-controls="header-nav"
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-label="Toggle navigation"
+          className="button-toggle-menu"
+          id="header-toggle"
+          type="button"
+          data-click-listener-added="true"
+        >
+          {/* <icon-hamburger
+          id="header-toggle-icon"
+          aria-hidden="true"
+        ></icon-hamburger> */}
+          <span hidden>Toggle navigation</span>
+        </button>
+      </div>
     </Link>
   )
 }

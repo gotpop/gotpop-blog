@@ -1,0 +1,52 @@
+/* prettier-ignore */
+@function --get-background-colour()  returns <color> {
+  --colour-cached: if(
+    style(--brand: linkedin): #1da1f2; 
+    style(--brand: github): #333;
+    
+    else: var(--secondary-600)
+  );
+  
+  --colour-hover: oklch(
+    from var(--colour-cached) calc(l * 0.05) c h
+  );
+
+  --colour: if(
+    style(--hover: 1): var(--colour-hover); 
+    
+    else: var(--colour-cached)
+  );
+
+  result: var(--colour);
+}
+
+.link-button-jumbo {
+  --brand: attr(brand type(<custom-ident>), none);
+  --icon-size: min-content;
+  --letter-spacing: 0.055em;
+
+  align-items: center;
+  background-color: --get-background-colour();
+  color: var(--light-100);
+  container: jumbo / inline-size;
+  display: grid;
+  gap: var(--spacing-sm);
+  grid-template-columns: auto var(--icon-size);
+  height: var(--round-up-stretch);
+  justify-content: space-between;
+  letter-spacing: var(--letter-spacing);
+  padding: var(--spacing-base);
+  text-decoration: none;
+  text-wrap: balance;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+  span {
+    --font-size: var(--font-scaled-sm);
+
+    font-size: var(--font-size);
+
+    @container jumbo (width >= 10rem) {
+      --font-size: var(--font-scaled-base);
+    }
+  }
+}

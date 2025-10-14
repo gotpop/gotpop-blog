@@ -1,0 +1,53 @@
+/* prettier-ignore */
+@function --get-icon(--icon <custom-ident>) {
+  result: if(
+    style(--icon: arrow-right): var(--icon-triangle);
+    style(--icon: arrow-left): var(--icon-triangle-left);
+    style(--icon: github): var(--icon-github);
+    style(--icon: linkedin): var(--icon-linkedin);
+    style(--icon: send): var(--icon-send);
+
+    else: var(--icon-github)
+  );
+}
+/* prettier-ignore */
+@function --get-aspect-ratio(--icon <custom-ident>) {
+  result: if(
+    style(--icon: send): 1.367;
+
+    else: 1
+  );
+}
+
+icon-element {
+  --cols: [f-start] var(--pad) [i-start] var(--size) [i-end] var(--pad) [f-end];
+  --icon: attr(icon type(<custom-ident>), github);
+  --pad: 0rem;
+  --rows: [f-start] var(--pad) [i-start] min-content [i-end] var(--pad) [f-end];
+  --size: calc(var(--width) - var(--pad) * 2);
+  --width: attr(width rem, 2rem);
+
+  display: grid;
+  grid-template: var(--rows) / var(--cols);
+  width: var(--width);
+
+  &::before,
+  &::after {
+    content: "";
+  }
+
+  &::before {
+    background-color: var(--secondary-500);
+    border-radius: attr(radius rem, 0);
+    corner-shape: attr(radius rem, square);
+    grid-area: f;
+    display: none;
+  }
+
+  &::after {
+    aspect-ratio: --get-aspect-ratio(var(--icon));
+    background-color: currentColor;
+    clip-path: --get-icon(var(--icon));
+    grid-area: i;
+  }
+}

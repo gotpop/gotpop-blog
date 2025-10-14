@@ -1,0 +1,44 @@
+@function --light-dark(--mode) {
+  result: var(--mode);
+
+  @media (prefers-color-scheme: dark) {
+    result: if(style(--mode: dark): light; else: dark);
+  }
+}
+
+footer {
+  --grid-vertical-color: --opacity(var(--dark-600), 0.3);
+  --grid-horizontal-color: --opacity(var(--dark-600), 0.3);
+  --mode: --light-dark(dark);
+  --mode: dark;
+
+  /* prettier-ignore */
+  background: paint(grid) if(style(--mode: dark): var(--secondary-900); else: var(--light-100));
+  color: var(--light-300);
+  display: grid;
+  gap: 3rem;
+  grid-auto-columns: auto;
+  grid-auto-flow: row dense;
+  grid-column: full;
+  grid-row: footer;
+  grid-template-columns: subgrid;
+  justify-content: center;
+  padding-block: var(--spacing-xl);
+  view-transition-name: footer;
+}
+
+.footer-logo {
+  grid-column: --xs-lg-up(content, content-start / span 2);
+  width: stretch;
+  align-self: start;
+
+  figure {
+    justify-content: --xs-lg-up(center, start);
+  }
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

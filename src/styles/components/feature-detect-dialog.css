@@ -1,0 +1,52 @@
+#feature-detect-popover {
+  backdrop-filter: blur(50px);
+  background-color: red;
+  background-color: var(--colour-dark-1);
+  border-radius: 0.5rem;
+  border: unset;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  color: var(--colour-light-1);
+  display: block;
+  gap: 1rem;
+  grid-column: content;
+  grid-row: span 1;
+  grid-template-columns: subgrid;
+  padding: calc(var(--padding) * 2);
+  position: fixed;
+  text-align: center;
+  width: min(calc(100% - 2rem), 30rem);
+
+  &:popover-open {
+    display: block;
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2000px);
+  }
+
+  .feature-list {
+    gap: 1rem;
+    display: grid;
+  }
+
+  details {
+    background-color: var(--colour-light-1);
+    color: var(--colour-dark-1);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    overflow: clip;
+    display: flex;
+    flex-direction: column;
+  }
+
+  summary {
+    padding: 1.5rem;
+    background-color: aquamarine;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 1 100%;
+  }
+}

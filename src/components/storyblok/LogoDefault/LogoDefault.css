@@ -1,7 +1,72 @@
 @scope {
   & {
-    background-color: red;
+    align-items: center;
+    container: logo / inline-size;
     display: flex;
-    border: 10px solid green;
+    gap: calc(var(--spacing-base) * 0.8);
+    justify-content: center;
+    margin: unset;
+    padding: var(--spacing-sm);
+    user-select: none;
+    width: stretch;
+  }
+
+  .circles {
+    --main-circle-color: --opacity(var(--secondary-400), 0.2);
+    --small-circle-color: var(--triad-2);
+    --main-circle-size: 1.2rem;
+    --main-circle-radius: calc(var(--main-circle-size) / 2);
+    --small-circle-size: calc(var(--main-circle-size) / 2);
+    --small-circle-radius: calc(var(--small-circle-size) / 2);
+    --orbit-radius: calc(
+      var(--main-circle-radius) - var(--small-circle-radius)
+    );
+
+    position: relative;
+    aspect-ratio: 1;
+    width: var(--main-circle-size);
+    transition: transform 0.5s ease;
+    transform: rotate(0deg);
+
+    .logo:hover & {
+      transform: rotate(360deg);
+    }
+
+    @container (width >= 9rem) {
+      --main-circle-size: 2.6rem;
+    }
+  }
+
+  .circle {
+    --hue: calc(sibling-index() * 50);
+    --angle: calc((sibling-index() - 1) * 60deg);
+    --orbit-y: calc(var(--orbit-radius) * sin(var(--angle)));
+    --orbit-x: calc(var(--orbit-radius) * cos(var(--angle)));
+    --center-offset: calc(50% - var(--small-circle-radius));
+
+    aspect-ratio: 1;
+    background-color: --opacity(oklch(100% 100% var(--hue)), 0.5);
+    clip-path: circle(50%);
+    inset: 0;
+    left: calc(var(--center-offset) + var(--orbit-x));
+    position: absolute;
+    top: calc(var(--center-offset) - var(--orbit-y));
+    transform-origin: center;
+    width: var(--small-circle-size);
+  }
+
+  .logo-text {
+    --font-size: var(--font-scaled-sm);
+
+    color: var(--light-100);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+
+    @container (width >= 9rem) {
+      --font-size: calc(var(--font-scaled-base) * 0.9);
+    }
   }
 }

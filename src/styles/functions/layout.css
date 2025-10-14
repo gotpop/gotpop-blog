@@ -1,0 +1,9 @@
+@function --grid-row-base() {
+  result: [header] min-content [main] 1fr [double-col] 0 [footer] min-content;
+}
+
+@function --grid-auto(--repeat, --col-width) {
+  result: [full-start] minmax(0, 1fr) [breakout-start] 0 [content-start]
+    repeat(var(--repeat), var(--col-width)) [content-end] 0 [breakout-end]
+    minmax(0, 1fr) [full-end];
+}

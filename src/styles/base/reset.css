@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+  text-box-edge: cap alphabetic;
+  text-box-trim: trim-both;
+
+  &:before,
+  &:after {
+    box-sizing: inherit;
+    text-box-edge: inherit;
+    text-box-trim: inherit;
+  }
+}
+
+ul:not([class]) {
+  list-style: none;
+  padding: unset;
+  margin: unset;
+}
+
+li:not([class]) {
+  padding-block-start: calc(1rem - 1cap);
+  margin-block-end: 1rem;
+  max-width: 60ch;
+
+  strong {
+    width: max-content;
+  }
+
+  span {
+    display: inline flex;
+    align-items: center;
+    gap: var(--spacing-base);
+  }
+}
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
