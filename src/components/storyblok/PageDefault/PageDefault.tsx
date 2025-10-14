@@ -1,4 +1,4 @@
-import HeaderDefault from "./HeaderDefault";
+import HeaderDefault from "../HeaderDefault";
 import { PageDefaultStoryblok } from "@/types";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
 import { storyblokEditable } from "@storyblok/react";

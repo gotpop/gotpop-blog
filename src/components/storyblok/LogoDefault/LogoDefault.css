@@ -1,0 +1,7 @@
+@scope {
+  & {
+    background-color: red;
+    display: flex;
+    border: 10px solid green;
+  }
+}

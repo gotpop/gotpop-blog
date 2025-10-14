@@ -1,7 +1,7 @@
 import { NavDefaultStoryblok } from "@/types/storyblok-components";
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent";
-import { storyblokEditable } from "@storyblok/react";
 import { getInlineStyles } from "@/utils/inline-styles";
+import { storyblokEditable } from "@storyblok/react";
 
 interface NavDefaultProps {
   blok: NavDefaultStoryblok;

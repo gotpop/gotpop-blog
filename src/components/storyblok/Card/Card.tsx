@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { storyblokEditable } from "@storyblok/react";
+import { CardStoryblok } from "@/types";
 
 interface CardProps {
-  blok: any;
+  blok: CardStoryblok;
 }
 
 export default function Card({ blok }: CardProps) {
-  // Check if this card has direct content or just references
   const hasDirectContent = blok.title || blok.description || blok.image;
 
   return (
-    <div {...storyblokEditable(blok)} className="card">
+    <div className="card" {...storyblokEditable(blok)}>
       {blok.image && (
         <Image
           src={blok.image.filename}
@@ -42,7 +42,7 @@ export default function Card({ blok }: CardProps) {
               description, and image fields to your card component in Storyblok,
               or change it to fetch the referenced story content.
             </p>
-            {blok.cards && blok.cards.length > 0 && (
+            {Array.isArray(blok.cards) && blok.cards.length > 0 && (
               <p
                 style={{ fontSize: "0.8rem", color: "#888", marginTop: "1rem" }}
               >

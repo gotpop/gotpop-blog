@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { LogoDefaultStoryblok } from "@/types/storyblok-components";
-import { storyblokEditable } from "@storyblok/react";
+import { getInlineStyles } from "@/utils/inline-styles";
 import { getStoryblokLinkProps } from "@/utils/storyblok";
+import { storyblokEditable } from "@storyblok/react";
 
 interface LogoDefaultProps {
   blok: LogoDefaultStoryblok;
@@ -9,15 +10,17 @@ interface LogoDefaultProps {
 
 export default function LogoDefault({ blok }: LogoDefaultProps) {
   const linkProps = getStoryblokLinkProps(blok.link);
+  const styles = getInlineStyles("LogoDefault.css");
 
   return (
     <Link
-      href={linkProps.href}
-      target={linkProps.target}
-      rel={linkProps.rel}
-      {...storyblokEditable(blok)}
       className="logo"
+      href={linkProps.href}
+      rel={linkProps.rel}
+      target={linkProps.target}
+      {...storyblokEditable(blok)}
     >
+      <style>{styles}</style>
       <h1>Logo</h1>
     </Link>
   );
