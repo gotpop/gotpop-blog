@@ -1,6 +1,6 @@
+import { CardStoryblok } from "@/types/storyblok-components"
 import Image from "next/image"
 import { storyblokEditable } from "@storyblok/react/rsc"
-import { CardStoryblok } from "@/types"
 
 interface CardProps {
   blok: CardStoryblok

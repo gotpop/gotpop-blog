@@ -1,5 +1,5 @@
 import HeaderDefault from "../HeaderDefault"
-import { PageDefaultStoryblok } from "@/types"
+import { PageDefaultStoryblok } from "@/types/storyblok-components"
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
 import { storyblokEditable } from "@storyblok/react/rsc"
 
