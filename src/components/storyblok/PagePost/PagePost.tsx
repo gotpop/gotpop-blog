@@ -2,19 +2,56 @@ import { PagePostStoryblok } from "@/types/storyblok-components"
 import RichText from "@/components/RichText"
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
 import { getInlineStyles } from "@/utils/inline-styles"
+import { getStoryblokApi } from "@/lib/storyblok"
 import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface PagePostProps {
   blok: PagePostStoryblok
 }
 
-export default function PagePost({ blok }: PagePostProps) {
+export default async function PagePost({ blok }: PagePostProps) {
   const styles = getInlineStyles("PagePost.css")
+  const storyblokApi = getStoryblokApi()
+
+  let headerData = null
+  let footerData = null
+
+  // Fetch header story if UUID exists
+  if (blok.Header) {
+    try {
+      const { data } = await storyblokApi.get(`cdn/stories`, {
+        version: "draft",
+        by_uuids: blok.Header,
+      })
+
+      if (data?.stories?.[0]) {
+        headerData = data.stories[0].content
+      }
+    } catch (e) {
+      console.error("Failed to fetch header:", e)
+    }
+  }
+
+  // Fetch footer story if UUID exists
+  if (blok.Footer) {
+    try {
+      const { data } = await storyblokApi.get(`cdn/stories`, {
+        version: "draft",
+        by_uuids: blok.Footer,
+      })
+
+      if (data?.stories?.[0]) {
+        footerData = data.stories[0].content
+      }
+    } catch (e) {
+      console.error("Failed to fetch footer:", e)
+    }
+  }
 
   return (
     <div {...storyblokEditable(blok)} className="page-post">
       {styles && <style>{styles}</style>}
-      <StoryblokServerComponent blok={blok.header} />
+      {headerData && <StoryblokServerComponent blok={headerData} />}
       <main>
         {blok.Heading && <h1>{blok.Heading}</h1>}
         {blok.published_date && (
@@ -27,7 +64,7 @@ export default function PagePost({ blok }: PagePostProps) {
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
         ))}
       </main>
-      <StoryblokServerComponent blok={blok.footer} />
+      {footerData && <StoryblokServerComponent blok={footerData} />}
     </div>
   )
 }

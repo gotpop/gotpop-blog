@@ -1,7 +1,7 @@
-import HeaderDefault from "../HeaderDefault"
 import { PageDefaultStoryblok } from "@/types/storyblok-components"
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
 import { getInlineStyles } from "@/utils/inline-styles"
+import { getStoryblokApi } from "@/lib/storyblok"
 import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface PageDefaultProps {
@@ -10,55 +10,53 @@ interface PageDefaultProps {
 
 export default async function PageDefault({ blok }: PageDefaultProps) {
   const styles = getInlineStyles("PageDefault.css")
+  const storyblokApi = getStoryblokApi()
 
   let headerData = null
-  let footerTitle = null
+  let footerData = null
 
   // Fetch header story if UUID exists
   if (blok.Header) {
     try {
-      const response = await fetch(
-        `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_ACCESS_TOKEN}&by_uuids=${blok.Header}&version=draft`
-      )
-      const data = await response.json()
+      const { data } = await storyblokApi.get(`cdn/stories`, {
+        version: "draft",
+        by_uuids: blok.Header,
+      })
 
-      if (data.stories && data.stories[0]) {
-        headerData = data.stories[0].content // Pass just the content
+      if (data?.stories?.[0]) {
+        headerData = data.stories[0].content
       }
     } catch (e) {
-      console.error("Failed to fetch header")
+      console.error("Failed to fetch header:", e)
     }
   }
 
   // Fetch footer story if UUID exists
   if (blok.Footer) {
     try {
-      const response = await fetch(
-        `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_ACCESS_TOKEN}&by_uuids=${blok.Footer}&version=draft`
-      )
-      const data = await response.json()
-      if (data.stories && data.stories[0]) {
-        footerTitle = data.stories[0].name
+      const { data } = await storyblokApi.get(`cdn/stories`, {
+        version: "draft",
+        by_uuids: blok.Footer,
+      })
+
+      if (data?.stories?.[0]) {
+        footerData = data.stories[0].content
       }
     } catch (e) {
-      console.error("Failed to fetch footer")
+      console.error("Failed to fetch footer:", e)
     }
   }
 
   return (
     <div {...storyblokEditable(blok)} className="page">
       {styles && <style>{styles}</style>}
-      <HeaderDefault blok={headerData} />
+      {headerData && <StoryblokServerComponent blok={headerData} />}
       <main>
         {blok.body?.map((nestedBlok) => (
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
         ))}
       </main>
-      {footerTitle && (
-        <footer className="footer">
-          <p>{footerTitle}</p>
-        </footer>
-      )}
+      {footerData && <StoryblokServerComponent blok={footerData} />}
     </div>
   )
 }

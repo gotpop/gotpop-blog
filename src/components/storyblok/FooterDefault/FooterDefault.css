@@ -1,0 +1,11 @@
+@scope {
+  & {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: orange;
+    color: #555;
+    font-size: 0.9rem;
+  }
+}
