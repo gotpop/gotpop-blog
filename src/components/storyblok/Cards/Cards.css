@@ -1,0 +1,18 @@
+@scope {
+  & {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #ffff00;
+  }
+
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: var(--background);
+    color: var(--foreground);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+}
