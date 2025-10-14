@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:https": "npm run dev & sleep 3 && local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
+    "proxy": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
+    "kill-ports": "./scripts/kill-ports.sh",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",

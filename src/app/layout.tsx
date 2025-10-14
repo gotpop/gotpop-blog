@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 
 import type { Metadata } from "next";
 import StoryblokProvider from "@/components/StoryblokProvider";
@@ -34,6 +35,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <StoryblokProvider>{children}</StoryblokProvider>
+        {/* Storyblok Bridge for Visual Editor */}
+        <Script
+          src="//app.storyblok.com/f/storyblok-v2-latest.js"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );

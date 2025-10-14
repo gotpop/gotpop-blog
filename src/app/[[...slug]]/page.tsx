@@ -35,8 +35,30 @@ interface PageParams {
 export default async function Page({ params }: PageParams) {
   const { slug } = await params;
 
-  // If no slug (root path), use "blog/", otherwise prepend "blog/"
-  const fullPath = slug && slug.length > 0 ? `blog/${slug.join("/")}` : "blog/";
+  // Build the path from slug segments
+  let fullPath: string;
+  
+  if (!slug || slug.length === 0) {
+    // Root path - use "blog/"
+    fullPath = "blog/";
+  } else {
+    // Join the slug segments
+    const joinedSlug = slug.join("/");
+    
+    // Handle different cases:
+    // 1. If slug is exactly "blog" (root page from Storyblok preview)
+    if (joinedSlug === "blog") {
+      fullPath = "blog/";
+    }
+    // 2. If the slug already starts with "blog/", use it as-is (from Storyblok preview)
+    else if (joinedSlug.startsWith("blog/")) {
+      fullPath = joinedSlug;
+    }
+    // 3. Otherwise, prepend "blog/" (normal navigation)
+    else {
+      fullPath = `blog/${joinedSlug}`;
+    }
+  }
 
   try {
     const { data } = await Storyblok.get(`cdn/stories/${fullPath}`, {
