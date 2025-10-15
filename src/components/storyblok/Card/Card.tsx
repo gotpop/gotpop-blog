@@ -1,5 +1,6 @@
 import { CardStoryblok } from "@/types/storyblok-components"
 import Link from "next/link"
+import Typography from "../Typography"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import { getStoryblokApi } from "@/lib/storyblok"
 import { storyblokEditable } from "@storyblok/react/rsc"
@@ -37,7 +38,11 @@ export default async function Card({ blok }: CardProps) {
   return (
     <div className="card" {...storyblokEditable(blok)}>
       <div className="card-content">
-        {title && <h3>{title}</h3>}
+        {title && (
+          <Typography tag="h3" variant="h3" shade="dark">
+            {title}
+          </Typography>
+        )}
         {description && <p>{description}</p>}
         <Link href={linkPath} className="card-link">
           Read more

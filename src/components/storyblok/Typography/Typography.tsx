@@ -35,17 +35,20 @@ export default function Typography({
 
   const Element = elementTag
 
-  // Build CSS custom properties based on props
-  const customProperties: Record<string, string> = {
-    ...(shade && { "--typography-shade": shade }),
-    ...(variant && { "--typography-variant": variant }),
-  }
+  const shadeClass = shade === "dark" ? "dark" : "light"
+  const variantClass = variant ? `variant-${variant}` : ""
+
+  const className = [
+    "typography-text",
+    `typography-${elementTag}`,
+    shadeClass,
+    variantClass,
+  ]
+    .filter(Boolean)
+    .join(" ")
 
   return (
-    <Element
-      className={`typography-text typography-${elementTag}`}
-      style={customProperties}
-    >
+    <Element className={className}>
       {styles && <style>{styles}</style>}
       {children}
     </Element>
