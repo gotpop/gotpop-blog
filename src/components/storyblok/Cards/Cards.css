@@ -1,19 +1,22 @@
 @scope {
   & {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    background-color: #ffff00;
+    display: grid;
+    grid-template-columns: subgrid;
     grid-column: content;
+    gap: 1rem;
   }
 
   .card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 1rem;
-    background-color: var(--background);
-    color: var(--foreground);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    display: grid;
+    grid-template-rows: subgrid [heading] [body] [footer];
+    grid-row: span 3;
+    grid-column: 1 / -1;
+    background-color: var(--light-100);
+    background-image: paint(grid), var(--grain-uri);
+    padding: var(--spacing-lg);
+    view-transition-name: attr(id type(<custom-ident>), none);
+    gap: var(--spacing-md);
+    max-height: var(--round-up);
+    color: var(--dark-900);
   }
 }

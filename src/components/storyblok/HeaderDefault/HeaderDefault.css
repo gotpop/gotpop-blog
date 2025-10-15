@@ -17,6 +17,7 @@
 
     @media screen and (width >= 480px) {
       grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
+      grid-template-rows: 1rem [centre-start] 3rem [centre-end] 1rem;
     }
 
     @media screen and (width >= 768px) {

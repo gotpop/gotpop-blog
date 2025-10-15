@@ -28,7 +28,8 @@
     view-transition-name: hero-home;
 
     &::before {
-      background: white;
+      background-color: white;
+      background-image: paint(grid), var(--grain-uri);
       content: "";
       grid-area: full;
     }
