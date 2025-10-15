@@ -28,7 +28,7 @@
     view-transition-name: hero-home;
 
     &::before {
-      background: --background(grid);
+      background: white;
       content: "";
       grid-area: full;
     }
