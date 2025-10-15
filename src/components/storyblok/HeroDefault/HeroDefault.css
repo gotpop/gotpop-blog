@@ -39,14 +39,25 @@
       --md: calc(var(--font-scaled-xxl) - 1cap);
 
       color: var(--dark-300);
-      font: --font-hero();
       grid-area: heading / hero-content;
       letter-spacing: -0.02em;
       margin-block: --xs-md-up(0 var(--spacing-md), 0 var(--spacing-xl));
-      padding-block-start: --xs-md-up(var(--sm), var(--md));
+      padding-block-start: var(--sm);
       text-wrap: balance;
       position: relative;
       right: 0.1ch;
+      
+      --weight: 600;
+
+      font: normal var(--weight) var(--font-scaled-lg) / 1.34 var(--font-family-base);
+
+      @media screen and (width >= 768px) {
+        --weight: 700;
+        padding-block-start: var(--md);
+        font: normal var(--weight) var(--font-scaled-xxl) / calc(1.62 * 1cap) var(--font-family-base);
+      }
+
+}
     }
 
     .hero-home-subtitle {
