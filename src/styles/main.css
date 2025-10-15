@@ -9,7 +9,7 @@
 @import "./functions/typographic.css";
 
 /*  Typography */
-@import "./typography/fonts.css";
+/* @import "./typography/fonts.css"; */
 @import "./typography/typography.css";
 
 /* Mixins */
@@ -20,14 +20,14 @@
 @import "./gradients/gradient-svg.css";
 
 /* Shapes */
-@import "./shapes/tetriminoes.css";
+/* @import "./shapes/tetriminoes.css"; */
 
 /* Animations */
 @import "./animations/keyframes.css";
 @import "./animations/view-transitions.css";
 
 /* Base */
-@import "./base/interactions.css";
+/* @import "./base/interactions.css"; */
 @import "./base/global.css";
 @import "./base/reset.css";
 
@@ -55,12 +55,12 @@
 @import "./links/button-jumbo.css";
 
 /* Components */
-@import "./components/feature-detect-dialog.css";
-@import "./components/header/header-logo.css";
-@import "./components/header/header.css";
-@import "./components/header/nav-items.css";
-@import "./components/header/nav-toggle.css";
-@import "./components/header/nav.css";
+/* @import "./components/feature-detect-dialog.css"; */
+/* @import "./components/header/header-logo.css"; */
+/* @import "./components/header/header.css"; */
+/* @import "./components/header/nav-items.css"; */
+/* @import "./components/header/nav-toggle.css"; */
+/* @import "./components/header/nav.css"; */
 
 /* Partials */
 @import "./partials/block.css";
