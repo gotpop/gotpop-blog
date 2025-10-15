@@ -4,6 +4,7 @@
     align-items: center;
     padding: 0.5rem 1rem;
     background-color: #ffff00;
+    grid-column: content;
   }
 
   .card {

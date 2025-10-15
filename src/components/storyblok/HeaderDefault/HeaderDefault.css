@@ -15,17 +15,19 @@
     grid-template-columns: [header-logo] 1fr;
     grid-template-rows: 1fr 1fr;
 
-    @media screen and (width> = 480px) {
+    @media screen and (width >= 480px) {
       grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
     }
 
-    @media screen and (width> = 768px) {
+    @media screen and (width >= 768px) {
       grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
     }
-    @media screen and (width> = 1280px) {
+
+    @media screen and (width >= 1280px) {
       grid-template-columns: subgrid [] [logo-start] [] [logo-end nav-start] [] [] [] [nav-end] [];
     }
-    @media screen and (width> = 1480px) {
+
+    @media screen and (width >= 1480px) {
       grid-template-columns: subgrid [] [] [logo-start] [logo-end nav-start] [] [] [] [] [nav-end] [] [];
     }
   }

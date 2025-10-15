@@ -6,9 +6,7 @@
     grid-column: --xs-lg-up(header-logo, logo);
     grid-row: --xs-lg-up(header-logo, full-height);
     grid-template-columns: --xs-lg-up(var(--layout-sm), 1fr);
-    grid-area: header-logo / full-height;
-    grid-area: header-logo;
-    grid-row: 1;
+    grid-area: logo;
   }
 
   .logo {
@@ -32,7 +30,7 @@
   }
 
   .circles {
-    /* --main-circle-color: --opacity(var(--secondary-400), 0.2); */
+    --main-circle-color: --opacity(var(--secondary-400), 0.2);
     --main-circle-color: var(--secondary-400);
     --small-circle-color: var(--triad-2);
     --main-circle-size: 1.2rem;
