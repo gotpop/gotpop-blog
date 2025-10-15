@@ -19,7 +19,9 @@ export default function HeaderDefault({ blok }: HeaderDefaultProps) {
   return (
     <header {...storyblokEditable(blok)} className="header">
       <style>{styles}</style>
-      {logo && logo[0] && <StoryblokServerComponent blok={logo[0]} />}
+      <div className="header-logo">
+        {logo && logo[0] && <StoryblokServerComponent blok={logo[0]} />}
+      </div>
       {nav && nav[0] && <StoryblokServerComponent blok={nav[0]} />}
     </header>
   )

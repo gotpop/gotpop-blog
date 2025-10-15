@@ -44,10 +44,9 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
           type="button"
           data-click-listener-added="true"
         >
-          {/* <icon-hamburger
-          id="header-toggle-icon"
-          aria-hidden="true"
-        ></icon-hamburger> */}
+          <div id="header-toggle-icon" aria-hidden="true">
+            X
+          </div>
           <span hidden>Toggle navigation</span>
         </button>
       </div>

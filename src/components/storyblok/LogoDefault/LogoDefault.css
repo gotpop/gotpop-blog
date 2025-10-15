@@ -12,7 +12,8 @@
   }
 
   .circles {
-    --main-circle-color: --opacity(var(--secondary-400), 0.2);
+    /* --main-circle-color: --opacity(var(--secondary-400), 0.2); */
+    --main-circle-color: var(--secondary-400);
     --small-circle-color: var(--triad-2);
     --main-circle-size: 1.2rem;
     --main-circle-radius: calc(var(--main-circle-size) / 2);
@@ -45,7 +46,8 @@
     --center-offset: calc(50% - var(--small-circle-radius));
 
     aspect-ratio: 1;
-    background-color: --opacity(oklch(100% 100% var(--hue)), 0.5);
+    /* background-color: --opacity(oklch(100% 100% var(--hue)), 0.5); */
+    background-color: oklch(100% 100% var(--hue));
     clip-path: circle(50%);
     inset: 0;
     left: calc(var(--center-offset) + var(--orbit-x));
