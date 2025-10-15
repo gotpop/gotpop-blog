@@ -35,8 +35,17 @@ export default function Typography({
 
   const Element = elementTag
 
+  // Build CSS custom properties based on props
+  const customProperties: Record<string, string> = {
+    ...(shade && { "--typography-shade": shade }),
+    ...(variant && { "--typography-variant": variant }),
+  }
+
   return (
-    <Element className={`typography-text typography-${elementTag}`}>
+    <Element
+      className={`typography-text typography-${elementTag}`}
+      style={customProperties}
+    >
       {styles && <style>{styles}</style>}
       {children}
     </Element>
