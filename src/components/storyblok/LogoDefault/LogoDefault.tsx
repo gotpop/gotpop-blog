@@ -1,3 +1,4 @@
+import ButtonToggleMenu from "@/components/ButtonToggleMenu"
 import Link from "next/link"
 import { LogoDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
@@ -13,17 +14,16 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
   const styles = getInlineStyles("LogoDefault.css")
 
   return (
-    <Link
-      className="logo"
-      href={linkProps.href}
-      rel={linkProps.rel}
-      target={linkProps.target}
-      {...storyblokEditable(blok)}
-    >
-      <div>
+    <div className="header-logo">
+      <style>{styles}</style>
+      <Link
+        className="logo"
+        href={linkProps.href}
+        rel={linkProps.rel}
+        target={linkProps.target}
+        {...storyblokEditable(blok)}
+      >
         <figure className="logo" role="img" aria-label="GotPop Logo">
-          <style>{styles}</style>
-          <style></style>
           <div className="circles">
             <div className="circle"></div>
             <div className="circle"></div>
@@ -34,22 +34,8 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
           </div>
           <span className="logo-text">GotPop</span>
         </figure>
-        <button
-          aria-controls="header-nav"
-          aria-expanded="false"
-          aria-haspopup="true"
-          aria-label="Toggle navigation"
-          className="button-toggle-menu"
-          id="header-toggle"
-          type="button"
-          data-click-listener-added="true"
-        >
-          <div id="header-toggle-icon" aria-hidden="true">
-            X
-          </div>
-          <span hidden>Toggle navigation</span>
-        </button>
-      </div>
-    </Link>
+      </Link>
+      <ButtonToggleMenu />
+    </div>
   )
 }

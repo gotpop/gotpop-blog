@@ -3,6 +3,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 import Script from "next/script"
 import StoryblokProvider from "@/components/StoryblokProvider"
+import TempScript from "@/components/TempScript"
 import localFont from "next/font/local"
 
 const inter = localFont({
@@ -34,6 +35,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${monaspace.variable} antialiased`}>
         <StoryblokProvider>{children}</StoryblokProvider>
+
+        {/* Temporary: Load legacy JS from non-Next.js project */}
+        <TempScript />
+
         {/* Storyblok Bridge for Visual Editor */}
         <Script
           src="//app.storyblok.com/f/storyblok-v2-latest.js"

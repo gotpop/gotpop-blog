@@ -1,44 +1,32 @@
-/* prettier-ignore */
 @scope {
   & {
-  --grid-vertical-color: oklch(from var(--light-200) l c h / 0.08);
-  --grid-horizontal-color: oklch(from var(--light-200) l c h / 0.08);
-  --grid-col: --xs-sm-md-lg-xl-up(
-    /* xs */
-    [header-logo] 1fr,
-    /* sm */
-    [header-logo] 1fr,
-    /* md */
-    [header-logo] 1fr,
-    /* lg */
-    subgrid [] [logo-start] [] [logo-end nav-start] [] [] [] [nav-end] [],
-    /* xl */
-    subgrid [] [] [logo-start] [logo-end nav-start] [] [] [] [] [nav-end] [] []
-  );
+    --grid-vertical-color: oklch(from var(--light-200) l c h / 0.08);
+    --grid-horizontal-color: oklch(from var(--light-200) l c h / 0.08);
 
-  --grid-row: --xs-lg-up(
-    [header-logo] 1fr,
-    [full-height-start] 0rem min-content 0rem [full-height-end]
-  );
-
-  background: paint(grid) var(--secondary-900);
-  display: grid;
-  grid-area: header / full;
-  grid: var(--grid-row) / var(--grid-col);
-  height: --xs-lg-up(var(--round-up), auto);
-  position: sticky;
-  row-gap: --xs-lg-up(0, var(--spacing-base));
-  top: 0;
-  view-transition-name: header;
-  z-index: 1;
-  }
-
-  .header-logo {
-    --layout-sm: [logo] 1fr [button-toggle] 6rem;
-
+    background: paint(grid) var(--secondary-900);
     display: grid;
-    grid-column: --xs-lg-up(header-logo, logo);
-    grid-row: --xs-lg-up(header-logo, full-height);
-    grid-template-columns: --xs-lg-up(var(--layout-sm), 1fr);
+    grid-area: header / full;
+    height: --xs-lg-up(var(--round-up), auto);
+    position: sticky;
+    row-gap: --xs-lg-up(0, var(--spacing-base));
+    top: 0;
+    view-transition-name: header;
+    z-index: 1;
+    grid-template-columns: [header-logo] 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    @media screen and (width> = 480px) {
+      grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
+    }
+
+    @media screen and (width> = 768px) {
+      grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
+    }
+    @media screen and (width> = 1280px) {
+      grid-template-columns: subgrid [] [logo-start] [] [logo-end nav-start] [] [] [] [nav-end] [];
+    }
+    @media screen and (width> = 1480px) {
+      grid-template-columns: subgrid [] [] [logo-start] [logo-end nav-start] [] [] [] [] [nav-end] [] [];
+    }
   }
 }

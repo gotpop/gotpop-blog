@@ -1,4 +1,5 @@
 import "server-only"
+
 import fs from "fs"
 import path from "path"
 
@@ -9,30 +10,36 @@ import path from "path"
  * Supports both flat and directory structures:
  * - Flat: src/components/storyblok/NavDefault.css
  * - Directory: src/components/storyblok/NavDefault/NavDefault.css
+ * - Non-Storyblok: src/components/IconHamburger/IconHamburger.css
  *
  * @param cssFileName - The CSS filename (e.g., "NavDefault.css")
  * @returns The CSS content as a string
  */
 export function getInlineStyles(cssFileName: string): string {
   try {
-    const basePath = path.join(process.cwd(), "src", "components", "storyblok")
+    const componentsPath = path.join(process.cwd(), "src", "components")
+    const storyblokPath = path.join(componentsPath, "storyblok")
+    const componentName = cssFileName.replace(".css", "")
 
-    // Try flat structure first (file in storyblok directory)
-    let cssPath = path.join(basePath, cssFileName)
+    // Try these paths in order:
+    const possiblePaths = [
+      // 1. Flat in storyblok directory
+      path.join(storyblokPath, cssFileName),
+      // 2. Directory in storyblok
+      path.join(storyblokPath, componentName, cssFileName),
+      // 3. Directory in components root
+      path.join(componentsPath, componentName, cssFileName),
+    ]
 
-    if (!fs.existsSync(cssPath)) {
-      // Try directory structure (file in component subdirectory)
-      const componentName = cssFileName.replace(".css", "")
-      cssPath = path.join(basePath, componentName, cssFileName)
+    for (const cssPath of possiblePaths) {
+      if (fs.existsSync(cssPath)) {
+        const cssContent = fs.readFileSync(cssPath, "utf-8")
+        return cssContent
+      }
     }
 
-    if (!fs.existsSync(cssPath)) {
-      console.warn(`CSS file not found: ${cssFileName}`)
-      return ""
-    }
-
-    const cssContent = fs.readFileSync(cssPath, "utf-8")
-    return cssContent
+    console.warn(`CSS file not found: ${cssFileName}`)
+    return ""
   } catch (error) {
     console.warn(`Failed to read CSS file: ${cssFileName}`, error)
     return ""
