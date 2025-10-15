@@ -11,12 +11,20 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
   const styles = getInlineStyles("HeroDefault.css")
 
   return (
-    <hero-home {...storyblokEditable(blok)} className="hero">
+    <section
+      {...storyblokEditable(blok)}
+      className="hero"
+      aria-labelledby="home-hero-title"
+    >
       {styles && <style>{styles}</style>}
-      <div className="hero-content">
-        {blok.heading && <h1>{blok.heading}</h1>}
-        {blok.subheading && <RichText content={blok.subheading} />}
-      </div>
-    </hero-home>
+      {blok.heading && (
+        <h1 id="hero-home-title" className="hero-home-title">
+          {blok.heading}
+        </h1>
+      )}
+      {blok.subheading && (
+        <RichText className="hero-home-subtitle" content={blok.subheading} />
+      )}
+    </section>
   )
 }

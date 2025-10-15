@@ -1,10 +1,61 @@
 @scope {
   & {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    background-color: #ffffff;
-    color: #171717;
-    grid-column: content;
+    --layout: [full-start] 3rem [hero-content-start] 1fr [hero-content-end] 3rem
+      [full-end];
+    --row: [full-start] minmax(3rem, auto) [hero-content-start heading-start]
+      max-content [heading-end body-start] max-content [body-end
+      hero-content-end] minmax(3rem, auto) [full-end];
+
+    --angle: 45deg;
+    --line-color: var(--light-500);
+    --line-spacing: 1rem;
+    --line-width: 1px;
+
+    background-color: #fff;
+    background-image: repeating-linear-gradient(
+      var(--angle),
+      transparent,
+      transparent calc(var(--line-spacing) - var(--line-width)),
+      var(--line-color) calc(var(--line-spacing) - var(--line-width)),
+      var(--line-color) var(--line-spacing)
+    );
+
+    display: grid;
+    grid-column: breakout;
+    grid-template: var(--row) / var(--layout);
+    height: calc-size(min-content, round(size, 1rem));
+    padding: --xs-md-up(1rem, 3rem);
+    view-transition-name: hero-home;
+
+    &::before {
+      background: --background(grid);
+      content: "";
+      grid-area: full;
+    }
+
+    .hero-home-title {
+      --sm: calc(2rem - 1cap);
+      --md: calc(var(--font-scaled-xxl) - 1cap);
+
+      color: var(--dark-300);
+      font: --font-hero();
+      grid-area: heading / hero-content;
+      letter-spacing: -0.02em;
+      margin-block: --xs-md-up(0 var(--spacing-md), 0 var(--spacing-xl));
+      padding-block-start: --xs-md-up(var(--sm), var(--md));
+      text-wrap: balance;
+      position: relative;
+      right: 0.1ch;
+    }
+
+    .hero-home-subtitle {
+      color: var(--dark-400);
+      font: --font-subtitle();
+      grid-area: body / hero-content;
+      margin-block: 0 var(--spacing-md);
+      max-width: 40ch;
+      padding-block-start: calc(2rem - 1cap);
+      text-wrap: pretty;
+    }
   }
 }
