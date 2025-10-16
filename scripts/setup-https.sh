@@ -16,8 +16,11 @@ fi
 echo "🔧 Installing local CA..."
 mkcert -install
 
+# Create generated directory if it doesn't exist
+mkdir -p generated
+
 # Check if certificates already exist
-if [ -f "localhost.pem" ] && [ -f "localhost-key.pem" ]; then
+if [ -f "generated/localhost.pem" ] && [ -f "generated/localhost-key.pem" ]; then
     echo "⚠️  Certificates already exist"
     read -p "Do you want to regenerate them? (y/n) " -n 1 -r
     echo
@@ -29,10 +32,12 @@ fi
 
 # Create certificates
 echo "📜 Creating SSL certificates for localhost..."
+cd generated
 mkcert localhost
+cd ..
 
 # Check if certificates were created
-if [ -f "localhost.pem" ] && [ -f "localhost-key.pem" ]; then
+if [ -f "generated/localhost.pem" ] && [ -f "generated/localhost-key.pem" ]; then
     echo "✅ Certificates created successfully!"
     echo ""
     echo "📝 Next steps:"
