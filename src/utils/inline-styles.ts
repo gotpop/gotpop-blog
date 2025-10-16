@@ -7,27 +7,34 @@ import path from "path"
  * Read a CSS file from the file system (server-side only)
  * Returns the CSS content as a string to be used in a <style> tag
  *
- * Supports both flat and directory structures:
- * - Flat: src/components/storyblok/NavDefault.css
- * - Directory: src/components/storyblok/NavDefault/NavDefault.css
- * - Non-Storyblok: src/components/IconHamburger/IconHamburger.css
+ * Supports organized component structure:
+ * - Storyblok: src/components/storyblok/ComponentName/ComponentName.css
+ * - UI: src/components/ui/ComponentName/ComponentName.css
+ * - Icons: src/components/icons/ComponentName/ComponentName.css
+ * - Utils: src/components/utils/ComponentName/ComponentName.css
+ * - Legacy flat: src/components/storyblok/ComponentName.css
  *
- * @param cssFileName - The CSS filename (e.g., "NavDefault.css")
+ * @param cssFileName - The CSS filename (e.g., "ButtonToggleMenu.css")
  * @returns The CSS content as a string
  */
 export function getInlineStyles(cssFileName: string): string {
   try {
     const componentsPath = path.join(process.cwd(), "src", "components")
-    const storyblokPath = path.join(componentsPath, "storyblok")
     const componentName = cssFileName.replace(".css", "")
 
     // Try these paths in order:
     const possiblePaths = [
-      // 1. Flat in storyblok directory
-      path.join(storyblokPath, cssFileName),
-      // 2. Directory in storyblok
-      path.join(storyblokPath, componentName, cssFileName),
-      // 3. Directory in components root
+      // 1. UI components
+      path.join(componentsPath, "ui", componentName, cssFileName),
+      // 2. Icon components
+      path.join(componentsPath, "icons", componentName, cssFileName),
+      // 3. Utils components
+      path.join(componentsPath, "utils", componentName, cssFileName),
+      // 4. Storyblok directory structure
+      path.join(componentsPath, "storyblok", componentName, cssFileName),
+      // 5. Legacy flat storyblok
+      path.join(componentsPath, "storyblok", cssFileName),
+      // 6. Root components directory
       path.join(componentsPath, componentName, cssFileName),
     ]
 
