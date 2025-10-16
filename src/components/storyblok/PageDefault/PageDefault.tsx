@@ -1,3 +1,4 @@
+import GridBackground from "@/components/GridBackground"
 import { PageDefaultStoryblok } from "@/types/storyblok-components"
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
 import { getInlineStyles } from "@/utils/inline-styles"
@@ -50,6 +51,7 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
   return (
     <div {...storyblokEditable(blok)} className="page">
       {styles && <style>{styles}</style>}
+      {/* <GridBackground /> */}
       {headerData && <StoryblokServerComponent blok={headerData} />}
       <main>
         {blok.body?.map((nestedBlok) => (
