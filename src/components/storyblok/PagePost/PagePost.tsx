@@ -1,5 +1,5 @@
 import { PagePostStoryblok } from "@/types/storyblok-components"
-import RichText from "@/components/RichText"
+import RichText from "@/components/ui/RichText"
 import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getStoryblokApi } from "@/lib/storyblok"

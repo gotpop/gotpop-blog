@@ -1,4 +1,4 @@
-import ButtonToggleMenu from "@/components/ButtonToggleMenu"
+import ButtonToggleMenu from "@/components/ui/ButtonToggleMenu"
 import Link from "next/link"
 import { LogoDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"

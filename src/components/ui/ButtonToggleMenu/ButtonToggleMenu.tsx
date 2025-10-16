@@ -1,4 +1,4 @@
-import IconHamburger from "../IconHamburger"
+import IconHamburger from "@/components/icons/IconHamburger"
 import { getInlineStyles } from "@/utils/inline-styles"
 
 export default function ButtonToggleMenu() {
