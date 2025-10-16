@@ -19,8 +19,8 @@ export default function FooterDefault({ blok }: FooterDefaultProps) {
   return (
     <footer {...storyblokEditable(blok)} className="footer">
       {styles && <style>{styles}</style>}
-      {logo && logo[0] && <StoryblokServerComponent blok={logo[0]} />}
-      {nav && nav[0] && <StoryblokServerComponent blok={nav[0]} />}
+      {logo?.[0] && <StoryblokServerComponent blok={logo[0]} />}
+      {nav?.[0] && <StoryblokServerComponent blok={nav[0]} />}
     </footer>
   )
 }

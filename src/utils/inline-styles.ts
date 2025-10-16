@@ -1,7 +1,7 @@
 import "server-only"
 
-import fs from "fs"
-import path from "path"
+import fs from "node:fs"
+import path from "node:path"
 
 /**
  * Read a CSS file from the file system (server-side only)

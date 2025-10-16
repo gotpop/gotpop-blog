@@ -1,8 +1,10 @@
+import { useId } from "react"
 import IconHamburger from "@/components/icons/IconHamburger"
 import { getInlineStyles } from "@/utils/inline-styles"
 
 export default function ButtonToggleMenu() {
   const styles = getInlineStyles("ButtonToggleMenu.css")
+  const id = useId()
 
   return (
     <div className="button-toggle-menu">
@@ -13,7 +15,7 @@ export default function ButtonToggleMenu() {
         aria-haspopup="true"
         aria-label="Toggle navigation"
         className="button-toggle-menu"
-        id="header-toggle"
+        id={id}
         type="button"
         data-click-listener-added="true"
       >
