@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "dev:https": "npm run dev & sleep 3 && local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
+    "dev:https": "yarn dev & sleep 3 && local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
     "proxy": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
     "kill-ports": "./scripts/kill-ports.sh",
     "build": "next build --turbopack",
@@ -13,7 +13,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "generate-types": "node scripts/generate-storyblok-types.js",
-    "types": "npm run generate-types"
+    "types": "yarn generate-types"
   },
   "dependencies": {
     "@storyblok/react": "^5.4.14",

@@ -27,4 +27,4 @@ else
 fi
 
 echo ""
-echo "🚀 You can now run: npm run dev:https"
+echo "🚀 You can now run: yarn dev:https"
