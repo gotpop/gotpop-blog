@@ -1,5 +1,5 @@
 {
-  "name": "blog-0",
+  "name": "gotpop-blog",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,8 +8,6 @@
     "dev": "next dev --turbopack",
     "format:check": "npx biome check src/ scripts/ next.config.ts && prettier --check \"src/**/*.css\"",
     "format": "npx biome format --write src/ scripts/ next.config.ts && prettier --write \"src/**/*.css\"",
-    "format:css": "prettier --write \"src/**/*.css\"",
-    "format:js": "npx biome format --write src/ scripts/ next.config.ts",
     "generate-types": "node scripts/generate-storyblok-types.js",
     "kill-ports": "./scripts/kill-ports.sh",
     "lint": "npx biome lint src/ scripts/ next.config.ts",
@@ -18,6 +16,9 @@
     "setup-https": "./scripts/setup-https.sh",
     "start": "next start",
     "types": "yarn generate-types"
+  },
+  "engines": {
+    "node": ">=22.20.0"
   },
   "dependencies": {
     "@storyblok/react": "^5.4.14",
