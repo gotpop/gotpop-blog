@@ -34,14 +34,3 @@ export const getStoryblokApi = storyblokInit({
     region: "eu",
   },
 })
-
-// Client-side initialization (without components to avoid server-only imports)
-export function initStoryblokClient() {
-  storyblokInit({
-    accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
-    use: [apiPlugin],
-    apiOptions: {
-      region: "eu",
-    },
-  })
-}
