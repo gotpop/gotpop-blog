@@ -24,8 +24,12 @@
     grid-column: breakout;
     grid-template: var(--row) / var(--layout);
     height: calc-size(min-content, round(size, 1rem));
-    padding: --xs-md-up(1rem, 3rem);
+    padding: 1rem;
     view-transition-name: hero-home;
+
+    @media screen and (width >= 768px) {
+      padding: 6rem;
+    }
 
     &::before {
       background-color: white;
