@@ -3,6 +3,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 import Script from "next/script"
 import StoryblokProvider from "@/components/StoryblokProvider"
+import WorkletLoader from "@/components/WorkletLoader"
 import localFont from "next/font/local"
 
 const inter = localFont({
@@ -34,6 +35,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${monaspace.variable} antialiased`}>
         <StoryblokProvider>{children}</StoryblokProvider>
+
+        {/* Load worklets globally for CSS paint() functions */}
+        <WorkletLoader />
 
         {/* Storyblok Bridge for Visual Editor */}
         <Script
