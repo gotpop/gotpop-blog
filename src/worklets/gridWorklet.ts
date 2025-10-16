@@ -125,7 +125,6 @@ if (typeof registerPaint !== "undefined") {
   // Try to register, catch error if already registered
   try {
     registerPaint("grid", GridPainter)
-    console.log("🎨 Grid worklet registered successfully")
   } catch (error) {
     console.log("🔄 Grid worklet already registered, skipping:", error.message)
   }
