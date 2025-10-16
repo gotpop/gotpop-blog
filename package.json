@@ -34,5 +34,13 @@
     "storyblok": "^4.6.9",
     "storyblok-generate-ts": "^2.2.0",
     "typescript": "^5"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "printWidth": 80,
+    "arrowParens": "always"
   }
 }
