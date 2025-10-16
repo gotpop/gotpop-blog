@@ -1,8 +1,8 @@
-import { RichtextStoryblok } from "@/types/storyblok-components"
 import {
   richTextResolver,
   type StoryblokRichTextNode,
 } from "@storyblok/richtext"
+import type { RichtextStoryblok } from "@/types/storyblok-components"
 
 interface RichTextProps {
   content: RichtextStoryblok

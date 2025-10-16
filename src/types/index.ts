@@ -1,4 +1,4 @@
-import { SbBlokData } from "@storyblok/react"
+import type { SbBlokData } from "@storyblok/react"
 
 export interface StoryblokComponent {
   blok: SbBlokData

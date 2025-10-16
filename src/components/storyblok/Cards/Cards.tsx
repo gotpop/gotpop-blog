@@ -1,7 +1,7 @@
-import { CardsStoryblok } from "@/types/storyblok-components"
-import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
-import { getInlineStyles } from "@/utils/inline-styles"
 import { storyblokEditable } from "@storyblok/react/rsc"
+import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
+import type { CardsStoryblok } from "@/types/storyblok-components"
+import { getInlineStyles } from "@/utils/inline-styles"
 
 interface CardsProps {
   blok: CardsStoryblok

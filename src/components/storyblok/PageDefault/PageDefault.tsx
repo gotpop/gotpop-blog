@@ -1,8 +1,8 @@
-import { PageDefaultStoryblok } from "@/types/storyblok-components"
-import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
-import { getInlineStyles } from "@/utils/inline-styles"
-import { getStoryblokApi } from "@/lib/storyblok"
 import { storyblokEditable } from "@storyblok/react/rsc"
+import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
+import { getStoryblokApi } from "@/lib/storyblok"
+import type { PageDefaultStoryblok } from "@/types/storyblok-components"
+import { getInlineStyles } from "@/utils/inline-styles"
 
 interface PageDefaultProps {
   blok: PageDefaultStoryblok

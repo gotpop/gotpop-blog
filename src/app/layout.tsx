@@ -1,10 +1,10 @@
 import "./globals.css"
 
-import ClientLoader from "@/components/utils/ClientLoader"
 import type { Metadata } from "next"
-import Script from "next/script"
-import StoryblokProvider from "@/providers/StoryblokProvider"
 import localFont from "next/font/local"
+import Script from "next/script"
+import ClientLoader from "@/components/utils/ClientLoader"
+import StoryblokProvider from "@/providers/StoryblokProvider"
 
 const inter = localFont({
   src: "../fonts/inter/Inter.woff2",

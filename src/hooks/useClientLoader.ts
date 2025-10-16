@@ -37,13 +37,14 @@ export function useClientLoader({
     if (typeof window === "undefined") return false
 
     switch (type) {
-      case "worklet":
+      case "worklet": {
         const cssWithWorklet = CSS as unknown as {
           paintWorklet?: { addModule(url: string): Promise<void> }
         }
         return (
           "CSS" in window && cssWithWorklet && "paintWorklet" in cssWithWorklet
         )
+      }
 
       case "script":
         return true // Scripts are always supported in browser

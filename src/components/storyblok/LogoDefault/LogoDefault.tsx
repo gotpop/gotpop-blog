@@ -1,9 +1,9 @@
-import ButtonToggleMenu from "@/components/ui/ButtonToggleMenu"
+import { storyblokEditable } from "@storyblok/react/rsc"
 import Link from "next/link"
-import { LogoDefaultStoryblok } from "@/types/storyblok-components"
+import ButtonToggleMenu from "@/components/ui/ButtonToggleMenu"
+import type { LogoDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getStoryblokLinkProps } from "@/utils/storyblok"
-import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface LogoDefaultProps {
   blok: LogoDefaultStoryblok

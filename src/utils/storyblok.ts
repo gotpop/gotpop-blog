@@ -1,4 +1,4 @@
-import { MultilinkStoryblok } from "@/types/storyblok-components"
+import type { MultilinkStoryblok } from "@/types/storyblok-components"
 
 export interface StoryblokLinkProps {
   href: string

@@ -1,4 +1,4 @@
-require("dotenv").config({ path: ".env.local" });
+require("dotenv").config({ path: ".env.local" })
 
 module.exports = {
   // required
@@ -34,4 +34,4 @@ module.exports = {
   // optional: defaults to false
   // If true, will resolve relationships and generate proper types
   resolveRelations: false,
-};
+}

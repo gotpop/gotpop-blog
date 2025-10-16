@@ -3,4 +3,4 @@ module.exports = {
   space: "auto", // Will be detected automatically
   componentsPath: "src/types/storyblok-components.ts",
   componentsDirectory: "src/components/storyblok",
-};
+}

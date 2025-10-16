@@ -1,4 +1,4 @@
-import { HeroDefaultStoryblok } from "@/types/storyblok-components"
+import type { HeroDefaultStoryblok } from "@/types/storyblok-components"
 import RichText from "@/components/ui/RichText"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { storyblokEditable } from "@storyblok/react/rsc"

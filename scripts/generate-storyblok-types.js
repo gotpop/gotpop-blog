@@ -1,129 +1,126 @@
 #!/usr/bin/env node
-const fs = require("fs");
-const path = require("path");
+const fs = require("fs")
+const path = require("path")
 
 // Load environment variables
-require("dotenv").config({ path: ".env.local" });
+require("dotenv").config({ path: ".env.local" })
 
-const STORYBLOK_TOKEN = process.env.STORYBLOK_ACCESS_TOKEN;
-const OUTPUT_PATH = path.join(
-  __dirname,
-  "../src/types/storyblok-components.ts"
-);
+const STORYBLOK_TOKEN = process.env.STORYBLOK_ACCESS_TOKEN
+const OUTPUT_PATH = path.join(__dirname, "../src/types/storyblok-components.ts")
 
 if (!STORYBLOK_TOKEN) {
   console.error(
     "Error: STORYBLOK_ACCESS_TOKEN not found in environment variables"
-  );
-  process.exit(1);
+  )
+  process.exit(1)
 }
 
 async function fetchComponents() {
-  console.log("Fetching components from Storyblok...");
+  console.log("Fetching components from Storyblok...")
 
   const response = await fetch(
     `https://api.storyblok.com/v2/cdn/stories?token=${STORYBLOK_TOKEN}&version=draft&per_page=100`
-  );
+  )
 
   if (!response.ok) {
     throw new Error(
       `Failed to fetch stories: ${response.status} ${response.statusText}`
-    );
+    )
   }
 
-  const data = await response.json();
+  const data = await response.json()
 
   // Extract unique component types from stories and collect sample data
-  const componentsMap = new Map();
+  const componentsMap = new Map()
 
   const extractComponents = (content) => {
-    if (!content || typeof content !== "object") return;
+    if (!content || typeof content !== "object") return
 
     if (content.component) {
-      const componentName = content.component;
+      const componentName = content.component
 
       // If we haven't seen this component, or we have a better sample, store it
       if (!componentsMap.has(componentName)) {
-        componentsMap.set(componentName, { ...content });
+        componentsMap.set(componentName, { ...content })
       } else {
         // Merge properties to get a more complete picture
-        const existing = componentsMap.get(componentName);
-        componentsMap.set(componentName, { ...existing, ...content });
+        const existing = componentsMap.get(componentName)
+        componentsMap.set(componentName, { ...existing, ...content })
       }
     }
 
     Object.values(content).forEach((value) => {
       if (Array.isArray(value)) {
-        value.forEach((item) => extractComponents(item));
+        value.forEach((item) => extractComponents(item))
       } else if (typeof value === "object" && value !== null) {
-        extractComponents(value);
+        extractComponents(value)
       }
-    });
-  };
+    })
+  }
 
-  data.stories.forEach((story) => extractComponents(story.content));
+  data.stories.forEach((story) => extractComponents(story.content))
 
   // Convert to component format with inferred schema
   return Array.from(componentsMap.entries()).map(([name, sample]) => ({
     name,
     sample, // Include the actual data sample for type inference
-  }));
+  }))
 }
 
 function inferFieldType(value) {
   if (value === null || value === undefined) {
-    return "any";
+    return "any"
   }
 
   if (typeof value === "string") {
-    return "string";
+    return "string"
   }
 
   if (typeof value === "number") {
-    return "number";
+    return "number"
   }
 
   if (typeof value === "boolean") {
-    return "boolean";
+    return "boolean"
   }
 
   if (Array.isArray(value)) {
-    if (value.length === 0) return "any[]";
+    if (value.length === 0) return "any[]"
 
     // Check if it's an array of bloks
     if (value[0] && typeof value[0] === "object" && value[0].component) {
-      return "StoryblokComponent[]";
+      return "StoryblokComponent[]"
     }
 
-    const firstItemType = inferFieldType(value[0]);
-    return `${firstItemType}[]`;
+    const firstItemType = inferFieldType(value[0])
+    return `${firstItemType}[]`
   }
 
   if (typeof value === "object") {
     // Check for richtext structure
     if (value.type && (value.type === "doc" || value.content)) {
-      return "RichtextStoryblok";
+      return "RichtextStoryblok"
     }
 
     // Check for asset structure
     if (value.filename) {
-      return "AssetStoryblok";
+      return "AssetStoryblok"
     }
 
     // Check for link structure
     if (value.linktype || value.cached_url) {
-      return "MultilinkStoryblok";
+      return "MultilinkStoryblok"
     }
 
     // Check for blok structure
     if (value.component && value._uid) {
-      return "StoryblokComponent";
+      return "StoryblokComponent"
     }
 
-    return "any";
+    return "any"
   }
 
-  return "any";
+  return "any"
 }
 
 function generateTypeDefinition(component) {
@@ -131,27 +128,27 @@ function generateTypeDefinition(component) {
     component.name
       .split("_")
       .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-      .join("") + "Storyblok";
+      .join("") + "Storyblok"
 
   // Infer fields from the sample data
-  const sample = component.sample || {};
-  const ignoredFields = ["_uid", "_editable", "component"];
+  const sample = component.sample || {}
+  const ignoredFields = ["_uid", "_editable", "component"]
 
   const fields = Object.entries(sample)
     .filter(([key]) => !ignoredFields.includes(key))
     .map(([key, value]) => {
-      const type = inferFieldType(value);
+      const type = inferFieldType(value)
       // All fields are optional since we can't know which are required
-      return `  ${key}?: ${type};`;
-    });
+      return `  ${key}?: ${type};`
+    })
 
-  const fieldDefinitions = fields.length > 0 ? fields.join("\n") + "\n" : "";
+  const fieldDefinitions = fields.length > 0 ? fields.join("\n") + "\n" : ""
 
   return `export interface ${interfaceName} extends SbBlokData {
   component: '${component.name}';
 ${fieldDefinitions}  _uid: string;
   [k: string]: any;
-}`;
+}`
 }
 
 function generateTypes(components) {
@@ -193,42 +190,42 @@ ${components
       c.name
         .split("_")
         .map((p) => p.charAt(0).toUpperCase() + p.slice(1))
-        .join("") + "Storyblok";
-    return `  | ${name}`;
+        .join("") + "Storyblok"
+    return `  | ${name}`
   })
   .join("\n")};
 
-`;
+`
 
   const interfaces = components
     .map((component) => generateTypeDefinition(component))
-    .join("\n\n");
+    .join("\n\n")
 
-  return header + interfaces + "\n";
+  return header + interfaces + "\n"
 }
 
 async function main() {
   try {
-    const components = await fetchComponents();
-    console.log(`Found ${components.length} components`);
+    const components = await fetchComponents()
+    console.log(`Found ${components.length} components`)
 
-    const types = generateTypes(components);
+    const types = generateTypes(components)
 
     // Ensure directory exists
-    const dir = path.dirname(OUTPUT_PATH);
+    const dir = path.dirname(OUTPUT_PATH)
     if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+      fs.mkdirSync(dir, { recursive: true })
     }
 
     // Write types file
-    fs.writeFileSync(OUTPUT_PATH, types, "utf-8");
-    console.log(`✓ Types generated successfully at ${OUTPUT_PATH}`);
-    console.log("\nGenerated types for components:");
-    components.forEach((c) => console.log(`  - ${c.name}`));
+    fs.writeFileSync(OUTPUT_PATH, types, "utf-8")
+    console.log(`✓ Types generated successfully at ${OUTPUT_PATH}`)
+    console.log("\nGenerated types for components:")
+    components.forEach((c) => console.log(`  - ${c.name}`))
   } catch (error) {
-    console.error("Error generating types:", error.message);
-    process.exit(1);
+    console.error("Error generating types:", error.message)
+    process.exit(1)
   }
 }
 
-main();
+main()

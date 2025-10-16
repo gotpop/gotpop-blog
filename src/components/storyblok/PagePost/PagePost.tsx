@@ -1,9 +1,9 @@
-import { PagePostStoryblok } from "@/types/storyblok-components"
+import { storyblokEditable } from "@storyblok/react/rsc"
 import RichText from "@/components/ui/RichText"
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
-import { getInlineStyles } from "@/utils/inline-styles"
 import { getStoryblokApi } from "@/lib/storyblok"
-import { storyblokEditable } from "@storyblok/react/rsc"
+import type { PagePostStoryblok } from "@/types/storyblok-components"
+import { getInlineStyles } from "@/utils/inline-styles"
 
 interface PagePostProps {
   blok: PagePostStoryblok

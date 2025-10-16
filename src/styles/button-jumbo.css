@@ -38,7 +38,9 @@
   padding: var(--spacing-base);
   text-decoration: none;
   text-wrap: balance;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
 
   span {
     --font-size: var(--font-scaled-sm);

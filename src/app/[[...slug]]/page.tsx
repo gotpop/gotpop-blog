@@ -1,13 +1,13 @@
+import { StoryblokStory } from "@storyblok/react/rsc"
+
+import StoryNotFound from "@/components/utils/ClientLoader/StoryNotFound"
+import { getStoryblokApi } from "@/lib/storyblok"
 import {
   getStoryPath,
   normalizeStoryblokPath,
   shouldIncludeStory,
 } from "@/lib/storyblok-utils"
-
-import StoryNotFound from "@/components/utils/ClientLoader/StoryNotFound"
-import { StoryblokStory } from "@storyblok/react/rsc"
-import { StoryblokStoryResponse } from "@/types/storyblok"
-import { getStoryblokApi } from "@/lib/storyblok"
+import type { StoryblokStoryResponse } from "@/types/storyblok"
 
 export const dynamicParams = true
 

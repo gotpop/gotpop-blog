@@ -1,9 +1,9 @@
-import { CardStoryblok } from "@/types/storyblok-components"
-import Link from "next/link"
-import Typography from "../Typography"
-import { getStoryPath } from "@/lib/storyblok-utils"
-import { getStoryblokApi } from "@/lib/storyblok"
 import { storyblokEditable } from "@storyblok/react/rsc"
+import Link from "next/link"
+import { getStoryblokApi } from "@/lib/storyblok"
+import { getStoryPath } from "@/lib/storyblok-utils"
+import type { CardStoryblok } from "@/types/storyblok-components"
+import Typography from "../Typography"
 
 interface CardProps {
   blok: CardStoryblok

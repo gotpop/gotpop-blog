@@ -1,7 +1,7 @@
 "use client"
 
-import type { StoryblokBridgeEvent } from "@/types"
 import { useEffect } from "react"
+import type { StoryblokBridgeEvent } from "@/types"
 
 export function StoryblokBridge() {
   useEffect(() => {
