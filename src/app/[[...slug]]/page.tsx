@@ -4,7 +4,7 @@ import {
   shouldIncludeStory,
 } from "@/lib/storyblok-utils"
 
-import StoryNotFound from "@/components/pages/StoryNotFound"
+import StoryNotFound from "@/components/utils/ClientLoader/StoryNotFound"
 import { StoryblokStory } from "@storyblok/react/rsc"
 import { StoryblokStoryResponse } from "@/types/storyblok"
 import { getStoryblokApi } from "@/lib/storyblok"

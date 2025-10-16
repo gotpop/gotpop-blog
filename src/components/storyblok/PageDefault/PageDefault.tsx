@@ -1,5 +1,5 @@
 import { PageDefaultStoryblok } from "@/types/storyblok-components"
-import { StoryblokServerComponent } from "@/components/StoryblokServerComponent"
+import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getStoryblokApi } from "@/lib/storyblok"
 import { storyblokEditable } from "@storyblok/react/rsc"
