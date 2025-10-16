@@ -1,7 +1,0 @@
-@function --opacity(--color <color>, --opacity <number>) returns <color> {
-  result: oklch(from var(--color) l c h / var(--opacity));
-}
-
-@function --darken(--color <color>, --factor <number>) returns <color> {
-  result: oklch(from var(--color) calc(l * var(--factor)) c h);
-}

@@ -1,36 +1,13 @@
 /* Variables */
-@import "./variables/properties.css";
-@import "./variables/variables.css";
-
-/* Functions */
-@import "./functions/colours.css";
-@import "./functions/layout.css";
-@import "./functions/media-queries.css";
-@import "./functions/typographic.css";
-
-/*  Typography */
-@import "./typography/typography.css";
-
-/* Mixins */
-@import "./mixins/mixins.css";
-
-/* Gradients */
-@import "./gradients/functions.css";
-@import "./gradients/gradient-svg.css";
-
-/* Animations */
-@import "./animations/keyframes.css";
-@import "./animations/view-transitions.css";
-
-/* Base */
-@import "./base/global.css";
-@import "./base/reset.css";
-
-/* Layout */
-@import "./layout/layout-properties.css";
-@import "./layout/layout.css";
-
-/* Elements */
-@import "./forms/button.css";
-@import "./links/links.css";
-@import "./links/button-jumbo.css";
+@import "./properties.css";
+@import "./variables.css";
+@import "./layout-functions.css";
+@import "./media-queries.css";
+@import "./typography.css";
+@import "./global.css";
+@import "./reset.css";
+@import "./layout-properties.css";
+@import "./layout.css";
+@import "./button.css";
+@import "./links.css";
+@import "./button-jumbo.css";
