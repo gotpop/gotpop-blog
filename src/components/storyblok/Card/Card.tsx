@@ -29,8 +29,6 @@ export default async function Card({ blok }: CardProps) {
     return null
   }
 
-  // console.log("Card story data:", JSON.stringify(story, null, 2))
-
   const linkPath = getStoryPath(story.full_slug)
   const title = story.content?.Heading || story.name
   const description = story.content?.description || ""
@@ -39,11 +37,15 @@ export default async function Card({ blok }: CardProps) {
     <div className="card" {...storyblokEditable(blok)}>
       <div className="card-content">
         {title && (
-          <Typography tag="h3" variant="h3" shade="dark">
+          <Typography tag="h3" variant="lg" shade="dark">
             {title}
           </Typography>
         )}
-        {description && <p>{description}</p>}
+        {description && (
+          <Typography tag="p" variant="base" shade="dark">
+            {description}
+          </Typography>
+        )}
         <Link href={linkPath} className="card-link">
           Read more
         </Link>

@@ -8,7 +8,7 @@
 
   .card {
     display: grid;
-    grid-template-rows: subgrid [heading] [body] [footer];
+    /* grid-template-rows: subgrid [heading] [body] [footer]; */
     grid-row: span 3;
     grid-column: 1 / -1;
     background-color: var(--light-100);

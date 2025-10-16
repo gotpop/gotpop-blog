@@ -1,7 +1,5 @@
 @scope {
   & {
-    margin-block: 0 2rem;
-    padding-block-start: calc(round(1cap, 2rem) - 1cap);
     text-wrap: balance;
 
     &.dark {
@@ -12,8 +10,40 @@
       color: var(--light-200);
     }
 
-    &.variant-h3 {
+    &.variant-sm {
+      padding-block-start: calc(round(1cap, 2rem) - 1cap);
+      font-size: var(--font-scaled-sm);
+      margin-block: 0 2rem;
+    }
+
+    &.variant-base {
+      padding-block-start: calc(1rem - 1cap);
+      font-size: var(--font-scaled-base);
+      margin-block: 0 1rem;
+    }
+
+    &.variant-md {
+      padding-block-start: calc(round(1cap, 2rem) - 1cap);
+      font-size: var(--font-scaled-md);
+      margin-block: 0 2rem;
+    }
+
+    &.variant-lg {
+      padding-block-start: calc(round(1cap, 2rem) - 1cap);
       font-size: var(--font-scaled-lg);
+      margin-block: 0 2rem;
+    }
+
+    &.variant-xl {
+      padding-block-start: calc(round(1cap, 2rem) - 1cap);
+      font-size: var(--font-scaled-xl);
+      margin-block: 0 2rem;
+    }
+
+    &.variant-xxl {
+      padding-block-start: calc(round(1cap, 2rem) - 1cap);
+      font-size: var(--font-scaled-xxl);
+      margin-block: 0 2rem;
     }
   }
 }
