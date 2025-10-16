@@ -38,6 +38,20 @@
     "storyblok-generate-ts": "^2.2.0",
     "typescript": "^5"
   },
+  "storyblok": {
+    "token": "env:STORYBLOK_ACCESS_TOKEN",
+    "space": "auto",
+    "componentsPath": "src/types/storyblok-components.ts",
+    "componentsDirectory": "src/components/storyblok"
+  },
+  "storyblok-generate-ts": {
+    "oauthToken": "env:STORYBLOK_ACCESS_TOKEN",
+    "componentsPath": "./components.json",
+    "path": "./src/types/storyblok-components.ts",
+    "componentNameSuffix": "Storyblok",
+    "internalLinksAsStrings": false,
+    "resolveRelations": false
+  },
   "prettier": {
     "semi": false,
     "singleQuote": false,
