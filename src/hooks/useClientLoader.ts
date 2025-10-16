@@ -7,7 +7,8 @@ export type ClientLoaderType = "worklet" | "script"
 interface UseClientLoaderOptions {
   name: string
   type: ClientLoaderType
-  code: string
+  code?: string // For inline code
+  src?: string // For URL-based loading
   onLoad?: () => void
   onError?: (error: Error) => void
 }
@@ -23,6 +24,7 @@ export function useClientLoader({
   name,
   type,
   code,
+  src,
   onLoad,
   onError,
 }: UseClientLoaderOptions): LoaderState {
@@ -61,27 +63,45 @@ export function useClientLoader({
       return
     }
 
+    // Validate that we have either code or src
+    if (!code && !src) {
+      const inputError = new Error("Must provide either 'code' or 'src' option")
+      setError(inputError)
+      onError?.(inputError)
+      return
+    }
+
     async function loadCode() {
       setIsLoading(true)
       setError(null)
 
       try {
-        const blob = new Blob([code], { type: "application/javascript" })
-        const codeUrl = URL.createObjectURL(blob)
+        let moduleUrl: string
+
+        if (src) {
+          // Use the provided URL directly
+          moduleUrl = src
+        } else if (code) {
+          // Create blob URL from inline code
+          const blob = new Blob([code], { type: "application/javascript" })
+          moduleUrl = URL.createObjectURL(blob)
+        } else {
+          throw new Error("No code or src provided")
+        }
 
         switch (type) {
           case "worklet": {
             const cssWithWorklet = CSS as unknown as {
               paintWorklet: { addModule(url: string): Promise<void> }
             }
-            await cssWithWorklet.paintWorklet.addModule(codeUrl)
+            await cssWithWorklet.paintWorklet.addModule(moduleUrl)
             break
           }
 
           case "script": {
             // Create and execute script tag
             const script = document.createElement("script")
-            script.src = codeUrl
+            script.src = moduleUrl
 
             await new Promise<void>((resolve, reject) => {
               script.onload = () => resolve()
@@ -102,8 +122,10 @@ export function useClientLoader({
         setIsLoaded(true)
         onLoad?.()
 
-        // Clean up blob URL
-        URL.revokeObjectURL(codeUrl)
+        // Clean up blob URL only if we created it
+        if (code && !src) {
+          URL.revokeObjectURL(moduleUrl)
+        }
       } catch (err) {
         const loadError =
           err instanceof Error
@@ -117,7 +139,7 @@ export function useClientLoader({
     }
 
     loadCode()
-  }, [name, type, code, isSupported, onLoad, onError])
+  }, [name, type, code, src, isSupported, onLoad, onError])
 
   return {
     isLoaded,
