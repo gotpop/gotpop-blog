@@ -1,7 +1,4 @@
-import {
-  richTextResolver,
-  type StoryblokRichTextNode,
-} from "@storyblok/richtext"
+import { render } from "storyblok-rich-text-react-renderer"
 import type { RichtextStoryblok } from "@/types/storyblok-components"
 
 interface RichTextProps {
@@ -10,17 +7,54 @@ interface RichTextProps {
 }
 
 export default function RichText({ content, className }: RichTextProps) {
-  // Initialize the rich text resolver
-  const resolver = richTextResolver()
+  if (!content) return null
 
-  // Render the rich text content
-  const html = resolver.render(
-    content as unknown as StoryblokRichTextNode<string>
-  )
+  // Use React renderer with custom resolvers
+  const renderedContent = render(content, {
+    markResolvers: {
+      link: (children, props) => (
+        <a
+          href={props.href}
+          target={props.target}
+          rel={props.target === "_blank" ? "noopener noreferrer" : undefined}
+        >
+          {children}
+        </a>
+      ),
+    },
+    nodeResolvers: {
+      heading: (children, props) => {
+        const level = props.level || 2
+        switch (level) {
+          case 1:
+            return <h1>{children}</h1>
+          case 2:
+            return <h2>{children}</h2>
+          case 3:
+            return <h3>{children}</h3>
+          case 4:
+            return <h4>{children}</h4>
+          case 5:
+            return <h5>{children}</h5>
+          case 6:
+            return <h6>{children}</h6>
+          default:
+            return <h2>{children}</h2>
+        }
+      },
+      paragraph: (children) => <p>{children}</p>,
+      bullet_list: (children) => <ul>{children}</ul>,
+      ordered_list: (children) => <ol>{children}</ol>,
+      list_item: (children) => <li>{children}</li>,
+      blockquote: (children) => <blockquote>{children}</blockquote>,
+      code_block: (children) => (
+        <pre>
+          <code>{children}</code>
+        </pre>
+      ),
+      hard_break: () => <br />,
+    },
+  })
 
-  if (!html) return null
-
-  return (
-    <div className={className} dangerouslySetInnerHTML={{ __html: html }} />
-  )
+  return <div className={className}>{renderedContent}</div>
 }

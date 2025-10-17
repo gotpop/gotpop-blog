@@ -6,22 +6,25 @@
     background: paint(grid) var(--secondary-900);
     display: grid;
     grid-area: header / full;
-    height: --xs-lg-up(var(--round-up), auto);
+    grid-template-columns: [header-logo] 1fr;
+    grid-template-rows: 1fr 1fr;
     position: sticky;
-    row-gap: --xs-lg-up(0, var(--spacing-base));
     top: 0;
     view-transition-name: header;
     z-index: 1;
-    grid-template-columns: [header-logo] 1fr;
-    grid-template-rows: 1fr 1fr;
 
     @media screen and (width >= 480px) {
       grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
       grid-template-rows: 1rem [centre-start] 3rem [centre-end] 1rem;
+      height: auto;
+      row-gap: 0;
     }
 
     @media screen and (width >= 768px) {
       grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
+      height: var(--round-up);
+      /* row-gap: var(--spacing-base); */
+      row-gap: 0;
     }
 
     @media screen and (width >= 1280px) {

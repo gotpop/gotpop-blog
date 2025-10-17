@@ -7,8 +7,8 @@
     --repeat: 1;
 
     --root-grid-size: 16px;
-    --grid-vertical-color: rgba(200, 200, 200, 0.2);
-    --grid-horizontal-color: rgba(180, 180, 180, 0.2);
+    --grid-vertical-color: rgba(200, 200, 200, 0.6);
+    --grid-horizontal-color: rgba(180, 180, 180, 0.6);
     --even-odd: even;
     --grid-offset: centre;
 

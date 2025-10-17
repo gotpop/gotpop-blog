@@ -7,11 +7,16 @@
   }
 
   .card {
+    --root-grid-size: 16px;
+    --grid-vertical-color: rgba(200, 200, 200, 0.5);
+    --grid-horizontal-color: rgba(180, 180, 180, 0.5);
+    --even-odd: even;
+    --grid-offset: centre;
+
     display: grid;
-    /* grid-template-rows: subgrid [heading] [body] [footer]; */
     grid-row: span 3;
     grid-column: 1 / -1;
-    background-color: var(--light-100);
+    background-color: var(--light-200);
     background-image: paint(grid), var(--grain-uri);
     padding: var(--spacing-lg);
     view-transition-name: attr(id type(<custom-ident>), none);
