@@ -5,9 +5,11 @@ type ValidTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "small"
 
 interface TypographyProps {
   children: ReactNode
-  tag: string
+  tag: ValidTag
   shade?: "light" | "dark"
-  variant?: "sm" | "base" | "md" | "lg" | "xl" | "xxl"
+  variant?: "sm" | "base" | "md" | "lg" | "xl" | "xxl" | "hero"
+  className?: string
+  id?: string
 }
 
 export default function Typography({
@@ -15,6 +17,8 @@ export default function Typography({
   tag,
   shade,
   variant,
+  className = "",
+  id = "",
 }: TypographyProps) {
   const styles = getInlineStyles("Typography.css")
 
@@ -38,17 +42,18 @@ export default function Typography({
   const shadeClass = shade === "dark" ? "dark" : "light"
   const variantClass = variant ? `variant-${variant}` : ""
 
-  const className = [
+  const classNames = [
     "typography-text",
     `typography-${elementTag}`,
     shadeClass,
     variantClass,
+    className,
   ]
     .filter(Boolean)
     .join(" ")
 
   return (
-    <Element className={className}>
+    <Element className={classNames} id={id || undefined}>
       {styles && <style>{styles}</style>}
       {children}
     </Element>

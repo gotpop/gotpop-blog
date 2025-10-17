@@ -1,62 +1,63 @@
 @scope {
   & {
-    &.dark {
+    .dark {
       color: var(--dark-200);
     }
 
-    &.light {
+    .light {
       color: var(--light-200);
     }
 
-    &.variant-sm {
+    .variant-sm {
       font-size: var(--font-scaled-sm);
       margin-block: 0 var(--spacing-md);
       padding-block-start: calc(round(1cap, 2rem) - 1cap);
       text-wrap: pretty;
     }
 
-    &.variant-base {
+    .variant-base {
       font-size: var(--font-scaled-base);
-      line-height: 1.5;
+      line-height: 2;
       margin-block: 0 var(--spacing-md);
+      max-width: 40ch;
       padding-block-start: calc(1rem - 1cap);
       text-wrap: pretty;
     }
 
-    &.variant-md {
+    .variant-md {
       font-size: var(--font-scaled-md);
       margin-block: 0 var(--spacing-xl);
       padding-block-start: calc(round(1cap, 2rem) - 1cap);
       text-wrap: pretty;
     }
 
-    &.variant-lg {
+    .variant-lg {
       font-size: var(--font-scaled-lg);
-      margin-block: 0 var(--spacing-md);
+      margin-block: 0 var(--spacing-xl);
       padding-block-start: calc(round(1cap, 2rem) - 1cap);
       text-wrap: balance;
     }
 
-    &.variant-xl {
+    .variant-xl {
       font-size: var(--font-scaled-xl);
       margin-block: 0 var(--spacing-xl);
       padding-block-start: calc(round(1cap, 2rem) - 1cap);
       text-wrap: balance;
     }
 
-    &.variant-xxl {
+    .variant-xxl {
       font-size: var(--font-scaled-xxl);
       margin-block: 0 var(--spacing-xl);
       padding-block-start: calc(round(1cap, 2rem) - 1cap);
       text-wrap: balance;
     }
 
-    &.variant-hero {
+    .variant-hero {
       font-size: var(--font-scaled-xxl);
       font-weight: 800;
       letter-spacing: -0.025em;
       line-height: calc(1.63 * 1cap);
-      margin-block: 0 var(--spacing-lg);
+      margin-block: 0 var(--spacing-xxl);
       padding-block-start: calc(round(1cap, 2rem) - 1cap);
       position: relative;
       right: 0.1ch;

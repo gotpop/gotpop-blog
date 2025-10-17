@@ -13,15 +13,14 @@
     --even-odd: even;
     --grid-offset: centre;
 
+    background-color: white;
+    background-image: paint(grid);
     display: grid;
-    grid-row: span 3;
+    gap: var(--spacing-md);
     grid-column: 1 / -1;
-    background-color: var(--light-200);
-    background-image: paint(grid), var(--grain-uri);
+    grid-row: span 3;
+    max-height: var(--round-up);
     padding: var(--spacing-lg);
     view-transition-name: attr(id type(<custom-ident>), none);
-    gap: var(--spacing-md);
-    max-height: var(--round-up);
-    color: var(--dark-900);
   }
 }

@@ -1,5 +1,6 @@
 import { render } from "storyblok-rich-text-react-renderer"
 import type { RichtextStoryblok } from "@/types/storyblok-components"
+import { getInlineStyles } from "@/utils/inline-styles"
 
 interface RichTextProps {
   content: RichtextStoryblok
@@ -8,6 +9,10 @@ interface RichTextProps {
 
 export default function RichText({ content, className }: RichTextProps) {
   if (!content) return null
+
+  const styles = getInlineStyles("RichText.css")
+
+  const classNames = ["rich-text", className].filter(Boolean).join(" ")
 
   // Use React renderer with custom resolvers
   const renderedContent = render(content, {
@@ -42,7 +47,7 @@ export default function RichText({ content, className }: RichTextProps) {
             return <h2>{children}</h2>
         }
       },
-      paragraph: (children) => <p>{children}</p>,
+      paragraph: (children) => <p className="variant-base">{children}</p>,
       bullet_list: (children) => <ul>{children}</ul>,
       ordered_list: (children) => <ol>{children}</ol>,
       list_item: (children) => <li>{children}</li>,
@@ -56,5 +61,10 @@ export default function RichText({ content, className }: RichTextProps) {
     },
   })
 
-  return <div className={className}>{renderedContent}</div>
+  return (
+    <div className={classNames}>
+      {styles && <style>{styles}</style>}
+      {renderedContent}
+    </div>
+  )
 }
