@@ -17,18 +17,18 @@
     gap: calc(var(--spacing-base) * 0.8);
     justify-content: center;
     margin: unset;
-    padding: var(--spacing-sm);
+    /* padding: var(--spacing-sm); */
     user-select: none;
     width: stretch;
   }
 
-  .logo {
+  /* .logo {
     align-items: center;
     display: flex;
     gap: calc(var(--spacing-base) * 0.8);
     justify-content: center;
     text-decoration: none;
-  }
+  } */
 
   .circles {
     --main-circle-color: --opacity(var(--secondary-400), 0.2);

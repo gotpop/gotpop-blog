@@ -1,16 +1,10 @@
-@function --light-dark(--mode) {
-  result: var(--mode);
-}
-
 @scope {
   & {
     --grid-vertical-color: rgba(255, 255, 255, 0.3);
     --grid-horizontal-color: rgba(255, 255, 255, 0.3);
 
     background: paint(grid) var(--secondary-900);
-    color: var(--light-300);
     display: grid;
-    gap: 3rem;
     grid-auto-columns: auto;
     grid-auto-flow: row dense;
     grid-column: full;
@@ -21,14 +15,12 @@
     view-transition-name: footer;
   }
 
-  .footer-logo {
-    grid-column: repeat(2, 1fr);
-    width: stretch;
-    align-self: start;
+  .header-logo {
+    grid-column: 3 / span 1;
+  }
 
-    figure {
-      justify-content: start;
-    }
+  .nav {
+    grid-column: 3 / -3;
   }
 
   .footer-section {
