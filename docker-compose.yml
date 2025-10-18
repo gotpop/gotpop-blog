@@ -1,0 +1,37 @@
+services:
+  # Production version
+  gotpop-blog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - STORYBLOK_ACCESS_TOKEN=${STORYBLOK_ACCESS_TOKEN}
+      - NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN=${NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN}
+      - NEXT_PUBLIC_STORYBLOK_PUBLIC_TOKEN=${NEXT_PUBLIC_STORYBLOK_PUBLIC_TOKEN}
+      - NEXT_PUBLIC_STORYBLOK_API_URL=${NEXT_PUBLIC_STORYBLOK_API_URL}
+    env_file:
+      - .env.production
+    restart: unless-stopped
+    container_name: gotpop-blog
+
+  # Development version
+  gotpop-blog-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - .env.local
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    restart: unless-stopped
+    container_name: gotpop-blog-dev
+    profiles:
+      - dev
