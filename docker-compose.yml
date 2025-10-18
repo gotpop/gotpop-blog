@@ -27,7 +27,7 @@ services:
     environment:
       - NODE_ENV=development
     env_file:
-      - .env.local
+      - .env
     volumes:
       - ./src:/app/src
       - ./public:/app/public
