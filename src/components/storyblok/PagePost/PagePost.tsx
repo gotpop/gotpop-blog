@@ -1,9 +1,9 @@
-import { storyblokEditable } from "@storyblok/react/rsc"
 import RichText from "@/components/ui/RichText"
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
 import { getStoryblokApi } from "@/lib/storyblok"
 import type { PagePostStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
+import { getEditableProps } from "@/utils/storyblok-editable"
 
 interface PagePostProps {
   blok: PagePostStoryblok
@@ -49,7 +49,7 @@ export default async function PagePost({ blok }: PagePostProps) {
   }
 
   return (
-    <div {...storyblokEditable(blok)} className="page-post">
+    <div {...getEditableProps(blok)} className="page-post">
       {styles && <style>{styles}</style>}
       {headerData && <StoryblokServerComponent blok={headerData} />}
       <main>

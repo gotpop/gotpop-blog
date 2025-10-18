@@ -1,8 +1,8 @@
-import { storyblokEditable } from "@storyblok/react/rsc"
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
 import { getStoryblokApi } from "@/lib/storyblok"
 import type { PageDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
+import { getEditableProps } from "@/utils/storyblok-editable"
 
 interface PageDefaultProps {
   blok: PageDefaultStoryblok
@@ -48,7 +48,7 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
   }
 
   return (
-    <div {...storyblokEditable(blok)} className="page">
+    <div {...getEditableProps(blok)} className="page">
       {styles && <style>{styles}</style>}
       {headerData && <StoryblokServerComponent blok={headerData} />}
       <main>

@@ -1,7 +1,7 @@
-import { storyblokEditable } from "@storyblok/react/rsc"
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
 import type { FooterDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
+import { getEditableProps } from "@/utils/storyblok-editable"
 
 interface FooterDefaultProps {
   blok: FooterDefaultStoryblok
@@ -17,7 +17,7 @@ export default function FooterDefault({ blok }: FooterDefaultProps) {
   const { nav, logo } = blok
 
   return (
-    <footer {...storyblokEditable(blok)} className="footer">
+    <footer {...getEditableProps(blok)} className="footer">
       {styles && <style>{styles}</style>}
       {logo?.[0] && <StoryblokServerComponent blok={logo[0]} />}
       {nav?.[0] && <StoryblokServerComponent blok={nav[0]} />}

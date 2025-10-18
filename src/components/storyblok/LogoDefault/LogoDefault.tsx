@@ -1,9 +1,9 @@
-import { storyblokEditable } from "@storyblok/react/rsc"
 import Link from "next/link"
 import ButtonToggleMenu from "@/components/ui/ButtonToggleMenu"
 import type { LogoDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getStoryblokLinkProps } from "@/utils/storyblok"
+import { getEditableProps } from "@/utils/storyblok-editable"
 
 interface LogoDefaultProps {
   blok: LogoDefaultStoryblok
@@ -21,7 +21,7 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
         href={linkProps.href}
         rel={linkProps.rel}
         target={linkProps.target}
-        {...storyblokEditable(blok)}
+        {...getEditableProps(blok)}
       >
         <figure className="logo" role="img" aria-label="GotPop Logo">
           <div className="circles">
