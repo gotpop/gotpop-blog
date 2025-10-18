@@ -25,7 +25,7 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
           tag="h1"
           variant="hero"
         >
-          {heading} <span>TEST_MASTER</span>
+          {heading} <span>CIDR</span>
         </Typography>
       )}
       {subheading && (
