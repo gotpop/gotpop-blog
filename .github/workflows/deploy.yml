@@ -40,19 +40,53 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            # Check initial disk space
+            echo "=== Initial Disk Usage ==="
+            df -h | grep -E '/$|Filesystem'
+            DISK_USAGE=$(df -h / | tail -1 | awk '{print $5}' | sed 's/%//')
+            if [ "$DISK_USAGE" -gt 80 ]; then
+              echo "⚠️  Warning: Disk usage is ${DISK_USAGE}% - cleaning up..."
+              docker system prune -a -f --volumes
+            fi
+
+            # Clean up yarn cache (this is the main culprit!)
+            echo "Cleaning up yarn cache..."
+            yarn cache clean --all || true
+            rm -rf /usr/local/share/.cache/yarn/* || true
+            rm -rf ~/.cache/yarn/* || true
+
+            # Clean up Docker before building to free space
+            echo "Cleaning up Docker resources..."
+            docker system prune -a -f --volumes
+            df -h | grep -E '/$|Filesystem'
+
             cd /var/www/gotpop-blog
             git pull origin master
+
+            # Stop and remove old container
             docker stop gotpop-blog || true
             docker rm gotpop-blog || true
+
+            # Build new image
             docker build -t gotpop-blog .
+
+            # Remove dangling images immediately after build
+            docker image prune -f
+
+            # Run new container
             docker run -d \
               -p 3000:3000 \
               --name gotpop-blog \
               --restart unless-stopped \
               --env-file .env \
               gotpop-blog
-            docker image prune -f
+
+            # Final cleanup
+            docker system prune -f
+
             echo "Deployment completed successfully!"
+            echo "Disk usage after deployment:"
+            df -h | grep -E '/$|Filesystem'
             docker ps
             docker logs gotpop-blog --tail 20
 
