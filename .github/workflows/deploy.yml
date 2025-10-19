@@ -102,9 +102,15 @@ jobs:
               --env-file /var/www/gotpop-blog/.env \
               $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
-            # Cleanup old images
-            echo "Cleaning up old images..."
+            # Comprehensive cleanup
+            echo "Cleaning up Docker resources..."
             docker image prune -a -f
+            docker container prune -f
+            docker volume prune -f
+
+            # Clean yarn cache on host (if it exists)
+            echo "Cleaning yarn cache..."
+            rm -rf /usr/local/share/.cache/yarn/* ~/.cache/yarn/* 2>/dev/null || true
 
             # Show status
             echo "=== Deployment Complete ==="
