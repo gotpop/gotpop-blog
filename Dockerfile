@@ -1,5 +1,8 @@
-# Build stage
-FROM node:22-alpine AS builder
+# Use Node.js 22 (matching your package.json requirement)
+FROM node:22-alpine
+
+# Accept build argument for Storyblok token
+ARG STORYBLOK_ACCESS_TOKEN
 
 # Set working directory
 WORKDIR /app
@@ -16,20 +19,15 @@ RUN yarn install --frozen-lockfile --production=false --network-timeout 1000000
 # Copy source code
 COPY . .
 
-# Build the application
+# Create .env.local file from build arg for type generation (after COPY to ensure it's not overwritten)
+RUN echo "STORYBLOK_ACCESS_TOKEN=${STORYBLOK_ACCESS_TOKEN}" > .env.local && \
+    cat .env.local
+
+# Build the application (this will run generate-types which needs the token)
 RUN yarn build
 
-# Production stage
-FROM node:22-alpine AS runner
-
-WORKDIR /app
-
-# Copy only necessary files from builder
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/yarn.lock ./
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules
+# Remove .env.local after build (security)
+RUN rm -f .env.local
 
 # Expose port 3000
 EXPOSE 3000
