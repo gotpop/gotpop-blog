@@ -67,8 +67,10 @@ jobs:
             docker stop gotpop-blog || true
             docker rm gotpop-blog || true
 
-            # Build new image
-            docker build -t gotpop-blog .
+            # Build new image with Storyblok token from .env file
+            echo "Building Docker image..."
+            STORYBLOK_TOKEN=$(grep STORYBLOK_ACCESS_TOKEN .env | cut -d '=' -f2)
+            docker build --build-arg STORYBLOK_ACCESS_TOKEN="${STORYBLOK_TOKEN}" -t gotpop-blog .
 
             # Remove dangling images immediately after build
             docker image prune -f
