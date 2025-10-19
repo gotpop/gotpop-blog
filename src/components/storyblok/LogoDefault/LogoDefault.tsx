@@ -1,4 +1,5 @@
 import Link from "next/link"
+import IconLogo from "@/components/icons/IconLogo"
 import ButtonToggleMenu from "@/components/ui/ButtonToggleMenu"
 import type { LogoDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
@@ -23,17 +24,10 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
         target={linkProps.target}
         {...getEditableProps(blok)}
       >
-        <figure className="logo" role="img" aria-label="GotPop Logo">
-          <div className="circles">
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-          </div>
+        <span className="logo" role="img" aria-label="GotPop Logo">
+          <IconLogo />
           <span className="logo-text">GotPop</span>
-        </figure>
+        </span>
       </Link>
       <ButtonToggleMenu />
     </div>

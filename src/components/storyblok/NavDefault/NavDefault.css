@@ -1,16 +1,16 @@
 @scope {
   & {
     display: grid;
-    grid-template-columns: subgrid;
-    gap: 1rem;
+    gap: var(--spacing-base);
     grid-area: centre / nav;
-    direction: rtl;
+    grid-auto-flow: column;
+    justify-content: end;
   }
 
   .nav-item {
-    --background-colour: var(--secondary-800);
+    --background-colour: var(--secondary-700);
     --colour: var(--light-100);
-    direction: ltr;
+    --transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
     align-items: center;
     background-color: var(--background-colour);
@@ -19,13 +19,13 @@
     font-size: var(--font-scaled-sm);
     font-weight: var(--font-weight-bold);
     padding-block: calc(1rem - calc(1cap / 2));
+    padding-inline: var(--spacing-base);
     place-content: center;
     text-align: center;
     text-decoration: none;
-    transition:
-      background-color 0.3s ease-in-out,
-      color 0.3s ease-in-out;
+    transition: var(--transition);
     width: stretch;
+    min-width: var(--round-up);
 
     @container style(--state: active) {
       --background-colour: var(--secondary-900);
@@ -41,10 +41,5 @@
       --background-colour: var(--primary-300);
       --colour: var(--dark-100);
     }
-  }
-
-  & a:hover {
-    --background-colour: var(--primary-500);
-    --colour: var(--light-100);
   }
 }
