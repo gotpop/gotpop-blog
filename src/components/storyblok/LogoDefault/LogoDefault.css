@@ -22,33 +22,6 @@
     width: stretch;
   }
 
-  .circles {
-    --main-circle-color: --opacity(var(--secondary-400), 0.2);
-    --main-circle-color: var(--secondary-400);
-    --small-circle-color: var(--triad-2);
-    --main-circle-size: 1.2rem;
-    --main-circle-radius: calc(var(--main-circle-size) / 2);
-    --small-circle-size: calc(var(--main-circle-size) / 2);
-    --small-circle-radius: calc(var(--small-circle-size) / 2);
-    --orbit-radius: calc(
-      var(--main-circle-radius) - var(--small-circle-radius)
-    );
-
-    position: relative;
-    aspect-ratio: 1;
-    width: var(--main-circle-size);
-    transition: transform 0.5s ease;
-    transform: rotate(0deg);
-
-    .logo:hover & {
-      transform: rotate(360deg);
-    }
-
-    @container (width >= 9rem) {
-      --main-circle-size: 2.6rem;
-    }
-  }
-
   .circle {
     --hue: calc(sibling-index() * 50);
     --angle: calc((sibling-index() - 1) * 60deg);
