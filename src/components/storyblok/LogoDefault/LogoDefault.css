@@ -1,13 +1,12 @@
 @scope {
   & {
-    --layout-sm: [logo] 1fr [button-toggle] 6rem;
-
     display: grid;
-    grid-column: --xs-lg-up(header-logo, logo);
-    grid-row: --xs-lg-up(header-logo, full-height);
-    grid-template-columns: --xs-lg-up(var(--layout-sm), 1fr);
-    grid-column: logo;
-    grid-row: centre;
+    grid-area: centre / logo;
+    grid-template-columns: var(--layout, [logo] 1fr [button-toggle] 6rem);
+
+    @media screen and (width >= 768px) {
+      --layout: 1fr;
+    }
   }
 
   .logo {
@@ -19,6 +18,7 @@
     margin: unset;
     text-decoration: none;
     user-select: none;
+    outline-offset: 0.25rem;
     width: stretch;
   }
 
