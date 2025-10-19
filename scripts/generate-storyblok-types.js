@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const fs = require("fs")
-const path = require("path")
+const fs = require("node:fs")
+const path = require("node:path")
 
 // Load environment variables
 require("dotenv").config({ path: ".env.local" })
@@ -51,14 +51,18 @@ async function fetchComponents() {
 
     Object.values(content).forEach((value) => {
       if (Array.isArray(value)) {
-        value.forEach((item) => extractComponents(item))
+        for (const item of value) {
+          extractComponents(item)
+        }
       } else if (typeof value === "object" && value !== null) {
         extractComponents(value)
       }
     })
   }
 
-  data.stories.forEach((story) => extractComponents(story.content))
+  data.stories.forEach((story) => {
+    extractComponents(story.content)
+  })
 
   // Convert to component format with inferred schema
   return Array.from(componentsMap.entries()).map(([name, sample]) => ({
@@ -124,11 +128,10 @@ function inferFieldType(value) {
 }
 
 function generateTypeDefinition(component) {
-  const interfaceName =
-    component.name
-      .split("_")
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-      .join("") + "Storyblok"
+  const interfaceName = `${component.name
+    .split("_")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("")}Storyblok`
 
   // Infer fields from the sample data
   const sample = component.sample || {}
@@ -142,7 +145,7 @@ function generateTypeDefinition(component) {
       return `  ${key}?: ${type};`
     })
 
-  const fieldDefinitions = fields.length > 0 ? fields.join("\n") + "\n" : ""
+  const fieldDefinitions = fields.length > 0 ? `${fields.join("\n")}\n` : ""
 
   return `export interface ${interfaceName} extends SbBlokData {
   component: '${component.name}';
@@ -186,11 +189,10 @@ export interface RichtextStoryblok {
 export type StoryblokComponent =
 ${components
   .map((c) => {
-    const name =
-      c.name
-        .split("_")
-        .map((p) => p.charAt(0).toUpperCase() + p.slice(1))
-        .join("") + "Storyblok"
+    const name = `${c.name
+      .split("_")
+      .map((p) => p.charAt(0).toUpperCase() + p.slice(1))
+      .join("")}Storyblok`
     return `  | ${name}`
   })
   .join("\n")};
@@ -201,7 +203,7 @@ ${components
     .map((component) => generateTypeDefinition(component))
     .join("\n\n")
 
-  return header + interfaces + "\n"
+  return `${header + interfaces}\n`
 }
 
 async function main() {
@@ -221,7 +223,9 @@ async function main() {
     fs.writeFileSync(OUTPUT_PATH, types, "utf-8")
     console.log(`✓ Types generated successfully at ${OUTPUT_PATH}`)
     console.log("\nGenerated types for components:")
-    components.forEach((c) => console.log(`  - ${c.name}`))
+    components.forEach((c) => {
+      console.log(`  - ${c.name}`)
+    })
   } catch (error) {
     console.error("Error generating types:", error.message)
     process.exit(1)

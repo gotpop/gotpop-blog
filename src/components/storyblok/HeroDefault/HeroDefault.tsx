@@ -1,8 +1,8 @@
+import { useId } from "react"
 import RichText from "@/components/ui/RichText"
 import type { HeroDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getEditableProps } from "@/utils/storyblok-editable"
-import { useId } from "react"
 import Typography from "../Typography"
 
 interface HeroDefaultProps {

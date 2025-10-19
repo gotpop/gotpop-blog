@@ -1,4 +1,4 @@
-import { storyblokEditable, type SbBlokData } from "@storyblok/react/rsc"
+import { type SbBlokData, storyblokEditable } from "@storyblok/react/rsc"
 
 /**
  * Returns storyblok editable props only in development
