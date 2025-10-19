@@ -29,6 +29,8 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Generate Storyblok types
+        env:
+          STORYBLOK_ACCESS_TOKEN: ${{ secrets.STORYBLOK_ACCESS_TOKEN }}
         run: yarn generate-types
 
       - name: Run type check
