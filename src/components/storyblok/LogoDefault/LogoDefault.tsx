@@ -1,10 +1,10 @@
 import Link from "next/link"
+import IconLogo from "@/components/icons/IconLogo"
 import ButtonToggleMenu from "@/components/ui/ButtonToggleMenu"
 import type { LogoDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getStoryblokLinkProps } from "@/utils/storyblok"
 import { getEditableProps } from "@/utils/storyblok-editable"
-import IconLogo from "@/components/icons/IconLogo"
 
 interface LogoDefaultProps {
   blok: LogoDefaultStoryblok
