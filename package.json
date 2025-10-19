@@ -21,7 +21,8 @@
     "lint:fix": "npx biome check --write src/ scripts/ next.config.ts",
     "proxy": "./scripts/start-proxy.sh",
     "setup-https": "./scripts/setup-https.sh",
-    "start": "next start"
+    "start": "next start",
+    "type-check": "tsc --noEmit"
   },
   "engines": {
     "node": ">=22.20.0"
