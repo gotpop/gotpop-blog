@@ -15,20 +15,12 @@
     container: logo / inline-size;
     display: flex;
     gap: calc(var(--spacing-base) * 0.8);
-    justify-content: center;
+    justify-content: start;
     margin: unset;
-    /* padding: var(--spacing-sm); */
+    text-decoration: none;
     user-select: none;
     width: stretch;
   }
-
-  /* .logo {
-    align-items: center;
-    display: flex;
-    gap: calc(var(--spacing-base) * 0.8);
-    justify-content: center;
-    text-decoration: none;
-  } */
 
   .circles {
     --main-circle-color: --opacity(var(--secondary-400), 0.2);
@@ -65,8 +57,7 @@
     --center-offset: calc(50% - var(--small-circle-radius));
 
     aspect-ratio: 1;
-    /* background-color: --opacity(oklch(100% 100% var(--hue)), 0.5); */
-    background-color: oklch(100% 100% var(--hue));
+    background-color: oklch(100% 100% var(--hue) / 0.5);
     clip-path: circle(50%);
     inset: 0;
     left: calc(var(--center-offset) + var(--orbit-x));
