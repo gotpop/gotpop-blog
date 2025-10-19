@@ -25,4 +25,22 @@
       --main-circle-size: 2.6rem;
     }
   }
+
+  .circle {
+    --hue: calc(sibling-index() * 50);
+    --angle: calc((sibling-index() - 1) * 60deg);
+    --orbit-y: calc(var(--orbit-radius) * sin(var(--angle)));
+    --orbit-x: calc(var(--orbit-radius) * cos(var(--angle)));
+    --center-offset: calc(50% - var(--small-circle-radius));
+
+    aspect-ratio: 1;
+    background-color: oklch(100% 100% var(--hue) / 0.5);
+    clip-path: circle(50%);
+    inset: 0;
+    left: calc(var(--center-offset) + var(--orbit-x));
+    position: absolute;
+    top: calc(var(--center-offset) - var(--orbit-y));
+    transform-origin: center;
+    width: var(--small-circle-size);
+  }
 }
