@@ -1,4 +1,5 @@
 import { useId } from "react"
+import Icon from "@/components/ui/Icon"
 import RichText from "@/components/ui/RichText"
 import type { HeroDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
@@ -25,7 +26,7 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
           tag="h1"
           variant="hero"
         >
-          {heading}
+          {heading} <Icon name="FaStar" color="#FFD700" size={64} />
         </Typography>
       )}
       {subheading && (
