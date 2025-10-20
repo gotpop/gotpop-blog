@@ -48,7 +48,7 @@ COPY biome.json .biomeignore ./
 COPY . .
 
 # Build the application (skip formatting in Docker to avoid git/ignore issues)
-RUN yarn generate-types:env && yarn next build
+RUN yarn generate-types && yarn next build
 
 # Ensure correct permissions
 RUN mkdir -p /app/.next && chown -R 1001:1001 /app/.next
