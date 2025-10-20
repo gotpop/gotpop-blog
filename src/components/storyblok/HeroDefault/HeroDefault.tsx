@@ -11,8 +11,8 @@ interface HeroDefaultProps {
 
 export default function HeroDefault({ blok }: HeroDefaultProps) {
   const styles = getInlineStyles("HeroDefault.css")
-  const id = useId()
   const { heading, subheading } = blok
+  const id = useId()
 
   return (
     <section className="hero" aria-labelledby={id}>
