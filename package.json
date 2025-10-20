@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build --turbopack",
-    "prebuild": "yarn generate-types",
+    "prebuild": "yarn format:fix && yarn generate-types",
     "dev:https": "yarn dev & yarn dev:wait && yarn proxy",
     "dev:wait": "sleep 3",
     "dev": "next dev --turbopack",
@@ -33,6 +33,7 @@
     "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-icons": "^5.5.0",
     "server-only": "^0.0.1",
     "storyblok-rich-text-react-renderer": "^3.0.1"
   },
