@@ -2,7 +2,6 @@ import { StoryblokServerComponent } from "@/components/utils/ClientLoader/Storyb
 import { getStoryblokApi } from "@/lib/storyblok"
 import type { PageDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
-import { getEditableProps } from "@/utils/storyblok-editable"
 
 interface PageDefaultProps {
   blok: PageDefaultStoryblok
@@ -48,7 +47,7 @@ export default async function PageDefault({ blok }: PageDefaultProps) {
   }
 
   return (
-    <div {...getEditableProps(blok)} className="page">
+    <div className="page">
       {styles && <style>{styles}</style>}
       {headerData && <StoryblokServerComponent blok={headerData} />}
       <main>
