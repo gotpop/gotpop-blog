@@ -2,7 +2,7 @@ import { useId } from "react"
 import RichText from "@/components/ui/RichText"
 import type { HeroDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
-import { getEditableProps } from "@/utils/storyblok-editable"
+
 import Typography from "../Typography"
 
 interface HeroDefaultProps {
@@ -15,7 +15,7 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
   const { heading, subheading } = blok
 
   return (
-    <section {...getEditableProps(blok)} className="hero" aria-labelledby={id}>
+    <section className="hero" aria-labelledby={id}>
       {styles && <style>{styles}</style>}
       {heading && (
         <Typography

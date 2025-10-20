@@ -3,7 +3,6 @@ import { StoryblokServerComponent } from "@/components/utils/ClientLoader/Storyb
 import { getStoryblokApi } from "@/lib/storyblok"
 import type { PagePostStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
-import { getEditableProps } from "@/utils/storyblok-editable"
 
 interface PagePostProps {
   blok: PagePostStoryblok
@@ -49,7 +48,7 @@ export default async function PagePost({ blok }: PagePostProps) {
   }
 
   return (
-    <div {...getEditableProps(blok)} className="page-post">
+    <div className="page-post">
       {styles && <style>{styles}</style>}
       {headerData && <StoryblokServerComponent blok={headerData} />}
       <main>

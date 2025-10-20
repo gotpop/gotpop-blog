@@ -2,7 +2,7 @@ import Link from "next/link"
 import { getStoryblokApi } from "@/lib/storyblok"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import type { CardStoryblok } from "@/types/storyblok-components"
-import { getEditableProps } from "@/utils/storyblok-editable"
+
 import Typography from "../Typography"
 
 interface CardProps {
@@ -34,7 +34,7 @@ export default async function Card({ blok }: CardProps) {
   const description = story.content?.description || ""
 
   return (
-    <div className="card" {...getEditableProps(blok)}>
+    <div className="card">
       <div className="card-content">
         {title && (
           <Typography tag="h3" variant="lg" shade="dark">

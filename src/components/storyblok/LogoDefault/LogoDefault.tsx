@@ -4,7 +4,6 @@ import ButtonToggleMenu from "@/components/ui/ButtonToggleMenu"
 import type { LogoDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getStoryblokLinkProps } from "@/utils/storyblok"
-import { getEditableProps } from "@/utils/storyblok-editable"
 
 interface LogoDefaultProps {
   blok: LogoDefaultStoryblok
@@ -22,7 +21,6 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
         href={linkProps.href}
         rel={linkProps.rel}
         target={linkProps.target}
-        {...getEditableProps(blok)}
       >
         <span className="logo" role="img" aria-label="GotPop Logo">
           <IconLogo />

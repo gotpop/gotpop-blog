@@ -2,54 +2,69 @@
 
 ## Project Overview
 
-This is a Next.js 15.5.4 blog built with:
+Next.js 15.5.4 blog with Storyblok CMS, deployed to AWS EC2 via Docker + GitHub Actions.
 
-- **Framework**: Next.js 15 with App Router and Turbopack
-- **CMS**: Storyblok with React Server Components
-- **Language**: TypeScript (strict mode)
-- **Styling**: CSS modules colocated with components
+**Stack**: Next.js 15 (App Router, Turbopack) • Storyblok CMS • TypeScript (strict) • Colocated CSS • Docker • AWS EC2
 
-## Architecture
+## Architecture & Data Flow
 
-### Storyblok Integration
+### Storyblok Content Structure
 
-- **SDK**: `@storyblok/react` v5+ with RSC support
-- **Components**: Server components with `storyblokEditable()` from `@storyblok/react/rsc`
-- **Data Fetching**: Use `getStoryblokApi()` from `src/lib/storyblok.ts`
-- **Rendering**: Use `<StoryblokStory story={data.story} />` in pages
-- **Visual Editor**: Enabled via HTTPS proxy on port 3010
+- **All content lives under `blog/` folder** in Storyblok (e.g., `blog/home`, `blog/post-title`)
+- Path conversion: `blog/home` → `/` (home), `blog/post-title` → `/post-title`
+- Use `getStoryPath(fullSlug)` from `src/lib/storyblok-utils.ts` for all path conversions
+- **Config/global stories** (e.g., header, footer) are excluded from static generation via `shouldIncludeStory()`
 
-### Component Structure
+### Server-Side CMS Integration
 
+- **SDK**: `@storyblok/react/rsc` v5+ (React Server Components only)
+- **Initialization**: `getStoryblokApi()` in `src/lib/storyblok.ts` registers ALL components
+- **Data fetching**: Server components call `getStoryblokApi().get('cdn/stories/...')`
+- **Rendering**: `<StoryblokStory story={data.story} />` dynamically renders registered components
+- **Never** import from `@storyblok/react` (client bundle) - always use `/rsc` path
+
+### Catch-All Route Pattern (`[[...slug]]`)
+
+- Single dynamic route handles all pages: `src/app/[[...slug]]/page.tsx`
+- `generateStaticParams()` pre-renders all blog stories at build time
+- Runtime: slug array → `normalizeStoryblokPath()` → Storyblok API → story data
+- 404 handling: Shows `StoryNotFound` with available stories list on error
+
+## Component Registration System
+
+**Critical**: Every Storyblok component must be registered in `src/lib/storyblok.ts` to render.
+
+```typescript
+// Component name in Storyblok = object key (snake_case)
+const components = {
+  page_default: PageDefault, // Storyblok: page_default
+  hero_default: HeroDefault, // Storyblok: hero_default
+  nav_item_default: NavItemDefault,
+}
 ```
-src/components/storyblok/
-├── ComponentName/
-│   ├── ComponentName.tsx      # Component logic
-│   ├── ComponentName.css      # Colocated styles
-│   └── index.ts               # Barrel export
-```
 
-### Type System
+**New component checklist**:
 
-- **Auto-generated types**: Run `npm run generate-types` to update Storyblok types
-- **Location**: `src/types/storyblok-components.ts`
-- **Type naming**: `ComponentNameStoryblok` (e.g., `HeroDefaultStoryblok`)
+1. Create `src/components/storyblok/ComponentName/` folder
+2. Add `ComponentName.tsx` with `storyblokEditable(blok)` spread
+3. Optional: Add `ComponentName.css` (colocated styles)
+4. Create `index.ts` barrel export
+5. **Register in `src/lib/storyblok.ts`** (snake_case key)
+6. Run `yarn generate-types` to update TypeScript definitions
 
-### CSS and Styling
+### Type Generation System
 
-- **CSS Files**: Colocated with components (e.g., `HeroDefault/HeroDefault.css`)
-- **Inline Styles**: Use `getInlineStyles()` from `src/utils/inline-styles.ts` (server-only)
-- **No CSS-in-JS**: Avoid styled-components, emotion, etc.
-- **Pattern**:
-  ```tsx
-  const styles = getInlineStyles("HeroDefault")
-  return (
-    <>
-      {styles && <style>{styles}</style>}
-      <section className="hero">...</section>
-    </>
-  )
-  ```
+- **Script**: `scripts/generate-storyblok-types.js` fetches live stories, infers types from actual content
+- **Run**: `yarn generate-types` (auto-runs before build via `prebuild`)
+- **Output**: `src/types/storyblok-components.ts` with interfaces like `ComponentNameStoryblok`
+- **Inference**: Detects `RichtextStoryblok`, `MultilinkStoryblok`, `AssetStoryblok` from field structure
+
+### Server-Only Styling Pattern
+
+- **No CSS-in-JS**: Use plain CSS files colocated with components
+- **Server injection**: `getInlineStyles("ComponentName")` reads CSS file at build time
+- Pattern: `<style>{styles}</style>` in component (avoids client hydration issues)
+- Paths tried: `ui/`, `icons/`, `utils/`, `storyblok/ComponentName/ComponentName.css`
 
 ## Coding Standards
 
@@ -138,50 +153,62 @@ export default function ComponentName({ blok }: ComponentNameProps) {
 - Example: `{blok.body && <RichText content={blok.body} />}`
 - Powered by `@storyblok/richtext` package with `richTextResolver()`
 
-## Development Workflow
+## Development & Deployment
 
-### Commands
-
-```bash
-npm run dev              # Start dev server (port 3000)
-npm run dev:https        # Start with HTTPS proxy (port 3010)
-npm run generate-types   # Generate Storyblok types
-npm run kill-ports       # Kill processes on ports 3000 and 3010
-```
-
-### HTTPS Setup (for Visual Editor)
-
-1. Certificates in project root: `localhost.pem`, `localhost-key.pem`
-2. Proxy forwards `https://localhost:3010` → `http://localhost:3000`
-3. Storyblok Preview URL: `https://localhost:3010/[full_slug]`
-
-## Don't Do This
-
-❌ Import server-only modules in client components  
-❌ Use `dangerouslySetInnerHTML` (use inline styles pattern instead)  
-❌ Import from `@storyblok/react` (use `@storyblok/react/rsc`)  
-❌ Register components in `StoryblokProvider` (causes client/server issues)  
-❌ Pass full story object to components (pass `story.content` or specific blok)
-
-## Do This Instead
-
-✅ Use server components by default  
-✅ Import `storyblokEditable` from `@storyblok/react/rsc`  
-✅ Register components in `src/lib/storyblok.ts`  
-✅ Use `getStoryblokApi()` for data fetching  
-✅ Colocate CSS files with components  
-✅ Use type-safe props with auto-generated types
-
-## Environment Variables
+### Local Development
 
 ```bash
-# .env.local
-STORYBLOK_ACCESS_TOKEN=         # Server-side token
-NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN=  # Client-side token (same value)
+yarn dev              # Dev server (http://localhost:3000)
+yarn dev:https        # HTTPS proxy for Storyblok Visual Editor (https://localhost:3010)
+yarn generate-types   # Regenerate types from live Storyblok data
+yarn kill-ports       # Kill ports 3000 & 3010
 ```
 
-## Resources
+**Visual Editor Setup**: Certificates in `generated/`, proxy script forwards HTTPS → HTTP for live editing.
 
-- [Storyblok React SDK Docs](https://github.com/storyblok/storyblok-react)
-- [Next.js App Router](https://nextjs.org/docs/app)
-- [React Server Components](https://react.dev/reference/rsc/server-components)
+### Code Quality (enforced in CI)
+
+```bash
+yarn lint             # Biome linter (TypeScript/JSX)
+yarn format:check     # Biome + Prettier (CSS only)
+yarn type-check       # TypeScript compiler (strict mode)
+```
+
+**Biome config** (`biome.json`): Auto-organizes imports, semicolons as-needed, 80-char lines, 2-space indent.  
+**Prettier** (CSS only): Defined in `package.json`, Biome handles JS/TS.
+
+### Docker Deployment
+
+**Multi-stage Dockerfile**:
+
+1. `deps`: Install dependencies with libc6-compat for Node 22 Alpine
+2. `builder`: Run `yarn build` (auto-generates types via `prebuild`)
+3. `runner`: Production-only deps, non-root user `nextjs`, port 3000
+
+**Build arg**: `STORYBLOK_ACCESS_TOKEN` required for type generation at build time.
+
+### CI/CD Pipeline (GitHub Actions)
+
+**Branch strategy**: `main` (dev) → PR → `master` (production)
+
+**On PR to master**: Runs lint, format, type-check workflows in parallel  
+**On merge to master**:
+
+1. Build Docker image with Storyblok token
+2. Push to AWS ECR (tag: `latest` + commit SHA)
+3. SSH to EC2, pull image, restart container
+4. Clean Docker cache + yarn cache on EC2
+
+**Required secrets**: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `ECR_REPOSITORY`, `EC2_HOST`, `EC2_USERNAME`, `EC2_SSH_KEY`, `STORYBLOK_ACCESS_TOKEN`
+
+## Critical Don'ts & Dos
+
+❌ **Don't** import from `@storyblok/react` - always use `@storyblok/react/rsc`  
+❌ **Don't** register components in `StoryblokProvider` - use `src/lib/storyblok.ts` components object  
+❌ **Don't** use `dangerouslySetInnerHTML` - use server-side `getInlineStyles()` pattern  
+❌ **Don't** forget to run `yarn generate-types` after adding/modifying Storyblok content types
+
+✅ **Do** default to Server Components unless client interactivity needed  
+✅ **Do** spread `{...storyblokEditable(blok)}` on root element of Storyblok components  
+✅ **Do** use `getStoryPath()` for Storyblok URL conversions (handles `blog/` prefix)  
+✅ **Do** use `JSON.stringify(data, null, 2)` for console.log debugging objects
