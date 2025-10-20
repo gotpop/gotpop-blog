@@ -13,35 +13,43 @@ import {
   FaTimes,
   FaUser,
 } from "react-icons/fa"
-
-interface IconProps {
-  name: string // e.g., "FaHome" (Font Awesome icon name)
-  size?: number
-  color?: string
-  className?: string
-}
+import { FaSquareGithub } from "react-icons/fa6"
 
 /**
- * Explicit icon map prevents dynamic namespace access which can prevent tree-shaking.
- * Add any additional icons you need to the ICONS object above.
+ * Icon registry - single source of truth for available icons.
+ * Only icons listed here will be bundled (tree-shaking optimization).
+ * Add new icons here and run `yarn sync-icons` to update Storyblok datasource.
  */
-const ICONS: Record<
-  string,
-  React.ComponentType<{ size?: number; color?: string; className?: string }>
-> = {
-  FaHome,
-  FaUser,
-  FaSearch,
-  FaTimes,
+const ICON_REGISTRY = {
   FaBars,
   FaChevronLeft,
   FaChevronRight,
   FaEnvelope,
-  FaPhone,
-  FaLink,
   FaExternalLinkAlt,
+  FaHome,
+  FaLink,
+  FaPhone,
   FaQuestionCircle,
+  FaSearch,
+  FaSquareGithub,
   FaStar,
+  FaTimes,
+  FaUser,
+} as const
+
+// Export for sync scripts and type generation
+export const AVAILABLE_ICONS = Object.keys(ICON_REGISTRY) as Array<
+  keyof typeof ICON_REGISTRY
+>
+
+// Type-safe icon names
+export type IconName = keyof typeof ICON_REGISTRY
+
+interface IconProps {
+  name: IconName
+  size?: number
+  color?: string
+  className?: string
 }
 
 export default function Icon({ name, size = 24, color, className }: IconProps) {
@@ -50,12 +58,12 @@ export default function Icon({ name, size = 24, color, className }: IconProps) {
     return null
   }
 
-  const IconComponent = ICONS[name]
+  const IconComponent = ICON_REGISTRY[name]
 
   if (!IconComponent) {
     console.log(
       "Font Awesome icon not found:",
-      JSON.stringify({ name }, null, 2)
+      JSON.stringify({ name, availableIcons: AVAILABLE_ICONS }, null, 2)
     )
     // render a safe fallback so consumers still get an icon
     return <FaQuestionCircle size={size} color={color} className={className} />
