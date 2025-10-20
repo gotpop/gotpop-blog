@@ -4,16 +4,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - STORYBLOK_ACCESS_TOKEN=${STORYBLOK_ACCESS_TOKEN}
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - STORYBLOK_ACCESS_TOKEN=${STORYBLOK_ACCESS_TOKEN}
-      - NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN=${NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN}
-      - NEXT_PUBLIC_STORYBLOK_PUBLIC_TOKEN=${NEXT_PUBLIC_STORYBLOK_PUBLIC_TOKEN}
-      - NEXT_PUBLIC_STORYBLOK_API_URL=${NEXT_PUBLIC_STORYBLOK_API_URL}
     env_file:
-      - .env.production
+      - .env
     restart: unless-stopped
     container_name: gotpop-blog
 

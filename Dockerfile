@@ -35,17 +35,20 @@ ARG STORYBLOK_ACCESS_TOKEN
 
 WORKDIR /app
 
+# Make build arg available as environment variable
+ENV STORYBLOK_ACCESS_TOKEN=${STORYBLOK_ACCESS_TOKEN}
+
 # Copy dependencies from deps stage (includes all deps including TypeScript)
 COPY --from=deps /app/node_modules ./node_modules
+
+# Copy configuration files first
+COPY biome.json .biomeignore ./
 
 # Copy source code
 COPY . .
 
-# Create .env.local for type generation
-RUN echo "STORYBLOK_ACCESS_TOKEN=${STORYBLOK_ACCESS_TOKEN}" > .env.local
-
-# Build the application
-RUN yarn build && rm -f .env.local
+# Build the application (skip formatting in Docker to avoid git/ignore issues)
+RUN yarn generate-types && yarn next build
 
 # Ensure correct permissions
 RUN mkdir -p /app/.next && chown -R 1001:1001 /app/.next

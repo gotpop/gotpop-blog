@@ -2,8 +2,8 @@
 const fs = require("node:fs")
 const path = require("node:path")
 
-// Load environment variables
-require("dotenv").config({ path: ".env.local" })
+// Node.js 22+ handles .env loading via --env-file-if-exists flag
+// Environment variables take precedence over .env file values
 
 const STORYBLOK_TOKEN = process.env.STORYBLOK_ACCESS_TOKEN
 const OUTPUT_PATH = path.join(__dirname, "../src/types/storyblok-components.ts")
