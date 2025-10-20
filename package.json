@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build --turbopack",
-    "prebuild": "yarn generate-types",
+    "prebuild": "yarn format:fix && yarn generate-types",
     "dev:https": "yarn dev & yarn dev:wait && yarn proxy",
     "dev:wait": "sleep 3",
     "dev": "next dev --turbopack",
