@@ -3,15 +3,13 @@ import { StoryblokStory } from "@storyblok/react/rsc"
 import StoryNotFound from "@/components/utils/ClientLoader/StoryNotFound"
 import { getStoryblokApi } from "@/lib/storyblok"
 import {
-  determinePageType,
-  extractTagSlug,
   getStoryPath,
   normalizeStoryblokPath,
   shouldIncludeStory,
 } from "@/lib/storyblok-utils"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
 import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
-import { getTagsFromDatasource, isValidTag } from "@/utils/tags"
+import { getTagsFromDatasource } from "@/utils/tags"
 
 export const dynamicParams = true
 
@@ -70,50 +68,30 @@ export default async function Page({ params }: PageParams) {
       version: "draft",
     })
 
-    // If this is a page_filter story, we need to inject the posts data
-    if (data.story.content.component === "page_filter") {
-      const pageType = determinePageType(slug)
-      let selectedTag = "all"
-
-      // Extract tag from URL if it's a tag page
-      if (pageType === "tag-page") {
-        const tagSlug = extractTagSlug(slug)
-        if (tagSlug && (await isValidTag(tagSlug))) {
-          selectedTag = tagSlug
-        }
-      }
-
-      // Get posts and tags data
-      const { getAllPostsWithTags } = await import("@/utils/tags")
-      const allPosts = await getAllPostsWithTags()
-      const availableTags = await getTagsFromDatasource()
-
-      // Find FilterContent component in the story body and inject props
-      const storyWithInjectedProps = {
-        ...data.story,
+    return <StoryblokStory story={data.story} />
+  } catch (error: unknown) {
+    // Check if this is a posts page that should show the filter
+    if (fullPath === "blog/posts" || slug?.join("/") === "posts") {
+      // Create a mock FilterContent story for posts pages that don't exist in Storyblok
+      const mockStory = {
+        id: 0,
+        uuid: "mock-filter",
+        name: "Posts Filter",
+        slug: "posts",
+        full_slug: "blog/posts",
+        created_at: new Date().toISOString(),
+        published_at: new Date().toISOString(),
         content: {
-          ...data.story.content,
-          body: data.story.content.body?.map(
-            (component: { component: string; [key: string]: unknown }) => {
-              if (component.component === "filter_content") {
-                return {
-                  ...component,
-                  initialPosts: allPosts,
-                  availableTags: availableTags,
-                  selectedTag: selectedTag,
-                }
-              }
-              return component
-            }
-          ),
+          component: "filter_content",
+          _uid: "filter-content-mock",
+          Heading: "All Posts",
+          description: "Browse and filter all blog posts",
         },
       }
 
-      return <StoryblokStory story={storyWithInjectedProps} />
+      return <StoryblokStory story={mockStory} />
     }
 
-    return <StoryblokStory story={data.story} />
-  } catch (error: unknown) {
     let availableStories: string[] = []
 
     try {

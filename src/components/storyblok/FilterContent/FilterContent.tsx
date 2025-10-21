@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useId, useMemo, useCallback } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useId, useMemo, useCallback, useEffect } from "react"
+import { useRouter, usePathname } from "next/navigation"
 import { storyblokEditable } from "@storyblok/react/rsc"
 import PostCard from "../PostCard"
 import type { FilterContentStoryblok } from "@/types/storyblok-components"
@@ -30,31 +30,59 @@ interface TagEntry {
 
 interface FilterContentProps {
   blok: FilterContentStoryblok
-  initialPosts?: PostStory[]
-  availableTags?: TagEntry[]
-  selectedTag?: string
 }
 
-export default function FilterContent({
-  blok,
-  initialPosts = [],
-  availableTags = [],
-  selectedTag = "all",
-}: FilterContentProps) {
+export default function FilterContent({ blok }: FilterContentProps) {
   const router = useRouter()
+  const pathname = usePathname()
   const tagSelectId = useId()
   const sortSelectId = useId()
 
-  const [currentTag] = useState<string>(selectedTag)
+  const [posts, setPosts] = useState<PostStory[]>([])
+  const [availableTags, setAvailableTags] = useState<TagEntry[]>([])
+  const [loading, setLoading] = useState(true)
   const [sortBy, setSortBy] = useState<SortOption>("date-desc")
 
-  // Memoize the filtered and sorted posts to prevent infinite loops
-  const posts = useMemo(() => {
-    let filteredPosts = initialPosts
+  // Determine current tag from URL
+  const currentTag = useMemo(() => {
+    if (pathname === "/posts") return "all"
+    const match = pathname.match(/^\/posts\/(.+)$/)
+    return match ? match[1] : "all"
+  }, [pathname])
+
+  // Fetch posts and tags data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const [postsResponse, tagsResponse] = await Promise.all([
+          fetch("/api/posts"),
+          fetch("/api/tags"),
+        ])
+
+        if (postsResponse.ok && tagsResponse.ok) {
+          const postsData = await postsResponse.json()
+          const tagsData = await tagsResponse.json()
+          setPosts(postsData)
+          setAvailableTags(tagsData)
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  // Filter and sort posts
+  const filteredAndSortedPosts = useMemo(() => {
+    let filteredPosts = posts
 
     // Filter by tag
     if (currentTag !== "all") {
-      filteredPosts = initialPosts.filter((post) => {
+      filteredPosts = posts.filter((post) => {
         const tags = post.content?.tags || []
         return tags.includes(currentTag)
       })
@@ -89,7 +117,7 @@ export default function FilterContent({
     })
 
     return sortedPosts
-  }, [currentTag, sortBy, initialPosts])
+  }, [posts, currentTag, sortBy])
 
   const handleTagChange = useCallback(
     (tag: string) => {
@@ -110,6 +138,22 @@ export default function FilterContent({
     currentTag === "all"
       ? "All Posts"
       : availableTags.find((t) => t.value === currentTag)?.name || currentTag
+
+  if (loading) {
+    return (
+      <div {...storyblokEditable(blok)} className="filter-content">
+        <style>{`
+          .filter-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+          }
+        `}</style>
+        <div>Loading posts...</div>
+      </div>
+    )
+  }
 
   return (
     <div {...storyblokEditable(blok)} className="filter-content">
@@ -225,7 +269,7 @@ export default function FilterContent({
         </h1>
         <p>
           {blok.description ||
-            `${posts.length} post${posts.length !== 1 ? "s" : ""} found`}
+            `${filteredAndSortedPosts.length} post${filteredAndSortedPosts.length !== 1 ? "s" : ""} found`}
         </p>
       </div>
 
@@ -268,12 +312,12 @@ export default function FilterContent({
       </div>
 
       <div className="posts-grid">
-        {posts.map((post) => (
+        {filteredAndSortedPosts.map((post) => (
           <PostCard key={post.uuid} post={post} />
         ))}
       </div>
 
-      {posts.length === 0 && (
+      {filteredAndSortedPosts.length === 0 && (
         <div className="filter-empty">
           <p>
             No posts found
