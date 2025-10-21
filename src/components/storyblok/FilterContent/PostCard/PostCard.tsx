@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import type { PostStory } from "@/utils/tags"
-import Typography from "../Typography"
+import Typography from "../../Typography"
 
 interface PostCardProps {
   post: PostStory

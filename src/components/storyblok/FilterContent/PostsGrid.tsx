@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname, useRouter } from "next/navigation"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import type { FilterContentStoryblok } from "@/types/storyblok-components"
 import PostCard from "./PostCard"
 import PostsFilter from "./PostsFilter"
@@ -29,17 +29,19 @@ interface TagEntry {
   id: number
 }
 
-interface FilterContentProps {
+interface PostsGridProps {
   blok: FilterContentStoryblok
+  initialPosts: PostStory[]
+  availableTags: TagEntry[]
 }
 
-export default function FilterContent({ blok }: FilterContentProps) {
+export default function PostsGrid({
+  blok,
+  initialPosts,
+  availableTags,
+}: PostsGridProps) {
   const router = useRouter()
   const pathname = usePathname()
-
-  const [posts, setPosts] = useState<PostStory[]>([])
-  const [availableTags, setAvailableTags] = useState<TagEntry[]>([])
-  const [loading, setLoading] = useState(true)
   const [sortBy, setSortBy] = useState<SortOption>("date-desc")
 
   // Determine current tag from URL
@@ -49,45 +51,17 @@ export default function FilterContent({ blok }: FilterContentProps) {
     return match ? match[1] : "all"
   }, [pathname])
 
-  // Fetch posts and tags data
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true)
-        const [postsResponse, tagsResponse] = await Promise.all([
-          fetch("/api/posts"),
-          fetch("/api/tags"),
-        ])
-
-        if (postsResponse.ok && tagsResponse.ok) {
-          const postsData = await postsResponse.json()
-          const tagsData = await tagsResponse.json()
-          setPosts(postsData)
-          setAvailableTags(tagsData)
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchData()
-  }, [])
-
-  // Filter and sort posts
   const filteredAndSortedPosts = useMemo(() => {
-    let filteredPosts = posts
+    let filteredPosts = initialPosts
 
-    // Filter by tag
     if (currentTag !== "all") {
-      filteredPosts = posts.filter((post) => {
+      filteredPosts = initialPosts.filter((post) => {
         const tags = post.content?.tags || []
+
         return tags.includes(currentTag)
       })
     }
 
-    // Sort posts
     const sortedPosts = [...filteredPosts].sort((a, b) => {
       switch (sortBy) {
         case "date-desc":
@@ -116,7 +90,7 @@ export default function FilterContent({ blok }: FilterContentProps) {
     })
 
     return sortedPosts
-  }, [posts, currentTag, sortBy])
+  }, [initialPosts, currentTag, sortBy])
 
   const handleTagChange = useCallback(
     (tag: string) => {
@@ -160,25 +134,19 @@ export default function FilterContent({ blok }: FilterContentProps) {
         <PostsSorter sortBy={sortBy} onSortChange={handleSortChange} />
       </div>
 
-      {loading ? (
-        <div className="posts-loading">Loading posts...</div>
-      ) : (
-        <>
-          <div className="posts-grid">
-            {filteredAndSortedPosts.map((post) => (
-              <PostCard key={post.uuid} post={post} />
-            ))}
-          </div>
+      <div className="posts-grid">
+        {filteredAndSortedPosts.map((post) => (
+          <PostCard key={post.uuid} post={post} />
+        ))}
+      </div>
 
-          {filteredAndSortedPosts.length === 0 && (
-            <div className="filter-empty">
-              <p>
-                No posts found
-                {currentTag !== "all" && ` with the tag "${selectedTagName}"`}.
-              </p>
-            </div>
-          )}
-        </>
+      {filteredAndSortedPosts.length === 0 && (
+        <div className="filter-empty">
+          <p>
+            No posts found
+            {currentTag !== "all" && ` with the tag "${selectedTagName}"`}.
+          </p>
+        </div>
       )}
     </>
   )
