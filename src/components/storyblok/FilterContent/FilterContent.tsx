@@ -2,9 +2,11 @@
 
 import { storyblokEditable } from "@storyblok/react/rsc"
 import { usePathname, useRouter } from "next/navigation"
-import { useCallback, useEffect, useId, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import type { FilterContentStoryblok } from "@/types/storyblok-components"
 import PostCard from "../PostCard"
+import PostsFilter from "./PostsFilter"
+import PostsSorter from "./PostsSorter"
 
 type SortOption = "date-desc" | "date-asc" | "title-asc" | "title-desc"
 
@@ -35,8 +37,6 @@ interface FilterContentProps {
 export default function FilterContent({ blok }: FilterContentProps) {
   const router = useRouter()
   const pathname = usePathname()
-  const tagSelectId = useId()
-  const sortSelectId = useId()
 
   const [posts, setPosts] = useState<PostStory[]>([])
   const [availableTags, setAvailableTags] = useState<TagEntry[]>([])
@@ -139,22 +139,6 @@ export default function FilterContent({ blok }: FilterContentProps) {
       ? "All Posts"
       : availableTags.find((t) => t.value === currentTag)?.name || currentTag
 
-  if (loading) {
-    return (
-      <div {...storyblokEditable(blok)} className="filter-content">
-        <style>{`
-          .filter-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-          }
-        `}</style>
-        <div>Loading posts...</div>
-      </div>
-    )
-  }
-
   return (
     <div {...storyblokEditable(blok)} className="filter-content">
       <style>{`
@@ -235,6 +219,15 @@ export default function FilterContent({ blok }: FilterContentProps) {
           gap: 2rem;
         }
 
+        .posts-loading {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 4rem 2rem;
+          color: var(--color-text-secondary, #64748b);
+          font-size: 1.1rem;
+        }
+
         @media (max-width: 768px) {
           .filter-content {
             padding: 1rem;
@@ -274,56 +267,33 @@ export default function FilterContent({ blok }: FilterContentProps) {
       </div>
 
       <div className="filter-controls">
-        <div className="filter-tags">
-          <label htmlFor={tagSelectId} className="filter-label">
-            Filter by tag:
-          </label>
-          <select
-            id={tagSelectId}
-            value={currentTag}
-            onChange={(e) => handleTagChange(e.target.value)}
-            className="filter-select"
-          >
-            <option value="all">All Posts</option>
-            {availableTags.map((tag) => (
-              <option key={tag.value} value={tag.value}>
-                {tag.name}
-              </option>
+        <PostsFilter
+          currentTag={currentTag}
+          availableTags={availableTags}
+          onTagChange={handleTagChange}
+        />
+        <PostsSorter sortBy={sortBy} onSortChange={handleSortChange} />
+      </div>
+
+      {loading ? (
+        <div className="posts-loading">Loading posts...</div>
+      ) : (
+        <>
+          <div className="posts-grid">
+            {filteredAndSortedPosts.map((post) => (
+              <PostCard key={post.uuid} post={post} />
             ))}
-          </select>
-        </div>
+          </div>
 
-        <div className="filter-sort">
-          <label htmlFor={sortSelectId} className="filter-label">
-            Sort by:
-          </label>
-          <select
-            id={sortSelectId}
-            value={sortBy}
-            onChange={(e) => handleSortChange(e.target.value as SortOption)}
-            className="filter-select"
-          >
-            <option value="date-desc">Newest First</option>
-            <option value="date-asc">Oldest First</option>
-            <option value="title-asc">Title A-Z</option>
-            <option value="title-desc">Title Z-A</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="posts-grid">
-        {filteredAndSortedPosts.map((post) => (
-          <PostCard key={post.uuid} post={post} />
-        ))}
-      </div>
-
-      {filteredAndSortedPosts.length === 0 && (
-        <div className="filter-empty">
-          <p>
-            No posts found
-            {currentTag !== "all" && ` with the tag "${selectedTagName}"`}.
-          </p>
-        </div>
+          {filteredAndSortedPosts.length === 0 && (
+            <div className="filter-empty">
+              <p>
+                No posts found
+                {currentTag !== "all" && ` with the tag "${selectedTagName}"`}.
+              </p>
+            </div>
+          )}
+        </>
       )}
     </div>
   )
