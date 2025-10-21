@@ -1,32 +1,22 @@
-import { getPostsByTag } from "@/utils/tags"
-import { StoryblokStory } from "@storyblok/react/rsc"
-import { getInlineStyles } from "@/utils/inline-styles"
-import type { FilterContentStoryblok } from "@/types/storyblok-components"
+import PostsFilter from "../PostsFilter"
+import type { PostStory, TagDatasourceEntry } from "@/utils/tags"
 
 interface FilterContentProps {
-  blok: FilterContentStoryblok
+  tagSlug?: string
+  initialPosts?: PostStory[]
+  availableTags?: TagDatasourceEntry[]
 }
 
-export default async function FilterContent({ blok }: FilterContentProps) {
-  const styles = getInlineStyles("FilterContent.css")
-
-  const posts = await getPostsByTag("tags")
-
+export default function FilterContent({
+  tagSlug = "all",
+  initialPosts = [],
+  availableTags = [],
+}: FilterContentProps) {
   return (
-    <div className="tag-page">
-      {styles && <style>{styles}</style>}
-      <div className="tag-header">
-        <h1>{blok.heading}</h1>
-        <p>{blok.subheading}</p>
-      </div>
-
-      <div className="posts-grid">
-        {posts.map((post) => (
-          <article key={post.uuid} className="post-preview">
-            <StoryblokStory story={post} />
-          </article>
-        ))}
-      </div>
-    </div>
+    <PostsFilter
+      initialPosts={initialPosts}
+      availableTags={availableTags}
+      selectedTag={tagSlug}
+    />
   )
 }

@@ -1,4 +1,4 @@
-.filter-content {
+.posts-filter {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
@@ -85,7 +85,7 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .filter-content {
+  .posts-filter {
     padding: 1rem;
   }
 

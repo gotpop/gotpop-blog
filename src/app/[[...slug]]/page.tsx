@@ -1,7 +1,6 @@
 import { StoryblokStory } from "@storyblok/react/rsc"
 
 import StoryNotFound from "@/components/utils/ClientLoader/StoryNotFound"
-import FilterContent from "@/components/storyblok/FilterContent/FilterContent"
 import { getStoryblokApi } from "@/lib/storyblok"
 import {
   determinePageType,
@@ -35,7 +34,7 @@ export async function generateStaticParams() {
       return { slug }
     })
 
-  // Generate params for tag pages
+  // Generate params for tag pages and all posts page
   const tags = await getTagsFromDatasource()
   const tagParams = tags.map((tag) => {
     const tagSlug = tag.value
@@ -45,7 +44,10 @@ export async function generateStaticParams() {
     return { slug: ["posts", tagSlug] }
   })
 
-  return [...storyParams, ...tagParams]
+  // Add the "all posts" page
+  const allPostsParam = { slug: ["posts"] }
+
+  return [...storyParams, ...tagParams, allPostsParam]
 }
 
 interface PageParams {
@@ -61,13 +63,45 @@ export default async function Page({ params }: PageParams) {
 
   const pageType = determinePageType(slug)
 
-  // Handle tag pages
+  // Handle tag pages and all posts page
   if (pageType === "tag-page") {
     const tagSlug = extractTagSlug(slug)
 
+    // Handle /posts (all posts)
+    if (!tagSlug) {
+      const { getAllPostsWithTags } = await import("@/utils/tags")
+      const allPosts = await getAllPostsWithTags()
+      const availableTags = await getTagsFromDatasource()
+
+      const { default: FilterContent } = await import(
+        "@/components/storyblok/FilterContent/FilterContent"
+      )
+      return (
+        <FilterContent
+          tagSlug="all"
+          initialPosts={allPosts}
+          availableTags={availableTags}
+        />
+      )
+    }
+
+    // Handle /posts/[tag]
     if (tagSlug && (await isValidTag(tagSlug))) {
       // This is a valid tag page - render tag-specific content
-      return <FilterContent tagSlug={tagSlug} />
+      const { getAllPostsWithTags } = await import("@/utils/tags")
+      const allPosts = await getAllPostsWithTags()
+      const availableTags = await getTagsFromDatasource()
+
+      const { default: FilterContent } = await import(
+        "@/components/storyblok/FilterContent/FilterContent"
+      )
+      return (
+        <FilterContent
+          tagSlug={tagSlug}
+          initialPosts={allPosts}
+          availableTags={availableTags}
+        />
+      )
     }
     // If not a valid tag, fall through to try as regular post
   }

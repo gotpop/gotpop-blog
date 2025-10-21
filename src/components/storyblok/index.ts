@@ -1,6 +1,5 @@
 import Card from "./Card"
 import Cards from "./Cards"
-import FilterContent from "./FilterContent"
 import FooterDefault from "./FooterDefault"
 import HeaderDefault from "./HeaderDefault"
 import HeroDefault from "./HeroDefault"
@@ -13,7 +12,6 @@ import PagePost from "./PagePost"
 export const components = {
   card: Card,
   cards: Cards,
-  filter_content: FilterContent,
   footer_default: FooterDefault,
   header_default: HeaderDefault,
   hero_default: HeroDefault,

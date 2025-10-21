@@ -14,6 +14,8 @@ export interface PostStory {
   content: {
     tags?: string[]
     component: string
+    Heading?: string
+    description?: string
     [key: string]: unknown
   }
 }
@@ -132,9 +134,12 @@ export async function getTagFromSlug(tagSlug: string): Promise<string | null> {
 }
 
 /**
- * Fetches all posts that contain a specific tag
+ * Fetches all posts that contain a specific tag with sorting options
  */
-export async function getPostsByTag(tagName: string): Promise<PostStory[]> {
+export async function getPostsByTag(
+  tagName: string,
+  sortBy: "date-desc" | "date-asc" | "title-asc" | "title-desc" = "date-desc"
+): Promise<PostStory[]> {
   try {
     const storyblokApi = getStoryblokApi()
 
@@ -150,7 +155,54 @@ export async function getPostsByTag(tagName: string): Promise<PostStory[]> {
       return tags.includes(tagName)
     })
 
-    return filteredPosts
+    // Sort the posts based on the sortBy parameter
+    const sortedPosts = filteredPosts.sort((a: PostStory, b: PostStory) => {
+      switch (sortBy) {
+        case "date-desc":
+          return (
+            new Date(b.published_at).getTime() -
+            new Date(a.published_at).getTime()
+          )
+        case "date-asc":
+          return (
+            new Date(a.published_at).getTime() -
+            new Date(b.published_at).getTime()
+          )
+        case "title-asc": {
+          const titleA = a.content?.Heading || a.name || ""
+          const titleB = b.content?.Heading || b.name || ""
+          return titleA.localeCompare(titleB)
+        }
+        case "title-desc": {
+          const titleDescA = a.content?.Heading || a.name || ""
+          const titleDescB = b.content?.Heading || b.name || ""
+          return titleDescB.localeCompare(titleDescA)
+        }
+        default:
+          return 0
+      }
+    })
+
+    return sortedPosts
+  } catch {
+    return []
+  }
+}
+
+/**
+ * Gets all posts from the blog with their tags
+ */
+export async function getAllPostsWithTags(): Promise<PostStory[]> {
+  try {
+    const storyblokApi = getStoryblokApi()
+
+    const { data } = await storyblokApi.get("cdn/stories", {
+      starts_with: "blog/posts/",
+      version: "published",
+      excluding_fields: "body", // Don't need full content for listing
+    })
+
+    return data.stories || []
   } catch {
     return []
   }
