@@ -58,6 +58,7 @@ export default async function PagePost({ blok }: PagePostProps) {
             {new Date(blok.published_date).toLocaleDateString()}
           </time>
         )}
+        {/* <baseline-status featureId="font-size-adjust"></baseline-status> */}
         {blok.body && <RichText content={blok.body} />}
         {blok.content?.map((nestedBlok) => (
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />

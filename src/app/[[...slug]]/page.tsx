@@ -1,14 +1,18 @@
 import { StoryblokStory } from "@storyblok/react/rsc"
 
 import StoryNotFound from "@/components/utils/ClientLoader/StoryNotFound"
+import FilterContent from "@/components/storyblok/FilterContent/FilterContent"
 import { getStoryblokApi } from "@/lib/storyblok"
 import {
+  determinePageType,
+  extractTagSlug,
   getStoryPath,
   normalizeStoryblokPath,
   shouldIncludeStory,
 } from "@/lib/storyblok-utils"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
 import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
+import { getTagsFromDatasource, isValidTag } from "@/utils/tags"
 
 export const dynamicParams = true
 
@@ -20,7 +24,8 @@ export async function generateStaticParams() {
     starts_with: "blog/",
   })
 
-  return data.stories
+  // Generate params for regular stories
+  const storyParams = data.stories
     .filter((story: StoryblokStoryResponse) =>
       shouldIncludeStory(story.full_slug)
     )
@@ -29,6 +34,18 @@ export async function generateStaticParams() {
       const slug = path === "/" ? [] : path.slice(1).split("/")
       return { slug }
     })
+
+  // Generate params for tag pages
+  const tags = await getTagsFromDatasource()
+  const tagParams = tags.map((tag) => {
+    const tagSlug = tag.value
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+    return { slug: ["posts", tagSlug] }
+  })
+
+  return [...storyParams, ...tagParams]
 }
 
 interface PageParams {
@@ -41,6 +58,19 @@ export default async function Page({ params }: PageParams) {
   const { slug } = await params
 
   handleStoryblokPathRedirect(slug)
+
+  const pageType = determinePageType(slug)
+
+  // Handle tag pages
+  if (pageType === "tag-page") {
+    const tagSlug = extractTagSlug(slug)
+
+    if (tagSlug && (await isValidTag(tagSlug))) {
+      // This is a valid tag page - render tag-specific content
+      return <FilterContent tagSlug={tagSlug} />
+    }
+    // If not a valid tag, fall through to try as regular post
+  }
 
   const fullPath = normalizeStoryblokPath(slug)
 
