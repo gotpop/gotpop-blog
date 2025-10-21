@@ -1,8 +1,8 @@
 import Link from "next/link"
-import type { NavItemDefaultStoryblok } from "@/types/storyblok-components"
-import { getStoryblokLinkProps } from "@/utils/storyblok"
 import Icon from "@/components/ui/Icon"
 import type { IconName } from "@/components/ui/Icon/Icon"
+import type { NavItemDefaultStoryblok } from "@/types/storyblok-components"
+import { getStoryblokLinkProps } from "@/utils/storyblok"
 
 interface NavItemDefaultProps {
   blok: NavItemDefaultStoryblok

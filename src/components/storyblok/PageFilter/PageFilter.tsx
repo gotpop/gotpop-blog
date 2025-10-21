@@ -2,7 +2,6 @@ import { StoryblokServerComponent } from "@/components/utils/ClientLoader/Storyb
 import { getStoryblokApi } from "@/lib/storyblok"
 import type { PageFilterStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
-import { storyblokEditable } from "@storyblok/react/rsc"
 
 interface PageFilterProps {
   blok: PageFilterStoryblok

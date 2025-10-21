@@ -1,5 +1,5 @@
-import type { MultilinkStoryblok } from "@/types/storyblok-components"
 import { getStoryPath } from "@/lib/storyblok-utils"
+import type { MultilinkStoryblok } from "@/types/storyblok-components"
 
 export interface StoryblokLinkProps {
   href: string

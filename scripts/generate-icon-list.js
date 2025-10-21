@@ -1,5 +1,5 @@
-const fs = require("fs")
-const path = require("path")
+const fs = require("node:fs")
+const path = require("node:path")
 
 function getAvailableIcons() {
   const iconPath = path.join(process.cwd(), "src/components/ui/Icon/Icon.tsx")

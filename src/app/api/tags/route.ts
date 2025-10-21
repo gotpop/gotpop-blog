@@ -1,5 +1,5 @@
-import { getTagsFromDatasource } from "@/utils/tags"
 import { NextResponse } from "next/server"
+import { getTagsFromDatasource } from "@/utils/tags"
 
 export async function GET() {
   try {

@@ -1,5 +1,5 @@
-import { getAllPostsWithTags } from "@/utils/tags"
 import { NextResponse } from "next/server"
+import { getAllPostsWithTags } from "@/utils/tags"
 
 export async function GET() {
   try {
