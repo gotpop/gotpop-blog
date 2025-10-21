@@ -45,10 +45,9 @@ export function getInlineStyles(cssFileName: string): string {
       }
     }
 
-    console.warn(`CSS file not found: ${cssFileName}`)
+    // CSS file not found - this is expected for some components
     return ""
-  } catch (error) {
-    console.warn(`Failed to read CSS file: ${cssFileName}`, error)
+  } catch {
     return ""
   }
 }

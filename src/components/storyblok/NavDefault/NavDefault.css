@@ -18,14 +18,17 @@
     display: flex;
     font-size: var(--font-scaled-sm);
     font-weight: var(--font-weight-bold);
-    padding-block: calc(1rem - calc(1cap / 2));
-    padding-inline: var(--spacing-base);
     place-content: center;
     text-align: center;
     text-decoration: none;
     transition: var(--transition);
     width: stretch;
     min-width: var(--round-up);
+
+    &.with-text {
+      padding-block: calc(1rem - calc(1cap / 2));
+      padding-inline: var(--spacing-base);
+    }
 
     @container style(--state: active) {
       --background-colour: var(--secondary-900);

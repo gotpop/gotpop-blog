@@ -8,6 +8,8 @@ import {
   shouldIncludeStory,
 } from "@/lib/storyblok-utils"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
+import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
+import { getTagsFromDatasource } from "@/utils/tags"
 
 export const dynamicParams = true
 
@@ -19,16 +21,31 @@ export async function generateStaticParams() {
     starts_with: "blog/",
   })
 
-  return data.stories
+  // Generate params for regular stories
+  const storyParams = data.stories
     .filter((story: StoryblokStoryResponse) =>
       shouldIncludeStory(story.full_slug)
     )
     .map((story: StoryblokStoryResponse) => {
       const path = getStoryPath(story.full_slug)
-      // Remove leading slash and split into array
       const slug = path === "/" ? [] : path.slice(1).split("/")
       return { slug }
     })
+
+  // Generate params for tag pages and all posts page
+  const tags = await getTagsFromDatasource()
+  const tagParams = tags.map((tag) => {
+    const tagSlug = tag.value
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+    return { slug: ["posts", tagSlug] }
+  })
+
+  // Add the "all posts" page
+  const allPostsParam = { slug: ["posts"] }
+
+  return [...storyParams, ...tagParams, allPostsParam]
 }
 
 interface PageParams {
@@ -39,6 +56,9 @@ interface PageParams {
 
 export default async function Page({ params }: PageParams) {
   const { slug } = await params
+
+  handleStoryblokPathRedirect(slug)
+
   const fullPath = normalizeStoryblokPath(slug)
 
   try {
@@ -50,6 +70,28 @@ export default async function Page({ params }: PageParams) {
 
     return <StoryblokStory story={data.story} />
   } catch (error: unknown) {
+    // Check if this is a posts page that should show the filter
+    if (fullPath === "blog/posts" || slug?.join("/") === "posts") {
+      // Create a mock FilterContent story for posts pages that don't exist in Storyblok
+      const mockStory = {
+        id: 0,
+        uuid: "mock-filter",
+        name: "Posts Filter",
+        slug: "posts",
+        full_slug: "blog/posts",
+        created_at: new Date().toISOString(),
+        published_at: new Date().toISOString(),
+        content: {
+          component: "filter_content",
+          _uid: "filter-content-mock",
+          Heading: "All Posts",
+          description: "Browse and filter all blog posts",
+        },
+      }
+
+      return <StoryblokStory story={mockStory} />
+    }
+
     let availableStories: string[] = []
 
     try {

@@ -1,15 +1,14 @@
-import RichText from "@/components/ui/RichText"
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
 import { getStoryblokApi } from "@/lib/storyblok"
-import type { PagePostStoryblok } from "@/types/storyblok-components"
+import type { PageFilterStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 
-interface PagePostProps {
-  blok: PagePostStoryblok
+interface PageFilterProps {
+  blok: PageFilterStoryblok
 }
 
-export default async function PagePost({ blok }: PagePostProps) {
-  const styles = getInlineStyles("PagePost.css")
+export default async function PageFilter({ blok }: PageFilterProps) {
+  const styles = getInlineStyles("PageFilter.css")
   const storyblokApi = getStoryblokApi()
 
   let headerData = null
@@ -48,19 +47,11 @@ export default async function PagePost({ blok }: PagePostProps) {
   }
 
   return (
-    <div className="page-post">
+    <div className="page page-filter">
       {styles && <style>{styles}</style>}
       {headerData && <StoryblokServerComponent blok={headerData} />}
       <main>
-        {blok.Heading && <h1>{blok.Heading}</h1>}
-        {blok.published_date && (
-          <time dateTime={blok.published_date}>
-            {new Date(blok.published_date).toLocaleDateString()}
-          </time>
-        )}
-        {/* <baseline-status featureId="font-size-adjust"></baseline-status> */}
-        {blok.body && <RichText content={blok.body} />}
-        {blok.content?.map((nestedBlok) => (
+        {blok.body?.map((nestedBlok) => (
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
         ))}
       </main>
