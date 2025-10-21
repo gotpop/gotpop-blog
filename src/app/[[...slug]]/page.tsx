@@ -8,6 +8,7 @@ import {
   shouldIncludeStory,
 } from "@/lib/storyblok-utils"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
+import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
 
 export const dynamicParams = true
 
@@ -38,6 +39,9 @@ interface PageParams {
 
 export default async function Page({ params }: PageParams) {
   const { slug } = await params
+
+  handleStoryblokPathRedirect(slug)
+
   const fullPath = normalizeStoryblokPath(slug)
 
   try {
