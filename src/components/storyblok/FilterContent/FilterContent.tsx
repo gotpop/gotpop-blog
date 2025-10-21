@@ -1,8 +1,8 @@
 import type { FilterContentStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getAllPostsWithTags, getTagsFromDatasource } from "@/utils/tags"
-import PostsGrid from "./PostsGrid"
 import PostsFilter from "./PostsFilter"
+import PostsGrid from "./PostsGrid"
 import PostsSorter from "./PostsSorter"
 
 interface FilterContentProps {
