@@ -1,11 +1,8 @@
 "use client"
 
-import { usePathname, useRouter } from "next/navigation"
-import { useCallback, useMemo, useState } from "react"
-import type { FilterContentStoryblok } from "@/types/storyblok-components"
+import { usePathname, useSearchParams } from "next/navigation"
+import { useMemo } from "react"
 import PostCard from "./PostCard"
-import PostsFilter from "./PostsFilter"
-import PostsSorter from "./PostsSorter"
 
 type SortOption = "date-desc" | "date-asc" | "title-asc" | "title-desc"
 
@@ -30,38 +27,42 @@ interface TagEntry {
 }
 
 interface PostsGridProps {
-  blok: FilterContentStoryblok
   initialPosts: PostStory[]
   availableTags: TagEntry[]
 }
 
 export default function PostsGrid({
-  blok,
   initialPosts,
   availableTags,
 }: PostsGridProps) {
-  const router = useRouter()
   const pathname = usePathname()
-  const [sortBy, setSortBy] = useState<SortOption>("date-desc")
+  const searchParams = useSearchParams()
 
-  // Determine current tag from URL
+  // Get current tag from URL path
   const currentTag = useMemo(() => {
     if (pathname === "/posts") return "all"
     const match = pathname.match(/^\/posts\/(.+)$/)
     return match ? match[1] : "all"
   }, [pathname])
 
+  // Get current sort from URL search params
+  const sortBy = useMemo(() => {
+    return (searchParams.get("sort") as SortOption) || "date-desc"
+  }, [searchParams])
+
+  // Filter and sort posts based on URL state
   const filteredAndSortedPosts = useMemo(() => {
     let filteredPosts = initialPosts
 
+    // Filter by tag from URL path
     if (currentTag !== "all") {
       filteredPosts = initialPosts.filter((post) => {
         const tags = post.content?.tags || []
-
         return tags.includes(currentTag)
       })
     }
 
+    // Sort posts based on URL search param
     const sortedPosts = [...filteredPosts].sort((a, b) => {
       switch (sortBy) {
         case "date-desc":
@@ -92,21 +93,6 @@ export default function PostsGrid({
     return sortedPosts
   }, [initialPosts, currentTag, sortBy])
 
-  const handleTagChange = useCallback(
-    (tag: string) => {
-      if (tag === "all") {
-        router.push("/posts")
-      } else {
-        router.push(`/posts/${tag}`)
-      }
-    },
-    [router]
-  )
-
-  const handleSortChange = useCallback((sort: SortOption) => {
-    setSortBy(sort)
-  }, [])
-
   const selectedTagName =
     currentTag === "all"
       ? "All Posts"
@@ -114,26 +100,6 @@ export default function PostsGrid({
 
   return (
     <>
-      <div className="filter-header">
-        <h1>
-          {blok.Heading ||
-            `Posts${currentTag !== "all" ? ` tagged with "${selectedTagName}"` : ""}`}
-        </h1>
-        <p>
-          {blok.description ||
-            `${filteredAndSortedPosts.length} post${filteredAndSortedPosts.length !== 1 ? "s" : ""} found`}
-        </p>
-      </div>
-
-      <div className="filter-controls">
-        <PostsFilter
-          currentTag={currentTag}
-          availableTags={availableTags}
-          onTagChange={handleTagChange}
-        />
-        <PostsSorter sortBy={sortBy} onSortChange={handleSortChange} />
-      </div>
-
       <div className="posts-grid">
         {filteredAndSortedPosts.map((post) => (
           <PostCard key={post.uuid} post={post} />

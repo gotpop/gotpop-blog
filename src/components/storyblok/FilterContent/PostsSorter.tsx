@@ -1,19 +1,33 @@
 "use client"
 
-import { useId } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useId, useMemo } from "react"
 
 type SortOption = "date-desc" | "date-asc" | "title-asc" | "title-desc"
 
-interface PostsSorterProps {
-  sortBy: SortOption
-  onSortChange: (sort: SortOption) => void
-}
-
-export default function PostsSorter({
-  sortBy,
-  onSortChange,
-}: PostsSorterProps) {
+export default function PostsSorter() {
   const sortSelectId = useId()
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  // Get current sort from URL search params
+  const sortBy = useMemo(() => {
+    return (searchParams.get("sort") as SortOption) || "date-desc"
+  }, [searchParams])
+
+  const handleSortChange = (sort: SortOption) => {
+    const params = new URLSearchParams(searchParams)
+
+    if (sort === "date-desc") {
+      params.delete("sort") // Remove default sort
+    } else {
+      params.set("sort", sort)
+    }
+
+    const queryString = params.toString()
+    const currentPath = window.location.pathname
+    router.push(`${currentPath}${queryString ? `?${queryString}` : ""}`)
+  }
 
   return (
     <div className="filter-sort">
@@ -23,7 +37,7 @@ export default function PostsSorter({
       <select
         id={sortSelectId}
         value={sortBy}
-        onChange={(e) => onSortChange(e.target.value as SortOption)}
+        onChange={(e) => handleSortChange(e.target.value as SortOption)}
         className="filter-select"
       >
         <option value="date-desc">Newest First</option>

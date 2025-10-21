@@ -1,6 +1,7 @@
 "use client"
 
-import { useId } from "react"
+import { usePathname, useRouter } from "next/navigation"
+import { useId, useMemo } from "react"
 
 interface TagEntry {
   name: string
@@ -9,17 +10,28 @@ interface TagEntry {
 }
 
 interface PostsFilterProps {
-  currentTag: string
   availableTags: TagEntry[]
-  onTagChange: (tag: string) => void
 }
 
-export default function PostsFilter({
-  currentTag,
-  availableTags,
-  onTagChange,
-}: PostsFilterProps) {
+export default function PostsFilter({ availableTags }: PostsFilterProps) {
   const tagSelectId = useId()
+  const router = useRouter()
+  const pathname = usePathname()
+
+  // Get current tag from URL path
+  const currentTag = useMemo(() => {
+    if (pathname === "/posts") return "all"
+    const match = pathname.match(/^\/posts\/(.+)$/)
+    return match ? match[1] : "all"
+  }, [pathname])
+
+  const handleTagChange = (tag: string) => {
+    if (tag === "all") {
+      router.push("/posts")
+    } else {
+      router.push(`/posts/${tag}`)
+    }
+  }
 
   return (
     <div className="filter-tags">
@@ -29,7 +41,7 @@ export default function PostsFilter({
       <select
         id={tagSelectId}
         value={currentTag}
-        onChange={(e) => onTagChange(e.target.value)}
+        onChange={(e) => handleTagChange(e.target.value)}
         className="filter-select"
       >
         <option value="all">All Posts</option>
