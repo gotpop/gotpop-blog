@@ -4,29 +4,51 @@
  */
 export function normalizeStoryblokPath(slug?: string[]): string {
   if (!slug || slug.length === 0) {
-    return "blog/"
+    return "blog/" // Match your actual home story path
   }
 
   const joinedSlug = slug.join("/")
 
+  // Handle special cases
   if (joinedSlug === "blog") {
-    return "blog/"
-  } else if (joinedSlug.startsWith("blog/")) {
-    return joinedSlug
-  } else {
-    return `blog/${joinedSlug}`
+    return "blog/" // Match your actual home story path
   }
+
+  // If it already starts with blog/, use as-is
+  if (joinedSlug.startsWith("blog/")) {
+    return joinedSlug
+  }
+
+  // For all other paths, prepend blog/
+  return `blog/${joinedSlug}`
 }
 
 /**
  * Checks if a story should be included in static generation
  */
 export function shouldIncludeStory(fullSlug: string): boolean {
-  return (
-    !fullSlug.includes("/config") &&
-    !fullSlug.includes("/global") &&
-    fullSlug !== "blog/"
-  )
+  // Exclude config/global stories
+  if (
+    fullSlug.includes("/config") ||
+    fullSlug.includes("/global") ||
+    fullSlug.includes("/header") ||
+    fullSlug.includes("/footer")
+  ) {
+    return false
+  }
+
+  // Include the home page (blog/)
+  if (fullSlug === "blog/") {
+    return true
+  }
+
+  // Include content index pages (like blog/posts/)
+  if (fullSlug.endsWith("/") && fullSlug !== "blog/") {
+    return true
+  }
+
+  // Include all other content stories
+  return true
 }
 
 /**
@@ -34,9 +56,22 @@ export function shouldIncludeStory(fullSlug: string): boolean {
  * Removes the 'blog/' prefix and ensures it starts with '/'
  */
 export function getStoryPath(fullSlug: string): string {
-  const path = fullSlug.startsWith("blog/")
-    ? fullSlug.replace("blog/", "")
-    : fullSlug
+  if (!fullSlug) return "/"
 
-  return path === "" || path === "/" ? "/" : `/${path}`
+  // Remove 'blog/' prefix
+  const path = fullSlug.replace(/^blog\//, "")
+
+  // Handle special cases
+  if (path === "home" || path === "" || path === "/") {
+    return "/"
+  }
+
+  // Handle index pages (ending with /) - remove trailing slash
+  if (path.endsWith("/") && path !== "/") {
+    const cleanPath = path.slice(0, -1) // Remove trailing slash
+    return `/${cleanPath}`
+  }
+
+  // Ensure leading slash for all other paths
+  return path.startsWith("/") ? path : `/${path}`
 }

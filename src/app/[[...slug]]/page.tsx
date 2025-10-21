@@ -25,7 +25,6 @@ export async function generateStaticParams() {
     )
     .map((story: StoryblokStoryResponse) => {
       const path = getStoryPath(story.full_slug)
-      // Remove leading slash and split into array
       const slug = path === "/" ? [] : path.slice(1).split("/")
       return { slug }
     })

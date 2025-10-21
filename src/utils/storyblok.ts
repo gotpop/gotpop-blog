@@ -1,4 +1,5 @@
 import type { MultilinkStoryblok } from "@/types/storyblok-components"
+import { getStoryPath } from "@/lib/storyblok-utils"
 
 export interface StoryblokLinkProps {
   href: string
@@ -23,14 +24,19 @@ export function getStoryblokLinkProps(
   // Get the URL from either url or cached_url (for story links)
   let href = link.url || link.cached_url || "#"
 
-  // Convert "home" to "/" for root page
-  if (href === "home") {
-    href = "/"
-  }
+  // For internal story links, clean up the path by removing blog/ prefix
+  if (link.linktype === "story" && href && href !== "#") {
+    href = getStoryPath(href)
+  } else {
+    // Convert "home" to "/" for root page
+    if (href === "home") {
+      href = "/"
+    }
 
-  // Ensure internal links start with /
-  if (href && !href.startsWith("/") && !href.startsWith("http")) {
-    href = `/${href}`
+    // Ensure internal links start with /
+    if (href && !href.startsWith("/") && !href.startsWith("http")) {
+      href = `/${href}`
+    }
   }
 
   // Determine if it's an external link
