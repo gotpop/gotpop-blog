@@ -1,6 +1,5 @@
 "use client"
 
-import { storyblokEditable } from "@storyblok/react/rsc"
 import { usePathname, useRouter } from "next/navigation"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import type { FilterContentStoryblok } from "@/types/storyblok-components"
@@ -140,121 +139,7 @@ export default function FilterContent({ blok }: FilterContentProps) {
       : availableTags.find((t) => t.value === currentTag)?.name || currentTag
 
   return (
-    <div {...storyblokEditable(blok)} className="filter-content">
-      <style>{`
-        .filter-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 2rem;
-        }
-
-        .filter-header {
-          margin-bottom: 2rem;
-          text-align: center;
-        }
-
-        .filter-header h1 {
-          font-size: 2.5rem;
-          margin-bottom: 0.5rem;
-          color: var(--color-text-primary, #1e293b);
-        }
-
-        .filter-header p {
-          font-size: 1.1rem;
-          color: var(--color-text-secondary, #64748b);
-        }
-
-        .filter-controls {
-          display: flex;
-          gap: 2rem;
-          margin-bottom: 2rem;
-          padding: 1.5rem;
-          background: var(--color-background-secondary, #f8fafc);
-          border-radius: 8px;
-          border: 1px solid var(--color-border, #e2e8f0);
-        }
-
-        .filter-tags,
-        .filter-sort {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        .filter-label {
-          font-weight: 600;
-          color: var(--color-text-primary, #1e293b);
-          font-size: 0.875rem;
-        }
-
-        .filter-select {
-          padding: 0.75rem 1rem;
-          border: 1px solid var(--color-border, #e2e8f0);
-          border-radius: 6px;
-          background: white;
-          font-size: 0.875rem;
-          color: var(--color-text-primary, #1e293b);
-          transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .filter-select:focus {
-          outline: none;
-          border-color: var(--color-primary, #3b82f6);
-          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .filter-empty {
-          text-align: center;
-          padding: 3rem;
-          color: var(--color-text-secondary, #64748b);
-          background: var(--color-background-secondary, #f8fafc);
-          border-radius: 8px;
-          border: 1px solid var(--color-border, #e2e8f0);
-        }
-
-        .posts-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-          gap: 2rem;
-        }
-
-        .posts-loading {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 4rem 2rem;
-          color: var(--color-text-secondary, #64748b);
-          font-size: 1.1rem;
-        }
-
-        @media (max-width: 768px) {
-          .filter-content {
-            padding: 1rem;
-          }
-          
-          .filter-header h1 {
-            font-size: 2rem;
-          }
-          
-          .filter-controls {
-            flex-direction: column;
-            gap: 1rem;
-          }
-          
-          .posts-grid {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .posts-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
-
+    <>
       <div className="filter-header">
         <h1>
           {blok.Heading ||
@@ -295,6 +180,6 @@ export default function FilterContent({ blok }: FilterContentProps) {
           )}
         </>
       )}
-    </div>
+    </>
   )
 }
