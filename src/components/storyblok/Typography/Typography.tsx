@@ -1,5 +1,8 @@
 import type { ReactNode } from "react"
-import { getInlineStyles } from "@/utils/inline-styles"
+
+// import { getInlineStyles } from "@/utils/inline-styles"
+
+// import
 
 type ValidTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "small"
 
@@ -20,7 +23,7 @@ export default function Typography({
   className = "",
   id = "",
 }: TypographyProps) {
-  const styles = getInlineStyles("Typography.css")
+  // const styles = getInlineStyles("Typography.css")
 
   const validTags: ValidTag[] = [
     "h1",
@@ -54,7 +57,7 @@ export default function Typography({
 
   return (
     <Element className={classNames} id={id || undefined}>
-      {styles && <style>{styles}</style>}
+      {/* {styles && <style>{styles}</style>} */}
       {children}
     </Element>
   )

@@ -9,7 +9,7 @@ blockquote {
   }
 }
 
-:where(h1, h2, h3, h4, h5, h6):not([class]) {
+/* :where(h1, h2, h3, h4, h5, h6):not([class]) {
   color: --get-font-colour-heading(attr(variant type(<custom-ident>), lg));
   font: --font(heading, attr(variant type(<custom-ident>), lg));
   margin-block: 0 attr(bottom rem, unset);
@@ -26,7 +26,7 @@ p:not([class]) {
   padding-block-start: calc(round(up, 1cap, attr(top rem, 0)) - 1cap);
   text-wrap: pretty;
   text-align: attr(align type(<custom-ident>), initial);
-}
+} */
 
 :where(p, li) > code {
   background-color: --opacity(var(--light-200), 0.8);
@@ -34,4 +34,69 @@ p:not([class]) {
   font-family: inherit;
   font-weight: var(--font-weight-medium);
   padding: calc(var(--spacing-base) - 1cap) 0.4em;
+}
+
+@scope (.typography-text) {
+  &.dark {
+    color: var(--dark-200);
+  }
+
+  &.light {
+    color: var(--light-200);
+  }
+
+  &.variant-sm {
+    font-size: var(--font-scaled-sm);
+    margin-block: 0 var(--spacing-md);
+    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    text-wrap: pretty;
+  }
+
+  &.variant-base {
+    font-size: var(--font-scaled-base);
+    line-height: 1.5;
+    margin-block: 0 var(--spacing-md);
+    padding-block-start: calc(1rem - 1cap);
+    text-wrap: pretty;
+  }
+
+  &.variant-md {
+    font-size: var(--font-scaled-md);
+    margin-block: 0 var(--spacing-xl);
+    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    text-wrap: pretty;
+  }
+
+  &.variant-lg {
+    font-size: var(--font-scaled-lg);
+    margin-block: 0 var(--spacing-md);
+    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    text-wrap: balance;
+  }
+
+  &.variant-xl {
+    font-size: var(--font-scaled-xl);
+    margin-block: 0 var(--spacing-xl);
+    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    text-wrap: balance;
+  }
+
+  &.variant-xxl {
+    font-size: var(--font-scaled-xxl);
+    margin-block: 0 var(--spacing-xl);
+    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    text-wrap: balance;
+  }
+
+  &.variant-hero {
+    font-size: var(--font-scaled-xxl);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: calc(1.63 * 1cap);
+    margin-block: 0 var(--spacing-lg);
+    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    position: relative;
+    right: 0.1ch;
+    text-wrap: balance;
+  }
 }

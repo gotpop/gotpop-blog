@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import type { PostStory } from "@/utils/tags"
+import Typography from "../../Typography"
 
 interface PostCardProps {
   post: PostStory
@@ -140,11 +141,11 @@ export default function PostCard({ post }: PostCardProps) {
           )}
         </div>
 
-        <h3 className="post-card-title">
+        <Typography tag="h3" variant="lg" shade="dark">
           <Link href={linkPath} className="post-card-title-link">
             {title}
           </Link>
-        </h3>
+        </Typography>
 
         {description && <p className="post-card-description">{description}</p>}
 
