@@ -61,51 +61,6 @@ export default async function Page({ params }: PageParams) {
 
   handleStoryblokPathRedirect(slug)
 
-  const pageType = determinePageType(slug)
-
-  // Handle tag pages and all posts page
-  if (pageType === "tag-page") {
-    const tagSlug = extractTagSlug(slug)
-
-    // Handle /posts (all posts)
-    if (!tagSlug) {
-      const { getAllPostsWithTags } = await import("@/utils/tags")
-      const allPosts = await getAllPostsWithTags()
-      const availableTags = await getTagsFromDatasource()
-
-      const { default: FilterContent } = await import(
-        "@/components/storyblok/FilterContent/FilterContent"
-      )
-      return (
-        <FilterContent
-          tagSlug="all"
-          initialPosts={allPosts}
-          availableTags={availableTags}
-        />
-      )
-    }
-
-    // Handle /posts/[tag]
-    if (tagSlug && (await isValidTag(tagSlug))) {
-      // This is a valid tag page - render tag-specific content
-      const { getAllPostsWithTags } = await import("@/utils/tags")
-      const allPosts = await getAllPostsWithTags()
-      const availableTags = await getTagsFromDatasource()
-
-      const { default: FilterContent } = await import(
-        "@/components/storyblok/FilterContent/FilterContent"
-      )
-      return (
-        <FilterContent
-          tagSlug={tagSlug}
-          initialPosts={allPosts}
-          availableTags={availableTags}
-        />
-      )
-    }
-    // If not a valid tag, fall through to try as regular post
-  }
-
   const fullPath = normalizeStoryblokPath(slug)
 
   try {
@@ -114,6 +69,48 @@ export default async function Page({ params }: PageParams) {
     const { data } = await storyblokApi.get(`cdn/stories/${fullPath}`, {
       version: "draft",
     })
+
+    // If this is a page_filter story, we need to inject the posts data
+    if (data.story.content.component === "page_filter") {
+      const pageType = determinePageType(slug)
+      let selectedTag = "all"
+
+      // Extract tag from URL if it's a tag page
+      if (pageType === "tag-page") {
+        const tagSlug = extractTagSlug(slug)
+        if (tagSlug && (await isValidTag(tagSlug))) {
+          selectedTag = tagSlug
+        }
+      }
+
+      // Get posts and tags data
+      const { getAllPostsWithTags } = await import("@/utils/tags")
+      const allPosts = await getAllPostsWithTags()
+      const availableTags = await getTagsFromDatasource()
+
+      // Find FilterContent component in the story body and inject props
+      const storyWithInjectedProps = {
+        ...data.story,
+        content: {
+          ...data.story.content,
+          body: data.story.content.body?.map(
+            (component: { component: string; [key: string]: unknown }) => {
+              if (component.component === "filter_content") {
+                return {
+                  ...component,
+                  initialPosts: allPosts,
+                  availableTags: availableTags,
+                  selectedTag: selectedTag,
+                }
+              }
+              return component
+            }
+          ),
+        },
+      }
+
+      return <StoryblokStory story={storyWithInjectedProps} />
+    }
 
     return <StoryblokStory story={data.story} />
   } catch (error: unknown) {
