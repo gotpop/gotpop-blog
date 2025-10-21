@@ -191,18 +191,34 @@ export async function getPostsByTag(
 
 /**
  * Gets all posts from the blog with their tags
+ * Only returns actual blog posts (page_post component) that have tags
  */
 export async function getAllPostsWithTags(): Promise<PostStory[]> {
   try {
     const storyblokApi = getStoryblokApi()
 
     const { data } = await storyblokApi.get("cdn/stories", {
-      starts_with: "blog/posts/",
+      starts_with: "blog/",
       version: "published",
       excluding_fields: "body", // Don't need full content for listing
+      filter_query: {
+        component: {
+          in: "page_post",
+        },
+      },
     })
 
-    return data.stories || []
+    // Further filter to only include posts that have tags
+    const postsWithTags = (data.stories || []).filter((story: PostStory) => {
+      const tags = story.content?.tags || []
+      return (
+        Array.isArray(tags) &&
+        tags.length > 0 &&
+        tags.some((tag) => typeof tag === "string" && tag.trim().length > 0)
+      )
+    })
+
+    return postsWithTags
   } catch {
     return []
   }
