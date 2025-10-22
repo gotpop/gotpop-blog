@@ -40,8 +40,9 @@ export default function PostCard({ post }: PostCardProps) {
             {title}
           </Link>
         </Typography>
-
-        {description && <p className="post-card-description">{description}</p>}
+        <Typography tag="p" variant="base" shade="dark">
+          {description}
+        </Typography>
 
         <Link href={linkPath} className="post-card-read-more">
           Read more
