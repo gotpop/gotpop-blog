@@ -25,28 +25,25 @@ export default function PostCard({ post }: PostCardProps) {
 
   return (
     <article className="post-card">
-      <div className="post-card-content">
-        <div className="post-card-meta">
-          <time dateTime={dateToUse} className="post-card-date">
-            {formattedDate}
-          </time>
-          {post.content?.tags && (
-            <div className="post-card-tags">{tagList}</div>
-          )}
-        </div>
-
-        <Typography tag="h3" variant="lg" shade="dark">
-          <Link href={linkPath} className="post-card-title-link">
-            {title}
-          </Link>
-        </Typography>
-
-        {description && <p className="post-card-description">{description}</p>}
-
-        <Link href={linkPath} className="post-card-read-more">
-          Read more
-        </Link>
+      <div className="post-card-meta">
+        <time dateTime={dateToUse} className="post-card-date">
+          {formattedDate}
+        </time>
+        {post.content?.tags && <div className="post-card-tags">{tagList}</div>}
       </div>
+
+      <Typography tag="h3" variant="lg" shade="dark">
+        <Link href={linkPath} className="post-card-title-link">
+          {title}
+        </Link>
+      </Typography>
+      <Typography tag="p" variant="base" shade="dark">
+        {description}
+      </Typography>
+
+      <Link href={linkPath} className="post-card-read-more">
+        Read more
+      </Link>
     </article>
   )
 }

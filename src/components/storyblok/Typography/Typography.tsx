@@ -4,7 +4,7 @@ import type { ReactNode } from "react"
 
 // import
 
-type ValidTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "small"
+type ValidTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "small" | "time"
 
 interface TypographyProps {
   children: ReactNode
@@ -34,6 +34,7 @@ export default function Typography({
     "h6",
     "p",
     "small",
+    "time",
   ]
 
   const elementTag: ValidTag = validTags.includes(tag.toLowerCase() as ValidTag)
