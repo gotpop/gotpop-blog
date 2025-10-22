@@ -1,70 +1,42 @@
+import { useId } from "react"
 import RichText from "@/components/ui/RichText"
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
-import { getStoryblokApi } from "@/lib/storyblok"
 import type { PagePostStoryblok } from "@/types/storyblok-components"
+import { formatDate } from "@/utils/date-formatter"
 import { getInlineStyles } from "@/utils/inline-styles"
+import FooterDefault from "../FooterDefault"
+import HeaderDefault from "../HeaderDefault"
+import Typography from "../Typography"
 
 interface PagePostProps {
   blok: PagePostStoryblok
 }
 
 export default async function PagePost({ blok }: PagePostProps) {
+  const { Header, Footer, Heading, published_date, body, content } = blok
   const styles = getInlineStyles("PagePost.css")
-  const storyblokApi = getStoryblokApi()
-
-  let headerData = null
-  let footerData = null
-
-  // Fetch header story if UUID exists
-  if (blok.Header) {
-    try {
-      const { data } = await storyblokApi.get(`cdn/stories`, {
-        version: "draft",
-        by_uuids: blok.Header,
-      })
-
-      if (data?.stories?.[0]) {
-        headerData = data.stories[0].content
-      }
-    } catch (e) {
-      console.error("Failed to fetch header:", e)
-    }
-  }
-
-  // Fetch footer story if UUID exists
-  if (blok.Footer) {
-    try {
-      const { data } = await storyblokApi.get(`cdn/stories`, {
-        version: "draft",
-        by_uuids: blok.Footer,
-      })
-
-      if (data?.stories?.[0]) {
-        footerData = data.stories[0].content
-      }
-    } catch (e) {
-      console.error("Failed to fetch footer:", e)
-    }
-  }
+  const id = useId()
 
   return (
     <div className="page-post">
       {styles && <style>{styles}</style>}
-      {headerData && <StoryblokServerComponent blok={headerData} />}
+      {Header && <HeaderDefault uuid={Header} />}
       <main>
-        {blok.Heading && <h1>{blok.Heading}</h1>}
-        {blok.published_date && (
-          <time dateTime={blok.published_date}>
-            {new Date(blok.published_date).toLocaleDateString()}
-          </time>
-        )}
+        <section aria-labelledby={id} className="page-post-header">
+          <Typography tag="h1" variant="lg" shade="dark" id={id}>
+            {Heading}
+          </Typography>
+          {published_date && (
+            <time dateTime={published_date}>{formatDate(published_date)}</time>
+          )}
+        </section>
         {/* <baseline-status featureId="font-size-adjust"></baseline-status> */}
-        {blok.body && <RichText content={blok.body} />}
-        {blok.content?.map((nestedBlok) => (
+        {body && <RichText content={body} />}
+        {content?.map((nestedBlok) => (
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
         ))}
       </main>
-      {footerData && <StoryblokServerComponent blok={footerData} />}
+      {Footer && <FooterDefault uuid={Footer} />}
     </div>
   )
 }
