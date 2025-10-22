@@ -1,19 +1,42 @@
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
+import { getStoryblokApi } from "@/lib/storyblok"
 import type { FooterDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 
 interface FooterDefaultProps {
-  blok: FooterDefaultStoryblok
+  blok?: FooterDefaultStoryblok | null
+  uuid?: string
 }
 
-export default function FooterDefault({ blok }: FooterDefaultProps) {
+export default async function FooterDefault({
+  blok,
+  uuid,
+}: FooterDefaultProps) {
   const styles = getInlineStyles("FooterDefault.css")
 
-  if (!blok) {
+  let footerData = blok
+
+  // If UUID is provided, fetch the data
+  if (uuid && !blok) {
+    try {
+      const storyblokApi = getStoryblokApi()
+      const { data } = await storyblokApi.get(`cdn/stories`, {
+        version: "draft",
+        by_uuids: uuid,
+      })
+
+      footerData = data?.stories?.[0]?.content
+    } catch (error) {
+      console.error("Failed to fetch footer:", error)
+      return null
+    }
+  }
+
+  if (!footerData) {
     return null
   }
 
-  const { nav, logo } = blok
+  const { nav, logo } = footerData
 
   return (
     <footer className="footer">
