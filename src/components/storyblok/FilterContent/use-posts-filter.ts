@@ -6,8 +6,8 @@ export function usePostsFilter(posts: PostStory[]) {
   const [currentSort, setCurrentSort] = useState("published_desc")
 
   const filteredAndSortedPosts = useMemo(() => {
-    // Filter posts by tag
     let filtered = posts
+
     if (currentTag !== "all") {
       filtered = posts.filter((post) =>
         post.content?.tags?.some(
@@ -16,7 +16,6 @@ export function usePostsFilter(posts: PostStory[]) {
       )
     }
 
-    // Sort posts
     const sorted = [...filtered].sort((a, b) => {
       switch (currentSort) {
         case "published_desc": {
