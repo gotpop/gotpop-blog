@@ -1,6 +1,6 @@
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getAllPostsWithTags } from "@/utils/tags"
-import PostCard from "./storyblok/FilterContent/PostCard"
+import PostCard from "./storyblok/FilterContent/ClientSidePostCard"
 
 interface PostsPageProps {
   currentTag?: string
