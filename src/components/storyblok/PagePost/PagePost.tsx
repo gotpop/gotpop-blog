@@ -1,8 +1,11 @@
+import { useId } from "react"
 import RichText from "@/components/ui/RichText"
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
 import { getStoryblokApi } from "@/lib/storyblok"
 import type { PagePostStoryblok } from "@/types/storyblok-components"
+import { formatDate } from "@/utils/date-formatter"
 import { getInlineStyles } from "@/utils/inline-styles"
+import Typography from "../Typography"
 
 interface PagePostProps {
   blok: PagePostStoryblok
@@ -11,6 +14,9 @@ interface PagePostProps {
 export default async function PagePost({ blok }: PagePostProps) {
   const styles = getInlineStyles("PagePost.css")
   const storyblokApi = getStoryblokApi()
+  const id = useId()
+
+  console.log("PagePost blok>>>>>>:", JSON.stringify(blok, null, 2))
 
   let headerData = null
   let footerData = null
@@ -52,12 +58,16 @@ export default async function PagePost({ blok }: PagePostProps) {
       {styles && <style>{styles}</style>}
       {headerData && <StoryblokServerComponent blok={headerData} />}
       <main>
-        {blok.Heading && <h1>{blok.Heading}</h1>}
-        {blok.published_date && (
-          <time dateTime={blok.published_date}>
-            {new Date(blok.published_date).toLocaleDateString()}
-          </time>
-        )}
+        <section aria-labelledby={id} className="page-post-header">
+          <Typography tag="h1" variant="lg" shade="dark" id={id}>
+            {blok.Heading}
+          </Typography>
+          {blok.published_date && (
+            <time dateTime={blok.published_date}>
+              {formatDate(blok.published_date)}
+            </time>
+          )}
+        </section>
         {/* <baseline-status featureId="font-size-adjust"></baseline-status> */}
         {blok.body && <RichText content={blok.body} />}
         {blok.content?.map((nestedBlok) => (
