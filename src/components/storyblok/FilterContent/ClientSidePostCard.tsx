@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { getStoryPath } from "@/lib/storyblok-utils"
+import { formatDate } from "@/utils/date-formatter"
 import type { PostStory } from "@/utils/tags"
 import Typography from "../Typography"
 
@@ -8,35 +9,29 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
-  console.log("Post data:", JSON.stringify(post, null, 2))
-  const linkPath = getStoryPath(post.full_slug)
-  const title = post.content?.Heading || post.name || "Untitled"
-  const description = post.content?.description || ""
+  const { full_slug, name, published_at, content } = post
+  const { Heading, description, published_date, tags = [] } = content || {}
 
-  // Use custom published_date field if available, fallback to published_at
-  const dateToUse = post.content?.published_date || post.published_at
+  const dateToUse = published_date || published_at
+  const formattedDate = formatDate(dateToUse)
+  const linkPath = getStoryPath(full_slug)
+  const title = Heading || name || "Untitled"
 
-  const publishedDate = new Date(dateToUse).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })
+  const tagList = tags.map((tag) => (
+    <span key={tag} className="post-card-tag">
+      {tag}
+    </span>
+  ))
 
   return (
     <article className="post-card">
       <div className="post-card-content">
         <div className="post-card-meta">
           <time dateTime={dateToUse} className="post-card-date">
-            {publishedDate}
+            {formattedDate}
           </time>
           {post.content?.tags && (
-            <div className="post-card-tags">
-              {post.content.tags.map((tag) => (
-                <span key={tag} className="post-card-tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <div className="post-card-tags">{tagList}</div>
           )}
         </div>
 
