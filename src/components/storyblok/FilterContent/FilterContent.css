@@ -8,99 +8,19 @@
     text-align: center;
   }
 
-  .filter-output {
+  .filters-with-output {
     grid-column: content;
     display: grid;
     row-gap: var(--spacing-base);
     grid-template-columns: subgrid;
-  }
-
-  .posts-filters {
-    --even-odd: even;
-    --grid-horizontal-color: rgba(180, 180, 180, 0.5);
-    --grid-offset: centre;
-    --grid-vertical-color: rgba(200, 200, 200, 0.5);
-    --root-grid-size: 16px;
-
-    background-color: white;
-    background-image: paint(grid);
-    display: grid;
-    gap: var(--spacing-md);
-    grid-column: 1 / -1;
-    padding: var(--spacing-lg);
-    view-transition-name: attr(id type(<custom-ident>), none);
-  }
-
-  .filter-tags,
-  .sort-posts {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .filter-label,
-  .sort-label {
-    font-weight: 500;
-    color: var(--color-text-primary, #334155);
-    white-space: nowrap;
-  }
-
-  .filter-select,
-  .sort-select {
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--color-border, #d1d5db);
-    border-radius: 6px;
-    background: white;
-    font-size: 0.875rem;
-    color: var(--color-text-primary, #334155);
-    min-width: 140px;
-    transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  .filter-select:focus,
-  .sort-select:focus {
-    outline: none;
-    border-color: var(--color-primary, #3b82f6);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    grid-auto-rows: min-content;
   }
 
   .posts-grid {
     display: grid;
     grid-template-columns: subgrid;
     grid-column: content;
-  }
-
-  .filter-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-
-  .filter-controls {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: var(--color-background-secondary, #f8fafc);
-    border-radius: 8px;
-    border: 1px solid var(--color-border, #e2e8f0);
-    grid-column: 1 / -1;
-  }
-
-  .filter-tags,
-  .filter-sort {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .filter-label {
-    font-weight: 600;
-    color: var(--color-text-primary, #1e293b);
-    font-size: 0.875rem;
+    gap: var(--spacing-md);
   }
 
   .filter-select {

@@ -30,7 +30,7 @@ export default function ClientSidePostsApp({
     ))
 
   return (
-    <div className="filter-output">
+    <div className="filters-with-output">
       <div className="posts-filters">
         <ClientSidePostsFilter
           availableTags={availableTags}

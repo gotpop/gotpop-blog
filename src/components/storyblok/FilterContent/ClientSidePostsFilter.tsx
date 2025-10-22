@@ -22,15 +22,15 @@ export default function ClientSidePostsFilter({
   const tagSelectId = useId()
 
   return (
-    <div className="filter-tags">
-      <label htmlFor={tagSelectId} className="filter-label">
-        Filter by tag:
+    <div className="select-wrap">
+      <label htmlFor={tagSelectId} className="select-label">
+        Filter:
       </label>
       <select
         id={tagSelectId}
         value={currentTag}
         onChange={(e) => onTagChange(e.target.value)}
-        className="filter-select"
+        className="select"
       >
         <option value="all">All Posts</option>
         {availableTags.map((tag) => (

@@ -10,7 +10,7 @@
     background-image: paint(grid);
     display: grid;
     gap: var(--spacing-md);
-    grid-column: span 3;
+    grid-column: content;
     padding: var(--spacing-lg);
   }
 

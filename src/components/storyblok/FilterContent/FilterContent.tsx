@@ -11,9 +11,14 @@ interface FilterContentProps {
 
 export default async function FilterContent({ blok }: FilterContentProps) {
   const { heading, subheading } = blok
+  const id = useId()
+
   const styles = getInlineStyles("FilterContent.css")
   const stylesCard = getInlineStyles("FilterContent/ClientSidePostCard.css")
-  const id = useId()
+
+  const stylesFilter = getInlineStyles(
+    "FilterContent/ClientSidePostsFilter.css"
+  )
 
   const [posts, availableTags] = await Promise.all([
     getAllPostsWithTags(),
@@ -24,6 +29,8 @@ export default async function FilterContent({ blok }: FilterContentProps) {
     <>
       {styles && <style>{styles}</style>}
       {stylesCard && <style>{stylesCard}</style>}
+      {stylesFilter && <style>{stylesFilter}</style>}
+
       <section className="filter-header" aria-labelledby={id}>
         <Typography tag="h1" variant="lg" shade="dark" id={id}>
           {heading}
