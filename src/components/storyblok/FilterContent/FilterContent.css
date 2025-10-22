@@ -1,4 +1,198 @@
 @scope {
+  .posts-filters {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--color-background-secondary, #f8fafc);
+    border-radius: 8px;
+    border: 1px solid var(--color-border, #e2e8f0);
+    grid-column: 1 / -1;
+  }
+
+  .filter-tags,
+  .sort-posts {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .filter-label,
+  .sort-label {
+    font-weight: 500;
+    color: var(--color-text-primary, #334155);
+    white-space: nowrap;
+  }
+
+  .filter-select,
+  .sort-select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-border, #d1d5db);
+    border-radius: 6px;
+    background: white;
+    font-size: 0.875rem;
+    color: var(--color-text-primary, #334155);
+    min-width: 140px;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .filter-select:focus,
+  .sort-select:focus {
+    outline: none;
+    border-color: var(--color-primary, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .no-posts {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--color-text-secondary, #64748b);
+    font-size: 1.125rem;
+    background: var(--color-background-secondary, #f8fafc);
+    border-radius: 8px;
+    border: 1px dashed var(--color-border, #d1d5db);
+  }
+
+  @media (max-width: 768px) {
+    .posts-filters {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+    }
+
+    .filter-tags,
+    .sort-posts {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+    }
+
+    .filter-select,
+    .sort-select {
+      min-width: auto;
+      width: 100%;
+    }
+
+    .posts-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .post-card {
+    background: white;
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-primary, #3b82f6);
+  }
+
+  .post-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .post-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .post-card-date {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary, #64748b);
+    font-weight: 500;
+  }
+
+  .post-card-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .post-card-tag {
+    background: var(--color-background-secondary, #f1f5f9);
+    color: var(--color-text-secondary, #64748b);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .post-card-title {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .post-card-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .post-card-title-link:hover {
+    color: var(--color-primary, #3b82f6);
+  }
+
+  .post-card-description {
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    line-height: 1.6;
+    color: var(--color-text-secondary, #64748b);
+  }
+
+  .post-card-read-more {
+    color: var(--color-primary, #3b82f6);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-top: auto;
+    transition: color 0.2s ease;
+  }
+
+  .post-card-read-more:hover {
+    color: var(--color-primary-dark, #2563eb);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .post-card {
+      padding: 1rem;
+    }
+
+    .post-card-meta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
   .filter-content {
     max-width: 1200px;
     margin: 0 auto;

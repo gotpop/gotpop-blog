@@ -16,6 +16,7 @@ export interface PostStory {
     component: string
     Heading?: string
     description?: string
+    published_date?: string
     [key: string]: unknown
   }
 }
@@ -158,16 +159,16 @@ export async function getPostsByTag(
     // Sort the posts based on the sortBy parameter
     const sortedPosts = filteredPosts.sort((a: PostStory, b: PostStory) => {
       switch (sortBy) {
-        case "date-desc":
-          return (
-            new Date(b.published_at).getTime() -
-            new Date(a.published_at).getTime()
-          )
-        case "date-asc":
-          return (
-            new Date(a.published_at).getTime() -
-            new Date(b.published_at).getTime()
-          )
+        case "date-desc": {
+          const dateA = a.content?.published_date || a.published_at
+          const dateB = b.content?.published_date || b.published_at
+          return new Date(dateB).getTime() - new Date(dateA).getTime()
+        }
+        case "date-asc": {
+          const dateA = a.content?.published_date || a.published_at
+          const dateB = b.content?.published_date || b.published_at
+          return new Date(dateA).getTime() - new Date(dateB).getTime()
+        }
         case "title-asc": {
           const titleA = a.content?.Heading || a.name || ""
           const titleB = b.content?.Heading || b.name || ""
