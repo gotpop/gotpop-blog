@@ -1,7 +1,8 @@
-import { Suspense } from "react"
+import { Suspense, useId } from "react"
 import type { FilterContentStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getAllPostsWithTags, getTagsFromDatasource } from "@/utils/tags"
+import Typography from "../Typography"
 import ClientSidePostsApp from "./ClientSidePostsApp"
 
 interface FilterContentProps {
@@ -9,7 +10,9 @@ interface FilterContentProps {
 }
 
 export default async function FilterContent({ blok }: FilterContentProps) {
+  const { heading, subheading } = blok
   const styles = getInlineStyles("FilterContent.css")
+  const id = useId()
 
   const [posts, availableTags] = await Promise.all([
     getAllPostsWithTags(),
@@ -19,10 +22,14 @@ export default async function FilterContent({ blok }: FilterContentProps) {
   return (
     <>
       {styles && <style>{styles}</style>}
-      <div className="filter-header">
-        <h1>{blok.Heading || "Posts"}</h1>
-        <p>{blok.description || `Browse our ${posts.length} posts`}</p>
-      </div>
+      <section className="filter-header" aria-labelledby={id}>
+        <Typography tag="h1" variant="lg" shade="dark" id={id}>
+          {heading}
+        </Typography>
+        <Typography tag="p" variant="base" shade="dark">
+          {subheading}
+        </Typography>
+      </section>
 
       <Suspense fallback={<div>Loading posts...</div>}>
         <ClientSidePostsApp posts={posts} availableTags={availableTags} />

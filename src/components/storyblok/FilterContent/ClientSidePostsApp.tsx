@@ -23,8 +23,14 @@ export default function ClientSidePostsApp({
     filteredAndSortedPosts,
   } = usePostsFilter(posts)
 
+  const output =
+    filteredAndSortedPosts.length > 0 &&
+    filteredAndSortedPosts.map((post) => (
+      <PostCard key={post.uuid} post={post} />
+    ))
+
   return (
-    <>
+    <div className="filter-output">
       <div className="posts-filters">
         <ClientSidePostsFilter
           availableTags={availableTags}
@@ -36,15 +42,9 @@ export default function ClientSidePostsApp({
           currentSort={currentSort}
         />
       </div>
-      <div className="posts-grid">
-        {filteredAndSortedPosts.length > 0 ? (
-          filteredAndSortedPosts.map((post) => (
-            <PostCard key={post.uuid} post={post} />
-          ))
-        ) : (
-          <p className="no-posts">No posts found for the selected tag.</p>
-        )}
-      </div>
-    </>
+      <output className="posts-grid" aria-live="polite">
+        {output}
+      </output>
+    </div>
   )
 }

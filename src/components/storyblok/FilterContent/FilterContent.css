@@ -1,15 +1,34 @@
 @scope {
+  & {
+    row-gap: var(--spacing-base);
+  }
+
+  .filter-header {
+    grid-column: content;
+    text-align: center;
+  }
+
+  .filter-output {
+    grid-column: content;
+    display: grid;
+    row-gap: var(--spacing-base);
+    grid-template-columns: subgrid;
+  }
+
   .posts-filters {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: var(--color-background-secondary, #f8fafc);
-    border-radius: 8px;
-    border: 1px solid var(--color-border, #e2e8f0);
+    --even-odd: even;
+    --grid-horizontal-color: rgba(180, 180, 180, 0.5);
+    --grid-offset: centre;
+    --grid-vertical-color: rgba(200, 200, 200, 0.5);
+    --root-grid-size: 16px;
+
+    background-color: white;
+    background-image: paint(grid);
+    display: grid;
+    gap: var(--spacing-md);
     grid-column: 1 / -1;
+    padding: var(--spacing-lg);
+    view-transition-name: attr(id type(<custom-ident>), none);
   }
 
   .filter-tags,
@@ -49,63 +68,23 @@
 
   .posts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .no-posts {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 3rem 2rem;
-    color: var(--color-text-secondary, #64748b);
-    font-size: 1.125rem;
-    background: var(--color-background-secondary, #f8fafc);
-    border-radius: 8px;
-    border: 1px dashed var(--color-border, #d1d5db);
-  }
-
-  @media (max-width: 768px) {
-    .posts-filters {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 1rem;
-    }
-
-    .filter-tags,
-    .sort-posts {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.5rem;
-    }
-
-    .filter-select,
-    .sort-select {
-      min-width: auto;
-      width: 100%;
-    }
-
-    .posts-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
+    grid-template-columns: subgrid;
+    grid-column: content;
   }
 
   .post-card {
-    background: white;
-    border: 1px solid var(--color-border, #e2e8f0);
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: all 0.2s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+    --root-grid-size: 16px;
+    --grid-vertical-color: rgba(200, 200, 200, 0.5);
+    --grid-horizontal-color: rgba(180, 180, 180, 0.5);
+    --even-odd: even;
+    --grid-offset: centre;
 
-  .post-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-color: var(--color-primary, #3b82f6);
+    background-color: white;
+    background-image: paint(grid);
+    display: grid;
+    gap: var(--spacing-md);
+    grid-column: span 3;
+    padding: var(--spacing-lg);
   }
 
   .post-card-content {
@@ -182,38 +161,10 @@
     text-decoration: underline;
   }
 
-  @media (max-width: 768px) {
-    .post-card {
-      padding: 1rem;
-    }
-
-    .post-card-meta {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
   .filter-content {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
-  }
-
-  .filter-header {
-    grid-column: 1 / -1;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .filter-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--color-text-primary, #1e293b);
-  }
-
-  .filter-header p {
-    font-size: 1.1rem;
-    color: var(--color-text-secondary, #64748b);
   }
 
   .filter-controls {
@@ -257,56 +208,5 @@
     outline: none;
     border-color: var(--color-primary, #3b82f6);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-
-  .filter-loading {
-    text-align: center;
-    padding: 3rem;
-    color: var(--color-text-secondary, #64748b);
-  }
-
-  .filter-empty {
-    text-align: center;
-    padding: 3rem;
-    color: var(--color-text-secondary, #64748b);
-    background: var(--color-background-secondary, #f8fafc);
-    border-radius: 8px;
-    border: 1px solid var(--color-border, #e2e8f0);
-  }
-
-  .posts-grid {
-    display: grid;
-    grid-template-rows: auto;
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
-  }
-
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .filter-content {
-      padding: 1rem;
-    }
-
-    .filter-header h1 {
-      font-size: 2rem;
-    }
-
-    .filter-controls {
-      grid-column: 1 / -1;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .posts-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .posts-grid {
-      grid-template-columns: 1fr;
-    }
   }
 }
