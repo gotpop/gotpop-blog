@@ -100,6 +100,8 @@ if (typeof registerPaint !== "undefined") {
           offset -= gridSize / 2
           numLinesX = Math.floor((geom.width - 2 * offset) / gridSize) + 1
         }
+      } else if (gridOffset === "left") {
+        offset = 0
       }
 
       for (let x = offset; x <= geom.width; x += gridSize) {

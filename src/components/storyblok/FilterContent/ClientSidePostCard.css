@@ -1,23 +1,15 @@
 @scope {
   .post-card {
-    --root-grid-size: 16px;
-    --grid-vertical-color: rgba(200, 200, 200, 0.5);
-    --grid-horizontal-color: rgba(180, 180, 180, 0.5);
     --even-odd: even;
-    /* --grid-offset: centre; */
+    --grid-horizontal-color: rgba(180, 180, 180, 0.5);
+    --grid-offset: left;
+    --grid-vertical-color: rgba(200, 200, 200, 0.5);
+    --root-grid-size: 16px;
 
     background-color: white;
     background-image: paint(grid);
-    display: grid;
-    gap: var(--spacing-md);
     grid-column: span 3;
     padding: var(--spacing-lg);
-  }
-
-  .post-card-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
   }
 
   .post-card-meta {

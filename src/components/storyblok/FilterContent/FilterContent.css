@@ -11,7 +11,7 @@
   .filters-with-output {
     grid-column: content;
     display: grid;
-    row-gap: var(--spacing-base);
+    row-gap: var(--spacing-md);
     grid-template-columns: subgrid;
     grid-auto-rows: min-content;
   }
@@ -20,7 +20,7 @@
     display: grid;
     grid-template-columns: subgrid;
     grid-column: content;
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
   }
 
   .filter-select {
