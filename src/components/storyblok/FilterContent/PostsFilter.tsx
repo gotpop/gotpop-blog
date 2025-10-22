@@ -11,19 +11,24 @@ interface TagEntry {
 
 interface PostsFilterProps {
   availableTags: TagEntry[]
+  currentTag?: string
 }
 
-export default function PostsFilter({ availableTags }: PostsFilterProps) {
+export default function PostsFilter({
+  availableTags,
+  currentTag: serverCurrentTag,
+}: PostsFilterProps) {
   const tagSelectId = useId()
   const router = useRouter()
   const pathname = usePathname()
 
-  // Get current tag from URL path
+  // Use server-provided value during SSG, fall back to client-side hook for client-side navigation
   const currentTag = useMemo(() => {
+    if (serverCurrentTag !== undefined) return serverCurrentTag
     if (pathname === "/posts") return "all"
     const match = pathname.match(/^\/posts\/(.+)$/)
     return match ? match[1] : "all"
-  }, [pathname])
+  }, [pathname, serverCurrentTag])
 
   const handleTagChange = (tag: string) => {
     if (tag === "all") {

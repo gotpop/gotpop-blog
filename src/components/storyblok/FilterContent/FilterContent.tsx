@@ -1,9 +1,7 @@
 import type { FilterContentStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
-import { getAllPostsWithTags, getTagsFromDatasource } from "@/utils/tags"
-import PostsFilter from "./PostsFilter"
-import PostsGrid from "./PostsGrid"
-import PostsSorter from "./PostsSorter"
+import { getAllPostsWithTags } from "@/utils/tags"
+import PostCard from "./PostCard"
 
 interface FilterContentProps {
   blok: FilterContentStoryblok
@@ -11,11 +9,7 @@ interface FilterContentProps {
 
 export default async function FilterContent({ blok }: FilterContentProps) {
   const styles = getInlineStyles("FilterContent.css")
-
-  const [posts, availableTags] = await Promise.all([
-    getAllPostsWithTags(),
-    getTagsFromDatasource(),
-  ])
+  const posts = await getAllPostsWithTags()
 
   return (
     <>
@@ -26,11 +20,21 @@ export default async function FilterContent({ blok }: FilterContentProps) {
       </div>
 
       <div className="filter-controls">
-        <PostsFilter availableTags={availableTags} />
-        <PostsSorter />
+        <div className="filter-tags">
+          <span className="filter-label">All Posts</span>
+        </div>
       </div>
 
-      <PostsGrid initialPosts={posts} availableTags={availableTags} />
+      <div className="posts-grid">
+        {posts.map((post) => (
+          <PostCard key={post.uuid} post={post} />
+        ))}
+        {posts.length === 0 && (
+          <div className="filter-empty">
+            <p>No posts found.</p>
+          </div>
+        )}
+      </div>
     </>
   )
 }

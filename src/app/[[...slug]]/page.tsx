@@ -1,5 +1,5 @@
 import { StoryblokStory } from "@storyblok/react/rsc"
-
+import PostsPage from "@/components/PostsPage"
 import StoryNotFound from "@/components/utils/ClientLoader/StoryNotFound"
 import { getStoryblokApi } from "@/lib/storyblok"
 import {
@@ -72,24 +72,13 @@ export default async function Page({ params }: PageParams) {
   } catch (error: unknown) {
     // Check if this is a posts page that should show the filter
     if (fullPath === "blog/posts" || slug?.join("/") === "posts") {
-      // Create a mock FilterContent story for posts pages that don't exist in Storyblok
-      const mockStory = {
-        id: 0,
-        uuid: "mock-filter",
-        name: "Posts Filter",
-        slug: "posts",
-        full_slug: "blog/posts",
-        created_at: new Date().toISOString(),
-        published_at: new Date().toISOString(),
-        content: {
-          component: "filter_content",
-          _uid: "filter-content-mock",
-          Heading: "All Posts",
-          description: "Browse and filter all blog posts",
-        },
-      }
+      return <PostsPage />
+    }
 
-      return <StoryblokStory story={mockStory} />
+    // Check if this is a tag page (e.g., /posts/css)
+    if (slug && slug.length === 2 && slug[0] === "posts") {
+      const tagSlug = slug[1]
+      return <PostsPage currentTag={tagSlug} />
     }
 
     let availableStories: string[] = []

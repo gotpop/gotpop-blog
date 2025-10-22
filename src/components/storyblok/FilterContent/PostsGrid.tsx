@@ -29,26 +29,32 @@ interface TagEntry {
 interface PostsGridProps {
   initialPosts: PostStory[]
   availableTags: TagEntry[]
+  currentTag?: string
+  sortBy?: SortOption
 }
 
 export default function PostsGrid({
   initialPosts,
   availableTags,
+  currentTag: serverCurrentTag,
+  sortBy: serverSortBy,
 }: PostsGridProps) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  // Get current tag from URL path
+  // Use server-provided values during SSG, fall back to client-side hooks for client-side navigation
   const currentTag = useMemo(() => {
+    if (serverCurrentTag !== undefined) return serverCurrentTag
     if (pathname === "/posts") return "all"
     const match = pathname.match(/^\/posts\/(.+)$/)
     return match ? match[1] : "all"
-  }, [pathname])
+  }, [pathname, serverCurrentTag])
 
-  // Get current sort from URL search params
+  // Get current sort from URL search params or server
   const sortBy = useMemo(() => {
+    if (serverSortBy) return serverSortBy
     return (searchParams.get("sort") as SortOption) || "date-desc"
-  }, [searchParams])
+  }, [searchParams, serverSortBy])
 
   // Filter and sort posts based on URL state
   const filteredAndSortedPosts = useMemo(() => {
