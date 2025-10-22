@@ -8,17 +8,19 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
+  console.log("Post data:", JSON.stringify(post, null, 2))
   const linkPath = getStoryPath(post.full_slug)
   const title = post.content?.Heading || post.name || "Untitled"
   const description = post.content?.description || ""
-  const publishedDate = new Date(post.published_at).toLocaleDateString(
-    "en-US",
-    {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }
-  )
+
+  // Use custom published_date field if available, fallback to published_at
+  const dateToUse = post.content?.published_date || post.published_at
+
+  const publishedDate = new Date(dateToUse).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
 
   return (
     <article className="post-card">
@@ -127,7 +129,7 @@ export default function PostCard({ post }: PostCardProps) {
       `}</style>
       <div className="post-card-content">
         <div className="post-card-meta">
-          <time dateTime={post.published_at} className="post-card-date">
+          <time dateTime={dateToUse} className="post-card-date">
             {publishedDate}
           </time>
           {post.content?.tags && (
