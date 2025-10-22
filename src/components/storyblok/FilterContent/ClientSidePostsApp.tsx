@@ -1,9 +1,9 @@
 "use client"
 
 import type { PostStory, TagDatasourceEntry } from "@/utils/tags"
+import PostCard from "./ClientSidePostCard"
 import ClientSidePostsFilter from "./ClientSidePostsFilter"
 import ClientSidePostsSorter from "./ClientSidePostsSorter"
-import PostCard from "./ClientSidePostCard"
 import { usePostsFilter } from "./use-posts-filter"
 
 interface ClientSidePostsAppProps {
