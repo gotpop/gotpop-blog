@@ -2,6 +2,7 @@ import Link from "next/link"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import type { PostStory } from "@/utils/tags"
 import Typography from "../Typography"
+import { formatDate } from "@/utils/date-formatter"
 
 interface PostCardProps {
   post: PostStory
@@ -12,19 +13,14 @@ export default function PostCard({ post }: PostCardProps) {
   const title = post.content?.Heading || post.name || "Untitled"
   const description = post.content?.description || ""
   const dateToUse = post.content?.published_date || post.published_at
-
-  const publishedDate = new Date(dateToUse).toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })
+  const formattedDate = formatDate(dateToUse)
 
   return (
     <article className="post-card">
       <div className="post-card-content">
         <div className="post-card-meta">
           <time dateTime={dateToUse} className="post-card-date">
-            {publishedDate}
+            {formattedDate}
           </time>
           {post.content?.tags && (
             <div className="post-card-tags">
