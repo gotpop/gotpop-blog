@@ -1,45 +1,33 @@
-import { useId } from "react"
+import BaselineStatus from "@/components/ui/BaselineStatus"
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
 import type { PagePostStoryblok } from "@/types/storyblok-components"
-import { formatDate } from "@/utils/date-formatter"
 import { getInlineStyles } from "@/utils/inline-styles"
 import FooterDefault from "../FooterDefault"
 import HeaderDefault from "../HeaderDefault"
-import Typography from "../Typography"
+import PostHeader from "./PostHeader"
 
 interface PagePostProps {
   blok: PagePostStoryblok
 }
 
 export default async function PagePost({ blok }: PagePostProps) {
-  const { Header, Footer, Heading, published_date, body, content } = blok
+  const { Header, Footer, Heading, published_date, body } = blok
   const styles = getInlineStyles("PagePost.css")
-  const id = useId()
 
-  console.log("PagePost data:", JSON.stringify(blok, null, 2))
+  const mainContent = body?.map((nestedBlok) => (
+    <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+  ))
 
   return (
     <div className="page-post">
       {styles && <style>{styles}</style>}
       {Header && <HeaderDefault uuid={Header} />}
       <main>
-        <section aria-labelledby={id} className="page-post-header">
-          <Typography tag="h1" variant="lg" shade="dark" id={id}>
-            {Heading}
-          </Typography>
-          {published_date && (
-            <time dateTime={published_date}>{formatDate(published_date)}</time>
-          )}
-        </section>
-        {/* <baseline-status featureId="font-size-adjust"></baseline-status> */}
-        {/* Render body content blocks */}
-        {body?.map((nestedBlok) => (
-          <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
-        ))}
-        {/* Render additional content blocks */}
-        {content?.map((nestedBlok) => (
-          <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
-        ))}
+        <PostHeader heading={Heading} publishedDate={published_date} />
+        <div className="main-content">
+          <BaselineStatus featureId="font-size-adjust" />
+          {mainContent}
+        </div>
       </main>
       {Footer && <FooterDefault uuid={Footer} />}
     </div>

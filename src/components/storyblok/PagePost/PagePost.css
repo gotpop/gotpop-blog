@@ -55,20 +55,11 @@
     grid-column: content-start / content-end;
   }
 
-  pre {
-    background-color: var(--dark-500);
-    color: var(--dark-900);
-    padding: 1rem;
-    margin: unset;
-
-    code {
-      background-color: transparent;
-      color: inherit;
-      padding: 0;
-      font-size: 0.9em;
-      font-palette: --css;
-      font-family: var(--font-monaspace);
-      color: white;
-    }
+  .main-content {
+    grid-column: content-start / content-end;
+    display: grid;
+    grid-template-columns: subgrid;
+    row-gap: var(--spacing-md);
+    grid-auto-rows: min-content;
   }
 }
