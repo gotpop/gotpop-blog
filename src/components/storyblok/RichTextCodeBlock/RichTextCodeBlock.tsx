@@ -1,4 +1,3 @@
-import { storyblokEditable } from "@storyblok/react/rsc"
 import RichText from "@/components/ui/RichText"
 import type { RichTextCodeBlockStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
@@ -8,14 +7,13 @@ interface RichTextCodeBlockProps {
 }
 
 export default function RichTextCodeBlock({ blok }: RichTextCodeBlockProps) {
-  const styles = getInlineStyles("RichTextCodeBlock")
+  const { content } = blok
+  const styles = getInlineStyles("RichTextCodeBlock.css")
 
   return (
-    <>
+    <div className="rich-text-code-block">
       {styles && <style>{styles}</style>}
-      <div {...storyblokEditable(blok)} className="rich-text-code-block">
-        {blok.content && <RichText content={blok.content} />}
-      </div>
-    </>
+      {content && <RichText content={content} />}
+    </div>
   )
 }

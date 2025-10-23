@@ -32,11 +32,9 @@ export default async function PagePost({ blok }: PagePostProps) {
           )}
         </section>
         {/* <baseline-status featureId="font-size-adjust"></baseline-status> */}
-        {/* Render body content blocks */}
         {body?.map((nestedBlok) => (
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
         ))}
-        {/* Render additional content blocks */}
         {content?.map((nestedBlok) => (
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
         ))}
