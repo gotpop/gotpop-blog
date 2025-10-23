@@ -13,6 +13,8 @@ import NavItemDefault from "@/components/storyblok/NavItemDefault"
 import PageDefault from "@/components/storyblok/PageDefault"
 import PageFilter from "@/components/storyblok/PageFilter"
 import PagePost from "@/components/storyblok/PagePost"
+import RichTextBlock from "@/components/storyblok/RichTextBlock"
+import RichTextCodeBlock from "@/components/storyblok/RichTextCodeBlock"
 
 const components = {
   card: Card,
@@ -27,6 +29,8 @@ const components = {
   page_default: PageDefault,
   page_filter: PageFilter,
   page_post: PagePost,
+  rich_text_block: RichTextBlock,
+  rich_text_code_block: RichTextCodeBlock,
 }
 
 // Server-side initialization

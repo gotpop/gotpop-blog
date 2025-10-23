@@ -1,0 +1,11 @@
+.rich-text-block {
+  margin: 1.5rem 0;
+}
+
+.rich-text-block:first-child {
+  margin-top: 0;
+}
+
+.rich-text-block:last-child {
+  margin-bottom: 0;
+}
