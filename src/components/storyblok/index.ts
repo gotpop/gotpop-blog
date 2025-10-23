@@ -10,6 +10,8 @@ import NavItemDefault from "./NavItemDefault"
 import PageDefault from "./PageDefault"
 import PageFilter from "./PageFilter"
 import PagePost from "./PagePost"
+import RichTextBlock from "./RichTextBlock"
+import RichTextCodeBlock from "./RichTextCodeBlock"
 
 export const components = {
   card: Card,
@@ -24,4 +26,6 @@ export const components = {
   page_default: PageDefault,
   page_filter: PageFilter,
   page_post: PagePost,
+  rich_text_block: RichTextBlock,
+  rich_text_code_block: RichTextCodeBlock,
 }

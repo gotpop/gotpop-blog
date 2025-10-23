@@ -1,5 +1,4 @@
 import { useId } from "react"
-import RichText from "@/components/ui/RichText"
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
 import type { PagePostStoryblok } from "@/types/storyblok-components"
 import { formatDate } from "@/utils/date-formatter"
@@ -17,6 +16,8 @@ export default async function PagePost({ blok }: PagePostProps) {
   const styles = getInlineStyles("PagePost.css")
   const id = useId()
 
+  console.log("PagePost data:", JSON.stringify(blok, null, 2))
+
   return (
     <div className="page-post">
       {styles && <style>{styles}</style>}
@@ -31,7 +32,11 @@ export default async function PagePost({ blok }: PagePostProps) {
           )}
         </section>
         {/* <baseline-status featureId="font-size-adjust"></baseline-status> */}
-        {body && <RichText content={body} />}
+        {/* Render body content blocks */}
+        {body?.map((nestedBlok) => (
+          <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+        ))}
+        {/* Render additional content blocks */}
         {content?.map((nestedBlok) => (
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
         ))}
