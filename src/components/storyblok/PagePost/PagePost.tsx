@@ -1,3 +1,4 @@
+import BaselineStatus from "@/components/ui/BaselineStatus"
 import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
 import type { PagePostStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
@@ -23,7 +24,7 @@ export default async function PagePost({ blok }: PagePostProps) {
       {Header && <HeaderDefault uuid={Header} />}
       <main>
         <PostHeader heading={Heading} publishedDate={published_date} />
-        {/* <baseline-status featureId="font-size-adjust"></baseline-status> */}
+        <BaselineStatus featureId="font-size-adjust" />
         <div className="main-content">{mainContent}</div>
       </main>
       {Footer && <FooterDefault uuid={Footer} />}
