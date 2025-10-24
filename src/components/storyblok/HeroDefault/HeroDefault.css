@@ -26,7 +26,6 @@
     height: calc-size(min-content, round(size, 1rem));
     padding: 1rem;
     view-transition-name: hero-home;
-    /* height: var(--round-down); */
 
     @media screen and (width >= 768px) {
       padding: 3rem;

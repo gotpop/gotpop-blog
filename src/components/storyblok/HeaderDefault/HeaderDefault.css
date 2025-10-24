@@ -15,7 +15,7 @@
 
     @media screen and (width >= 480px) {
       grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
-      grid-template-rows: 1rem [centre-start] 3rem [centre-end] 1rem;
+      grid-template-rows: 1rem [centre-start] 2rem [centre-end] 1rem;
       height: auto;
       row-gap: 0;
     }
@@ -25,6 +25,9 @@
       height: var(--round-up);
       /* row-gap: var(--spacing-base); */
       row-gap: 0;
+
+      height: 4rem;
+      overflow: visible;
     }
 
     @media screen and (width >= 1280px) {
