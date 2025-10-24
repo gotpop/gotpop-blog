@@ -5,7 +5,7 @@
       [hero-content-end] var(--hero-spacing) [full-end];
     --row: [full-start] minmax(var(--hero-spacing), auto) [hero-content-start
       heading-start] max-content [heading-end body-start] max-content [body-end
-      hero-content-end] minmax(var(--hero-spacing), auto) [full-end];
+      hero-content-end] minmax(3rem, auto) [full-end];
 
     --line-color: rgb(from var(--secondary-100) r g b / 0.7);
     --line-spacing: 0.625rem;

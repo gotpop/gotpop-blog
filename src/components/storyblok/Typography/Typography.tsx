@@ -58,7 +58,6 @@ export default function Typography({
 
   return (
     <Element className={classNames} id={id || undefined}>
-      {/* {styles && <style>{styles}</style>} */}
       {children}
     </Element>
   )

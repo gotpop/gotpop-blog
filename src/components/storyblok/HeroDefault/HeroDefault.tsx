@@ -29,7 +29,9 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
         </Typography>
       )}
       {subheading && (
-        <RichText className="hero-home-subheading" content={subheading} />
+        <div className="hero-home-subheading">
+          <RichText content={subheading} />
+        </div>
       )}
     </section>
   )

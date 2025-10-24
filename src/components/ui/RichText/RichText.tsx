@@ -1,6 +1,7 @@
 import { render } from "storyblok-rich-text-react-renderer"
 import type { RichtextStoryblok } from "@/types/storyblok-components"
-import { getInlineStyles } from "@/utils/inline-styles"
+
+// import { getInlineStyles } from "@/utils/inline-styles"
 
 interface RichTextProps {
   content: RichtextStoryblok
@@ -10,7 +11,7 @@ interface RichTextProps {
 export default function RichText({ content, className }: RichTextProps) {
   if (!content) return null
 
-  const styles = getInlineStyles("RichText.css")
+  // const styles = getInlineStyles("RichText.css")
 
   const classNames = ["rich-text", className].filter(Boolean).join(" ")
 
@@ -32,11 +33,19 @@ export default function RichText({ content, className }: RichTextProps) {
         const level = props.level || 2
         switch (level) {
           case 1:
-            return <h1>{children}</h1>
+            return (
+              <h1 className="typography-text typography-h1 dark variant-lg">
+                {children}
+              </h1>
+            )
           case 2:
             return <h2>{children}</h2>
           case 3:
-            return <h3>{children}</h3>
+            return (
+              <h3 className="typography-text typography-h3 dark variant-lg">
+                {children}
+              </h3>
+            )
           case 4:
             return <h4>{children}</h4>
           case 5:
@@ -47,7 +56,11 @@ export default function RichText({ content, className }: RichTextProps) {
             return <h2>{children}</h2>
         }
       },
-      paragraph: (children) => <p className="variant-base">{children}</p>,
+      paragraph: (children) => (
+        <p className="typography-text typography-p dark variant-base">
+          {children}
+        </p>
+      ),
       bullet_list: (children) => <ul>{children}</ul>,
       ordered_list: (children) => <ol>{children}</ol>,
       list_item: (children) => <li>{children}</li>,
@@ -61,10 +74,5 @@ export default function RichText({ content, className }: RichTextProps) {
     },
   })
 
-  return (
-    <div className={classNames}>
-      {styles && <style>{styles}</style>}
-      {renderedContent}
-    </div>
-  )
+  return renderedContent
 }
