@@ -21,8 +21,8 @@ function getAvailableIcons() {
     .map((line) => line.trim())
     .filter((line) => line && !line.startsWith("//"))
     .map((line) => {
-      // Handle both "FaHome," and "FaHome: FaHome," formats
-      const match = line.match(/^(Fa\w+)(?::|\s*,|\s*$)/)
+      // Handle both "IconName," and "IconName: IconName," formats for all icon prefixes
+      const match = line.match(/^([A-Z][a-zA-Z0-9]+)(?::|\s*,|\s*$)/)
       return match ? match[1] : null
     })
     .filter(Boolean)

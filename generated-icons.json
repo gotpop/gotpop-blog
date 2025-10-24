@@ -1,0 +1,62 @@
+[
+  {
+    "name": "FaBars",
+    "value": "FaBars"
+  },
+  {
+    "name": "FaChevronLeft",
+    "value": "FaChevronLeft"
+  },
+  {
+    "name": "FaChevronRight",
+    "value": "FaChevronRight"
+  },
+  {
+    "name": "FaEnvelope",
+    "value": "FaEnvelope"
+  },
+  {
+    "name": "FaExternalLinkAlt",
+    "value": "FaExternalLinkAlt"
+  },
+  {
+    "name": "FaHome",
+    "value": "FaHome"
+  },
+  {
+    "name": "FaLink",
+    "value": "FaLink"
+  },
+  {
+    "name": "FaPhone",
+    "value": "FaPhone"
+  },
+  {
+    "name": "FaQuestionCircle",
+    "value": "FaQuestionCircle"
+  },
+  {
+    "name": "FaSearch",
+    "value": "FaSearch"
+  },
+  {
+    "name": "FaSquareGithub",
+    "value": "FaSquareGithub"
+  },
+  {
+    "name": "FaStar",
+    "value": "FaStar"
+  },
+  {
+    "name": "FaTimes",
+    "value": "FaTimes"
+  },
+  {
+    "name": "FaUser",
+    "value": "FaUser"
+  },
+  {
+    "name": "TfiGithub",
+    "value": "TfiGithub"
+  }
+]

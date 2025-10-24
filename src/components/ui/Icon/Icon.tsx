@@ -14,6 +14,7 @@ import {
   FaUser,
 } from "react-icons/fa"
 import { FaSquareGithub } from "react-icons/fa6"
+import { TfiGithub } from "react-icons/tfi"
 
 /**
  * Icon registry - single source of truth for available icons.
@@ -35,6 +36,7 @@ const ICON_REGISTRY = {
   FaStar,
   FaTimes,
   FaUser,
+  TfiGithub,
 } as const
 
 // Export for sync scripts and type generation

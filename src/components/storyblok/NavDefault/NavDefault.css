@@ -16,28 +16,30 @@
     background-color: var(--background-colour);
     color: var(--colour);
     display: flex;
-    font-size: var(--font-scaled-sm);
-    font-weight: var(--font-weight-bold);
+    font-size: var(--font-scaled-base);
+    min-width: var(--round-up);
     place-content: center;
     text-align: center;
     text-decoration: none;
     transition: var(--transition);
     width: stretch;
-    min-width: var(--round-up);
 
     &.with-text {
-      padding-block: calc(1rem - calc(1cap / 2));
       padding-inline: var(--spacing-base);
     }
 
-    @container style(--state: active) {
-      --background-colour: var(--secondary-900);
-      --colour: var(--primary-300);
+    &.with-icon {
+      /* padding: var(--spacing-sm); */
+      background-color: transparent;
+
+      &:hover {
+        --colour: var(--primary-100);
+      }
     }
 
-    @container style(--variant: compact) {
-      align-items: end;
-      padding: unset;
+    &.active {
+      --background-colour: var(--secondary-900);
+      --colour: var(--primary-300);
     }
 
     &:hover {
