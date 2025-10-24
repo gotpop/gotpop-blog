@@ -58,6 +58,7 @@ p:not([class]) {
     margin-block: 0 var(--spacing-md);
     padding-block-start: calc(1rem - 1cap);
     text-wrap: pretty;
+    max-width: 60ch;
   }
 
   &.variant-md {
@@ -94,7 +95,7 @@ p:not([class]) {
     font-weight: 800;
     letter-spacing: -0.025em;
     line-height: calc(1.63 * 1cap);
-    margin-block: 0 var(--spacing-lg);
+    margin-block: 0 var(--spacing-md);
     padding-block-start: calc(3rem - 1cap);
     position: relative;
     right: 0.1ch;
