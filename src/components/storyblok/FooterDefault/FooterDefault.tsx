@@ -36,13 +36,16 @@ export default async function FooterDefault({
     return null
   }
 
-  const { nav, logo } = footerData
+  const { logo } = footerData
 
   return (
     <footer className="footer">
       {styles && <style>{styles}</style>}
       {logo?.[0] && <StoryblokServerComponent blok={logo[0]} />}
-      {nav?.[0] && <StoryblokServerComponent blok={nav[0]} />}
+      {/* {nav?.[0] && <StoryblokServerComponent blok={nav[0]} />} */}
+      <small className="footer__copyright">
+        ©GotPop {new Date().getFullYear()}
+      </small>
     </footer>
   )
 }
