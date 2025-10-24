@@ -1,12 +1,13 @@
 @scope {
   & {
-    --layout: [full-start] 2rem [hero-content-start] 1fr [hero-content-end] 2rem
-      [full-end];
-    --row: [full-start] minmax(2rem, auto) [hero-content-start heading-start]
-      max-content [heading-end body-start] max-content [body-end
-      hero-content-end] minmax(2rem, auto) [full-end];
+    --hero-spacing: 3rem;
+    --layout: [full-start] var(--hero-spacing) [hero-content-start] 1fr
+      [hero-content-end] var(--hero-spacing) [full-end];
+    --row: [full-start] minmax(var(--hero-spacing), auto) [hero-content-start
+      heading-start] max-content [heading-end body-start] max-content [body-end
+      hero-content-end] minmax(var(--hero-spacing), auto) [full-end];
 
-    --line-color: rgb(from var(--secondary-100) r g b / 0.3);
+    --line-color: rgb(from var(--secondary-100) r g b / 0.7);
     --line-spacing: 0.625rem;
     --line-width: 0.0625rem; /* 0.6875rem - 0.625rem = 0.0625rem */
     --bg-position: 0 0;
@@ -39,12 +40,12 @@
     view-transition-name: hero-home;
 
     @media screen and (width >= 768px) {
-      padding: 2rem;
+      padding: 1rem;
     }
 
     &::before {
-      background-color: white;
-      background-image: paint(grid), var(--grain-uri);
+      background-color: oklch(1 0 0 / 0.9);
+      background-image: paint(grid);
       content: "";
       grid-area: full;
     }
