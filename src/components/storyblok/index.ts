@@ -12,6 +12,7 @@ import PageFilter from "./PageFilter"
 import PagePost from "./PagePost"
 import RichTextBlock from "./RichTextBlock"
 import RichTextCodeBlock from "./RichTextCodeBlock"
+import SnippetBlock from "./SnippetBlock"
 
 export const components = {
   card: Card,
@@ -28,4 +29,5 @@ export const components = {
   page_post: PagePost,
   rich_text_block: RichTextBlock,
   rich_text_code_block: RichTextCodeBlock,
+  snippet_block: SnippetBlock,
 }

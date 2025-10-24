@@ -15,6 +15,7 @@ import PageFilter from "@/components/storyblok/PageFilter"
 import PagePost from "@/components/storyblok/PagePost"
 import RichTextBlock from "@/components/storyblok/RichTextBlock"
 import RichTextCodeBlock from "@/components/storyblok/RichTextCodeBlock"
+import SnippetBlock from "@/components/storyblok/SnippetBlock"
 
 const components = {
   card: Card,
@@ -31,6 +32,7 @@ const components = {
   page_post: PagePost,
   rich_text_block: RichTextBlock,
   rich_text_code_block: RichTextCodeBlock,
+  snippet_block: SnippetBlock,
 }
 
 // Server-side initialization
