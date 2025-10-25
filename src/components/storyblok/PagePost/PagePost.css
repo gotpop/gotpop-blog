@@ -43,14 +43,4 @@
       --col-width: 10rem;
     }
   }
-
-  .rich-text {
-    grid-column: content;
-  }
-
-  .main-content {
-    display: grid;
-    grid-auto-rows: min-content;
-    grid-column: content;
-  }
 }

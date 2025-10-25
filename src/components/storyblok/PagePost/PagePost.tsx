@@ -24,10 +24,10 @@ export default async function PagePost({ blok }: PagePostProps) {
       {Header && <HeaderDefault uuid={Header} />}
       <main>
         <PostHeader heading={Heading} publishedDate={published_date} />
-        <div className="main-content">
+        <main-content>
           <BaselineStatus featureId="font-size-adjust" />
           {mainContent}
-        </div>
+        </main-content>
       </main>
       {Footer && <FooterDefault uuid={Footer} />}
     </div>
