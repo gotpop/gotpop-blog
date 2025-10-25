@@ -1,6 +1,8 @@
 import type { ReactNode } from "react"
 import { getInlineStyles } from "@/utils/inline-styles"
 
+// import "@/types/custom-elements"
+
 interface HeroProps {
   children?: ReactNode
   className?: string
@@ -25,9 +27,9 @@ export default function Hero({
     .join(" ")
 
   return (
-    <section className={classNames} aria-labelledby={id}>
+    <box-hero className={classNames} aria-labelledby={id}>
       {styles && <style>{styles}</style>}
       <div className="hero-content">{children}</div>
-    </section>
+    </box-hero>
   )
 }
