@@ -27,6 +27,15 @@ export default function RichText({ content, className }: RichTextProps) {
           {children}
         </a>
       ),
+      // Strip textStyle and styled marks - never render spans for colors/styles
+      textStyle: (children) => <>{children}</>,
+      styled: (children) => <>{children}</>,
+      // Use semantic HTML elements instead of spans
+      bold: (children) => <strong>{children}</strong>,
+      italic: (children) => <em>{children}</em>,
+      underline: (children) => <u>{children}</u>,
+      strike: (children) => <del>{children}</del>,
+      code: (children) => <code>{children}</code>,
     },
     nodeResolvers: {
       heading: (children, props) => {
@@ -39,7 +48,11 @@ export default function RichText({ content, className }: RichTextProps) {
               </h1>
             )
           case 2:
-            return <h2>{children}</h2>
+            return (
+              <h2 className="typography-text typography-h3 dark variant-lg">
+                {children}
+              </h2>
+            )
           case 3:
             return (
               <h3 className="typography-text typography-h3 dark variant-lg">

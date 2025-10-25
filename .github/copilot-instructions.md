@@ -46,11 +46,12 @@ const components = {
 **New component checklist**:
 
 1. Create `src/components/storyblok/ComponentName/` folder
-2. Add `ComponentName.tsx` with `storyblokEditable(blok)` spread
+2. Add `ComponentName.tsx`
 3. Optional: Add `ComponentName.css` (colocated styles)
-4. Create `index.ts` barrel export
-5. **Register in `src/lib/storyblok.ts`** (snake_case key)
-6. Run `yarn generate-types` to update TypeScript definitions
+4. Ensure CSS is loaded via `getInlineStyles("ComponentName.css")`
+5. Create `index.ts` barrel export
+6. **Register in `src/lib/storyblok.ts`** (snake_case key)
+7. Run `yarn generate-types` to update TypeScript definitions
 
 ### Type Generation System
 
@@ -62,7 +63,7 @@ const components = {
 ### Server-Only Styling Pattern
 
 - **No CSS-in-JS**: Use plain CSS files colocated with components
-- **Server injection**: `getInlineStyles("ComponentName")` reads CSS file at build time
+- **Server injection**: `getInlineStyles("ComponentName.css")` reads CSS file at build time
 - Pattern: `<style>{styles}</style>` in component (avoids client hydration issues)
 - Paths tried: `ui/`, `icons/`, `utils/`, `storyblok/ComponentName/ComponentName.css`
 
@@ -149,9 +150,9 @@ export default function ComponentName({ blok }: ComponentNameProps) {
 ### Rich Text
 
 - Rich text fields have type `RichtextStoryblok`
-- Use the `<RichText>` component from `@/components/RichText` for rendering
+- Use the `<RichText>` component from `@/components/ui/RichText` for rendering
 - Example: `{blok.body && <RichText content={blok.body} />}`
-- Powered by `@storyblok/richtext` package with `richTextResolver()`
+- Powered by `storyblok-rich-text-react-renderer` package with React component output (no `dangerouslySetInnerHTML` needed)
 
 ## Development & Deployment
 
@@ -205,7 +206,7 @@ yarn type-check       # TypeScript compiler (strict mode)
 
 ❌ **Don't** import from `@storyblok/react` - always use `@storyblok/react/rsc`  
 ❌ **Don't** register components in `StoryblokProvider` - use `src/lib/storyblok.ts` components object  
-❌ **Don't** use `dangerouslySetInnerHTML` - use server-side `getInlineStyles()` pattern  
+❌ **Don't** use `dangerouslySetInnerHTML` for rich text - use `<RichText>` component with `storyblok-rich-text-react-renderer`  
 ❌ **Don't** forget to run `yarn generate-types` after adding/modifying Storyblok content types
 
 ✅ **Do** default to Server Components unless client interactivity needed  
