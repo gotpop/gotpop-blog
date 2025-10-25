@@ -19,4 +19,5 @@ box-grid {
   display: grid;
   grid-template-columns: 1fr;
   padding: var(--spacing-lg);
+  grid-column: content;
 }

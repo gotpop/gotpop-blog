@@ -1,9 +1,5 @@
 import type { ReactNode } from "react"
 
-// import { getInlineStyles } from "@/utils/inline-styles"
-
-// import
-
 type ValidTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "small" | "time"
 
 interface TypographyProps {
@@ -13,6 +9,7 @@ interface TypographyProps {
   variant?: "sm" | "base" | "md" | "lg" | "xl" | "xxl" | "hero"
   className?: string
   id?: string
+  dateTime?: string
 }
 
 export default function Typography({
@@ -22,9 +19,8 @@ export default function Typography({
   variant,
   className = "",
   id = "",
+  dateTime = undefined,
 }: TypographyProps) {
-  // const styles = getInlineStyles("Typography.css")
-
   const validTags: ValidTag[] = [
     "h1",
     "h2",
@@ -57,7 +53,7 @@ export default function Typography({
     .join(" ")
 
   return (
-    <Element className={classNames} id={id || undefined}>
+    <Element dateTime={dateTime} className={classNames} id={id || undefined}>
       {children}
     </Element>
   )

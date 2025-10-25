@@ -32,7 +32,7 @@ export default function ClientSidePostsApp({
   return (
     <div className="filters-with-output">
       <box-hero>
-        <div className="hero-content">
+        <box-grid>
           <ClientSidePostsFilter
             availableTags={availableTags}
             onTagChange={setCurrentTag}
@@ -42,7 +42,7 @@ export default function ClientSidePostsApp({
             onSortChange={setCurrentSort}
             currentSort={currentSort}
           />
-        </div>
+        </box-grid>
       </box-hero>
       <output className="posts-grid" aria-live="polite">
         {output}

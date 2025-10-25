@@ -17,12 +17,19 @@ export default function PostHeader({
 
   return (
     <box-hero aria-labelledby={id}>
-      <div className="hero-content">
+      <box-grid>
         <Typography tag="h1" variant="lg" shade="dark" id={id}>
           {heading}
         </Typography>
-        <time dateTime={publishedDate}>{formatDate(publishedDate)}</time>
-      </div>
+        <Typography
+          tag="time"
+          variant="base"
+          shade="dark"
+          dateTime={publishedDate}
+        >
+          {formatDate(publishedDate)}
+        </Typography>
+      </box-grid>
     </box-hero>
   )
 }
