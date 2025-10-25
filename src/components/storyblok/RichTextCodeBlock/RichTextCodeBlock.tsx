@@ -11,9 +11,9 @@ export default function RichTextCodeBlock({ blok }: RichTextCodeBlockProps) {
   const styles = getInlineStyles("RichTextCodeBlock.css")
 
   return (
-    <div className="rich-text-code-block">
+    <code-block>
       {styles && <style>{styles}</style>}
       {content && <RichText content={content} />}
-    </div>
+    </code-block>
   )
 }

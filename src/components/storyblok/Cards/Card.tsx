@@ -1,15 +1,14 @@
 import Link from "next/link"
 import { getStoryPath } from "@/lib/storyblok-utils"
+import Typography from "@/storyblok/Typography"
 import type { CardStoryblok } from "@/types/storyblok-components"
 import { fetchStoryByUuid } from "@/utils/storyblok-fetch"
-
-import Typography from "../Typography"
 
 interface CardProps {
   blok: CardStoryblok
 }
 
-export default async function Card({ blok }: CardProps) {
+export async function Card({ blok }: CardProps) {
   const { cards } = blok
 
   if (!cards?.[0]) {

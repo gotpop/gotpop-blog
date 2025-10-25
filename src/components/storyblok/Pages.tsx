@@ -1,7 +1,9 @@
 import type { ReactNode } from "react"
-import BaselineStatus from "@/components/ui/BaselineStatus"
-import PageLayout from "@/components/ui/PageLayout"
-import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
+import {
+  BaselineStatus,
+  PageLayout,
+  StoryblokServerComponent,
+} from "@/components"
 import type {
   PageDefaultStoryblok,
   PageFilterStoryblok,

@@ -1,19 +1,16 @@
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
-
-// Import all Storyblok components
-import Card from "@/components/storyblok/Card"
-import Cards from "@/components/storyblok/Cards"
-import FilterContent from "@/components/storyblok/FilterContent"
-import FooterDefault from "@/components/storyblok/FooterDefault"
-import HeaderDefault from "@/components/storyblok/HeaderDefault"
-import HeroDefault from "@/components/storyblok/HeroDefault"
-import LogoDefault from "@/components/storyblok/LogoDefault"
-import NavDefault from "@/components/storyblok/NavDefault"
-import NavItemDefault from "@/components/storyblok/NavItemDefault"
-import { PageDefault, PageFilter, PagePost } from "@/components/storyblok/Pages"
-import RichTextBlock from "@/components/storyblok/RichTextBlock"
-import RichTextCodeBlock from "@/components/storyblok/RichTextCodeBlock"
-import SnippetBlock from "@/components/storyblok/SnippetBlock"
+import { Card, Cards } from "@/storyblok/Cards"
+import FilterContent from "@/storyblok/FilterContent"
+import FooterDefault from "@/storyblok/FooterDefault"
+import HeaderDefault from "@/storyblok/HeaderDefault"
+import HeroDefault from "@/storyblok/HeroDefault"
+import LogoDefault from "@/storyblok/LogoDefault"
+import NavDefault from "@/storyblok/NavDefault"
+import NavItemDefault from "@/storyblok/NavItemDefault"
+import { PageDefault, PageFilter, PagePost } from "@/storyblok/Pages"
+import RichTextBlock from "@/storyblok/RichTextBlock"
+import RichTextCodeBlock from "@/storyblok/RichTextCodeBlock"
+import SnippetBlock from "@/storyblok/SnippetBlock"
 
 const components = {
   card: Card,

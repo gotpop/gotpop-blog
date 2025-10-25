@@ -1,7 +1,7 @@
-import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
-import { getStoryblokApi } from "@/lib/storyblok"
+import { StoryblokServerComponent } from "@/components"
 import type { HeaderDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
+import { fetchStoryByUuid } from "@/utils/storyblok-fetch"
 
 interface HeaderDefaultProps {
   blok?: HeaderDefaultStoryblok | null
@@ -17,18 +17,8 @@ export default async function HeaderDefault({
   let headerData = blok
 
   if (uuid && !blok) {
-    try {
-      const storyblokApi = getStoryblokApi()
-      const { data } = await storyblokApi.get(`cdn/stories`, {
-        version: "draft",
-        by_uuids: uuid,
-      })
-
-      headerData = data?.stories?.[0]?.content
-    } catch (error) {
-      console.error("Failed to fetch header:", error)
-      return null
-    }
+    const story = await fetchStoryByUuid(uuid)
+    headerData = story?.content
   }
 
   if (!headerData) {
