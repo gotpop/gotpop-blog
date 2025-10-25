@@ -44,12 +44,16 @@ export async function PageFilter({ blok }: { blok: PageFilterStoryblok }) {
 
 export async function PagePost({ blok }: { blok: PagePostStoryblok }) {
   const { Header, Footer, Heading, published_date, body } = blok
+  const blocks = body?.map((nestedBlok) => (
+    <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+  ))
 
   return (
     <BasePage Header={Header} Footer={Footer} body={body}>
       <PostHeader heading={Heading} publishedDate={published_date} />
       <main-content>
         <BaselineStatus featureId="font-size-adjust" />
+        {blocks}
       </main-content>
     </BasePage>
   )
