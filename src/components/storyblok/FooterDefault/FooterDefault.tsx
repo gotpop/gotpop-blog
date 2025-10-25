@@ -1,7 +1,7 @@
-import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
-import { getStoryblokApi } from "@/lib/storyblok"
+import { StoryblokServerComponent } from "@/components"
 import type { FooterDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
+import { fetchStoryByUuid } from "@/utils/storyblok-fetch"
 
 interface FooterDefaultProps {
   blok?: FooterDefaultStoryblok | null
@@ -16,20 +16,9 @@ export default async function FooterDefault({
 
   let footerData = blok
 
-  // If UUID is provided, fetch the data
   if (uuid && !blok) {
-    try {
-      const storyblokApi = getStoryblokApi()
-      const { data } = await storyblokApi.get(`cdn/stories`, {
-        version: "draft",
-        by_uuids: uuid,
-      })
-
-      footerData = data?.stories?.[0]?.content
-    } catch (error) {
-      console.error("Failed to fetch footer:", error)
-      return null
-    }
+    const story = await fetchStoryByUuid(uuid)
+    footerData = story?.content
   }
 
   if (!footerData) {
@@ -42,8 +31,7 @@ export default async function FooterDefault({
     <footer className="footer">
       {styles && <style>{styles}</style>}
       {logo?.[0] && <StoryblokServerComponent blok={logo[0]} />}
-      {/* {nav?.[0] && <StoryblokServerComponent blok={nav[0]} />} */}
-      <small className="footer__copyright">
+      <small className="footer_copyright">
         ©GotPop {new Date().getFullYear()}
       </small>
     </footer>
