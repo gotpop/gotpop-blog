@@ -1,4 +1,4 @@
-import Card from "./Card"
+import Card from "./Cards"
 import Cards from "./Cards"
 import FilterContent from "./FilterContent"
 import FooterDefault from "./FooterDefault"
