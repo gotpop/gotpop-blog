@@ -7,112 +7,19 @@ main {
   grid-column: breakout;
 }
 
-/* Global property definitions for box-hero (these are non-inheriting) */
-@property --box-hero-hs {
-  syntax: "*";
-  inherits: false;
-  initial-value: 3rem;
+box-hero {
+  background-image: var(--crosshatch);
+  background-size:
+    1rem 1rem,
+    1rem 1rem;
+  grid-column: breakout;
+  padding: var(--spacing-base);
 }
 
-@property --box-hero-layout {
-  syntax: "*";
-  inherits: false;
-  initial-value: [f-start] 3rem [h-start] 1fr [h-end] 3rem [f-end];
-}
-
-@property --box-hero-row {
-  syntax: "*";
-  inherits: false;
-  initial-value: [f-start] minmax(3rem, auto) [h-start] max-content [h-end]
-    minmax(3rem, auto) [f-end];
-}
-
-@property --box-hero-line-color {
-  syntax: "*";
-  inherits: false;
-  initial-value: rgba(0, 0, 0, 0.1);
-}
-
-@property --box-hero-l {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0.625rem;
-}
-
-@property --box-hero-w {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0.0625rem;
-}
-
-@property --box-hero-bg-position {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0 0;
-}
-
-@property --box-hero-bg-size {
-  syntax: "*";
-  inherits: false;
-  initial-value: 1rem 1rem;
-}
-
-@scope (box-hero) {
-  :scope {
-    /* Use the non-inheriting properties with namespaced names */
-    --box-hero-hs: 3rem;
-    --box-hero-layout: [f-start] var(--box-hero-hs) [h-start] 1fr [h-end]
-      var(--box-hero-hs) [f-end];
-    --box-hero-row: [f-start] minmax(var(--box-hero-hs), auto) [h-start]
-      max-content [h-end] minmax(3rem, auto) [f-end];
-    --box-hero-line-color: rgb(from var(--secondary-100) r g b / 0.7);
-    --box-hero-l: 0.625rem;
-    --box-hero-w: 0.0625rem;
-    --box-hero-bg-position: 0 0;
-    --box-hero-bg-size: 1rem 1rem;
-
-    grid-column: breakout;
-
-    background-image:
-      repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent var(--box-hero-l),
-        var(--box-hero-line-color) var(--box-hero-l),
-        var(--box-hero-line-color) calc(var(--box-hero-l) + var(--box-hero-w))
-      ),
-      repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent var(--box-hero-l),
-        var(--box-hero-line-color) var(--box-hero-l),
-        var(--box-hero-line-color) calc(var(--box-hero-l) + var(--box-hero-w))
-      );
-    background-position:
-      var(--box-hero-bg-position), var(--box-hero-bg-position);
-    background-size: var(--box-hero-bg-size), var(--box-hero-bg-size);
-    display: grid;
-    grid-column: breakout;
-    grid-template: var(--box-hero-row) / var(--box-hero-layout);
-    height: calc-size(min-content, round(size, 1rem));
-    padding: 1rem;
-    view-transition-name: hero-home;
-
-    @media screen and (width >= 768px) {
-      padding: 1rem;
-    }
-
-    &::before {
-      background-color: oklch(1 0 0 / 0.9);
-      background-image: paint(grid);
-      content: "";
-      grid-area: f;
-    }
-  }
-
-  .hero-content {
-    grid-area: h;
-    display: flex;
-    gap: var(--spacing-md);
-  }
+box-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: var(--spacing-lg);
+  background-color: var(--light-100);
+  background-image: paint(grid);
 }

@@ -4,11 +4,11 @@
 declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
-      "box-grid": React.DetailedHTMLProps<
+      "box-hero": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >
-      "box-hero": React.DetailedHTMLProps<
+      "box-grid": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >
