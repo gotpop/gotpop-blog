@@ -9,25 +9,6 @@ blockquote {
   }
 }
 
-/* :where(h1, h2, h3, h4, h5, h6):not([class]) {
-  color: --get-font-colour-heading(attr(variant type(<custom-ident>), lg));
-  font: --font(heading, attr(variant type(<custom-ident>), lg));
-  margin-block: 0 attr(bottom rem, unset);
-  padding-block-start: calc(round(1cap, attr(top rem, 0)) - 1cap);
-  text-wrap: balance;
-}
-
-p:not([class]) {
-  color: --get-font-colour-body(attr(variant type(<custom-ident>), base));
-  font: --font(body, attr(variant type(<custom-ident>), base));
-  letter-spacing: 0.015em;
-  margin-block: 0 attr(bottom rem, unset);
-  max-width: 60ch;
-  padding-block-start: calc(round(up, 1cap, attr(top rem, 0)) - 1cap);
-  text-wrap: pretty;
-  text-align: attr(align type(<custom-ident>), initial);
-} */
-
 :where(p, li) > code {
   background-color: --opacity(var(--light-200), 0.8);
   color: var(--triad-2);
