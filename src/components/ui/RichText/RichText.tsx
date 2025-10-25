@@ -48,7 +48,11 @@ export default function RichText({ content, className }: RichTextProps) {
               </h1>
             )
           case 2:
-            return <h2>{children}</h2>
+            return (
+              <h2 className="typography-text typography-h3 dark variant-lg">
+                {children}
+              </h2>
+            )
           case 3:
             return (
               <h3 className="typography-text typography-h3 dark variant-lg">
