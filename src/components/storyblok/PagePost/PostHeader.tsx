@@ -1,5 +1,4 @@
 import { useId } from "react"
-import Hero from "@/components/ui/Hero"
 import { formatDate } from "@/utils/date-formatter"
 import Typography from "../Typography"
 
@@ -14,14 +13,23 @@ export default function PostHeader({
 }: PostHeaderProps) {
   const id = useId()
 
+  if (!publishedDate || !heading) return null
+
   return (
-    <Hero id={id} className="page-post-header">
-      <Typography tag="h1" variant="lg" shade="dark" id={id}>
-        {heading}
-      </Typography>
-      {publishedDate && (
-        <time dateTime={publishedDate}>{formatDate(publishedDate)}</time>
-      )}
-    </Hero>
+    <box-hero aria-labelledby={id}>
+      <box-grid>
+        <Typography tag="h1" variant="lg" shade="dark" id={id}>
+          {heading}
+        </Typography>
+        <Typography
+          tag="time"
+          variant="base"
+          shade="dark"
+          dateTime={publishedDate}
+        >
+          {formatDate(publishedDate)}
+        </Typography>
+      </box-grid>
+    </box-hero>
   )
 }

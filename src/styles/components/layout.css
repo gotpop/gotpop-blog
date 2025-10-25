@@ -1,0 +1,23 @@
+main {
+  display: grid;
+  grid-area: main / breakout;
+  grid-template-columns: subgrid;
+  grid-template-rows: min-content;
+  row-gap: var(--spacing-xl);
+  grid-column: breakout;
+}
+
+box-hero {
+  background: var(--crosshatch);
+  grid-column: breakout;
+  padding: var(--spacing-base);
+}
+
+box-grid {
+  background-color: var(--light-100);
+  background-image: paint(grid);
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: var(--spacing-lg);
+  grid-column: content;
+}

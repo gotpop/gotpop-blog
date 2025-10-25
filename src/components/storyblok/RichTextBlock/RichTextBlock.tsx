@@ -1,4 +1,3 @@
-import BoxGrid from "@/components/ui/BoxGrid"
 import RichText from "@/components/ui/RichText"
 import type { RichTextBlockStoryblok } from "@/types/storyblok-components"
 
@@ -9,5 +8,5 @@ interface RichTextBlockProps {
 export default function RichTextBlock({ blok }: RichTextBlockProps) {
   const { content } = blok
 
-  return <BoxGrid>{content && <RichText content={content} />}</BoxGrid>
+  return <box-grid>{content && <RichText content={content} />}</box-grid>
 }
