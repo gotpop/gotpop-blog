@@ -5,18 +5,20 @@
   --box-hero-bg-position: 0 0;
   --box-hero-bg-size: 1rem 1rem;
   --diagonal-1: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent var(--box-hero-l),
-    var(--box-hero-line-color) var(--box-hero-l),
-    var(--box-hero-line-color) calc(var(--box-hero-l) + var(--box-hero-w))
-  );
+      45deg,
+      transparent,
+      transparent var(--box-hero-l),
+      var(--box-hero-line-color) var(--box-hero-l),
+      var(--box-hero-line-color) calc(var(--box-hero-l) + var(--box-hero-w))
+    )
+    0 0 / var(--box-hero-bg-size);
   --diagonal-2: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent var(--box-hero-l),
-    var(--box-hero-line-color) var(--box-hero-l),
-    var(--box-hero-line-color) calc(var(--box-hero-l) + var(--box-hero-w))
-  );
+      -45deg,
+      transparent,
+      transparent var(--box-hero-l),
+      var(--box-hero-line-color) var(--box-hero-l),
+      var(--box-hero-line-color) calc(var(--box-hero-l) + var(--box-hero-w))
+    )
+    0 0 / var(--box-hero-bg-size);
   --crosshatch: var(--diagonal-1), var(--diagonal-2);
 }

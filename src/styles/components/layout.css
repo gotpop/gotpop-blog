@@ -8,18 +8,15 @@ main {
 }
 
 box-hero {
-  background-image: var(--crosshatch);
-  background-size:
-    1rem 1rem,
-    1rem 1rem;
+  background: var(--crosshatch);
   grid-column: breakout;
   padding: var(--spacing-base);
 }
 
 box-grid {
+  background-color: var(--light-100);
+  background-image: paint(grid);
   display: grid;
   grid-template-columns: 1fr;
   padding: var(--spacing-lg);
-  background-color: var(--light-100);
-  background-image: paint(grid);
 }
