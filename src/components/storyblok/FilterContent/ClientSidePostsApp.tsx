@@ -32,15 +32,17 @@ export default function ClientSidePostsApp({
   return (
     <div className="filters-with-output">
       <div className="posts-filters">
-        <ClientSidePostsFilter
-          availableTags={availableTags}
-          onTagChange={setCurrentTag}
-          currentTag={currentTag}
-        />
-        <ClientSidePostsSorter
-          onSortChange={setCurrentSort}
-          currentSort={currentSort}
-        />
+        <div className="hero-content">
+          <ClientSidePostsFilter
+            availableTags={availableTags}
+            onTagChange={setCurrentTag}
+            currentTag={currentTag}
+          />
+          <ClientSidePostsSorter
+            onSortChange={setCurrentSort}
+            currentSort={currentSort}
+          />
+        </div>
       </div>
       <output className="posts-grid" aria-live="polite">
         {output}

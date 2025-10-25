@@ -9,7 +9,7 @@
   }
 
   .filters-with-output {
-    grid-column: content;
+    grid-column: breakout;
     display: grid;
     row-gap: var(--spacing-md);
     grid-template-columns: subgrid;
