@@ -116,22 +116,3 @@ main {
     gap: var(--spacing-md);
   }
 }
-
-/* Example: What happens when another component tries to use these properties */
-.some-other-component {
-  /* This WILL work - you can set the property */
-  --box-hero-hs: 5rem;
-  --box-hero-line-color: red;
-
-  /* You can use them in styles */
-  padding: var(--box-hero-hs); /* Uses 5rem */
-  border-color: var(--box-hero-line-color); /* Uses red */
-
-  /* But children WON'T inherit these values */
-}
-
-.some-other-component .child-element {
-  /* These will use the INITIAL VALUES, not the parent's overrides */
-  padding: var(--box-hero-hs); /* Uses 3rem (initial-value), NOT 5rem */
-  color: var(--box-hero-line-color); /* Uses rgba(0,0,0,0.1), NOT red */
-}

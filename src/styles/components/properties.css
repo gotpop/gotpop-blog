@@ -1,3 +1,4 @@
+/* All @property declarations (non-inherit) */
 @property --gutter-columns {
   syntax: "*";
   initial-value: 0.5rem;
