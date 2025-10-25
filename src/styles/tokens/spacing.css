@@ -7,4 +7,9 @@
   --spacing-lg: calc(var(--spacing-base) * 3);
   --spacing-xl: calc(var(--spacing-base) * 4);
   --spacing-xxl: calc(var(--spacing-base) * 5);
+
+  /* Rounding */
+  --round-up: calc-size(max-content, round(up, size, 1rem));
+  --round-up-stretch: calc-size(stretch, round(up, size, 1rem));
+  --round-down: calc-size(max-content, round(down, size, 1rem));
 }
