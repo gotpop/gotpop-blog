@@ -16,8 +16,14 @@ box-hero {
 box-grid {
   background-color: var(--light-100);
   background-image: paint(grid);
+  column-gap: var(--column-gap, 0);
   display: grid;
-  grid-template-columns: 1fr;
+  grid-column: var(--grid-column, content);
+  grid-template-columns: var(--columns, 1fr);
   padding: var(--spacing-lg);
-  grid-column: content;
+
+  &[auto-columns] {
+    --column-gap: var(--spacing-md);
+    --columns: repeat(auto-fit, minmax(5rem, 12rem));
+  }
 }
