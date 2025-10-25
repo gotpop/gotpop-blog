@@ -46,11 +46,12 @@ const components = {
 **New component checklist**:
 
 1. Create `src/components/storyblok/ComponentName/` folder
-2. Add `ComponentName.tsx` with `storyblokEditable(blok)` spread
+2. Add `ComponentName.tsx`
 3. Optional: Add `ComponentName.css` (colocated styles)
-4. Create `index.ts` barrel export
-5. **Register in `src/lib/storyblok.ts`** (snake_case key)
-6. Run `yarn generate-types` to update TypeScript definitions
+4. Ensure CSS is loaded via `getInlineStyles("ComponentName.css")`
+5. Create `index.ts` barrel export
+6. **Register in `src/lib/storyblok.ts`** (snake_case key)
+7. Run `yarn generate-types` to update TypeScript definitions
 
 ### Type Generation System
 
@@ -62,7 +63,7 @@ const components = {
 ### Server-Only Styling Pattern
 
 - **No CSS-in-JS**: Use plain CSS files colocated with components
-- **Server injection**: `getInlineStyles("ComponentName")` reads CSS file at build time
+- **Server injection**: `getInlineStyles("ComponentName.css")` reads CSS file at build time
 - Pattern: `<style>{styles}</style>` in component (avoids client hydration issues)
 - Paths tried: `ui/`, `icons/`, `utils/`, `storyblok/ComponentName/ComponentName.css`
 

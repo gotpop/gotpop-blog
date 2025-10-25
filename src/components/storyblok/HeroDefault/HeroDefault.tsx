@@ -17,22 +17,24 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
   return (
     <section className="hero" aria-labelledby={id}>
       {styles && <style>{styles}</style>}
-      {heading && (
-        <Typography
-          className="hero-home-heading"
-          id={id}
-          shade="dark"
-          tag="h1"
-          variant="hero"
-        >
-          {heading}
-        </Typography>
-      )}
-      {subheading && (
-        <div className="hero-home-subheading">
-          <RichText content={subheading} />
-        </div>
-      )}
+      <div className="hero-content">
+        {heading && (
+          <Typography
+            className="hero-home-heading"
+            id={id}
+            shade="dark"
+            tag="h1"
+            variant="hero"
+          >
+            {heading}
+          </Typography>
+        )}
+        {subheading && (
+          <div className="hero-home-subheading">
+            <RichText content={subheading} />
+          </div>
+        )}
+      </div>
     </section>
   )
 }

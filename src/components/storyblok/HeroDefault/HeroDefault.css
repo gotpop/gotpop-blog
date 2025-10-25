@@ -1,37 +1,32 @@
 @scope {
   & {
-    --hero-spacing: 3rem;
-    --layout: [full-start] var(--hero-spacing) [hero-content-start] 1fr
-      [hero-content-end] var(--hero-spacing) [full-end];
-    --row: [full-start] minmax(var(--hero-spacing), auto) [hero-content-start
-      heading-start] max-content [heading-end body-start] max-content [body-end
-      hero-content-end] minmax(3rem, auto) [full-end];
-
+    --hs: 3rem;
+    --layout: [f-start] var(--hs) [h-start] 1fr [h-end] var(--hs) [f-end];
+    --row: [f-start] minmax(var(--hs), auto) [h-start] max-content [h-end]
+      minmax(3rem, auto) [f-end];
     --line-color: rgb(from var(--secondary-100) r g b / 0.7);
-    --line-spacing: 0.625rem;
-    --line-width: 0.0625rem; /* 0.6875rem - 0.625rem = 0.0625rem */
+    --l: 0.625rem;
+    --w: 0.0625rem;
     --bg-position: 0 0;
     --bg-size: 1rem 1rem;
 
-    /* background-color: rgb(255 255 255 / 0.5); */
     background-image:
       repeating-linear-gradient(
         45deg,
         transparent,
-        transparent var(--line-spacing),
-        var(--line-color) var(--line-spacing),
-        var(--line-color) calc(var(--line-spacing) + var(--line-width))
+        transparent var(--l),
+        var(--line-color) var(--l),
+        var(--line-color) calc(var(--l) + var(--w))
       ),
       repeating-linear-gradient(
         -45deg,
         transparent,
-        transparent var(--line-spacing),
-        var(--line-color) var(--line-spacing),
-        var(--line-color) calc(var(--line-spacing) + var(--line-width))
+        transparent var(--l),
+        var(--line-color) var(--l),
+        var(--line-color) calc(var(--l) + var(--w))
       );
     background-position: var(--bg-position), var(--bg-position);
     background-size: var(--bg-size), var(--bg-size);
-
     display: grid;
     grid-column: breakout;
     grid-template: var(--row) / var(--layout);
@@ -47,15 +42,11 @@
       background-color: oklch(1 0 0 / 0.9);
       background-image: paint(grid);
       content: "";
-      grid-area: full;
+      grid-area: f;
     }
 
-    .hero-home-heading {
-      grid-area: heading / hero-content;
-    }
-
-    .hero-home-subheading {
-      grid-area: body / hero-content;
+    .hero-content {
+      grid-area: h;
     }
   }
 }
