@@ -1,8 +1,5 @@
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
-
-// Import all Storyblok components
-import Card from "@/components/storyblok/Card"
-import Cards from "@/components/storyblok/Cards"
+import { Card, Cards } from "@/components/storyblok/Cards"
 import FilterContent from "@/components/storyblok/FilterContent"
 import FooterDefault from "@/components/storyblok/FooterDefault"
 import HeaderDefault from "@/components/storyblok/HeaderDefault"

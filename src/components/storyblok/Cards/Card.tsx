@@ -9,7 +9,7 @@ interface CardProps {
   blok: CardStoryblok
 }
 
-export default async function Card({ blok }: CardProps) {
+export async function Card({ blok }: CardProps) {
   const { cards } = blok
 
   if (!cards?.[0]) {

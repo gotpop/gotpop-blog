@@ -6,7 +6,7 @@ interface CardsProps {
   blok: CardsStoryblok
 }
 
-export default function Cards({ blok }: CardsProps) {
+export function Cards({ blok }: CardsProps) {
   const styles = getInlineStyles("Cards.css")
 
   return (
