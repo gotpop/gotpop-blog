@@ -886,7 +886,7 @@
   resolved "https://registry.npmjs.org/@storyblok/region-helper/-/region-helper-1.3.1.tgz"
   integrity sha512-6Oc+8/qXGtUQio1dQddD4AakI1sDANg+cpliGA3oHM6hkAGXqNnR9HkskgBKotwUxvr9++nBGZQiHIw49IJQyA==
 
-"@storyblok/richtext@3.8.2", "@storyblok/richtext@^3.8.2":
+"@storyblok/richtext@3.8.2":
   version "3.8.2"
   resolved "https://registry.npmjs.org/@storyblok/richtext/-/richtext-3.8.2.tgz"
   integrity sha512-zI86BOE5hE8eqIwnOBi20Hl3/C9CpMha88Ni9gs2qf3ECTqYP40p0ZQ2oeYQOCsVCoxEOZcTDaeKg5+LSF6gxA==

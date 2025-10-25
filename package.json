@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "@storyblok/react": "^5.4.14",
-    "@storyblok/richtext": "^3.8.2",
     "baseline-status": "^1.0.11",
     "next": "15.5.4",
     "react": "19.1.0",

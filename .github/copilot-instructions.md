@@ -150,9 +150,9 @@ export default function ComponentName({ blok }: ComponentNameProps) {
 ### Rich Text
 
 - Rich text fields have type `RichtextStoryblok`
-- Use the `<RichText>` component from `@/components/RichText` for rendering
+- Use the `<RichText>` component from `@/components/ui/RichText` for rendering
 - Example: `{blok.body && <RichText content={blok.body} />}`
-- Powered by `@storyblok/richtext` package with `richTextResolver()`
+- Powered by `storyblok-rich-text-react-renderer` package with React component output (no `dangerouslySetInnerHTML` needed)
 
 ## Development & Deployment
 
@@ -206,7 +206,7 @@ yarn type-check       # TypeScript compiler (strict mode)
 
 ❌ **Don't** import from `@storyblok/react` - always use `@storyblok/react/rsc`  
 ❌ **Don't** register components in `StoryblokProvider` - use `src/lib/storyblok.ts` components object  
-❌ **Don't** use `dangerouslySetInnerHTML` - use server-side `getInlineStyles()` pattern  
+❌ **Don't** use `dangerouslySetInnerHTML` for rich text - use `<RichText>` component with `storyblok-rich-text-react-renderer`  
 ❌ **Don't** forget to run `yarn generate-types` after adding/modifying Storyblok content types
 
 ✅ **Do** default to Server Components unless client interactivity needed  
