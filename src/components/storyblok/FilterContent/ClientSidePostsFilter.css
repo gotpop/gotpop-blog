@@ -49,6 +49,8 @@
 
     .hero-content {
       grid-area: h;
+      display: flex;
+      gap: var(--spacing-md);
     }
   }
 
