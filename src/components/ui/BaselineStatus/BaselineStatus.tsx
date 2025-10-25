@@ -193,9 +193,9 @@ export default async function BaselineStatus({
   return (
     <div className={`baseline-status ${className || ""}`} data-status={status}>
       {styles && <style>{styles}</style>}
-      {data.name && <div className="feature-name">{data.name}</div>}
       <details>
         <summary>
+          {data.name && <div className="feature-name">{data.name}</div>}
           <BaselineIcon status={status} />
           <div className="baseline-status-title">
             <div>
