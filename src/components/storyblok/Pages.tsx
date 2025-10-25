@@ -10,7 +10,6 @@ import type {
 } from "@/types/storyblok-components"
 import PostHeader from "./PostHeader"
 
-// Shared base component for all page types
 interface BasePageProps {
   Header?: string
   Footer?: string
@@ -31,32 +30,19 @@ async function BasePage({ Header, Footer, body, children }: BasePageProps) {
   )
 }
 
-// PageDefault component
-interface PageDefaultProps {
-  blok: PageDefaultStoryblok
-}
-
-export async function PageDefault({ blok }: PageDefaultProps) {
+export async function PageDefault({ blok }: { blok: PageDefaultStoryblok }) {
   const { Header, Footer, body } = blok
+
   return <BasePage Header={Header} Footer={Footer} body={body} />
 }
 
-// PageFilter component
-interface PageFilterProps {
-  blok: PageFilterStoryblok
-}
-
-export async function PageFilter({ blok }: PageFilterProps) {
+export async function PageFilter({ blok }: { blok: PageFilterStoryblok }) {
   const { Header, Footer, body } = blok
+
   return <BasePage Header={Header} Footer={Footer} body={body} />
 }
 
-// PagePost component
-interface PagePostProps {
-  blok: PagePostStoryblok
-}
-
-export async function PagePost({ blok }: PagePostProps) {
+export async function PagePost({ blok }: { blok: PagePostStoryblok }) {
   const { Header, Footer, Heading, published_date, body } = blok
 
   return (
