@@ -48,13 +48,6 @@
     grid-column: content-start / content-end;
   }
 
-  .page-post-header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    grid-column: content-start / content-end;
-  }
-
   .main-content {
     grid-column: content-start / content-end;
     display: grid;
