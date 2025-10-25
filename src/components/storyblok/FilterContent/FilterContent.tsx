@@ -1,14 +1,9 @@
 import { Suspense } from "react"
-import type { FilterContentStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getAllPostsWithTags, getTagsFromDatasource } from "@/utils/tags"
 import ClientSidePostsApp from "./ClientSidePostsApp"
 
-interface FilterContentProps {
-  blok: FilterContentStoryblok
-}
-
-export default async function FilterContent({ blok }: FilterContentProps) {
+export default async function FilterContent() {
   const styles = getInlineStyles("FilterContent.css")
   const stylesCard = getInlineStyles("FilterContent/ClientSidePostCard.css")
 
