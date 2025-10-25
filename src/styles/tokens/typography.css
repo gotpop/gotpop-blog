@@ -26,8 +26,4 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-black: 900;
-
-  /* Font colour */
-  --heading-colour: var(--colour-light-1);
-  --body-colour: var(--colour-light-1);
 }
