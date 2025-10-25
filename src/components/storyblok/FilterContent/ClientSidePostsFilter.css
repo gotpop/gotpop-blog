@@ -1,28 +1,64 @@
 @scope {
   .posts-filters {
-    --even-odd: even;
-    --grid-horizontal-color: rgba(180, 180, 180, 0.5);
-    --grid-offset: centre;
-    --grid-vertical-color: rgba(200, 200, 200, 0.5);
-    --root-grid-size: 16px;
+    --hs: 3rem;
+    --layout: [f-start] var(--hs) [h-start] 1fr [h-end] var(--hs) [f-end];
+    --row: [f-start] minmax(var(--hs), auto) [h-start] max-content [h-end]
+      minmax(3rem, auto) [f-end];
+    --line-color: rgb(from var(--secondary-100) r g b / 0.7);
+    --l: 0.625rem;
+    --w: 0.0625rem;
+    --bg-position: 0 0;
+    --bg-size: 1rem 1rem;
 
-    background-color: white;
-    background-image: paint(grid);
-    display: flex;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column: content;
-    padding: var(--spacing-md);
-    view-transition-name: attr(id type(<custom-ident>), none);
-    column-gap: var(--spacing-md);
+    grid-column: breakout;
+
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent var(--l),
+        var(--line-color) var(--l),
+        var(--line-color) calc(var(--l) + var(--w))
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent var(--l),
+        var(--line-color) var(--l),
+        var(--line-color) calc(var(--l) + var(--w))
+      );
+    background-position: var(--bg-position), var(--bg-position);
+    background-size: var(--bg-size), var(--bg-size);
+    display: grid;
+    grid-column: breakout;
+    grid-template: var(--row) / var(--layout);
+    height: calc-size(min-content, round(size, 1rem));
+    padding: 1rem;
+    view-transition-name: hero-home;
+
+    @media screen and (width >= 768px) {
+      padding: 1rem;
+    }
+
+    &::before {
+      background-color: oklch(1 0 0 / 0.9);
+      background-image: paint(grid);
+      content: "";
+      grid-area: f;
+    }
+
+    .hero-content {
+      grid-area: h;
+      display: flex;
+      gap: var(--spacing-md);
+    }
   }
 
   .select-wrap {
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-    /* gap: var(--spacing-base); */
     background: var(--secondary-900);
-    /* padding-inline-start: var(--spacing-md); */
     min-width: var(--round-up);
   }
 

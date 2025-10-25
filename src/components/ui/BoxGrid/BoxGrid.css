@@ -1,0 +1,19 @@
+@scope {
+  & {
+    --root-grid-size: 16px;
+    --grid-vertical-color: rgba(200, 200, 200, 0.5);
+    --grid-horizontal-color: rgba(180, 180, 180, 0.5);
+    --even-odd: even;
+    --grid-offset: centre;
+
+    grid-column: content-start / content-end;
+    background-color: white;
+    background-image: paint(grid);
+    display: grid;
+    gap: var(--spacing-md);
+    grid-column: 1 / -1;
+    grid-row: span 3;
+    padding: var(--spacing-lg);
+    view-transition-name: attr(id type(<custom-ident>), none);
+  }
+}
