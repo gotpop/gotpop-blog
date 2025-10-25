@@ -32,7 +32,7 @@ export default function ClientSidePostsApp({
   return (
     <div className="filters-with-output">
       <box-hero>
-        <box-grid>
+        <box-grid auto-columns>
           <ClientSidePostsFilter
             availableTags={availableTags}
             onTagChange={setCurrentTag}
