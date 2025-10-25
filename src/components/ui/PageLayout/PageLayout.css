@@ -21,7 +21,6 @@
       [full-start] minmax(0, 1fr) [breakout-start] 0 [content-start]
       repeat(var(--repeat), var(--col-width)) [content-end] 0 [breakout-end]
       minmax(0, 1fr) [full-end];
-
     column-gap: var(--spacing-base);
 
     @media screen and (width >= 480px) {

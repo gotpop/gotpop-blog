@@ -1,21 +1,14 @@
 import { render } from "storyblok-rich-text-react-renderer"
 import type { RichtextStoryblok } from "@/types/storyblok-components"
 
-// import { getInlineStyles } from "@/utils/inline-styles"
-
 interface RichTextProps {
   content: RichtextStoryblok
   className?: string
 }
 
-export default function RichText({ content, className }: RichTextProps) {
+export default function RichText({ content }: RichTextProps) {
   if (!content) return null
 
-  // const styles = getInlineStyles("RichText.css")
-
-  const classNames = ["rich-text", className].filter(Boolean).join(" ")
-
-  // Use React renderer with custom resolvers
   const renderedContent = render(content, {
     markResolvers: {
       link: (children, props) => (
@@ -27,10 +20,8 @@ export default function RichText({ content, className }: RichTextProps) {
           {children}
         </a>
       ),
-      // Strip textStyle and styled marks - never render spans for colors/styles
       textStyle: (children) => <>{children}</>,
       styled: (children) => <>{children}</>,
-      // Use semantic HTML elements instead of spans
       bold: (children) => <strong>{children}</strong>,
       italic: (children) => <em>{children}</em>,
       underline: (children) => <u>{children}</u>,

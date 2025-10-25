@@ -7,6 +7,13 @@ main {
   grid-column: breakout;
 }
 
+main-content {
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-column: content;
+  grid-template-columns: subgrid;
+}
+
 box-hero {
   background: var(--crosshatch);
   grid-column: breakout;

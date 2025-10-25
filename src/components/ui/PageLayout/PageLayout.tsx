@@ -1,0 +1,28 @@
+import type { ReactNode } from "react"
+import FooterDefault from "@/components/storyblok/FooterDefault/FooterDefault"
+import HeaderDefault from "@/components/storyblok/HeaderDefault/HeaderDefault"
+import { getInlineStyles } from "@/utils/inline-styles"
+
+interface PageLayoutProps {
+  children?: ReactNode
+  className?: string
+  header?: string
+  footer?: string
+}
+
+export default function PageLayout({
+  children,
+  header,
+  footer,
+}: PageLayoutProps) {
+  const styles = getInlineStyles("PageLayout.css")
+
+  return (
+    <page-layout>
+      {styles && <style>{styles}</style>}
+      <HeaderDefault uuid={header} />
+      <main>{children}</main>
+      <FooterDefault uuid={footer} />
+    </page-layout>
+  )
+}

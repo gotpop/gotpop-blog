@@ -12,7 +12,6 @@ export default async function PostsPage({
   const styles = getInlineStyles("FilterContent.css")
   const posts = await getAllPostsWithTags()
 
-  // Filter posts based on current tag for SSG - this happens server-side
   const filteredPosts =
     currentTag === "all"
       ? posts
@@ -21,7 +20,6 @@ export default async function PostsPage({
           return tags.includes(currentTag)
         })
 
-  // Generate proper titles and descriptions
   const title =
     currentTag === "all" ? "All Posts" : `Posts tagged with "${currentTag}"`
   const description =

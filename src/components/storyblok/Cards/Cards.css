@@ -1,27 +1,9 @@
 @scope {
   & {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-column: content;
-    grid-template-rows: min-content;
-    grid-auto-rows: min-content;
-    gap: 1rem;
-  }
-
-  .card {
-    --root-grid-size: 16px;
-    --grid-vertical-color: rgba(200, 200, 200, 0.5);
-    --grid-horizontal-color: rgba(180, 180, 180, 0.5);
-    --even-odd: even;
-    --grid-offset: centre;
-
-    background-color: white;
-    background-image: paint(grid);
-    display: grid;
     gap: var(--spacing-md);
-    grid-column: 1 / -1;
-    grid-row: span 3;
-    padding: var(--spacing-lg);
-    view-transition-name: attr(id type(<custom-ident>), none);
+    grid-auto-rows: min-content;
+    grid-column: content;
+    grid-template-columns: subgrid;
   }
 }
