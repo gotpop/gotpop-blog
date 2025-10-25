@@ -7,9 +7,8 @@ import HeroDefault from "./HeroDefault"
 import LogoDefault from "./LogoDefault"
 import NavDefault from "./NavDefault"
 import NavItemDefault from "./NavItemDefault"
-import PageDefault from "./PageDefault"
-import PageFilter from "./PageFilter"
-import PagePost from "./PagePost"
+import { PageDefault, PageFilter, PagePost } from "./Pages"
+import PostHeader from "./PostHeader"
 import RichTextBlock from "./RichTextBlock"
 import RichTextCodeBlock from "./RichTextCodeBlock"
 import SnippetBlock from "./SnippetBlock"
@@ -30,4 +29,24 @@ export const components = {
   rich_text_block: RichTextBlock,
   rich_text_code_block: RichTextCodeBlock,
   snippet_block: SnippetBlock,
+}
+
+// Individual component exports
+export {
+  Card,
+  Cards,
+  FilterContent,
+  FooterDefault,
+  HeaderDefault,
+  HeroDefault,
+  LogoDefault,
+  NavDefault,
+  NavItemDefault,
+  PageDefault,
+  PageFilter,
+  PagePost,
+  PostHeader,
+  RichTextBlock,
+  RichTextCodeBlock,
+  SnippetBlock,
 }
