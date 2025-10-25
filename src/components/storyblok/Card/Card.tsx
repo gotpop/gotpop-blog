@@ -34,22 +34,16 @@ export default async function Card({ blok }: CardProps) {
   const description = story.content?.description || ""
 
   return (
-    <div className="card">
-      <div className="card-content">
-        {title && (
-          <Typography tag="h3" variant="lg" shade="dark">
-            {title}
-          </Typography>
-        )}
-        {description && (
-          <Typography tag="p" variant="base" shade="dark">
-            {description}
-          </Typography>
-        )}
-        <Link href={linkPath} className="card-link">
-          Read more
-        </Link>
-      </div>
-    </div>
+    <box-grid>
+      <Typography tag="h3" variant="lg" shade="dark">
+        {title}
+      </Typography>
+      <Typography tag="p" variant="base" shade="dark">
+        {description}
+      </Typography>
+      <Link href={linkPath} className="card-link">
+        Read more
+      </Link>
+    </box-grid>
   )
 }
