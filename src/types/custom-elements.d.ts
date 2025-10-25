@@ -4,6 +4,10 @@
 declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
+      "page-layout": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >
       "main-content": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
