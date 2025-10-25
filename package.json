@@ -31,11 +31,11 @@
     "node": ">=22.20.0"
   },
   "dependencies": {
-    "@storyblok/react": "^5.4.14",
+    "@storyblok/react": "^5.4.17",
     "baseline-status": "^1.0.11",
-    "next": "15.5.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "next": "16.0.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-icons": "^5.5.0",
     "server-only": "^0.0.1",
     "storyblok-rich-text-react-renderer": "^3.0.1"
@@ -43,8 +43,8 @@
   "devDependencies": {
     "@biomejs/biome": "^2.2.6",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
     "prettier": "^3.6.2",
     "storyblok": "^4.6.9",
     "storyblok-generate-ts": "^2.2.0",
@@ -71,5 +71,9 @@
     "tabWidth": 2,
     "printWidth": 80,
     "arrowParens": "always"
+  },
+  "resolutions": {
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2"
   }
 }
