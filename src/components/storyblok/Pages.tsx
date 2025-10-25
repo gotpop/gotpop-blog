@@ -49,12 +49,12 @@ export async function PagePost({ blok }: { blok: PagePostStoryblok }) {
   ))
 
   return (
-    <BasePage Header={Header} Footer={Footer} body={body}>
+    <PageLayout header={Header} footer={Footer}>
       <PostHeader heading={Heading} publishedDate={published_date} />
       <main-content>
         <BaselineStatus featureId="font-size-adjust" />
         {blocks}
       </main-content>
-    </BasePage>
+    </PageLayout>
   )
 }
