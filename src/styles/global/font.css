@@ -9,58 +9,17 @@
 /* 7  inside quotes, css properties, few chars */
 /* 8  few chars */
 
-@font-palette-values --bash {
+@font-palette-values --github {
   font-family: "Monaspace";
+  /* prettier-ignore */
   override-colors:
-    0 hsl(225 100% 40%),
-    1 hsl(250 100% 80%),
-    2 hsl(225 100% 40%),
-    3 hsl(225 100% 40%),
-    4 hsl(270 50% 40%),
-    5 hsl(210 40% 2%),
-    6 hsl(210 10% 30%),
-    7 hsl(327 100% 54%),
-    8 hsl(120 100% 50%);
-}
-
-@font-palette-values --css {
-  font-family: "Monaspace";
-  override-colors:
-    0 red,
-    1 lightblue,
-    2 yellow,
-    3 purple,
-    4 green,
-    5 orange,
-    6 black,
-    7 hotpink,
-    8 lime;
-}
-
-@font-palette-values --html {
-  font-family: "Monaspace";
-  override-colors:
-    0 hotpink,
-    1 lightblue,
-    2 aqua,
-    3 purple,
-    4 pink,
-    5 salmon,
-    6 black,
-    7 hotpink,
-    8 purple;
-}
-
-@font-palette-values --js {
-  font-family: "Monaspace";
-  override-colors:
-    0 red,
-    1 lightblue,
-    2 yellow,
-    3 purple,
-    4 green,
-    5 orange,
-    6 black,
-    7 hotpink,
-    8 lime;
+    0 #c06eff, /* keywords - Purple 2 */
+    1 #d0b0ff, /* comments - Purple 1 */
+    2 #d0b0ff, /* literals - Purple 1 */
+    3 #c06eff, /* numbers - Purple 2 */
+    4 #d0b0ff, /* functions - Purple 1 */
+    5 #c06eff, /* js others - Purple 2 */
+    6 #d0b0ff, /* not in use - Purple 1 */
+    7 #c06eff, /* strings/css properties - Purple 2 */
+    8 #d0b0ff; /* misc chars - Purple 1 */
 }
