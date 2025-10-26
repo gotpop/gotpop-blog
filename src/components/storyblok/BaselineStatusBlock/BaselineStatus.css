@@ -16,16 +16,14 @@
   }
 
   summary {
-    align-items: start;
     background: var(--light-100);
-    border-bottom: 1px solid transparent;
     cursor: pointer;
     gap: var(--spacing-base);
-    height: var(--round-up);
+    height: 7rem;
     list-style: none;
     padding: var(--spacing-md) var(--spacing-lg);
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr auto;
 
     &::-webkit-details-marker {
       display: none;
@@ -33,15 +31,21 @@
   }
 
   .title {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
     font-size: var(--font-scaled-base);
-    gap: var(--spacing-sm);
-    align-items: center;
-    justify-content: start;
+    gap: var(--spacing-base);
 
     strong {
       font-weight: var(--font-weight-semibold);
     }
+  }
+
+  .feature-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    justify-content: start;
   }
 
   .baseline-badge {
@@ -62,15 +66,30 @@
 
   .baseline-status-browsers {
     display: flex;
-    gap: 16px;
-    margin-top: 8px;
+    gap: var(--spacing-base);
     font-size: 0;
-    max-width: 320px;
     margin: 0 0 0 auto;
+    /* background: yellow; */
+
+    svg {
+      width: 2rem;
+      height: auto;
+
+      &[aria-label="Not supported"] {
+        color: red;
+      }
+      &[aria-label="Supported"] {
+        color: green;
+        height: 2rem;
+      }
+      &[aria-label="Unknown"] {
+        color: orange;
+      }
+    }
   }
 
   .browser-icon {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 4px;
     font-size: 0;

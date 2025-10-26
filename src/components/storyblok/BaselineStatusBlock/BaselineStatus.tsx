@@ -83,41 +83,35 @@ export default async function BaselineStatusBlock({
       {styles && <style>{styles}</style>}
       <details>
         <summary>
-          {normalizedName && (
-            <div className="feature-name">{normalizedName}</div>
-          )}
           <div className="title">
-            <BaselineIcon status={status} />
-            <strong>Baseline</strong>
-            <span>{label}</span>
-            {badgeText && <span className="baseline-badge">{badgeText}</span>}
-            <div
-              className="baseline-status-browsers"
-              style={{ display: "flex", gap: 16, marginTop: 8 }}
-            >
-              {browsers.map(({ key, label, Icon }) => {
-                const browserStatus = browserImpl[key]
-                const support = getSupportStatus(browserStatus, status) as
-                  | "available"
-                  | "unavailable"
-                  | "no_data"
-                return (
-                  <span
-                    key={key}
-                    className={`browser-icon browser-${key}`}
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 4,
-                    }}
-                    title={`${label}: ${support}`}
-                  >
-                    <Icon />
-                    <SupportStatusIcon status={support} />
-                  </span>
-                )
-              })}
+            {normalizedName && (
+              <div className="feature-name">{normalizedName}</div>
+            )}
+            <div className="feature-meta">
+              <BaselineIcon status={status} />
+              <strong>Baseline</strong>
+              <span>{label}</span>
+              {badgeText && <span className="baseline-badge">{badgeText}</span>}
             </div>
+          </div>
+          <div className="baseline-status-browsers">
+            {browsers.map(({ key, label, Icon }) => {
+              const browserStatus = browserImpl[key]
+              const support = getSupportStatus(browserStatus, status) as
+                | "available"
+                | "unavailable"
+                | "no_data"
+              return (
+                <span
+                  key={key}
+                  className={`browser-icon browser-${key}`}
+                  title={`${label}: ${support}`}
+                >
+                  <Icon />
+                  <SupportStatusIcon status={support} />
+                </span>
+              )
+            })}
           </div>
         </summary>
         <div className="content">
