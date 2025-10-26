@@ -1,80 +1,28 @@
-.snippet-text-align {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  border: 2px dashed #e1e5e9;
-  border-radius: 8px;
-  background: #f8f9fa;
-}
-
-.text-align-examples {
-  display: grid;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.align-left {
-  text-align: left;
-  padding: 1rem;
-  background: #e3f2fd;
-  border-left: 4px solid #2196f3;
-}
-
-.align-center {
-  text-align: center;
-  padding: 1rem;
-  background: #f3e5f5;
-  border-left: 4px solid #9c27b0;
-}
-
-.align-right {
-  text-align: right;
-  padding: 1rem;
-  background: #e8f5e8;
-  border-left: 4px solid #4caf50;
-}
-
-.align-justify {
-  text-align: justify;
-  padding: 1rem;
-  background: #fff3e0;
-  border-left: 4px solid #ff9800;
-}
-
-.text-align-examples h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.text-align-examples p {
-  margin: 0;
-  line-height: 1.5;
-}
-
-@media (prefers-color-scheme: dark) {
-  .snippet-text-align {
-    background: #21262d;
-    border-color: #30363d;
-    color: #f0f6fc;
+@scope {
+  & {
+    background-image: var(--horizontal-lines);
+    min-height: var(--spacing-lg);
+    padding: var(--spacing-md);
+    width: max-content;
   }
 
-  .align-left {
-    background: #1e3a8a;
-    color: #bfdbfe;
-  }
+  h1 {
+    --padding: calc(var(--spacing-md) - 1cap);
 
-  .align-center {
-    background: #581c87;
-    color: #e9d5ff;
-  }
+    color: var(--dark-400);
+    display: inline-block;
+    margin: 0;
+    padding-block-start: var(--padding);
+    position: relative;
 
-  .align-right {
-    background: #166534;
-    color: #bbf7d0;
-  }
-
-  .align-justify {
-    background: #92400e;
-    color: #fed7aa;
+    &::before {
+      background-color: oklch(0.8 0.15 130 / 0.5);
+      content: "";
+      display: block;
+      height: var(--padding);
+      inset: var(--padding) 0 auto 0;
+      margin-block-start: calc(-1 * var(--padding));
+      position: absolute;
+    }
   }
 }

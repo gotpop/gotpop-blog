@@ -6,7 +6,6 @@ interface SnippetBlockProps {
   blok: SnippetBlockStoryblok
 }
 
-// Snippet selector function
 function renderSnippet(snippetType?: string) {
   switch (snippetType) {
     case "text-align":
@@ -25,9 +24,9 @@ export default function SnippetBlock({ blok }: SnippetBlockProps) {
   const styles = getInlineStyles("SnippetBlock.css")
 
   return (
-    <>
+    <snippet-block>
       {styles && <style>{styles}</style>}
-      <div className="snippet-block">{renderSnippet(snippet)}</div>
-    </>
+      {renderSnippet(snippet)}
+    </snippet-block>
   )
 }

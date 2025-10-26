@@ -18,32 +18,36 @@ export default function PostCard({ post }: PostCardProps) {
   const title = Heading || name || "Untitled"
 
   const tagList = tags.map((tag) => (
-    <span key={tag} className="post-card-tag">
+    <span key={tag} className="tag">
       {tag}
     </span>
   ))
 
   return (
-    <article className="post-card">
-      <div className="post-card-meta">
-        <time dateTime={dateToUse} className="post-card-date">
+    <box-grid>
+      <div className="meta">
+        <Typography
+          tag="time"
+          variant="base"
+          shade="dark"
+          dateTime={formattedDate}
+          className="margin-none"
+        >
           {formattedDate}
-        </time>
-        {post.content?.tags && <div className="post-card-tags">{tagList}</div>}
+        </Typography>
+        <div className="tags">{tagList}</div>
       </div>
-
       <Typography tag="h3" variant="lg" shade="dark">
-        <Link href={linkPath} className="post-card-title-link">
+        <Link href={linkPath} className="title-link">
           {title}
         </Link>
       </Typography>
       <Typography tag="p" variant="base" shade="dark">
         {description}
       </Typography>
-
-      <Link href={linkPath} className="post-card-read-more">
+      <Link href={linkPath} className="link-simple">
         Read more
       </Link>
-    </article>
+    </box-grid>
   )
 }

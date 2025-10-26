@@ -21,4 +21,11 @@
     )
     0 0 / var(--box-hero-bg-size);
   --crosshatch: var(--diagonal-1), var(--diagonal-2);
+  --horizontal-lines: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent calc(1rem - 1px),
+    var(--light-300) calc(1rem - 1px),
+    var(--light-300) 1rem
+  );
 }

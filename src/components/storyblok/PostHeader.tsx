@@ -15,6 +15,8 @@ export default function PostHeader({
 
   if (!publishedDate || !heading) return null
 
+  const formattedDate = formatDate(publishedDate)
+
   return (
     <box-hero aria-labelledby={id}>
       <box-grid>
@@ -27,7 +29,7 @@ export default function PostHeader({
           shade="dark"
           dateTime={publishedDate}
         >
-          {formatDate(publishedDate)}
+          {formattedDate}
         </Typography>
       </box-grid>
     </box-hero>
