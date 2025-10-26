@@ -64,6 +64,10 @@
     text-wrap: balance;
   }
 
+  &.margin-none {
+    margin: 0;
+  }
+
   &:last-child {
     margin-block-end: 0;
   }
