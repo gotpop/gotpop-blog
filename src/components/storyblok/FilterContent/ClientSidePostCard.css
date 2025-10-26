@@ -1,17 +1,4 @@
 @scope {
-  .post-card {
-    --even-odd: even;
-    --grid-horizontal-color: rgba(180, 180, 180, 0.5);
-    --grid-offset: left;
-    --grid-vertical-color: rgba(200, 200, 200, 0.5);
-    --root-grid-size: 16px;
-
-    background-color: white;
-    background-image: paint(grid);
-    grid-column: span 3;
-    padding: var(--spacing-lg);
-  }
-
   .post-card-meta {
     display: flex;
     justify-content: space-between;

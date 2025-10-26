@@ -24,7 +24,7 @@ export default function PostCard({ post }: PostCardProps) {
   ))
 
   return (
-    <article className="post-card">
+    <box-grid>
       <div className="post-card-meta">
         <time dateTime={dateToUse} className="post-card-date">
           {formattedDate}
@@ -41,9 +41,9 @@ export default function PostCard({ post }: PostCardProps) {
         {description}
       </Typography>
 
-      <Link href={linkPath} className="post-card-read-more">
+      <Link href={linkPath} className="link-simple">
         Read more
       </Link>
-    </article>
+    </box-grid>
   )
 }
