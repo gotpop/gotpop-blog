@@ -11,7 +11,7 @@
   .filters-with-output {
     grid-column: breakout;
     display: grid;
-    row-gap: var(--spacing-md);
+    row-gap: var(--spacing-lg);
     grid-template-columns: subgrid;
     grid-auto-rows: min-content;
   }
