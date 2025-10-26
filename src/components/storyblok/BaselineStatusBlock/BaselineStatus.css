@@ -61,9 +61,29 @@
     padding-inline: var(--spacing-lg);
   }
 
-  .feature-name {
-    font-weight: 600;
-    font-size: 16px;
+  .baseline-status-browsers {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    font-size: 0;
+    max-width: 320px;
+  }
+
+  .browser-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0;
+  }
+
+  .support-available {
+    color: var(--baseline-icon-widely-front, #1ea446);
+  }
+  .support-unavailable {
+    color: var(--baseline-icon-limited-front, #f09409);
+  }
+  .support-no_data {
+    color: var(--baseline-icon-no_data, #909090);
   }
 
   &[data-status="newly"] {
