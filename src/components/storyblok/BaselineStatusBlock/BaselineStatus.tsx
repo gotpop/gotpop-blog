@@ -45,14 +45,12 @@ export default async function BaselineStatusBlock({
           {data.name && <div className="feature-name">{data.name}</div>}
           <BaselineIcon status={status} />
           <div className="title">
-            <strong>Baseline</strong> {label}
+            <strong>Baseline</strong>
+            <span>{label}</span>
             {badgeText && <span className="baseline-badge">{badgeText}</span>}
           </div>
         </summary>
         <div className="content">
-          {/* <Typography tag="p" variant="base" shade="dark">
-            {description} {">>>>>>>>"}
-          </Typography> */}
           {lowDateFormatted && status === "newly" && (
             <Typography tag="p" variant="base" shade="dark">
               Since {lowDateFormatted} this feature works across the latest
