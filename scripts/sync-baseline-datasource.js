@@ -2,14 +2,14 @@
 async function getAvailableFeatures() {
   try {
     console.log("🔍 Fetching available baseline features...")
-    
+
     // Fetch from the web-features repository API
     const response = await fetch(
       "https://api.github.com/repos/web-platform-dx/web-features/contents/features",
       {
         headers: {
           "User-Agent": "gotpop-blog-baseline-sync/1.0",
-          "Accept": "application/vnd.github.v3+json",
+          Accept: "application/vnd.github.v3+json",
         },
       }
     )
@@ -35,7 +35,9 @@ async function getAvailableFeatures() {
 
     const allFeatures = [...webFeatures, ...customFeatures].sort()
 
-    console.log(`📋 Found ${webFeatures.length} web-features + ${customFeatures.length} custom features = ${allFeatures.length} total`)
+    console.log(
+      `📋 Found ${webFeatures.length} web-features + ${customFeatures.length} custom features = ${allFeatures.length} total`
+    )
     return allFeatures
   } catch (error) {
     console.error("❌ Error fetching baseline features:", error.message)
@@ -83,9 +85,13 @@ async function syncBaselineDatasource() {
 
     // Determine what needs to be added/removed
     const currentFeatures = new Set(availableFeatures)
-    const existingFeatures = new Set(existingEntries.map((entry) => entry.value))
+    const existingFeatures = new Set(
+      existingEntries.map((entry) => entry.value)
+    )
 
-    const toAdd = availableFeatures.filter((feature) => !existingFeatures.has(feature))
+    const toAdd = availableFeatures.filter(
+      (feature) => !existingFeatures.has(feature)
+    )
     const toRemove = existingEntries.filter(
       (entry) => !currentFeatures.has(entry.value)
     )
@@ -125,7 +131,7 @@ async function syncBaselineDatasource() {
       }
 
       // Small delay to avoid rate limiting
-      await new Promise(resolve => setTimeout(resolve, 100))
+      await new Promise((resolve) => setTimeout(resolve, 100))
     }
 
     // Remove old features
@@ -151,14 +157,19 @@ async function syncBaselineDatasource() {
       }
 
       // Small delay to avoid rate limiting
-      await new Promise(resolve => setTimeout(resolve, 100))
+      await new Promise((resolve) => setTimeout(resolve, 100))
     }
 
-    console.log("✅ Successfully synced baseline-status datasource with Storyblok!")
+    console.log(
+      "✅ Successfully synced baseline-status datasource with Storyblok!"
+    )
     console.log(`🎯 Final count: ${availableFeatures.length} features`)
 
     // Show a sample of the features
-    console.log("📝 Sample features:", availableFeatures.slice(0, 10).join(", "))
+    console.log(
+      "📝 Sample features:",
+      availableFeatures.slice(0, 10).join(", ")
+    )
     if (availableFeatures.length > 10) {
       console.log(`... and ${availableFeatures.length - 10} more`)
     }
