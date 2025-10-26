@@ -1,3 +1,4 @@
+import BaselineStatusBlock from "./BaselineStatusBlock"
 import { Card, Cards } from "./Cards"
 import FilterContent from "./FilterContent"
 import FooterDefault from "./FooterDefault"
@@ -12,6 +13,7 @@ import RichTextCodeBlock from "./RichTextCodeBlock"
 import SnippetBlock from "./SnippetBlock"
 
 export const components = {
+  baseline_status_block: BaselineStatusBlock,
   card: Card,
   cards: Cards,
   filter_content: FilterContent,
@@ -31,6 +33,7 @@ export const components = {
 
 // Individual component exports
 export {
+  BaselineStatusBlock,
   Card,
   Cards,
   FilterContent,

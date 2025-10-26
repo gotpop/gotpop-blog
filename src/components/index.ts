@@ -11,7 +11,6 @@ export { default as SnippetTextAlign } from "./snippets/SnippetTextAlign"
 // Storyblok Components (re-export from their index)
 export * from "./storyblok"
 // UI Components
-export { default as BaselineStatus } from "./ui/BaselineStatus"
 export { default as ButtonToggleMenu } from "./ui/ButtonToggleMenu"
 export { default as Icon } from "./ui/Icon"
 export { default as PageLayout } from "./ui/PageLayout"

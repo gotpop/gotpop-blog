@@ -1,9 +1,5 @@
 import type { ReactNode } from "react"
-import {
-  BaselineStatus,
-  PageLayout,
-  StoryblokServerComponent,
-} from "@/components"
+import { PageLayout, StoryblokServerComponent } from "@/components"
 import type {
   PageDefaultStoryblok,
   PageFilterStoryblok,
@@ -53,10 +49,7 @@ export async function PagePost({ blok }: { blok: PagePostStoryblok }) {
   return (
     <PageLayout header={Header} footer={Footer}>
       <PostHeader heading={Heading} publishedDate={published_date} />
-      <main-content>
-        <BaselineStatus featureId="font-size-adjust" />
-        {blocks}
-      </main-content>
+      <main-content>{blocks}</main-content>
     </PageLayout>
   )
 }

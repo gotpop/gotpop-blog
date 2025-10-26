@@ -1,5 +1,10 @@
 import "server-only"
+import type { BaselineStatusBlockStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
+
+interface BaselineStatusBlockProps {
+  blok: BaselineStatusBlockStoryblok
+}
 
 interface BaselineData {
   name?: string
@@ -18,11 +23,6 @@ interface BaselineData {
     safari?: string
     safari_ios?: string
   }
-}
-
-interface BaselineStatusProps {
-  featureId: string
-  className?: string
 }
 
 async function fetchFeatureData(featureId: string): Promise<BaselineData> {
@@ -181,17 +181,26 @@ function BaselineIcon({ status = "no_data" }: { status?: string }) {
   )
 }
 
-export default async function BaselineStatus({
-  featureId,
-  className,
-}: BaselineStatusProps) {
+export default async function BaselineStatusBlock({
+  blok,
+}: BaselineStatusBlockProps) {
+  const featureId = blok.feature
+
+  if (!featureId) {
+    return (
+      <div className="baseline-status baseline-status--error">
+        <p>Error: No feature ID specified for baseline status.</p>
+      </div>
+    )
+  }
+
   const data = await fetchFeatureData(featureId)
   const status = data.baseline?.status || "no_data"
   const statusInfo = getStatusDisplay(status, data.baseline?.low_date)
   const styles = getInlineStyles("BaselineStatus.css")
 
   return (
-    <div className={`baseline-status ${className || ""}`} data-status={status}>
+    <div className="baseline-status" data-status={status}>
       {styles && <style>{styles}</style>}
       <details>
         <summary>
