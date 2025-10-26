@@ -1,6 +1,7 @@
 import "server-only"
 import Link from "next/link"
 import type { BaselineStatusBlockStoryblok } from "@/types/storyblok-components"
+import { formatMonthYear } from "@/utils/date-formatter"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { fetchFeatureData } from "./api"
 import BaselineIcon from "./BaselineIcon"
@@ -28,17 +29,11 @@ export default async function BaselineStatusBlock({
   const featureUrl = `https://github.com/web-platform-dx/web-features/blob/main/features/${featureId}.yml`
 
   const lowDateFormatted = data.baseline?.low_date
-    ? new Date(data.baseline.low_date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-      })
+    ? formatMonthYear(data.baseline.low_date)
     : null
 
   const highDateFormatted = data.baseline?.high_date
-    ? new Date(data.baseline.high_date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-      })
+    ? formatMonthYear(data.baseline.high_date)
     : null
 
   return (
