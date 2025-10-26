@@ -20,13 +20,12 @@
     background: var(--light-100);
     border-bottom: 1px solid transparent;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
     gap: var(--spacing-base);
     height: var(--round-up);
     list-style: none;
-    padding: var(--spacing-base) var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    display: grid;
+    grid-template-columns: 1fr;
 
     &::-webkit-details-marker {
       display: none;
@@ -67,6 +66,7 @@
     margin-top: 8px;
     font-size: 0;
     max-width: 320px;
+    margin: 0 0 0 auto;
   }
 
   .browser-icon {

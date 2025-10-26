@@ -91,34 +91,33 @@ export default async function BaselineStatusBlock({
             <strong>Baseline</strong>
             <span>{label}</span>
             {badgeText && <span className="baseline-badge">{badgeText}</span>}
-          </div>
-          {/* Browser icons row */}
-          <div
-            className="baseline-status-browsers"
-            style={{ display: "flex", gap: 16, marginTop: 8 }}
-          >
-            {browsers.map(({ key, label, Icon }) => {
-              const browserStatus = browserImpl[key]
-              const support = getSupportStatus(browserStatus, status) as
-                | "available"
-                | "unavailable"
-                | "no_data"
-              return (
-                <span
-                  key={key}
-                  className={`browser-icon browser-${key}`}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 4,
-                  }}
-                  title={`${label}: ${support}`}
-                >
-                  <Icon />
-                  <SupportStatusIcon status={support} />
-                </span>
-              )
-            })}
+            <div
+              className="baseline-status-browsers"
+              style={{ display: "flex", gap: 16, marginTop: 8 }}
+            >
+              {browsers.map(({ key, label, Icon }) => {
+                const browserStatus = browserImpl[key]
+                const support = getSupportStatus(browserStatus, status) as
+                  | "available"
+                  | "unavailable"
+                  | "no_data"
+                return (
+                  <span
+                    key={key}
+                    className={`browser-icon browser-${key}`}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 4,
+                    }}
+                    title={`${label}: ${support}`}
+                  >
+                    <Icon />
+                    <SupportStatusIcon status={support} />
+                  </span>
+                )
+              })}
+            </div>
           </div>
         </summary>
         <div className="content">
