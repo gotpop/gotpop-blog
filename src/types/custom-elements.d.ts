@@ -28,6 +28,10 @@ declare module "react" {
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >
+      "baseline-status": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >
     }
   }
 }

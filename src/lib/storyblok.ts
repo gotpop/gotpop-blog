@@ -1,4 +1,5 @@
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
+import BaselineStatusBlock from "@/storyblok/BaselineStatusBlock"
 import { Card, Cards } from "@/storyblok/Cards"
 import FilterContent from "@/storyblok/FilterContent"
 import FooterDefault from "@/storyblok/FooterDefault"
@@ -12,6 +13,7 @@ import RichTextCodeBlock from "@/storyblok/RichTextCodeBlock"
 import SnippetBlock from "@/storyblok/SnippetBlock"
 
 const components = {
+  baseline_status_block: BaselineStatusBlock,
   card: Card,
   cards: Cards,
   filter_content: FilterContent,
