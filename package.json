@@ -24,6 +24,7 @@
     "setup-https": "./scripts/setup-https.sh",
     "start": "next start",
     "sync-icons": "node --env-file-if-exists=.env scripts/sync-icon-datasource.js",
+    "sync-baseline": "node --env-file-if-exists=.env scripts/sync-baseline-datasource.js",
     "generate-icon-list": "node scripts/generate-icon-list.js",
     "type-check": "tsc --noEmit"
   },
