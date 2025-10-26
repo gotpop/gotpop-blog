@@ -12,6 +12,7 @@ import path from "node:path"
  * - UI: src/components/ui/ComponentName/ComponentName.css
  * - Icons: src/components/icons/ComponentName/ComponentName.css
  * - Utils: src/components/utils/ComponentName/ComponentName.css
+ * - Snippets: src/components/snippets/ComponentName/ComponentName.css
  * - Legacy flat: src/components/storyblok/ComponentName.css
  *
  * @param cssFileName - The CSS filename (e.g., "ButtonToggleMenu.css")
@@ -30,11 +31,13 @@ export function getInlineStyles(cssFileName: string): string {
       path.join(componentsPath, "icons", componentName, cssFileName),
       // 3. Utils components
       path.join(componentsPath, "utils", componentName, cssFileName),
-      // 4. Storyblok directory structure
+      // 4. Snippets components
+      path.join(componentsPath, "snippets", componentName, cssFileName),
+      // 5. Storyblok directory structure
       path.join(componentsPath, "storyblok", componentName, cssFileName),
-      // 5. Legacy flat storyblok
+      // 6. Legacy flat storyblok
       path.join(componentsPath, "storyblok", cssFileName),
-      // 6. Root components directory
+      // 7. Root components directory
       path.join(componentsPath, componentName, cssFileName),
     ]
 

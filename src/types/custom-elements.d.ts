@@ -24,6 +24,10 @@ declare module "react" {
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >
+      "snippet-block": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >
     }
   }
 }

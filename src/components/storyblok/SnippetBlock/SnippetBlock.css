@@ -1,33 +1,8 @@
-.rich-text-snippet-block {
-  margin: 1.5rem 0;
-}
-
-.rich-text-snippet-block:first-child {
-  margin-top: 0;
-}
-
-.rich-text-snippet-block:last-child {
-  margin-bottom: 0;
-}
-
-.snippet-placeholder {
-  padding: 1rem;
-  border: 2px dashed #dc3545;
-  border-radius: 6px;
-  background: #f8d7da;
-  color: #721c24;
-  text-align: center;
-}
-
-.snippet-placeholder p {
-  margin: 0;
-  font-weight: 500;
-}
-
-@media (prefers-color-scheme: dark) {
-  .snippet-placeholder {
-    background: #2c1618;
-    border-color: #842029;
-    color: #ea868f;
+@scope {
+  & {
+    grid-column: content;
+    background-color: var(--light-100);
+    height: var(--round-up);
+    padding: var(--spacing-lg);
   }
 }
