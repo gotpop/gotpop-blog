@@ -1,4 +1,5 @@
 import "server-only"
+import Link from "next/link"
 import type { BaselineStatusBlockStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { fetchFeatureData } from "./api"
@@ -23,6 +24,8 @@ export default async function BaselineStatusBlock({
     data.baseline?.low_date
   )
   const styles = getInlineStyles("BaselineStatus.css")
+
+  const featureUrl = `https://github.com/web-platform-dx/web-features/blob/main/features/${featureId}.yml`
 
   const lowDateFormatted = data.baseline?.low_date
     ? new Date(data.baseline.low_date).toLocaleDateString("en-US", {
@@ -66,13 +69,9 @@ export default async function BaselineStatusBlock({
             </p>
           )}
           <p>
-            <a
-              href={`https://github.com/web-platform-dx/web-features/blob/main/features/${featureId}.yml`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href={featureUrl} target="_blank" rel="noopener noreferrer">
               Learn more
-            </a>
+            </Link>
           </p>
         </div>
       </details>
