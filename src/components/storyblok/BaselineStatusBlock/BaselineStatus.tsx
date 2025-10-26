@@ -50,9 +50,9 @@ export default async function BaselineStatusBlock({
           </div>
         </summary>
         <div className="content">
-          <Typography tag="p" variant="base" shade="dark">
-            {description}
-          </Typography>
+          {/* <Typography tag="p" variant="base" shade="dark">
+            {description} {">>>>>>>>"}
+          </Typography> */}
           {lowDateFormatted && status === "newly" && (
             <Typography tag="p" variant="base" shade="dark">
               Since {lowDateFormatted} this feature works across the latest

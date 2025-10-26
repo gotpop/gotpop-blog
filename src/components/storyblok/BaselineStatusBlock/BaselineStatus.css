@@ -54,14 +54,11 @@
   }
 
   .content {
-    padding: var(--spacing-md);
     background-color: var(--light-100);
     background-image: paint(grid);
     height: var(--round-up);
-
-    p:last-child {
-      margin-block-end: 0;
-    }
+    padding-block: var(--spacing-md) var(--spacing-xl);
+    padding-inline: var(--spacing-lg);
   }
 
   .feature-name {
