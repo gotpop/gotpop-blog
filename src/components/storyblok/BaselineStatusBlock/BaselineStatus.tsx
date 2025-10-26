@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { BaselineStatusBlockStoryblok } from "@/types/storyblok-components"
 import { formatMonthYear } from "@/utils/date-formatter"
 import { getInlineStyles } from "@/utils/inline-styles"
+import Typography from "../Typography"
 import { fetchFeatureData } from "./api"
 import BaselineIcon from "./BaselineIcon"
 import { getStatusDisplay } from "./utils"
@@ -43,31 +44,36 @@ export default async function BaselineStatusBlock({
         <summary>
           {data.name && <div className="feature-name">{data.name}</div>}
           <BaselineIcon status={status} />
-          <div className="baseline-status-title">
+          <div className="title">
             <div>
               <strong>Baseline</strong> {label}
               {badgeText && <span className="baseline-badge">{badgeText}</span>}
             </div>
           </div>
         </summary>
-        <div className="baseline-status-content">
-          <p>{description}</p>
+        <div className="content">
+          <Typography tag="p" variant="base" shade="dark">
+            {description}
+          </Typography>
           {lowDateFormatted && status === "newly" && (
-            <p>
+            <Typography tag="p" variant="base" shade="dark">
               Since {lowDateFormatted} this feature works across the latest
               devices and browser versions.
-            </p>
+            </Typography>
           )}
           {highDateFormatted && status === "widely" && (
-            <p>
+            <Typography tag="p" variant="base" shade="dark">
               It's been available across browsers since {highDateFormatted}.
-            </p>
+            </Typography>
           )}
-          <p>
-            <Link href={featureUrl} target="_blank" rel="noopener noreferrer">
-              Learn more
-            </Link>
-          </p>
+          <Link
+            className="link-simple"
+            href={featureUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn more
+          </Link>
         </div>
       </details>
     </baseline-status>

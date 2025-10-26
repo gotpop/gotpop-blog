@@ -12,19 +12,19 @@
   }
 
   details {
-    border: 1px solid #e1e5e9;
     overflow: hidden;
   }
 
   summary {
-    padding: 12px 16px 13px 16px;
+    padding: var(--spacing-base) var(--spacing-lg);
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: #f6f8fa;
+    gap: var(--spacing-base);
+    background: var(--light-100);
     border-bottom: 1px solid transparent;
     list-style: none;
+    height: var(--round-up);
   }
 
   summary::-webkit-details-marker {
@@ -35,12 +35,12 @@
     border-bottom-color: #e1e5e9;
   }
 
-  .baseline-status-title {
+  .title {
     flex: 1;
     font-size: 14px;
   }
 
-  .baseline-status-title strong {
+  .title strong {
     font-weight: 600;
   }
 
@@ -48,33 +48,20 @@
     background: var(--badge-bg, #0969da);
     color: white;
     padding: 2px 6px;
-    border-radius: 12px;
-    font-size: 12px;
+    font-size: var(--font-scaled-xs);
     font-weight: 500;
     margin-left: 6px;
   }
 
-  .baseline-status-content {
-    padding: 16px;
-    font-size: 14px;
-    line-height: 1.5;
-  }
+  .content {
+    padding: var(--spacing-md);
+    background-color: var(--light-100);
+    background-image: paint(grid);
+    height: var(--round-up);
 
-  .baseline-status-content p {
-    margin: 0 0 12px 0;
-  }
-
-  .baseline-status-content p:last-child {
-    margin-bottom: 0;
-  }
-
-  .baseline-status-content a {
-    color: #0969da;
-    text-decoration: none;
-  }
-
-  .baseline-status-content a:hover {
-    text-decoration: underline;
+    p:last-child {
+      margin-block-end: 0;
+    }
   }
 
   .feature-name {
