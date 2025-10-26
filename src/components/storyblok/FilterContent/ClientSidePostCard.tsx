@@ -38,7 +38,7 @@ export default function PostCard({ post }: PostCardProps) {
         <div className="tags">{tagList}</div>
       </div>
       <Typography tag="h3" variant="lg" shade="dark">
-        <Link href={linkPath} className="post-card-title-link">
+        <Link href={linkPath} className="title-link">
           {title}
         </Link>
       </Typography>
