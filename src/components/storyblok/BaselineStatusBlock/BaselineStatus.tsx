@@ -45,10 +45,8 @@ export default async function BaselineStatusBlock({
           {data.name && <div className="feature-name">{data.name}</div>}
           <BaselineIcon status={status} />
           <div className="title">
-            <div>
-              <strong>Baseline</strong> {label}
-              {badgeText && <span className="baseline-badge">{badgeText}</span>}
-            </div>
+            <strong>Baseline</strong> {label}
+            {badgeText && <span className="baseline-badge">{badgeText}</span>}
           </div>
         </summary>
         <div className="content">
