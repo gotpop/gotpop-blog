@@ -21,10 +21,7 @@ export default async function BaselineStatusBlock({
 
   const data = await fetchFeatureData(featureId)
   const status = data.baseline?.status || "no_data"
-  const { label, description, badgeText } = getStatusDisplay(
-    status,
-    data.baseline?.low_date
-  )
+  const { label, badgeText } = getStatusDisplay(status, data.baseline?.low_date)
   const styles = getInlineStyles("BaselineStatus.css")
 
   const featureUrl = `https://github.com/web-platform-dx/web-features/blob/main/features/${featureId}.yml`
