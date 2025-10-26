@@ -6,7 +6,7 @@ import { getInlineStyles } from "@/utils/inline-styles"
 import Typography from "../Typography"
 import { fetchFeatureData } from "./api"
 import BaselineIcon from "./BaselineIcon"
-import { getStatusDisplay } from "./utils"
+import { getStatusDisplay, normalizeFeatureName } from "./utils"
 
 interface BaselineStatusBlockProps {
   blok: BaselineStatusBlockStoryblok
@@ -20,9 +20,12 @@ export default async function BaselineStatusBlock({
   if (!featureId) return null
 
   const data = await fetchFeatureData(featureId)
+  const { name } = data
+
   const status = data.baseline?.status || "no_data"
   const { label, badgeText } = getStatusDisplay(status, data.baseline?.low_date)
   const styles = getInlineStyles("BaselineStatus.css")
+  const normalizedName = normalizeFeatureName(name)
 
   const featureUrl = `https://github.com/web-platform-dx/web-features/blob/main/features/${featureId}.yml`
 
@@ -39,9 +42,11 @@ export default async function BaselineStatusBlock({
       {styles && <style>{styles}</style>}
       <details>
         <summary>
-          {data.name && <div className="feature-name">{data.name}</div>}
-          <BaselineIcon status={status} />
+          {normalizedName && (
+            <div className="feature-name">{normalizedName}</div>
+          )}
           <div className="title">
+            <BaselineIcon status={status} />
             <strong>Baseline</strong>
             <span>{label}</span>
             {badgeText && <span className="baseline-badge">{badgeText}</span>}

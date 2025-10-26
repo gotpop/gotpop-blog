@@ -16,19 +16,21 @@
   }
 
   summary {
-    align-items: center;
+    align-items: start;
     background: var(--light-100);
     border-bottom: 1px solid transparent;
     cursor: pointer;
     display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
     gap: var(--spacing-base);
     height: var(--round-up);
     list-style: none;
     padding: var(--spacing-base) var(--spacing-lg);
-  }
 
-  summary::-webkit-details-marker {
-    display: none;
+    &::-webkit-details-marker {
+      display: none;
+    }
   }
 
   .title {

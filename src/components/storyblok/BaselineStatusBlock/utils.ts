@@ -43,3 +43,19 @@ export function getStatusDisplay(
       }
   }
 }
+
+/**
+ * Normalizes a feature name by removing hyphens and converting to sentence case
+ * @param name - The feature name to normalize (e.g., "container-queries")
+ * @returns Normalized name (e.g., "Container Queries") or null if input is null/undefined
+ */
+export function normalizeFeatureName(name?: string): string | null {
+  return name
+    ? name
+        .split("-")
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join(" ")
+    : null
+}
