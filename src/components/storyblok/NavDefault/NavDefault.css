@@ -8,7 +8,7 @@
   }
 
   .nav-item {
-    --background-colour: var(--secondary-700);
+    --background-colour: var(--secondary-800);
     --colour: var(--light-100);
     --transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
@@ -29,8 +29,12 @@
     }
 
     &.with-icon {
-      /* padding: var(--spacing-sm); */
       background-color: transparent;
+
+      svg {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
 
       &:hover {
         --colour: var(--primary-100);

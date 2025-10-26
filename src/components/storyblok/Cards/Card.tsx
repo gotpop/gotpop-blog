@@ -34,7 +34,7 @@ export async function Card({ blok }: CardProps) {
       <Typography tag="p" variant="base" shade="dark">
         {description}
       </Typography>
-      <Link href={linkPath} className="card-link">
+      <Link href={linkPath} className="link-simple">
         Read more
       </Link>
     </box-grid>

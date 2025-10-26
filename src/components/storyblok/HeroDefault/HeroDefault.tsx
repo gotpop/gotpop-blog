@@ -14,22 +14,16 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
   return (
     <box-hero aria-labelledby={id}>
       <box-grid>
-        {heading && (
-          <Typography
-            className="hero-home-heading"
-            id={id}
-            shade="dark"
-            tag="h1"
-            variant="hero"
-          >
-            {heading}
-          </Typography>
-        )}
-        {subheading && (
-          <div className="hero-home-subheading">
-            <RichText content={subheading} />
-          </div>
-        )}
+        <Typography
+          className="hero-home-heading"
+          id={id}
+          shade="dark"
+          tag="h1"
+          variant="hero"
+        >
+          {heading}
+        </Typography>
+        {subheading && <RichText content={subheading} />}
       </box-grid>
     </box-hero>
   )
