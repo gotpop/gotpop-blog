@@ -1,31 +1,28 @@
 @scope {
   & {
     background-image: var(--horizontal-lines);
-    min-height: 3rem;
-    padding: 2rem;
+    min-height: var(--spacing-lg);
+    padding: var(--spacing-md);
     width: max-content;
   }
 
   h1 {
-    --padding: calc(2rem - 1cap);
+    --padding: calc(var(--spacing-md) - 1cap);
 
     color: var(--dark-400);
-    text-align: center;
+    display: inline-block;
+    margin: 0;
     padding-block-start: var(--padding);
     position: relative;
-    margin: 0;
-    display: inline-block;
 
     &::before {
+      background-color: oklch(0.8 0.15 130 / 0.5);
       content: "";
       display: block;
       height: var(--padding);
+      inset: var(--padding) 0 auto 0;
       margin-block-start: calc(-1 * var(--padding));
       position: absolute;
-      background-color: oklch(0.8 0.15 130 / 0.5);
-      width: 100%;
-      top: var(--padding);
-      left: 0;
     }
   }
 }
