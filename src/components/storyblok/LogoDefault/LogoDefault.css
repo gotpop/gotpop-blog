@@ -7,7 +7,7 @@
     @media screen and (width >= 768px) {
       --layout: 1fr;
 
-      background: var(--secondary-800);
+      background: oklch(from var(--secondary-700) l calc(c * 0.5) h);
       height: 4rem;
       translate: 0 -1rem;
     }

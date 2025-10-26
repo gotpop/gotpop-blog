@@ -1,7 +1,7 @@
 import { useId } from "react"
 import RichText from "@/components/ui/RichText"
 import type { HeroDefaultStoryblok } from "@/types/storyblok-components"
-import Typography from "../Typography"
+import Typography from "./Typography"
 
 interface HeroDefaultProps {
   blok: HeroDefaultStoryblok
