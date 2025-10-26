@@ -18,8 +18,25 @@ export default async function BaselineStatusBlock({
 
   const data = await fetchFeatureData(featureId)
   const status = data.baseline?.status || "no_data"
-  const statusInfo = getStatusDisplay(status, data.baseline?.low_date)
+  const { label, description, badgeText } = getStatusDisplay(
+    status,
+    data.baseline?.low_date
+  )
   const styles = getInlineStyles("BaselineStatus.css")
+
+  const lowDateFormatted = data.baseline?.low_date
+    ? new Date(data.baseline.low_date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+      })
+    : null
+
+  const highDateFormatted = data.baseline?.high_date
+    ? new Date(data.baseline.high_date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+      })
+    : null
 
   return (
     <baseline-status className="baseline-status" data-status={status}>
@@ -30,33 +47,22 @@ export default async function BaselineStatusBlock({
           <BaselineIcon status={status} />
           <div className="baseline-status-title">
             <div>
-              <strong>Baseline</strong> {statusInfo.label}
-              {statusInfo.badgeText && (
-                <span className="baseline-badge">{statusInfo.badgeText}</span>
-              )}
+              <strong>Baseline</strong> {label}
+              {badgeText && <span className="baseline-badge">{badgeText}</span>}
             </div>
           </div>
         </summary>
         <div className="baseline-status-content">
-          <p>{statusInfo.description}</p>
-          {data.baseline?.low_date && status === "newly" && (
+          <p>{description}</p>
+          {lowDateFormatted && status === "newly" && (
             <p>
-              Since{" "}
-              {new Date(data.baseline.low_date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-              })}{" "}
-              this feature works across the latest devices and browser versions.
+              Since {lowDateFormatted} this feature works across the latest
+              devices and browser versions.
             </p>
           )}
-          {data.baseline?.high_date && status === "widely" && (
+          {highDateFormatted && status === "widely" && (
             <p>
-              It's been available across browsers since{" "}
-              {new Date(data.baseline.high_date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-              })}
-              .
+              It's been available across browsers since {highDateFormatted}.
             </p>
           )}
           <p>
