@@ -200,7 +200,7 @@ export default async function BaselineStatusBlock({
   const styles = getInlineStyles("BaselineStatus.css")
 
   return (
-    <div className="baseline-status" data-status={status}>
+    <baseline-status className="baseline-status" data-status={status}>
       {styles && <style>{styles}</style>}
       <details>
         <summary>
@@ -248,6 +248,6 @@ export default async function BaselineStatusBlock({
           </p>
         </div>
       </details>
-    </div>
+    </baseline-status>
   )
 }
