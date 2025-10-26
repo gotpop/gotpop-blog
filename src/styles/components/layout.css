@@ -3,7 +3,7 @@ main {
   grid-area: main / breakout;
   grid-template-columns: subgrid;
   grid-template-rows: min-content;
-  row-gap: var(--spacing-xl);
+  row-gap: var(--spacing-lg);
   grid-column: breakout;
 }
 
