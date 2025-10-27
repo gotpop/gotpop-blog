@@ -25,7 +25,7 @@
 
   &.variant-md {
     font-size: var(--font-scaled-md);
-    margin-block: 0 var(--spacing-xl);
+    margin-block: 0 var(--spacing-md);
     padding-block-start: calc(round(1cap, 2rem) - 1cap);
     text-wrap: pretty;
   }

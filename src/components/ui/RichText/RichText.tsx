@@ -40,13 +40,13 @@ export default function RichText({ content }: RichTextProps) {
             )
           case 2:
             return (
-              <h2 className="typography-text typography-h3 dark variant-lg">
+              <h2 className="typography-text typography-h3 dark variant-md">
                 {children}
               </h2>
             )
           case 3:
             return (
-              <h3 className="typography-text typography-h3 dark variant-lg">
+              <h3 className="typography-text typography-h3 dark variant-md">
                 {children}
               </h3>
             )

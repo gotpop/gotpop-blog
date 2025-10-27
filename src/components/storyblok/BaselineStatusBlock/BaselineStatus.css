@@ -72,7 +72,7 @@
   }
 
   .baseline-status-browsers {
-    display: flex;
+    display: none;
     gap: var(--spacing-base);
     margin: auto 0 auto auto;
     height: min-content;
