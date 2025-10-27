@@ -5,7 +5,15 @@ import { formatMonthYear } from "@/utils/date-formatter"
 import { getInlineStyles } from "@/utils/inline-styles"
 import Typography from "../Typography"
 import { fetchFeatureData } from "./api"
+
 import BaselineIcon from "./BaselineIcon"
+import {
+  IconChrome,
+  IconEdge,
+  IconFirefox,
+  IconSafari,
+  SupportStatusIcon,
+} from "./index"
 import { getStatusDisplay, normalizeFeatureName } from "./utils"
 
 interface BaselineStatusBlockProps {
@@ -37,19 +45,73 @@ export default async function BaselineStatusBlock({
     ? formatMonthYear(data.baseline.high_date)
     : null
 
+  // Browser support status helpers
+  const browserImpl = data.browser_implementations || {}
+  // Map browser keys to display order and icon
+  const browsers = [
+    {
+      key: "chrome" as keyof typeof browserImpl,
+      label: "Chrome",
+      Icon: IconChrome,
+    },
+    { key: "edge" as keyof typeof browserImpl, label: "Edge", Icon: IconEdge },
+    {
+      key: "firefox" as keyof typeof browserImpl,
+      label: "Firefox",
+      Icon: IconFirefox,
+    },
+    {
+      key: "safari" as keyof typeof browserImpl,
+      label: "Safari",
+      Icon: IconSafari,
+    },
+  ]
+  // Helper to get support status for icon
+  function getSupportStatus(status: string | undefined, baseline: string) {
+    if (baseline === "limited") {
+      if (status === "available" || status === "widely" || status === "newly")
+        return "available"
+      if (status === "unavailable") return "unavailable"
+      return "no_data"
+    }
+    if (baseline === "widely" || baseline === "newly") return "available"
+    return "no_data"
+  }
+
   return (
     <baseline-status className="baseline-status" data-status={status}>
       {styles && <style>{styles}</style>}
       <details>
         <summary>
-          {normalizedName && (
-            <div className="feature-name">{normalizedName}</div>
-          )}
           <div className="title">
-            <BaselineIcon status={status} />
-            <strong>Baseline</strong>
-            <span>{label}</span>
-            {badgeText && <span className="baseline-badge">{badgeText}</span>}
+            {normalizedName && (
+              <h4 className="feature-name">{normalizedName}</h4>
+            )}
+            <div className="feature-meta">
+              <BaselineIcon status={status} />
+              <strong>Baseline</strong>
+              <span>{label}</span>
+              {badgeText && <span className="baseline-badge">{badgeText}</span>}
+            </div>
+          </div>
+          <div className="baseline-status-browsers">
+            {browsers.map(({ key, label, Icon }) => {
+              const browserStatus = browserImpl[key]
+              const support = getSupportStatus(browserStatus, status) as
+                | "available"
+                | "unavailable"
+                | "no_data"
+              return (
+                <span
+                  key={key}
+                  className={`browser-icon browser-${key}`}
+                  title={`${label}: ${support}`}
+                >
+                  <Icon />
+                  <SupportStatusIcon status={support} />
+                </span>
+              )
+            })}
           </div>
         </summary>
         <div className="content">

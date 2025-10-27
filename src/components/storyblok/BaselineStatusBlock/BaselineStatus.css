@@ -16,17 +16,16 @@
   }
 
   summary {
-    align-items: start;
     background: var(--light-100);
-    border-bottom: 1px solid transparent;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
     gap: var(--spacing-base);
-    height: var(--round-up);
     list-style: none;
     padding: var(--spacing-base) var(--spacing-lg);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    height: min-content;
+    align-content: center;
+    grid-rows: min-content;
 
     &::-webkit-details-marker {
       display: none;
@@ -34,15 +33,26 @@
   }
 
   .title {
-    display: flex;
+    display: grid;
+    grid-template-columns: max-content 1fr;
     font-size: var(--font-scaled-base);
-    gap: var(--spacing-sm);
-    align-items: center;
-    justify-content: start;
+    gap: var(--spacing-base);
+    align-content: center;
 
     strong {
       font-weight: var(--font-weight-semibold);
     }
+  }
+
+  .feature-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    justify-content: start;
+  }
+
+  .feature-name {
+    margin: unset;
   }
 
   .baseline-badge {
@@ -61,9 +71,48 @@
     padding-inline: var(--spacing-lg);
   }
 
-  .feature-name {
-    font-weight: 600;
-    font-size: 16px;
+  .baseline-status-browsers {
+    display: flex;
+    gap: var(--spacing-base);
+    margin: auto 0 auto auto;
+    height: min-content;
+    /* background: yellow; */
+
+    --icon-size: 1.5rem;
+
+    svg {
+      width: var(--icon-size);
+      height: auto;
+
+      &[aria-label="Not supported"] {
+        color: red;
+      }
+      &[aria-label="Supported"] {
+        color: green;
+        /* height: var(--icon-size); */
+      }
+      &[aria-label="Unknown"] {
+        color: #76736d;
+        max-height: var(--icon-size);
+      }
+    }
+  }
+
+  .browser-icon {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0;
+  }
+
+  .support-available {
+    color: var(--baseline-icon-widely-front, #1ea446);
+  }
+  .support-unavailable {
+    color: var(--baseline-icon-limited-front, #f09409);
+  }
+  .support-no_data {
+    color: var(--baseline-icon-no_data, #909090);
   }
 
   &[data-status="newly"] {
