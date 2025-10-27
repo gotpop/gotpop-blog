@@ -8,7 +8,8 @@
     --baseline-icon-newly-back: #a8c7fa;
     --baseline-icon-no_data: #909090;
 
-    grid-column: content;
+    /* grid-column: content; */
+    width: max-content;
   }
 
   details {
@@ -26,6 +27,8 @@
     height: min-content;
     align-content: center;
     grid-rows: min-content;
+    background-color: var(--light-200);
+    height: 3rem;
 
     &::-webkit-details-marker {
       display: none;

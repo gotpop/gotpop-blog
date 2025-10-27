@@ -1,5 +1,23 @@
 import { render } from "storyblok-rich-text-react-renderer"
-import type { RichtextStoryblok } from "@/types/storyblok-components"
+import BaselineStatusBlock from "@/components/storyblok/BaselineStatusBlock"
+import { Card, Cards } from "@/components/storyblok/Cards"
+import FilterContent from "@/components/storyblok/FilterContent"
+import HeroDefault from "@/components/storyblok/HeroDefault"
+import LogoDefault from "@/components/storyblok/LogoDefault"
+import RichTextBlock from "@/components/storyblok/RichTextBlock"
+import RichTextCodeBlock from "@/components/storyblok/RichTextCodeBlock"
+import SnippetBlock from "@/components/storyblok/SnippetBlock"
+import type {
+  BaselineStatusBlockStoryblok,
+  CardStoryblok,
+  CardsStoryblok,
+  HeroDefaultStoryblok,
+  LogoDefaultStoryblok,
+  RichTextBlockStoryblok,
+  RichTextCodeBlockStoryblok,
+  RichtextStoryblok,
+  SnippetBlockStoryblok,
+} from "@/types/storyblok-components"
 
 interface RichTextProps {
   content: RichtextStoryblok
@@ -10,6 +28,30 @@ export default function RichText({ content }: RichTextProps) {
   if (!content) return null
 
   const renderedContent = render(content, {
+    blokResolvers: {
+      // This enables embedded Storyblok components in rich text
+      baseline_status_block: (props) => (
+        <BaselineStatusBlock blok={props as BaselineStatusBlockStoryblok} />
+      ),
+      card: (props) => <Card blok={props as CardStoryblok} />,
+      cards: (props) => <Cards blok={props as CardsStoryblok} />,
+      filter_content: () => <FilterContent />,
+      hero_default: (props) => (
+        <HeroDefault blok={props as HeroDefaultStoryblok} />
+      ),
+      logo_default: (props) => (
+        <LogoDefault blok={props as LogoDefaultStoryblok} />
+      ),
+      rich_text_block: (props) => (
+        <RichTextBlock blok={props as RichTextBlockStoryblok} />
+      ),
+      rich_text_code_block: (props) => (
+        <RichTextCodeBlock blok={props as RichTextCodeBlockStoryblok} />
+      ),
+      snippet_block: (props) => (
+        <SnippetBlock blok={props as SnippetBlockStoryblok} />
+      ),
+    },
     markResolvers: {
       link: (children, props) => (
         <a
