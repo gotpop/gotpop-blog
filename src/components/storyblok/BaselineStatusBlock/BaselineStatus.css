@@ -19,11 +19,13 @@
     background: var(--light-100);
     cursor: pointer;
     gap: var(--spacing-base);
-    height: 7rem;
     list-style: none;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-base) var(--spacing-lg);
     display: grid;
     grid-template-columns: 1fr auto;
+    height: min-content;
+    align-content: center;
+    grid-rows: min-content;
 
     &::-webkit-details-marker {
       display: none;
@@ -32,9 +34,10 @@
 
   .title {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: max-content 1fr;
     font-size: var(--font-scaled-base);
     gap: var(--spacing-base);
+    align-content: center;
 
     strong {
       font-weight: var(--font-weight-semibold);
@@ -46,6 +49,10 @@
     align-items: center;
     gap: var(--spacing-sm);
     justify-content: start;
+  }
+
+  .feature-name {
+    margin: unset;
   }
 
   .baseline-badge {
@@ -67,12 +74,14 @@
   .baseline-status-browsers {
     display: flex;
     gap: var(--spacing-base);
-    font-size: 0;
-    margin: 0 0 0 auto;
+    margin: auto 0 auto auto;
+    height: min-content;
     /* background: yellow; */
 
+    --icon-size: 1.5rem;
+
     svg {
-      width: 2rem;
+      width: var(--icon-size);
       height: auto;
 
       &[aria-label="Not supported"] {
@@ -80,10 +89,11 @@
       }
       &[aria-label="Supported"] {
         color: green;
-        height: 2rem;
+        /* height: var(--icon-size); */
       }
       &[aria-label="Unknown"] {
-        color: orange;
+        color: #76736d;
+        max-height: var(--icon-size);
       }
     }
   }

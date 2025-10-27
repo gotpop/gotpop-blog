@@ -85,7 +85,7 @@ export default async function BaselineStatusBlock({
         <summary>
           <div className="title">
             {normalizedName && (
-              <div className="feature-name">{normalizedName}</div>
+              <h4 className="feature-name">{normalizedName}</h4>
             )}
             <div className="feature-meta">
               <BaselineIcon status={status} />
