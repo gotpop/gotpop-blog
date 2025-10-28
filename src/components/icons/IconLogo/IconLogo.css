@@ -16,16 +16,20 @@
     aspect-ratio: 1;
     position: relative;
     transform: rotate(0deg);
+    transform-origin: center center;
+    will-change: transform;
     transition: transform 0.5s ease;
     width: var(--main-circle-size);
+    height: var(--main-circle-size);
+    transform: rotate(0deg) translateZ(0);
 
-    .logo:hover & {
-      transform: rotate(60deg);
+    .link-logo:hover & {
+      transform: rotate(90deg);
       --border-radius: 0%;
     }
 
     @container (width >= 9rem) {
-      --main-circle-size: 2.6rem;
+      --main-circle-size: 1.8rem;
     }
   }
 
@@ -38,8 +42,9 @@
 
     aspect-ratio: 1;
     background-color: oklch(100% 100% var(--hue) / 0.5);
-    clip-path: circle(50%);
-    /* border-radius: var(--border-radius); */
+    /* clip-path: circle(50%); */
+    will-change: border-radius;
+    border-radius: var(--border-radius);
     transition: border-radius 0.5s ease;
     inset: 0;
     left: calc(var(--center-offset) + var(--orbit-x));

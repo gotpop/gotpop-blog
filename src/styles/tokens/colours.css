@@ -28,7 +28,7 @@
   --secondary-600: oklch(from var(--triad-1) calc(l - 0.1) c h);
   --secondary-700: oklch(from var(--triad-1) calc(l - 0.2) c h);
   --secondary-800: oklch(from var(--triad-1) calc(l - 0.3) c h);
-  --secondary-900: oklch(from var(--triad-1) calc(l - 0.2) c h);
+  --secondary-900: oklch(from var(--triad-1) calc(l - 0.5) c h);
 
   /* Light scale (white to grey) */
   --light-100: var(--base-light); /* white */

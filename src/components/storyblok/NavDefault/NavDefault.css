@@ -2,7 +2,9 @@
   & {
     display: grid;
     gap: var(--spacing-base);
-    grid-area: centre / nav;
+    /* grid-area: centre / nav; */
+    grid-column: nav;
+    grid-row: centre-start / full-end;
     grid-auto-flow: column;
     justify-content: end;
   }
@@ -29,11 +31,11 @@
     }
 
     &.with-icon {
-      background-color: transparent;
+      background-color: var(--secondary-800);
 
       svg {
-        height: 1.5rem;
-        width: 1.5rem;
+        height: 1.1rem;
+        width: 1.1rem;
       }
 
       &:hover {

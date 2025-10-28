@@ -1,29 +1,27 @@
 @scope {
   & {
     display: grid;
-    grid-area: centre / logo;
+    grid-area: full / logo;
     grid-template-columns: var(--layout, [logo] 1fr [button-toggle] 6rem);
+    align-items: center;
+    container: logo / inline-size;
 
     @media screen and (width >= 768px) {
       --layout: 1fr;
-
-      background: oklch(from var(--secondary-700) l calc(c * 0.5) h);
-      height: 4rem;
-      translate: 0 -1rem;
     }
   }
 
-  .logo {
-    align-items: center;
-    container: logo / inline-size;
+  .link-logo {
     display: flex;
-    gap: calc(var(--spacing-base) * 0.8);
-    justify-content: center;
+    gap: calc(var(--spacing-sm) * 1.1);
+    height: max-content;
     margin: unset;
+    outline-offset: 0.25rem;
+    padding-inline: var(--spacing-base);
     text-decoration: none;
     user-select: none;
-    outline-offset: 0.25rem;
-    width: stretch;
+    width: min-content;
+    align-items: center;
   }
 
   .logo-text {
@@ -35,6 +33,7 @@
     font-weight: var(--font-weight-bold);
     letter-spacing: 0.1rem;
     text-transform: uppercase;
+    display: flex;
 
     @container (width >= 9rem) {
       --font-size: calc(var(--font-scaled-base) * 0.9);

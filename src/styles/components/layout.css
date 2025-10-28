@@ -27,7 +27,8 @@ box-grid {
   display: grid;
   grid-column: var(--grid-column, content);
   grid-template-columns: var(--columns, 1fr);
-  padding: var(--spacing-lg);
+  padding-block: var(--spacing-lg);
+  padding-inline: var(--spacing-lg);
 
   &[auto-columns] {
     --column-gap: var(--spacing-md);

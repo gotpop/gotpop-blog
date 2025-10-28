@@ -14,20 +14,20 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
   const styles = getInlineStyles("LogoDefault.css")
 
   return (
-    <div className="header-logo">
+    <logo-main>
       <style>{styles}</style>
       <Link
-        className="logo"
+        className="link-logo"
         href={linkProps.href}
         rel={linkProps.rel}
         target={linkProps.target}
       >
-        <span className="logo" role="img" aria-label="GotPop Logo">
-          <IconLogo />
-          <span className="logo-text">GotPop</span>
-        </span>
+        {/* <div className="logo" role="img" aria-label="GotPop Logo"> */}
+        <IconLogo />
+        <span className="logo-text">GotPop</span>
+        {/* </div> */}
       </Link>
       <ButtonToggleMenu />
-    </div>
+    </logo-main>
   )
 }

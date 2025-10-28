@@ -9,7 +9,8 @@
     --baseline-icon-no_data: #909090;
 
     /* grid-column: content; */
-    width: max-content;
+    width: var(--round-up);
+    min-width: 38rem;
   }
 
   details {
@@ -19,14 +20,13 @@
   summary {
     background: var(--light-100);
     cursor: pointer;
-    gap: var(--spacing-base);
+    gap: var(--spacing-xl);
     list-style: none;
-    padding: var(--spacing-base) var(--spacing-lg);
+    padding: var(--spacing-base);
     display: grid;
     grid-template-columns: 1fr auto;
     height: min-content;
     align-content: center;
-    grid-rows: min-content;
     background-color: var(--light-200);
     height: 3rem;
 
@@ -37,10 +37,9 @@
 
   .title {
     display: grid;
-    grid-template-columns: max-content 1fr;
+    grid-template-columns: max-content;
     font-size: var(--font-scaled-base);
-    gap: var(--spacing-base);
-    align-content: center;
+    align-items: center;
 
     strong {
       font-weight: var(--font-weight-semibold);
@@ -50,7 +49,7 @@
   .feature-meta {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-base);
     justify-content: start;
   }
 
@@ -62,7 +61,7 @@
     background: var(--badge-bg, #0969da);
     color: var(--light-100);
     padding: 4px 6px;
-    font-size: var(--font-scaled-sm);
+    font-size: var(--font-scaled-base);
     font-weight: var(--font-weight-medium);
   }
 
