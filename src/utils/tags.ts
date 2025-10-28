@@ -22,8 +22,33 @@ export interface PostStory {
 }
 
 /**
+ * Hardcoded tags that are not included in the API call but should be available for filtering
+ */
+const HARDCODED_TAGS: TagDatasourceEntry[] = [
+  {
+    id: 999001,
+    name: "text-box",
+    value: "text-box",
+  },
+  // Add more hardcoded tags here as needed
+  // {
+  //   id: 999002,
+  //   name: "another-tag",
+  //   value: "another-tag"
+  // },
+]
+
+/**
+ * Get the list of hardcoded tags
+ */
+export function getHardcodedTags(): TagDatasourceEntry[] {
+  return HARDCODED_TAGS
+}
+
+/**
  * Fetches all tags from the Storyblok tags datasource
  * Falls back to extracting tags from posts if datasource is not available
+ * Includes hardcoded tags that are not in the API
  */
 export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
   try {
@@ -31,11 +56,13 @@ export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
     const PUBLIC_TOKEN = process.env.STORYBLOK_ACCESS_TOKEN
 
     if (!PUBLIC_TOKEN) {
-      return await getTagsFromPosts()
+      const postsTagsStory = await getTagsFromPosts()
+      return [...HARDCODED_TAGS, ...postsTagsStory]
     }
 
     if (!TAGS_DATASOURCE_ID) {
-      return await getTagsFromPosts()
+      const postsTagsStory = await getTagsFromPosts()
+      return [...HARDCODED_TAGS, ...postsTagsStory]
     }
 
     const response = await fetch(
@@ -48,7 +75,8 @@ export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
     )
 
     if (!response.ok) {
-      return await getTagsFromPosts()
+      const postsTagsStory = await getTagsFromPosts()
+      return [...HARDCODED_TAGS, ...postsTagsStory]
     }
 
     const data = await response.json()
@@ -56,18 +84,34 @@ export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
 
     // If datasource is empty, fall back to posts
     if (datasourceTags.length === 0) {
-      return await getTagsFromPosts()
+      const postsTagsStory = await getTagsFromPosts()
+      return [...HARDCODED_TAGS, ...postsTagsStory]
     }
 
-    return datasourceTags
+    // Merge hardcoded tags with datasource tags, avoiding duplicates
+    const allTags = [...HARDCODED_TAGS]
+
+    datasourceTags.forEach((tag: TagDatasourceEntry) => {
+      const isDuplicate = allTags.some(
+        (existingTag) =>
+          existingTag.value.toLowerCase() === tag.value.toLowerCase()
+      )
+      if (!isDuplicate) {
+        allTags.push(tag)
+      }
+    })
+
+    return allTags
   } catch {
-    return await getTagsFromPosts()
+    const postsTagsStory = await getTagsFromPosts()
+    return [...HARDCODED_TAGS, ...postsTagsStory]
   }
 }
 
 /**
  * Get all unique tags from published posts
  * This is a fallback method when datasource is not available
+ * Also includes hardcoded tags
  */
 async function getTagsFromPosts(): Promise<TagDatasourceEntry[]> {
   try {
@@ -95,21 +139,45 @@ async function getTagsFromPosts(): Promise<TagDatasourceEntry[]> {
       }
     })
 
-    // Convert to TagDatasourceEntry format
-    return Array.from(allTags).map((tag, index) => ({
-      id: index + 1,
+    // Convert to TagDatasourceEntry format, starting with higher IDs to avoid conflicts
+    const postsOnlyTags = Array.from(allTags).map((tag, index) => ({
+      id: index + 1000, // Start with higher IDs to avoid conflicts with hardcoded tags
       name: tag,
       value: tag,
     }))
+
+    // Merge hardcoded tags with posts tags, avoiding duplicates
+    const allTagsArray = [...HARDCODED_TAGS]
+
+    postsOnlyTags.forEach((tag) => {
+      const isDuplicate = allTagsArray.some(
+        (existingTag) =>
+          existingTag.value.toLowerCase() === tag.value.toLowerCase()
+      )
+      if (!isDuplicate) {
+        allTagsArray.push(tag)
+      }
+    })
+
+    return allTagsArray
   } catch {
-    return []
+    return HARDCODED_TAGS // Return at least the hardcoded tags if everything fails
   }
 }
 
 /**
- * Checks if a tag slug is valid (exists in the datasource)
+ * Checks if a tag slug is valid (exists in the datasource or is a hardcoded tag)
  */
 export async function isValidTag(tagSlug: string): Promise<boolean> {
+  // First check hardcoded tags
+  const isHardcodedTag = HARDCODED_TAGS.some(
+    (tag) => normalizeTagSlug(tag.value) === tagSlug
+  )
+  if (isHardcodedTag) {
+    return true
+  }
+
+  // Then check datasource
   const tags = await getTagsFromDatasource()
   return tags.some((tag) => normalizeTagSlug(tag.value) === tagSlug)
 }
