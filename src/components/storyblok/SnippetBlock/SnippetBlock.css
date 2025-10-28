@@ -4,5 +4,6 @@
     background-color: var(--light-100);
     height: var(--round-up);
     padding: var(--spacing-lg);
+    margin-block: var(--spacing-base) var(--spacing-md);
   }
 }
