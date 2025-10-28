@@ -18,6 +18,7 @@ box-hero {
   background: var(--crosshatch);
   grid-column: breakout;
   padding: var(--spacing-base);
+  view-transition-name: hero-background;
 }
 
 box-grid {

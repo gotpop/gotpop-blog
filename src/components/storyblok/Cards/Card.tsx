@@ -1,4 +1,4 @@
-import Link from "next/link"
+// import Link from "next/link"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import Typography from "@/storyblok/Typography"
 import type { CardStoryblok } from "@/types/storyblok-components"
@@ -34,9 +34,9 @@ export async function Card({ blok }: CardProps) {
       <Typography tag="p" variant="base" shade="dark">
         {description}
       </Typography>
-      <Link href={linkPath} className="link-simple">
+      <a href={linkPath} className="link-simple">
         Read more
-      </Link>
+      </a>
     </box-grid>
   )
 }

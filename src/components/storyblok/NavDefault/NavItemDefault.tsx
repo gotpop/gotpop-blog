@@ -1,4 +1,4 @@
-import Link from "next/link"
+// import Link from "next/link"
 import Icon from "@/components/ui/Icon"
 import type { IconName } from "@/components/ui/Icon/Icon"
 import type { NavItemDefaultStoryblok } from "@/types/storyblok-components"
@@ -30,10 +30,10 @@ export default function NavItemDefault({ blok }: NavItemDefaultProps) {
     .join(" ")
 
   return (
-    <Link href={href} target={target} rel={rel} className={classNames}>
+    <a href={href} target={target} rel={rel} className={classNames}>
       {withText
         ? blok.text
         : blok.icon && <Icon name={blok.icon as IconName} size={32} />}
-    </Link>
+    </a>
   )
 }

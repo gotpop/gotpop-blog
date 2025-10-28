@@ -1,4 +1,4 @@
-import Link from "next/link"
+// import Link from "next/link"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import Typography from "@/storyblok/Typography"
 import { formatDate } from "@/utils/date-formatter"
@@ -38,16 +38,16 @@ export default function PostCard({ post }: PostCardProps) {
         <div className="tags">{tagList}</div>
       </div>
       <Typography tag="h3" variant="lg" shade="dark">
-        <Link href={linkPath} className="title-link">
+        <a href={linkPath} className="title-link">
           {title}
-        </Link>
+        </a>
       </Typography>
       <Typography tag="p" variant="base" shade="dark">
         {description}
       </Typography>
-      <Link href={linkPath} className="link-simple">
+      <a href={linkPath} className="link-simple">
         Read more
-      </Link>
+      </a>
     </box-grid>
   )
 }
