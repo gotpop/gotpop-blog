@@ -1,7 +1,7 @@
 @scope {
   & {
     display: grid;
-    gap: var(--spacing-md);
+    gap: var(--spacing-base);
     grid-auto-rows: min-content;
     grid-column: content;
     grid-template-columns: subgrid;

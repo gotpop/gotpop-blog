@@ -1,26 +1,30 @@
 :where(html) {
   /* --box-hero-line-color: rgb(from var(--secondary-100) r g b / 0.7); */
-  --box-hero-line-color: rgb(from var(--secondary-700) r g b / 1);
-  --box-hero-l: 0.625rem;
-  --box-hero-w: 0.0625rem;
-  --box-hero-bg-position: 0 0;
-  --box-hero-bg-size: 1rem 1rem;
+  --box-hero-line-color: rgb(from var(--secondary-700) r g b / 0.3);
+  --box-hero-grid-size: 1rem;
+  --box-hero-line-width: 1px;
   --diagonal-1: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent var(--box-hero-l),
-      var(--box-hero-line-color) var(--box-hero-l),
-      var(--box-hero-line-color) calc(var(--box-hero-l) + var(--box-hero-w))
-    )
-    0 0 / var(--box-hero-bg-size);
+    45deg,
+    transparent 0,
+    transparent
+      calc(var(--box-hero-grid-size) * 0.707 - var(--box-hero-line-width)),
+    var(--box-hero-line-color)
+      calc(var(--box-hero-grid-size) * 0.707 - var(--box-hero-line-width)),
+    var(--box-hero-line-color) calc(var(--box-hero-grid-size) * 0.707),
+    transparent calc(var(--box-hero-grid-size) * 0.707),
+    transparent calc(var(--box-hero-grid-size) * 1.414)
+  );
   --diagonal-2: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent var(--box-hero-l),
-      var(--box-hero-line-color) var(--box-hero-l),
-      var(--box-hero-line-color) calc(var(--box-hero-l) + var(--box-hero-w))
-    )
-    0 0 / var(--box-hero-bg-size);
+    -45deg,
+    transparent 0,
+    transparent
+      calc(var(--box-hero-grid-size) * 0.707 - var(--box-hero-line-width)),
+    var(--box-hero-line-color)
+      calc(var(--box-hero-grid-size) * 0.707 - var(--box-hero-line-width)),
+    var(--box-hero-line-color) calc(var(--box-hero-grid-size) * 0.707),
+    transparent calc(var(--box-hero-grid-size) * 0.707),
+    transparent calc(var(--box-hero-grid-size) * 1.414)
+  );
   --crosshatch: var(--diagonal-1), var(--diagonal-2);
   --horizontal-lines: repeating-linear-gradient(
     0deg,

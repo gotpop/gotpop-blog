@@ -18,20 +18,20 @@ export default function PostHeader({
   const formattedDate = formatDate(publishedDate)
 
   return (
-    <box-hero aria-labelledby={id}>
-      <box-grid>
-        <Typography tag="h1" variant="lg" shade="dark" id={id}>
-          {heading}
-        </Typography>
-        <Typography
-          tag="time"
-          variant="base"
-          shade="dark"
-          dateTime={publishedDate}
-        >
-          {formattedDate}
-        </Typography>
-      </box-grid>
-    </box-hero>
+    // <box-hero>
+    <box-grid aria-labelledby={id}>
+      <Typography tag="h1" variant="lg" shade="dark" id={id}>
+        {heading}
+      </Typography>
+      <Typography
+        tag="time"
+        variant="base"
+        shade="dark"
+        dateTime={publishedDate}
+      >
+        {formattedDate}
+      </Typography>
+    </box-grid>
+    // </box-hero>
   )
 }

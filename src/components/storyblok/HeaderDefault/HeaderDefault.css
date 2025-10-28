@@ -15,7 +15,7 @@
 
     @media screen and (width >= 480px) {
       grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
-      grid-template-rows: [full-start] 1rem [centre-start] 1rem [centre-end] 1rem [full-end];
+      grid-template-rows: [full-start] 1rem [centre-start] 2rem [centre-end] 1rem [full-end];
       height: auto;
       row-gap: 0;
     }
@@ -33,7 +33,7 @@
     }
 
     @media screen and (width >= 1480px) {
-      grid-template-columns: subgrid [] [logo-start] [] [logo-end nav-start] [] [] [] [] [nav-end] [] [];
+      grid-template-columns: subgrid [] [] [logo-start] [logo-end nav-start] [] [] [] [] [nav-end] [] [];
     }
   }
 }

@@ -22,12 +22,17 @@ export async function Card({ blok }: CardProps) {
   }
 
   const { full_slug, content, name } = story
+  console.log("Card story data:", JSON.stringify(story, null, 2))
   const linkPath = getStoryPath(full_slug)
   const title = content?.Heading || name
   const description = content?.description || ""
 
   return (
-    <box-grid>
+    <box-grid
+      style={{
+        viewTransitionName: `post-${story.content._uid}`,
+      }}
+    >
       <Typography tag="h3" variant="lg" shade="dark">
         {title}
       </Typography>
