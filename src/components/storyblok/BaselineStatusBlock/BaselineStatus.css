@@ -11,6 +11,7 @@
     /* grid-column: content; */
     width: var(--round-up);
     min-width: 38rem;
+    margin-bottom: var(--spacing-md);
   }
 
   details {
