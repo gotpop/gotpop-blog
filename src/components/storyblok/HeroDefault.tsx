@@ -12,19 +12,19 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
   const id = useId()
 
   return (
-    <box-hero aria-labelledby={id}>
-      <box-grid>
-        <Typography
-          className="hero-home-heading"
-          id={id}
-          shade="dark"
-          tag="h1"
-          variant="hero"
-        >
-          {heading}
-        </Typography>
-        {subheading && <RichText content={subheading} />}
-      </box-grid>
-    </box-hero>
+    // <box-hero>
+    <box-grid aria-labelledby={id}>
+      <Typography
+        className="hero-home-heading"
+        id={id}
+        shade="dark"
+        tag="h1"
+        variant="hero"
+      >
+        {heading}
+      </Typography>
+      {subheading && <RichText content={subheading} />}
+    </box-grid>
+    // </box-hero>
   )
 }

@@ -16,7 +16,7 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
   return (
     <logo-main>
       <style>{styles}</style>
-      <Link
+      <a
         className="link-logo"
         href={linkProps.href}
         rel={linkProps.rel}
@@ -26,7 +26,7 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
         <IconLogo />
         <span className="logo-text">GotPop</span>
         {/* </div> */}
-      </Link>
+      </a>
       <ButtonToggleMenu />
     </logo-main>
   )

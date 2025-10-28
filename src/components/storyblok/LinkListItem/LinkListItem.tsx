@@ -12,11 +12,9 @@ export default function LinkListItem({ blok }: LinkListItemProps) {
   const linkProps = getStoryblokLinkProps(blok.link)
 
   return (
-    <>
+    <a {...storyblokEditable(blok)} {...linkProps} className="link-list-item">
       {styles && <style>{styles}</style>}
-      <a {...storyblokEditable(blok)} {...linkProps} className="link-list-item">
-        {blok.link_text}
-      </a>
-    </>
+      {blok.link_text}
+    </a>
   )
 }

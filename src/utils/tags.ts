@@ -22,19 +22,29 @@ export interface PostStory {
 }
 
 /**
+ * Removes duplicate tags based on value (case-insensitive) and keeps the first occurrence
+ */
+function deduplicateTags(tags: TagDatasourceEntry[]): TagDatasourceEntry[] {
+  const seen = new Set<string>()
+  return tags.filter((tag) => {
+    const normalizedValue = tag.value.toLowerCase()
+    if (seen.has(normalizedValue)) {
+      return false
+    }
+    seen.add(normalizedValue)
+    return true
+  })
+}
+
+/**
  * Hardcoded tags that are not included in the API call but should be available for filtering
  */
 const HARDCODED_TAGS: TagDatasourceEntry[] = [
-  {
-    id: 999001,
-    name: "text-box",
-    value: "text-box",
-  },
-  // Add more hardcoded tags here as needed
+  // Add hardcoded tags here as needed
   // {
-  //   id: 999002,
-  //   name: "another-tag",
-  //   value: "another-tag"
+  //   id: 999001,
+  //   name: "example-tag",
+  //   value: "example-tag",
   // },
 ]
 
@@ -89,19 +99,9 @@ export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
     }
 
     // Merge hardcoded tags with datasource tags, avoiding duplicates
-    const allTags = [...HARDCODED_TAGS]
+    const allTags = [...HARDCODED_TAGS, ...datasourceTags]
 
-    datasourceTags.forEach((tag: TagDatasourceEntry) => {
-      const isDuplicate = allTags.some(
-        (existingTag) =>
-          existingTag.value.toLowerCase() === tag.value.toLowerCase()
-      )
-      if (!isDuplicate) {
-        allTags.push(tag)
-      }
-    })
-
-    return allTags
+    return deduplicateTags(allTags)
   } catch {
     const postsTagsStory = await getTagsFromPosts()
     return [...HARDCODED_TAGS, ...postsTagsStory]
@@ -147,21 +147,11 @@ async function getTagsFromPosts(): Promise<TagDatasourceEntry[]> {
     }))
 
     // Merge hardcoded tags with posts tags, avoiding duplicates
-    const allTagsArray = [...HARDCODED_TAGS]
+    const allTagsArray = [...HARDCODED_TAGS, ...postsOnlyTags]
 
-    postsOnlyTags.forEach((tag) => {
-      const isDuplicate = allTagsArray.some(
-        (existingTag) =>
-          existingTag.value.toLowerCase() === tag.value.toLowerCase()
-      )
-      if (!isDuplicate) {
-        allTagsArray.push(tag)
-      }
-    })
-
-    return allTagsArray
+    return deduplicateTags(allTagsArray)
   } catch {
-    return HARDCODED_TAGS // Return at least the hardcoded tags if everything fails
+    return deduplicateTags(HARDCODED_TAGS) // Return at least the hardcoded tags if everything fails
   }
 }
 

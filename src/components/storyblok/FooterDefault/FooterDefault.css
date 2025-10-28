@@ -13,6 +13,7 @@
     justify-content: center;
     padding-block: var(--spacing-xl);
     view-transition-name: footer;
+    row-gap: var(--spacing-lg);
   }
 
   .footer-content {
@@ -20,6 +21,7 @@
     display: grid;
     grid-template-columns: subgrid [logo-start] [logo-end] [nav-start] [] [] [] [nav-end];
     grid-template-rows: [full-start] min-content [full-end];
+    align-items: start;
   }
 
   .footer-nav {

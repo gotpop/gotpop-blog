@@ -2,9 +2,13 @@
   & {
     display: grid;
     grid-area: full / logo;
-    grid-template-columns: var(--layout, [logo] 1fr [button-toggle] 6rem);
+    /* grid-template-columns: var(--layout, [logo] 1fr [button-toggle] 6rem); */
     align-items: center;
     container: logo / inline-size;
+    background-color: var(--secondary-700);
+    place-content: center;
+    height: 2rem;
+    margin-top: 1rem;
 
     @media screen and (width >= 768px) {
       --layout: 1fr;
@@ -13,7 +17,7 @@
 
   .link-logo {
     display: flex;
-    gap: calc(var(--spacing-sm) * 1.1);
+    gap: calc(var(--spacing-sm) * 1.9);
     height: max-content;
     margin: unset;
     outline-offset: 0.25rem;

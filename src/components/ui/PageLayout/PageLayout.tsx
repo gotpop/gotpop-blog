@@ -21,7 +21,9 @@ export default function PageLayout({
     <page-layout>
       {styles && <style>{styles}</style>}
       <HeaderDefault uuid={header} />
-      <main>{children}</main>
+      <main>
+        <box-hero>{children}</box-hero>
+      </main>
       <FooterDefault uuid={footer} />
     </page-layout>
   )

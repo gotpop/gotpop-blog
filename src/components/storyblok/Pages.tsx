@@ -49,7 +49,9 @@ export async function PagePost({ blok }: { blok: PagePostStoryblok }) {
   return (
     <PageLayout header={Header} footer={Footer}>
       <PostHeader heading={Heading} publishedDate={published_date} />
-      <main-content>{blocks}</main-content>
+      <main-content style={{ viewTransitionName: `post-${blok._uid}` }}>
+        {blocks}
+      </main-content>
     </PageLayout>
   )
 }

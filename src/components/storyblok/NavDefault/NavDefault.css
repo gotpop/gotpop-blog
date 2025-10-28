@@ -4,7 +4,7 @@
     gap: var(--spacing-base);
     /* grid-area: centre / nav; */
     grid-column: nav;
-    grid-row: centre-start / full-end;
+    grid-row: centre;
     grid-auto-flow: column;
     justify-content: end;
   }
