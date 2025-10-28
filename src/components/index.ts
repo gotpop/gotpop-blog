@@ -7,7 +7,8 @@ export { default as IconLogo } from "./icons/IconLogo"
 // Direct components
 export { default as PostsPage } from "./PostsPage"
 // Snippet Components
-export { default as SnippetTextAlign } from "./snippets/SnippetTextAlign"
+export { default as SnippetTextAlignA } from "./snippets/SnippetTextAlignA"
+export { default as SnippetTextAlignB } from "./snippets/SnippetTextAlignB"
 // Storyblok Components (re-export from their index)
 export * from "./storyblok"
 // UI Components

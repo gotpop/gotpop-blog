@@ -1,4 +1,5 @@
-import SnippetTextAlign from "@/components/snippets/SnippetTextAlign/SnippetTextAlign"
+import SnippetTextAlignA from "@/components/snippets/SnippetTextAlignA/SnippetTextAlignA"
+import SnippetTextAlignB from "@/components/snippets/SnippetTextAlignB/SnippetTextAlignB"
 import type { SnippetBlockStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 
@@ -8,8 +9,10 @@ interface SnippetBlockProps {
 
 function renderSnippet(snippetType?: string) {
   switch (snippetType) {
-    case "text-align":
-      return <SnippetTextAlign />
+    case "text-align-a":
+      return <SnippetTextAlignA />
+    case "text-align-b":
+      return <SnippetTextAlignB />
     default:
       return (
         <div className="snippet-placeholder">

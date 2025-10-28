@@ -1,9 +1,10 @@
 @scope {
   & {
-    /* grid-column: content; */
+    grid-column: 1 / -1;
     background-color: var(--light-100);
     height: var(--round-up);
     padding: var(--spacing-lg);
     margin-block: var(--spacing-base) var(--spacing-md);
+    max-width: 100%;
   }
 }
