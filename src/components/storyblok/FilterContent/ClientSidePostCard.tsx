@@ -24,7 +24,11 @@ export default function PostCard({ post }: PostCardProps) {
   ))
 
   return (
-    <box-grid>
+    <box-grid
+      style={{
+        viewTransitionName: post.uuid,
+      }}
+    >
       <div className="meta">
         <Typography
           tag="time"
