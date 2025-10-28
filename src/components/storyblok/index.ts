@@ -4,6 +4,8 @@ import FilterContent from "./FilterContent"
 import FooterDefault from "./FooterDefault"
 import HeaderDefault from "./HeaderDefault"
 import HeroDefault from "./HeroDefault"
+import LinkList from "./LinkList"
+import LinkListItem from "./LinkListItem"
 import LogoDefault from "./LogoDefault"
 import { NavDefault, NavItemDefault } from "./NavDefault"
 import { PageDefault, PageFilter, PagePost } from "./Pages"
@@ -20,6 +22,8 @@ export const components = {
   footer_default: FooterDefault,
   header_default: HeaderDefault,
   hero_default: HeroDefault,
+  link_list: LinkList,
+  link_list_item: LinkListItem,
   logo_default: LogoDefault,
   nav_default: NavDefault,
   nav_item_default: NavItemDefault,
@@ -40,6 +44,8 @@ export {
   FooterDefault,
   HeaderDefault,
   HeroDefault,
+  LinkList,
+  LinkListItem,
   LogoDefault,
   NavDefault,
   NavItemDefault,

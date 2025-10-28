@@ -25,12 +25,24 @@ export default async function FooterDefault({
     return null
   }
 
-  const { logo } = footerData
+  const { logo, nav } = footerData
 
   return (
     <footer className="footer">
       {styles && <style>{styles}</style>}
-      {logo?.[0] && <StoryblokServerComponent blok={logo[0]} />}
+
+      <div className="footer-content">
+        {logo?.[0] && <StoryblokServerComponent blok={logo[0]} />}
+
+        {nav && nav.length > 0 && (
+          <nav className="footer-nav">
+            {nav.map((navItem) => (
+              <StoryblokServerComponent key={navItem._uid} blok={navItem} />
+            ))}
+          </nav>
+        )}
+      </div>
+
       <small className="footer_copyright">
         ©GotPop {new Date().getFullYear()}
       </small>
