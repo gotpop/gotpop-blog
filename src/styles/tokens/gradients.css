@@ -1,5 +1,6 @@
 :where(html) {
-  --box-hero-line-color: rgb(from var(--secondary-100) r g b / 0.7);
+  /* --box-hero-line-color: rgb(from var(--secondary-100) r g b / 0.7); */
+  --box-hero-line-color: rgb(from var(--secondary-700) r g b / 1);
   --box-hero-l: 0.625rem;
   --box-hero-w: 0.0625rem;
   --box-hero-bg-position: 0 0;

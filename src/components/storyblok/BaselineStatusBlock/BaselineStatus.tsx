@@ -87,12 +87,12 @@ export default async function BaselineStatusBlock({
             {normalizedName && (
               <h4 className="feature-name">{normalizedName}</h4>
             )}
-            <div className="feature-meta">
-              <BaselineIcon status={status} />
-              <strong>Baseline</strong>
-              <span>{label}</span>
-              {badgeText && <span className="baseline-badge">{badgeText}</span>}
-            </div>
+          </div>
+          <div className="feature-meta">
+            <BaselineIcon status={status} />
+            <strong>Baseline</strong>
+            <span>{label}</span>
+            {badgeText && <span className="baseline-badge">{badgeText}</span>}
           </div>
           <div className="baseline-status-browsers">
             {browsers.map(({ key, label, Icon }) => {
