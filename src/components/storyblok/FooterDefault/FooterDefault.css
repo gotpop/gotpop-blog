@@ -15,17 +15,25 @@
     view-transition-name: footer;
   }
 
-  .header-logo {
-    grid-column: 3 / span 1;
+  .footer-content {
+    grid-column: content;
+    display: grid;
+    grid-template-columns: subgrid [logo-start] [logo-end] [nav-start] [] [] [] [nav-end];
+    grid-template-rows: [full-start] min-content [full-end];
   }
 
-  .nav {
+  .footer-nav {
+    display: grid;
+    grid-column: nav;
+    grid-template-columns: subgrid;
+  }
+
+  .footer_copyright {
     grid-column: 3 / -3;
-  }
-
-  .footer-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    margin-top: 2rem;
+    color: var(--light-200);
   }
 }
