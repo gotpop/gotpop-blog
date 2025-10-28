@@ -1,5 +1,6 @@
 "use client"
 
+import { startTransition, ViewTransition } from "react"
 import type { PostStory, TagDatasourceEntry } from "@/utils/tags"
 import PostCard from "./ClientSidePostCard"
 import ClientSidePostsFilter from "./ClientSidePostsFilter"
@@ -23,6 +24,19 @@ export default function ClientSidePostsApp({
     filteredAndSortedPosts,
   } = usePostsFilter(posts)
 
+  // Wrap filter/sort changes in startTransition for ViewTransition
+  const handleTagChange = (tag: string) => {
+    startTransition(() => {
+      setCurrentTag(tag)
+    })
+  }
+
+  const handleSortChange = (sort: string) => {
+    startTransition(() => {
+      setCurrentSort(sort)
+    })
+  }
+
   const output =
     filteredAndSortedPosts.length > 0 &&
     filteredAndSortedPosts.map((post) => (
@@ -35,18 +49,20 @@ export default function ClientSidePostsApp({
         <box-grid auto-columns>
           <ClientSidePostsFilter
             availableTags={availableTags}
-            onTagChange={setCurrentTag}
+            onTagChange={handleTagChange}
             currentTag={currentTag}
           />
           <ClientSidePostsSorter
-            onSortChange={setCurrentSort}
+            onSortChange={handleSortChange}
             currentSort={currentSort}
           />
         </box-grid>
       </box-hero>
-      <output className="posts-grid" aria-live="polite">
-        {output}
-      </output>
+      <ViewTransition update="reorder-list">
+        <output className="posts-grid" aria-live="polite">
+          {output}
+        </output>
+      </ViewTransition>
     </div>
   )
 }
