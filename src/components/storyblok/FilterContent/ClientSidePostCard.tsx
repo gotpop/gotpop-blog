@@ -26,7 +26,7 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <box-grid
       style={{
-        viewTransitionName: post.uuid,
+        viewTransitionName: `post-${post.uuid}`,
       }}
     >
       <div className="meta">
