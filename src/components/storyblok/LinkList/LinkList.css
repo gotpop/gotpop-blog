@@ -6,11 +6,15 @@
 }
 
 .link-list-heading {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin: 0 0 0.5rem 0;
+  font-size: var(--font-scaled-md);
+  font-weight: var(--font-weight-semibold);
   color: var(--light-100);
   grid-column: span 2;
+  padding-block-start: calc(1rem - 1cap);
+  display: inline-flex;
+  margin: 0 !important;
+  /* text-box-edge: cap alphabetic; */
+  /* text-box-trim: trim-both; */
 }
 
 .link-list-items {
@@ -29,4 +33,23 @@
   margin: 0;
   padding: 0;
   grid-column: span 1;
+  display: contents;
+}
+
+.link-list-item {
+  color: var(--light-300);
+  padding-block-start: calc(1rem - 1cap);
+  display: inline-flex;
+  text-underline-offset: 0.2em;
+  font-size: var(--font-scaled-sm);
+
+  &:hover {
+    color: var(--primary-100);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 }

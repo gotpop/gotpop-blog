@@ -1,4 +1,3 @@
-import Link from "next/link"
 import IconLogo from "@/components/icons/IconLogo"
 import ButtonToggleMenu from "@/components/ui/ButtonToggleMenu"
 import type { LogoDefaultStoryblok } from "@/types/storyblok-components"
