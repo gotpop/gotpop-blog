@@ -116,13 +116,13 @@ export default async function BaselineStatusBlock({
         </summary>
         <div className="content">
           {lowDateFormatted && status === "newly" && (
-            <Typography tag="p" variant="base" shade="dark">
+            <Typography tag="p" variant="text-base" shade="dark">
               Since {lowDateFormatted} this feature works across the latest
               devices and browser versions.
             </Typography>
           )}
           {highDateFormatted && status === "widely" && (
-            <Typography tag="p" variant="base" shade="dark">
+            <Typography tag="p" variant="text-base" shade="dark">
               It's been available across browsers since {highDateFormatted}.
             </Typography>
           )}
