@@ -19,13 +19,13 @@ export default function PostHeader({
 
   return (
     <box-grid aria-labelledby={id}>
-      <Typography tag="h1" variant="text-lg" shade="dark" id={id}>
+      <Typography tag="h1" variant="text-xl" shade="dark" id={id}>
         {heading}
       </Typography>
       <Typography
         tag="time"
-        variant="text-base"
-        shade="dark"
+        variant="text-sm"
+        shade="charcoal"
         dateTime={publishedDate}
       >
         {formattedDate}
