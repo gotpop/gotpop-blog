@@ -17,7 +17,7 @@ export default function LinkList({ blok }: LinkListProps) {
       <div>
         <Typography
           tag="h4"
-          variant="base"
+          variant="text-base"
           shade="light"
           className="link-list-heading"
         >

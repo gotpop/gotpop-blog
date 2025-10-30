@@ -7,6 +7,7 @@ import LogoDefault from "@/components/storyblok/LogoDefault"
 import RichTextBlock from "@/components/storyblok/RichTextBlock"
 import RichTextCodeBlock from "@/components/storyblok/RichTextCodeBlock"
 import SnippetBlock from "@/components/storyblok/SnippetBlock"
+import Typography from "@/components/storyblok/Typography"
 import type {
   BaselineStatusBlockStoryblok,
   CardStoryblok,
@@ -76,36 +77,52 @@ export default function RichText({ content }: RichTextProps) {
         switch (level) {
           case 1:
             return (
-              <h1 className="typography-text typography-h1 dark variant-lg">
+              <Typography shade="dark" tag="h1" variant="text-lg">
                 {children}
-              </h1>
+              </Typography>
             )
           case 2:
             return (
-              <h2 className="typography-text typography-h3 dark variant-md">
+              <Typography shade="dark" tag="h2" variant="text-xl">
                 {children}
-              </h2>
+              </Typography>
             )
           case 3:
             return (
-              <h3 className="typography-text typography-h3 dark variant-md">
+              <Typography shade="dark" tag="h3" variant="text-md">
                 {children}
-              </h3>
+              </Typography>
             )
           case 4:
-            return <h4>{children}</h4>
+            return (
+              <Typography shade="dark" tag="h4" variant="text-md">
+                {children}
+              </Typography>
+            )
           case 5:
-            return <h5>{children}</h5>
+            return (
+              <Typography shade="dark" tag="h5" variant="text-md">
+                {children}
+              </Typography>
+            )
           case 6:
-            return <h6>{children}</h6>
+            return (
+              <Typography shade="dark" tag="h6" variant="text-md">
+                {children}
+              </Typography>
+            )
           default:
-            return <h2>{children}</h2>
+            return (
+              <Typography shade="dark" tag="h2" variant="text-xl">
+                {children}
+              </Typography>
+            )
         }
       },
       paragraph: (children) => (
-        <p className="typography-text typography-p dark variant-base">
+        <Typography shade="charcoal" tag="p" variant="text-base">
           {children}
-        </p>
+        </Typography>
       ),
       bullet_list: (children) => <ul>{children}</ul>,
       ordered_list: (children) => <ol>{children}</ol>,

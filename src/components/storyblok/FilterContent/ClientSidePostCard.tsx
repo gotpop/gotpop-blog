@@ -32,8 +32,8 @@ export default function PostCard({ post }: PostCardProps) {
       <div className="meta">
         <Typography
           tag="time"
-          variant="base"
-          shade="dark"
+          variant="text-base"
+          shade="charcoal"
           dateTime={formattedDate}
           className="margin-none"
         >
@@ -41,12 +41,12 @@ export default function PostCard({ post }: PostCardProps) {
         </Typography>
         <div className="tags">{tagList}</div>
       </div>
-      <Typography tag="h3" variant="lg" shade="dark">
+      <Typography tag="h3" variant="text-xl" shade="dark">
         <a href={linkPath} className="title-link">
           {title}
         </a>
       </Typography>
-      <Typography tag="p" variant="base" shade="dark">
+      <Typography tag="p" variant="text-base" shade="charcoal">
         {description}
       </Typography>
       <a href={linkPath} className="link-simple">

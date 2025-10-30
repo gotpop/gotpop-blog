@@ -12,12 +12,13 @@
 
     @media screen and (width >= 768px) {
       --layout: 1fr;
+      justify-content: start;
     }
   }
 
   .link-logo {
     display: flex;
-    gap: calc(var(--spacing-sm) * 1.9);
+    gap: calc(var(--spacing-sm) * 1.5);
     height: max-content;
     margin: unset;
     outline-offset: 0.25rem;
@@ -29,18 +30,19 @@
   }
 
   .logo-text {
-    --font-size: var(--font-scaled-sm);
+    --font-size: var(--text-sm);
 
     color: var(--light-100);
     font-family: var(--font-family-heading);
     font-size: var(--font-size);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--text-weight-bold);
     letter-spacing: 0.1rem;
     text-transform: uppercase;
     display: flex;
+    font-variation-settings: "opsz" var(--font-opsz-text);
 
-    @container (width >= 9rem) {
-      --font-size: calc(var(--font-scaled-base) * 0.9);
-    }
+    /* @container (width >= 9rem) {
+      --font-size: calc(var(--font-base) * 0.9);
+    } */
   }
 }

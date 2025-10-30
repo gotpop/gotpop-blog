@@ -3,7 +3,7 @@
     --grid-vertical-color: oklch(from var(--light-200) l c h / 0.08);
     --grid-horizontal-color: oklch(from var(--light-200) l c h / 0.08);
 
-    background: paint(grid) var(--secondary-900);
+    background: paint(grid) var(--secondary-700);
     display: grid;
     grid-auto-columns: auto;
     grid-auto-flow: row dense;

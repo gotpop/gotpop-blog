@@ -12,7 +12,6 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
   const id = useId()
 
   return (
-    // <box-hero>
     <box-grid aria-labelledby={id}>
       <Typography
         className="hero-home-heading"
@@ -25,6 +24,5 @@ export default function HeroDefault({ blok }: HeroDefaultProps) {
       </Typography>
       {subheading && <RichText content={subheading} />}
     </box-grid>
-    // </box-hero>
   )
 }

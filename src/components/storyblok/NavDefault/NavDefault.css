@@ -10,7 +10,7 @@
   }
 
   .nav-item {
-    --background-colour: var(--secondary-800);
+    --background-colour: var(--secondary-700);
     --colour: var(--light-100);
     --transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
@@ -18,7 +18,7 @@
     background-color: var(--background-colour);
     color: var(--colour);
     display: flex;
-    font-size: var(--font-scaled-base);
+    font-size: var(--text-base);
     min-width: var(--round-up);
     place-content: center;
     text-align: center;
@@ -31,7 +31,7 @@
     }
 
     &.with-icon {
-      background-color: var(--secondary-800);
+      background-color: var(--secondary-700);
 
       svg {
         height: 1.1rem;
@@ -39,7 +39,8 @@
       }
 
       &:hover {
-        --colour: var(--primary-100);
+        --colour: var(--light-100);
+        background-color: var(--secondary-800);
       }
     }
 
@@ -49,8 +50,8 @@
     }
 
     &:hover {
-      --background-colour: var(--primary-300);
-      --colour: var(--dark-100);
+      --background-colour: var(--secondary-800);
+      --colour: var(--light-100);
     }
   }
 }
