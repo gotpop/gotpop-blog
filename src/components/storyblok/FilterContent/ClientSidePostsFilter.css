@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-    background: var(--secondary-900);
+    background: var(--dark-500);
     min-width: var(--round-up);
   }
 
@@ -21,11 +21,11 @@
   .select {
     appearance: base-select;
     padding: 0.5rem 0.75rem;
-    border: 1px solid var(--color-border, #d1d5db);
-    background: white;
+    border: 1px solid var(--light-300);
+    background: var(--light-100);
     border-radius: 0px;
-    font-size: 0.875rem;
-    color: var(--color-text-primary, #334155);
+    font-size: var(--text-sm);
+    color: var(--dark-500);
     height: 2rem;
     display: flex;
     line-height: 0.8;

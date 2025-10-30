@@ -19,7 +19,7 @@
     background-color: var(--light-200);
     color: var(--dark-500);
     display: flex;
-    font-size: var(--font-scaled-sm);
+    font-size: var(--text-xs);
     font-weight: var(--text-weight-medium);
     height: var(--round-up);
     justify-content: center;
