@@ -22,13 +22,15 @@ type TypographyVariant =
   | "hero"
 
 type FontWeight =
-  | "thin"
-  | "light"
-  | "regular"
-  | "medium"
-  | "semibold"
-  | "bold"
-  | "black"
+  | "weight-thin"
+  | "weight-light"
+  | "weight-regular"
+  | "weight-medium"
+  | "weight-semibold"
+  | "weight-bold"
+  | "weight-black"
+
+type FontStyle = "style-normal" | "style-italic"
 
 type TypographyShade = "light" | "dark" | "charcoal" | "dimmed"
 
@@ -38,6 +40,7 @@ interface TypographyProps {
   shade?: TypographyShade
   variant?: TypographyVariant
   weight?: FontWeight
+  style?: FontStyle
   className?: string
   id?: string
   dateTime?: string
@@ -49,6 +52,7 @@ export default function Typography({
   shade,
   variant,
   weight,
+  style,
   className = "",
   id = undefined,
   dateTime = undefined,
@@ -75,10 +79,10 @@ export default function Typography({
 
   const classNames = cn(
     "typography",
-    Element,
     shadeClass,
     variant,
     weight,
+    style,
     className
   )
 

@@ -84,4 +84,21 @@
   --text-weight-semibold: 600;
   --text-weight-bold: 700;
   --text-weight-black: 900;
+
+  /* Font variation settings */
+  --font-opsz-text: 14; /* Body text optimization */
+  --font-opsz-heading: 28; /* Heading optimization */
+  --font-opsz-display: 72; /* Large display optimization */
+
+  --font-slnt-normal: 0; /* Upright */
+  --font-slnt-italic: -10; /* True italic */
+
+  /* Font variation weight settings (alternative to font-weight) */
+  --font-wght-thin: 100;
+  --font-wght-light: 300;
+  --font-wght-regular: 400;
+  --font-wght-medium: 500;
+  --font-wght-semibold: 600;
+  --font-wght-bold: 700;
+  --font-wght-black: 900;
 }
