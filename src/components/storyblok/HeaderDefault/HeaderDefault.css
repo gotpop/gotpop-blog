@@ -6,7 +6,7 @@
     background: paint(grid) var(--secondary-700);
     display: grid;
     grid-area: header / full;
-    grid-template-columns: [header-logo] 1fr;
+    grid-template-columns: [logo] 1fr [button-toggle] 4rem;
     grid-template-rows: 1fr 1fr;
     position: sticky;
     top: 0;
@@ -14,25 +14,22 @@
     z-index: 1;
 
     @media screen and (width >= 480px) {
-      grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
-      grid-template-rows: [full-start] 1rem [centre-start] 2rem [centre-end] 1rem [full-end];
+      grid-template-columns: [logo] 1fr [button-toggle] minmax(6rem, auto);
+      grid-template-rows: 1fr;
       height: auto;
       row-gap: 0;
     }
 
     @media screen and (width >= 768px) {
-      grid-template-columns: [header-logo] 1fr [button-toggle] 6rem;
+      grid-template-columns: [logo] 1fr [button-toggle] 6rem;
       height: 4rem;
       height: var(--round-up);
       overflow: visible;
       row-gap: 0;
     }
 
-    @media screen and (width >= 1280px) {
-      grid-template-columns: subgrid [] [logo-start] [] [logo-end nav-start] [] [] [] [nav-end] [];
-    }
-
     @media screen and (width >= 1480px) {
+      grid-template-rows: [full-start] 1rem [centre-start] 2rem [centre-end] 1rem [full-end];
       grid-template-columns: subgrid [] [logo-start] [][logo-end nav-start] [] [] [] [] [nav-end] [] [];
     }
   }

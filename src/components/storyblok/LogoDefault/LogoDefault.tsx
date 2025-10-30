@@ -1,5 +1,4 @@
 import IconLogo from "@/components/icons/IconLogo"
-import ButtonToggleMenu from "@/components/ui/ButtonToggleMenu"
 import type { LogoDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getStoryblokLinkProps } from "@/utils/storyblok"
@@ -26,7 +25,6 @@ export default function LogoDefault({ blok }: LogoDefaultProps) {
         <span className="logo-text">GotPop</span>
         {/* </div> */}
       </a>
-      <ButtonToggleMenu />
     </logo-main>
   )
 }

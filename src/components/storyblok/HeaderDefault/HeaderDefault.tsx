@@ -1,4 +1,4 @@
-import { StoryblokServerComponent } from "@/components"
+import { ButtonToggleMenu, StoryblokServerComponent } from "@/components"
 import type { HeaderDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { fetchStoryByUuid } from "@/utils/storyblok-fetch"
@@ -32,6 +32,7 @@ export default async function HeaderDefault({
       <style>{styles}</style>
       {logo?.[0] && <StoryblokServerComponent blok={logo[0]} />}
       {nav?.[0] && <StoryblokServerComponent blok={nav[0]} />}
+      <ButtonToggleMenu />
     </header>
   )
 }

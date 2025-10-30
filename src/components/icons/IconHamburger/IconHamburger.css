@@ -14,6 +14,7 @@
     background: var(--bg);
     position: relative;
     width: var(--spacing-md);
+    display: block;
 
     &::before,
     &::after {

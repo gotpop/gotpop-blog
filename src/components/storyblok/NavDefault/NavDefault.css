@@ -1,12 +1,16 @@
 @scope {
   & {
-    display: grid;
+    display: none;
     gap: var(--spacing-base);
     /* grid-area: centre / nav; */
     grid-column: nav;
     grid-row: centre;
     grid-auto-flow: column;
     justify-content: end;
+
+    @media screen and (width >= 1480px) {
+      display: grid;
+    }
   }
 
   .nav-item {
