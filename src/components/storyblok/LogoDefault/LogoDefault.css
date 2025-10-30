@@ -30,7 +30,7 @@
   }
 
   .logo-text {
-    --font-size: var(--font-scaled-sm);
+    --font-size: var(--text-sm);
 
     color: var(--light-100);
     font-family: var(--font-family-heading);
@@ -41,8 +41,8 @@
     display: flex;
     font-variation-settings: "opsz" var(--font-opsz-text);
 
-    @container (width >= 9rem) {
-      --font-size: calc(var(--font-scaled-base) * 0.9);
-    }
+    /* @container (width >= 9rem) {
+      --font-size: calc(var(--font-base) * 0.9);
+    } */
   }
 }

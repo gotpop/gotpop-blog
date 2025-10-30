@@ -18,7 +18,7 @@
     background-color: var(--background-colour);
     color: var(--colour);
     display: flex;
-    font-size: var(--font-base);
+    font-size: var(--text-base);
     min-width: var(--round-up);
     place-content: center;
     text-align: center;
