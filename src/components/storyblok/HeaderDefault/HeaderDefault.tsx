@@ -31,13 +31,7 @@ export default async function HeaderDefault({
     <header className="header">
       <style>{styles}</style>
       {logo?.[0] && <StoryblokServerComponent blok={logo[0]} />}
-            {/* Mobile navigation toggle with server-rendered nav content */}
-      <MobileNavToggle 
-        styles={mobileNavStyles}
-        buttonStyles={buttonToggleStyles}
-      >
-        {nav?.[0] && <StoryblokServerComponent blok={nav[0]} />}
-      </MobileNavToggle>
+      {nav?.[0] && <StoryblokServerComponent blok={nav[0]} />}
     </header>
   )
 }
