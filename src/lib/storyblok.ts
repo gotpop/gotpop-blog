@@ -5,7 +5,7 @@ import FilterContent from "@/storyblok/FilterContent"
 import FooterDefault from "@/storyblok/FooterDefault"
 import HeaderDefault from "@/storyblok/HeaderDefault"
 import HeroDefault from "@/storyblok/HeroDefault"
-import LinkList, { LinkListItem } from "@/storyblok/LinkList"
+import LinkList from "@/storyblok/LinkList"
 import LogoDefault from "@/storyblok/LogoDefault"
 import { NavDefault, NavItemDefault } from "@/storyblok/NavDefault"
 import { PageDefault, PageFilter, PagePost } from "@/storyblok/Pages"
@@ -22,7 +22,6 @@ const components = {
   header_default: HeaderDefault,
   hero_default: HeroDefault,
   link_list: LinkList,
-  link_list_item: LinkListItem,
   logo_default: LogoDefault,
   nav_default: NavDefault,
   nav_item_default: NavItemDefault,

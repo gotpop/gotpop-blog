@@ -1,4 +1,3 @@
-import { StoryblokServerComponent } from "@/components"
 import type { LinkListStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import Typography from "../Typography"
@@ -15,7 +14,7 @@ export default function LinkList({ blok }: LinkListProps) {
       {styles && <style>{styles}</style>}
 
       <div className="link-list-heading">
-        <Typography tag="h4" variant="text-lg" shade="light">
+        <Typography tag="h4" variant="text-xl" shade="light">
           {blok.heading}
         </Typography>
       </div>
@@ -24,7 +23,9 @@ export default function LinkList({ blok }: LinkListProps) {
         <ul className="link-list-items">
           {blok.links.map((linkItem) => (
             <li key={linkItem._uid}>
-              <StoryblokServerComponent blok={linkItem} />
+              <a href={linkItem.link.url} className="link-list-item">
+                {linkItem.link_text}
+              </a>
             </li>
           ))}
         </ul>

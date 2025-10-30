@@ -19,7 +19,7 @@
     font: var(--text-weight-regular) var(--font-xs);
     font-variation-settings: "opsz" var(--font-opsz-text);
     margin-block: 0 var(--spacing-sm);
-    padding-block-start: calc(0.5rem - 1cap);
+    padding-block-start: calc(1rem - 1cap);
     text-wrap: pretty;
   }
 

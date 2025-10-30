@@ -18,19 +18,8 @@ ul:not([class]) {
 }
 
 li:not([class]) {
-  padding-block-start: calc(1rem - 1cap);
-  margin-block-end: 1rem;
-  max-width: 60ch;
-
-  strong {
-    width: max-content;
-  }
-
-  span {
-    display: inline flex;
-    align-items: center;
-    gap: var(--spacing-base);
-  }
+  margin: unset;
+  padding: unset;
 }
 
 select,
