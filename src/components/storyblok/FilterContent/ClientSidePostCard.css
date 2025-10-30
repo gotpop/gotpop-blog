@@ -20,7 +20,7 @@
     color: var(--dark-500);
     display: flex;
     font-size: var(--font-scaled-sm);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--text-weight-medium);
     height: var(--round-up);
     justify-content: center;
     width: var(--round-up);

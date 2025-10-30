@@ -34,7 +34,7 @@
     color: var(--light-100);
     font-family: var(--font-family-heading);
     font-size: var(--font-size);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--text-weight-bold);
     letter-spacing: 0.1rem;
     text-transform: uppercase;
     display: flex;

@@ -3,20 +3,27 @@
     color: var(--dark-200);
   }
 
+  &.charcoal {
+    color: var(--dark-300);
+  }
+
   &.light {
     color: var(--light-200);
   }
 
+  &.dimmed {
+    color: var(--light-300);
+  }
+
   &.variant-sm {
-    font-size: var(--font-scaled-sm);
+    font: var(--font-sm);
     margin-block: 0 var(--spacing-md);
-    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    padding-block-start: calc(1rem - 1cap);
     text-wrap: pretty;
   }
 
   &.variant-base {
-    font-size: var(--font-scaled-base);
-    line-height: 2;
+    font: var(--font-base);
     margin-block: 0 var(--spacing-md);
     padding-block-start: calc(1rem - 1cap);
     text-wrap: pretty;
@@ -24,36 +31,35 @@
   }
 
   &.variant-md {
-    font-size: var(--font-scaled-md);
+    font: var(--font-md);
     margin-block: 0 var(--spacing-md);
-    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    padding-block-start: calc(2rem - 1cap);
     text-wrap: pretty;
   }
 
   &.variant-lg {
-    font-size: var(--font-scaled-lg);
+    font: var(--font-lg);
     margin-block: 0 var(--spacing-md);
-    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    padding-block-start: calc(2rem - 1cap);
     text-wrap: balance;
-    line-height: 1.32;
   }
 
   &.variant-xl {
-    font-size: var(--font-scaled-xl);
+    font: var(--font-xl);
     margin-block: 0 var(--spacing-xl);
-    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    padding-block-start: calc(2rem - 1cap);
     text-wrap: balance;
   }
 
   &.variant-xxl {
-    font-size: var(--font-scaled-xxl);
+    font: var(--font-xxl);
     margin-block: 0 var(--spacing-xl);
-    padding-block-start: calc(round(1cap, 2rem) - 1cap);
+    padding-block-start: calc(2rem - 1cap);
     text-wrap: balance;
   }
 
   &.variant-hero {
-    font-size: var(--font-scaled-xl);
+    font: var(--font-3xl);
     font-weight: 800;
     letter-spacing: -0.025em;
     line-height: calc(1.63 * 1cap);
