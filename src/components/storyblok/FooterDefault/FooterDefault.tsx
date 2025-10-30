@@ -2,6 +2,7 @@ import { StoryblokServerComponent } from "@/components"
 import type { FooterDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { fetchStoryByUuid } from "@/utils/storyblok-fetch"
+import Typography from "../Typography"
 
 interface FooterDefaultProps {
   blok?: FooterDefaultStoryblok | null
@@ -26,15 +27,17 @@ export default async function FooterDefault({
   }
 
   const { logo, nav } = footerData
+  const hasNav = nav && nav.length > 0
+  const hasLogo = logo?.[0]
+  const copyright = `© GotPop ${new Date().getFullYear()}`
 
   return (
     <footer className="footer">
       {styles && <style>{styles}</style>}
 
       <div className="footer-content">
-        {logo?.[0] && <StoryblokServerComponent blok={logo[0]} />}
-
-        {nav && nav.length > 0 && (
+        {hasLogo && <StoryblokServerComponent blok={logo[0]} />}
+        {hasNav && (
           <nav className="footer-nav">
             {nav.map((navItem) => (
               <StoryblokServerComponent key={navItem._uid} blok={navItem} />
@@ -43,9 +46,14 @@ export default async function FooterDefault({
         )}
       </div>
 
-      <small className="footer_copyright">
-        ©GotPop {new Date().getFullYear()}
-      </small>
+      <Typography
+        className="copyright"
+        tag="small"
+        variant="text-xs"
+        shade="dimmed"
+      >
+        {copyright}
+      </Typography>
     </footer>
   )
 }

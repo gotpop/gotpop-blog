@@ -13,7 +13,7 @@
     justify-content: center;
     padding-block: var(--spacing-xl);
     view-transition-name: footer;
-    row-gap: var(--spacing-lg);
+    row-gap: var(--spacing-xxl);
   }
 
   .footer-content {
@@ -30,12 +30,8 @@
     grid-template-columns: subgrid;
   }
 
-  .footer_copyright {
+  .copyright {
     grid-column: 3 / -3;
     text-align: center;
-    color: var(--color-text-secondary);
-    font-size: 0.875rem;
-    margin-top: 2rem;
-    color: var(--light-200);
   }
 }
