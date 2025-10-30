@@ -30,7 +30,7 @@
     grid-template-columns: subgrid;
   }
 
-  .footer_copyright {
+  .copyright {
     grid-column: 3 / -3;
     text-align: center;
     color: var(--color-text-secondary);

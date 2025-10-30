@@ -11,16 +11,11 @@ export default function LinkList({ blok }: LinkListProps) {
   const styles = getInlineStyles("LinkList.css")
 
   return (
-    <div className="link-list">
+    <div>
       {styles && <style>{styles}</style>}
 
-      <div>
-        <Typography
-          tag="h4"
-          variant="text-base"
-          shade="light"
-          className="link-list-heading"
-        >
+      <div className="link-list-heading">
+        <Typography tag="h4" variant="text-lg" shade="light">
           {blok.heading}
         </Typography>
       </div>
