@@ -1,4 +1,3 @@
-// import Link from "next/link"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import Typography from "@/storyblok/Typography"
 import { formatDate } from "@/utils/date-formatter"
@@ -32,7 +31,7 @@ export default function PostCard({ post }: PostCardProps) {
       <div className="meta">
         <Typography
           tag="time"
-          variant="text-base"
+          variant="text-sm"
           shade="charcoal"
           dateTime={formattedDate}
           className="margin-none"
