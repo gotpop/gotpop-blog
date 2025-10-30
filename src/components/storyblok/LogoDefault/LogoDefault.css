@@ -39,6 +39,7 @@
     letter-spacing: 0.1rem;
     text-transform: uppercase;
     display: flex;
+    font-variation-settings: "opsz" var(--font-opsz-text);
 
     @container (width >= 9rem) {
       --font-size: calc(var(--font-scaled-base) * 0.9);
