@@ -12,12 +12,13 @@
 
     @media screen and (width >= 768px) {
       --layout: 1fr;
+      justify-content: start;
     }
   }
 
   .link-logo {
     display: flex;
-    gap: calc(var(--spacing-sm) * 1.9);
+    gap: calc(var(--spacing-sm) * 1.5);
     height: max-content;
     margin: unset;
     outline-offset: 0.25rem;
