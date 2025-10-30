@@ -1,10 +1,10 @@
-@scope (.typography-text) {
+@scope (.typography) {
   &.dark {
     color: var(--dark-200);
   }
 
   &.charcoal {
-    color: var(--dark-300);
+    color: var(--dark-500);
   }
 
   &.light {
@@ -15,52 +15,114 @@
     color: var(--light-300);
   }
 
-  &.variant-sm {
-    font: var(--font-sm);
+  &.text-xs {
+    font: var(--text-weight-regular) var(--font-xs);
+    margin-block: 0 var(--spacing-sm);
+    padding-block-start: calc(0.5rem - 1cap);
+    text-wrap: pretty;
+  }
+
+  &.text-sm {
+    font: var(--text-weight-regular) var(--font-sm);
     margin-block: 0 var(--spacing-md);
     padding-block-start: calc(1rem - 1cap);
     text-wrap: pretty;
   }
 
-  &.variant-base {
-    font: var(--font-base);
+  &.text-base {
+    font: var(--text-weight-regular) var(--font-base);
     margin-block: 0 var(--spacing-md);
     padding-block-start: calc(1rem - 1cap);
     text-wrap: pretty;
     max-width: 60ch;
   }
 
-  &.variant-md {
-    font: var(--font-md);
+  &.text-md {
+    font: var(--text-weight-regular) var(--font-md);
     margin-block: 0 var(--spacing-md);
     padding-block-start: calc(2rem - 1cap);
     text-wrap: pretty;
   }
 
-  &.variant-lg {
-    font: var(--font-lg);
+  &.text-lg {
+    font: var(--text-weight-regular) var(--font-lg);
     margin-block: 0 var(--spacing-md);
     padding-block-start: calc(2rem - 1cap);
     text-wrap: balance;
   }
 
-  &.variant-xl {
-    font: var(--font-xl);
+  &.text-xl {
+    font: var(--text-weight-regular) var(--font-xl);
     margin-block: 0 var(--spacing-xl);
     padding-block-start: calc(2rem - 1cap);
     text-wrap: balance;
   }
 
-  &.variant-xxl {
-    font: var(--font-xxl);
+  &.text-xxl {
+    font: var(--text-weight-regular) var(--font-xxl);
     margin-block: 0 var(--spacing-xl);
     padding-block-start: calc(2rem - 1cap);
     text-wrap: balance;
   }
 
-  &.variant-hero {
-    font: var(--font-3xl);
-    font-weight: 800;
+  &.text-2xl {
+    font: var(--text-weight-regular) var(--font-2xl);
+    margin-block: 0 var(--spacing-xl);
+    padding-block-start: calc(2rem - 1cap);
+    text-wrap: balance;
+  }
+
+  &.text-3xl {
+    font: var(--text-weight-regular) var(--font-3xl);
+    margin-block: 0 var(--spacing-xl);
+    padding-block-start: calc(3rem - 1cap);
+    text-wrap: balance;
+  }
+
+  &.text-4xl {
+    font: var(--text-weight-regular) var(--font-4xl);
+    margin-block: 0 var(--spacing-xl);
+    padding-block-start: calc(3rem - 1cap);
+    text-wrap: balance;
+  }
+
+  &.text-5xl {
+    font: var(--text-weight-regular) var(--font-5xl);
+    margin-block: 0 var(--spacing-xxl);
+    padding-block-start: calc(4rem - 1cap);
+    text-wrap: balance;
+  }
+
+  &.text-6xl {
+    font: var(--text-weight-regular) var(--font-6xl);
+    margin-block: 0 var(--spacing-xxl);
+    padding-block-start: calc(4rem - 1cap);
+    text-wrap: balance;
+  }
+
+  &.text-7xl {
+    font: var(--text-weight-regular) var(--font-7xl);
+    margin-block: 0 var(--spacing-xxl);
+    padding-block-start: calc(5rem - 1cap);
+    text-wrap: balance;
+  }
+
+  &.text-8xl {
+    font: var(--text-weight-regular) var(--font-8xl);
+    margin-block: 0 var(--spacing-xxl);
+    padding-block-start: calc(6rem - 1cap);
+    text-wrap: balance;
+  }
+
+  &.text-9xl {
+    font: var(--text-weight-regular) var(--font-9xl);
+    margin-block: 0 var(--spacing-xxl);
+    padding-block-start: calc(7rem - 1cap);
+    text-wrap: balance;
+  }
+
+  &.hero {
+    font: var(--text-weight-black) var(--font-3xl);
     letter-spacing: -0.025em;
     line-height: calc(1.63 * 1cap);
     margin-block: 0 var(--spacing-md);
@@ -68,6 +130,7 @@
     position: relative;
     right: 0.1ch;
     text-wrap: balance;
+    font-variation-settings: "slnt" -10; /* Adjust angle as needed */
   }
 
   &.margin-none {

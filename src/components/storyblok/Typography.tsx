@@ -1,12 +1,43 @@
 import type { ReactNode } from "react"
+import { cn } from "@/utils/cn"
 
 type ValidTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "small" | "time"
+
+type TypographyVariant =
+  | "text-xs"
+  | "text-sm"
+  | "text-base"
+  | "text-md"
+  | "text-lg"
+  | "text-xl"
+  | "text-xxl"
+  | "text-2xl"
+  | "text-3xl"
+  | "text-4xl"
+  | "text-5xl"
+  | "text-6xl"
+  | "text-7xl"
+  | "text-8xl"
+  | "text-9xl"
+  | "hero"
+
+type FontWeight =
+  | "thin"
+  | "light"
+  | "regular"
+  | "medium"
+  | "semibold"
+  | "bold"
+  | "black"
+
+type TypographyShade = "light" | "dark" | "charcoal" | "dimmed"
 
 interface TypographyProps {
   children: ReactNode
   tag: ValidTag
-  shade?: "light" | "dark"
-  variant?: "sm" | "base" | "md" | "lg" | "xl" | "xxl" | "hero"
+  shade?: TypographyShade
+  variant?: TypographyVariant
+  weight?: FontWeight
   className?: string
   id?: string
   dateTime?: string
@@ -17,8 +48,9 @@ export default function Typography({
   tag,
   shade,
   variant,
+  weight,
   className = "",
-  id = "",
+  id = undefined,
   dateTime = undefined,
 }: TypographyProps) {
   const validTags: ValidTag[] = [
@@ -39,21 +71,19 @@ export default function Typography({
 
   const Element = elementTag
 
-  const shadeClass = shade === "dark" ? "dark" : "light"
-  const variantClass = variant ? `variant-${variant}` : ""
+  const shadeClass = shade || "light"
 
-  const classNames = [
-    "typography-text",
-    `typography-${elementTag}`,
+  const classNames = cn(
+    "typography",
+    Element,
     shadeClass,
-    variantClass,
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ")
+    variant,
+    weight,
+    className
+  )
 
   return (
-    <Element dateTime={dateTime} className={classNames} id={id || undefined}>
+    <Element dateTime={dateTime} className={classNames} id={id}>
       {children}
     </Element>
   )

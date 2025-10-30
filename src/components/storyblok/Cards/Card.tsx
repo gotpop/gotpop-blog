@@ -33,10 +33,10 @@ export async function Card({ blok }: CardProps) {
         viewTransitionName: `post-${story.content._uid}`,
       }}
     >
-      <Typography tag="h3" variant="lg" shade="dark">
+      <Typography tag="h3" variant="text-xl" shade="dark">
         {title}
       </Typography>
-      <Typography tag="p" variant="base" shade="dark">
+      <Typography tag="p" variant="text-base" shade="charcoal">
         {description}
       </Typography>
       <a href={linkPath} className="link-simple">
