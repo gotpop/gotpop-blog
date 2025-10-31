@@ -23,12 +23,13 @@
 
     height: 4rem;
 
-    button[aria-controls="header-nav"] {
+    button {
       background: none;
       border: none;
       outline: none;
       padding: 0;
       color: var(--light-100);
+      cursor: pointer;
     }
 
     &:is(:hover, :active) {

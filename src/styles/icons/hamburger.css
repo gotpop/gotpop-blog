@@ -1,12 +1,10 @@
 icon-hamburger {
-  --hamburger-color: currentColor;
-  --line-thickness: calc(var(--spacing-base) / 8);
+  --line: 0.2rem;
   --bg: linear-gradient(
     to bottom,
-    transparent 0 calc(50% - var(--line-thickness)),
-    var(--hamburger-color) calc(50% - var(--line-thickness))
-      calc(50% + var(--line-thickness)),
-    transparent calc(50% + var(--line-thickness)) 100%
+    transparent 0 calc(50% - var(--line)),
+    currentColor calc(50% - var(--line)) calc(50% + var(--line)),
+    transparent calc(50% + var(--line)) 100%
   );
 
   aspect-ratio: 1;
@@ -14,19 +12,20 @@ icon-hamburger {
   position: relative;
   width: var(--spacing-md);
   display: block;
-
-  [aria-expanded="true"] & {
-    background: red;
-  }
+  transition: background 0.3s ease;
 
   &::before,
   &::after {
-    background: var(--hamburger-color);
+    background: currentColor;
     content: "";
     display: block;
-    height: calc(var(--line-thickness) * 2);
+    height: calc(var(--line) * 2);
     position: absolute;
     width: stretch;
+    transition:
+      translate 0.3s ease,
+      rotate 0.3s ease;
+    transform-origin: center;
   }
 
   &::before {
@@ -35,5 +34,20 @@ icon-hamburger {
 
   &::after {
     bottom: 0;
+  }
+
+  [aria-expanded="true"] & {
+    background: transparent;
+
+    &::before {
+      translate: 0 calc(var(--spacing-md) / 2 - var(--line));
+      rotate: 45deg;
+    }
+
+    &::after {
+      translate: 0 calc(-var(--spacing-md) / 2 + var(--line));
+      rotate: -45deg;
+      bottom: calc(50% - var(--line));
+    }
   }
 }
