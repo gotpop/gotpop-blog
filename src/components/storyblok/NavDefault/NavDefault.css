@@ -1,6 +1,5 @@
 @scope {
   & {
-    display: none;
     gap: var(--spacing-base);
     /* grid-area: centre / nav; */
     grid-column: nav;
@@ -8,6 +7,15 @@
     grid-auto-flow: column;
     justify-content: end;
 
+    /* Default: hidden on small screens */
+    display: none;
+
+    /* Show when aria-hidden="false" on small screens */
+    &[aria-hidden="false"] {
+      display: grid;
+    }
+
+    /* Always visible on large screens regardless of aria-hidden */
     @media screen and (width >= 1480px) {
       display: grid;
     }

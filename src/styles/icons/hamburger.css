@@ -15,6 +15,10 @@ icon-hamburger {
   width: var(--spacing-md);
   display: block;
 
+  [aria-expanded="true"] & {
+    background: red;
+  }
+
   &::before,
   &::after {
     background: var(--hamburger-color);
