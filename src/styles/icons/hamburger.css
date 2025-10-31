@@ -9,6 +9,7 @@ icon-hamburger {
   --after-rotate: 0deg;
   --after-y: 0;
   --before-rotate: 0deg;
+  --before-top: 0;
   --before-y: 0;
   --hamburger-bg: var(--bg);
   --line: 0.2rem;
@@ -16,35 +17,37 @@ icon-hamburger {
 
   aspect-ratio: 1;
   background: var(--hamburger-bg);
-  position: relative;
-  width: var(--spacing-md);
   display: block;
+  position: relative;
   transition: background 0.3s ease;
+  width: var(--spacing-md);
 
   &::before,
   &::after {
     background: currentColor;
+    bottom: var(--bottom, auto);
     content: "";
     display: block;
     height: calc(var(--line) * 2);
     position: absolute;
+    rotate: var(--rotate, 0deg);
+    top: var(--top, auto);
     transform-origin: center;
     transition: var(--transition);
-    width: stretch;
-    rotate: var(--rotate, 0deg);
     translate: 0 var(--y, 0);
+    width: stretch;
   }
 
   &::before {
     --rotate: var(--before-rotate);
+    --top: var(--before-top);
     --y: var(--before-y);
-    top: 0;
   }
 
   &::after {
+    --bottom: var(--after-bottom);
     --rotate: var(--after-rotate);
     --y: var(--after-y);
-    bottom: var(--after-bottom);
   }
 
   [aria-expanded="true"] & {
