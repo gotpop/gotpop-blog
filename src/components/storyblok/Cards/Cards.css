@@ -7,8 +7,9 @@
     grid-template-columns: subgrid;
 
     box-grid {
-      --grid-offset: left;
-      --grid-column: span 3;
+      @media screen and (width >= 1480px) {
+        --grid-column: span 3;
+      }
     }
   }
 }

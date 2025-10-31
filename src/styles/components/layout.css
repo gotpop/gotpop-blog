@@ -21,7 +21,7 @@ box-hero {
     0 0,
     0 0;
   background-repeat: repeat, repeat;
-  grid-column: breakout;
+  grid-column: content;
   padding: var(--spacing-base);
   view-transition-name: hero-background;
   grid-template-columns: subgrid;
@@ -32,15 +32,17 @@ box-hero {
 box-grid {
   background-color: var(--light-100);
   background-image: paint(grid);
+  background-image: var(--grid-css);
   column-gap: var(--column-gap, 0);
   display: grid;
   grid-column: var(--grid-column, content);
   grid-template-columns: var(--columns, 1fr);
+  grid-template-rows: max-content;
   padding-block: var(--spacing-lg);
   padding-inline: var(--spacing-lg);
 
-  &[auto-columns] {
-    --column-gap: var(--spacing-md);
-    --columns: repeat(auto-fit, minmax(5rem, 12rem));
-  }
+  background-size: 1rem 1rem;
+  background-position:
+    0 10px,
+    10px 0px;
 }

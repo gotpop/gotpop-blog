@@ -8,6 +8,7 @@
   text-underline-offset: calc(var(--spacing-base) - 0.1em);
   transition: all 0.2s ease-in-out;
   width: max-content;
+  align-self: end;
 
   &:focus {
     color: var(--color-primary);
@@ -28,6 +29,7 @@
   text-decoration: underline 2px var(--secondary-200);
   text-underline-offset: calc(var(--spacing-base) - 0.1em);
   transition: all 0.2s ease-in-out;
+  align-self: end;
 
   &:link {
     color: var(--secondary-500);

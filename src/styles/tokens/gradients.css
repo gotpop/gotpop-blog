@@ -33,4 +33,30 @@
     var(--light-300) calc(1rem - 1px),
     var(--light-300) 1rem
   );
+
+  /* Grid */
+  --grid-line-color: rgb(from var(--light-400) r g b / 0.4);
+  --horizontal-1: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent
+      calc(var(--box-hero-grid-size) * 0.707 - var(--box-hero-line-width)),
+    var(--grid-line-color)
+      calc(var(--box-hero-grid-size) * 0.707 - var(--box-hero-line-width)),
+    var(--grid-line-color) calc(var(--box-hero-grid-size) * 0.707),
+    transparent calc(var(--box-hero-grid-size) * 0.707),
+    transparent calc(var(--box-hero-grid-size) * 1.414)
+  );
+  --vertical-1: repeating-linear-gradient(
+    -90deg,
+    transparent 0,
+    transparent
+      calc(var(--box-hero-grid-size) * 0.707 - var(--box-hero-line-width)),
+    var(--grid-line-color)
+      calc(var(--box-hero-grid-size) * 0.707 - var(--box-hero-line-width)),
+    var(--grid-line-color) calc(var(--box-hero-grid-size) * 0.707),
+    transparent calc(var(--box-hero-grid-size) * 0.707),
+    transparent calc(var(--box-hero-grid-size) * 1.414)
+  );
+  --grid-css: var(--horizontal-1), var(--vertical-1);
 }
