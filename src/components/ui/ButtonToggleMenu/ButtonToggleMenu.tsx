@@ -1,27 +1,10 @@
-import { useId } from "react"
-import IconHamburger from "@/components/icons/IconHamburger"
 import { getInlineStyles } from "@/utils/inline-styles"
+import ButtonToggleMenuClient from "./ButtonToggleMenuClient"
 
+// Server Component: Handles CSS loading at build time
 export default function ButtonToggleMenu() {
   const styles = getInlineStyles("ButtonToggleMenu.css")
-  const id = useId()
 
-  return (
-    <div className="button-toggle-menu">
-      {styles && <style>{styles}</style>}
-      <button
-        aria-controls="header-nav"
-        aria-expanded="false"
-        aria-haspopup="true"
-        aria-label="Toggle navigation"
-        className="button-toggle-menu"
-        id={id}
-        type="button"
-        data-click-listener-added="true"
-      >
-        <IconHamburger />
-        <span hidden>Toggle navigation</span>
-      </button>
-    </div>
-  )
+  // Pass styles to client component for hydration
+  return <ButtonToggleMenuClient styles={styles} />
 }
