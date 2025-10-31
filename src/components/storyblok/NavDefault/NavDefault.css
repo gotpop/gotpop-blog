@@ -1,17 +1,17 @@
 @scope {
   & {
-    background-color: var(--secondary-800);
+    background-color: var(--nav-background, var(--secondary-800));
     display: var(--nav-display, none);
     gap: var(--spacing-base);
     grid-auto-flow: column;
     grid-column: nav;
     grid-row: centre;
     justify-content: end;
-    padding: var(--spacing-md);
-    position-anchor: --buttonToggle;
-    position: absolute;
-    right: anchor(right);
-    top: anchor(bottom);
+    padding: var(--nav-padding, var(--spacing-md));
+    position-anchor: var(--nav-position-anchor, --buttonToggle);
+    position: var(--nav-position, absolute);
+    right: var(--nav-right, anchor(right));
+    top: var(--nav-top, anchor(bottom));
 
     &[aria-hidden="false"] {
       --nav-display: grid;
@@ -19,13 +19,12 @@
 
     @media screen and (width >= 1480px) {
       --nav-display: grid;
-      position: static;
-      position-anchor: unset;
-      top: unset;
-      left: unset;
-      margin-block-start: unset;
-      padding: 0;
-      background-color: transparent;
+      --nav-background: transparent;
+      --nav-padding: 0;
+      --nav-position: static;
+      --nav-position-anchor: unset;
+      --nav-right: unset;
+      --nav-top: unset;
     }
   }
 
