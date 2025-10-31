@@ -22,9 +22,22 @@
     grid-template-columns: [nav-start logo-start] 1fr [nav-end logo-end];
     row-gap: var(--spacing-lg);
 
+    background-image: var(--crosshatch-white-pattern);
+    background-size: var(--box-hero-grid-size) var(--box-hero-grid-size);
+    background-position:
+      0 0,
+      0 0;
+    background-repeat: repeat, repeat;
+    padding-block: var(--spacing-lg);
+
+    logo-main {
+      margin-inline: 2rem;
+      padding: 1rem;
+    }
+
     @media screen and (width >= 1480px) {
       align-items: start;
-      grid-template-columns: subgrid [logo-start] [logo-end] [nav-start] [] [] [] [nav-end];
+      grid-template-columns: subgrid [logo-start] [] [logo-end nav-start] [] [] [] [nav-end];
       grid-template-rows: [full-start] min-content [full-end];
     }
   }

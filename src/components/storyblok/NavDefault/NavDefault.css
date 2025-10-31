@@ -5,13 +5,23 @@
     gap: var(--spacing-base);
     grid-auto-flow: column;
     grid-column: nav;
-    grid-row: centre;
+    grid-row: full;
     justify-content: end;
     padding: var(--nav-padding, var(--spacing-md));
     position-anchor: var(--nav-position-anchor, --buttonToggle);
     position: var(--nav-position, absolute);
     right: var(--nav-right, anchor(right));
     top: var(--nav-top, anchor(bottom));
+
+    max-width: max-content;
+    margin: 0 0 0 auto;
+    padding: 1rem;
+    background-image: var(--crosshatch-white-pattern);
+    background-size: var(--box-hero-grid-size) var(--box-hero-grid-size);
+    background-position:
+      0 0,
+      0 0;
+    background-repeat: repeat, repeat;
 
     &[aria-hidden="false"] {
       --nav-display: grid;
