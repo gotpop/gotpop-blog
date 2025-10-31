@@ -1,33 +1,24 @@
 @scope {
   & {
+    background-color: var(--secondary-800);
+    display: var(--nav-display, none);
     gap: var(--spacing-base);
-    /* grid-area: centre / nav; */
+    grid-auto-flow: column;
     grid-column: nav;
     grid-row: centre;
-    grid-auto-flow: column;
     justify-content: end;
-
-    /* Anchor positioning */
-    position: absolute;
-    position-anchor: --buttonToggle;
-    top: anchor(bottom);
-    right: anchor(right);
-    left: auto;
-
     padding: var(--spacing-md);
-    background-color: var(--secondary-800);
+    position-anchor: --buttonToggle;
+    position: absolute;
+    right: anchor(right);
+    top: anchor(bottom);
 
-    /* Default: hidden on small screens */
-    display: none;
-
-    /* Show when aria-hidden="false" on small screens */
     &[aria-hidden="false"] {
-      display: grid;
+      --nav-display: grid;
     }
 
-    /* Always visible on large screens regardless of aria-hidden */
     @media screen and (width >= 1480px) {
-      display: grid;
+      --nav-display: grid;
       position: static;
       position-anchor: unset;
       top: unset;
