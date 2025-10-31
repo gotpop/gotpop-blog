@@ -2,7 +2,6 @@
 // Re-export all components from subdirectories
 
 // Icon Components
-export { default as IconHamburger } from "./icons/IconHamburger"
 export { default as IconLogo } from "./icons/IconLogo"
 // Direct components
 export { default as PostsPage } from "./PostsPage"
