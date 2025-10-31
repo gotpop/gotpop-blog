@@ -1,6 +1,7 @@
 "use client"
 
 import { useId } from "react"
+import { useClickOutside } from "@/hooks/useClickOutside"
 import { useNavigationToggle } from "./useNavigationToggle"
 
 interface ButtonToggleMenuClientProps {
@@ -12,8 +13,10 @@ export default function ButtonToggleMenuClient({
   styles,
   navId,
 }: ButtonToggleMenuClientProps) {
-  const { isExpanded, toggleMenu } = useNavigationToggle(navId)
+  const { isExpanded, toggleMenu, closeMenu } = useNavigationToggle(navId)
   const id = useId()
+
+  useClickOutside(navId, isExpanded, closeMenu)
 
   return (
     <button-toggle>

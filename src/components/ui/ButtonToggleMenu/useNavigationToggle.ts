@@ -1,8 +1,27 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { MEDIA_QUERIES } from "@/constants/breakpoints"
 
 export function useNavigationToggle(navId: string) {
   const [isExpanded, setIsExpanded] = useState(false)
+
+  const closeMenu = useCallback(() => {
+    const isDesktop = () => window.matchMedia(MEDIA_QUERIES.large).matches
+    if (isDesktop()) return
+    setIsExpanded(false)
+  }, [])
+
+  useEffect(() => {
+    const navElement = document.getElementById(navId)
+    if (!navElement) return
+
+    const isDesktop = () => window.matchMedia(MEDIA_QUERIES.large).matches
+
+    if (isDesktop()) {
+      navElement.removeAttribute("aria-hidden")
+    } else {
+      navElement.setAttribute("aria-hidden", (!isExpanded).toString())
+    }
+  }, [navId, isExpanded])
 
   useEffect(() => {
     const navElement = document.getElementById(navId)
@@ -12,15 +31,11 @@ export function useNavigationToggle(navId: string) {
 
     const handleResize = () => {
       if (isDesktop()) {
-        navElement.removeAttribute("aria-hidden")
         setIsExpanded(true)
-      } else {
-        navElement.setAttribute("aria-hidden", (!isExpanded).toString())
       }
     }
 
     if (isDesktop()) {
-      navElement.removeAttribute("aria-hidden")
       setIsExpanded(true)
     } else {
       const isCurrentlyHidden =
@@ -32,21 +47,13 @@ export function useNavigationToggle(navId: string) {
     mediaQuery.addEventListener("change", handleResize)
 
     return () => mediaQuery.removeEventListener("change", handleResize)
-  }, [navId, isExpanded])
+  }, [navId])
 
   const toggleMenu = () => {
     const isDesktop = () => window.matchMedia(MEDIA_QUERIES.large).matches
-
     if (isDesktop()) return
-
-    const newExpandedState = !isExpanded
-    setIsExpanded(newExpandedState)
-
-    const navElement = document.getElementById(navId)
-    if (navElement) {
-      navElement.setAttribute("aria-hidden", (!newExpandedState).toString())
-    }
+    setIsExpanded(!isExpanded)
   }
 
-  return { isExpanded, toggleMenu }
+  return { isExpanded, toggleMenu, closeMenu }
 }
