@@ -1,12 +1,31 @@
 @scope {
   & {
-    display: grid;
+    background-color: var(--nav-background, var(--secondary-800));
+    display: var(--nav-display, none);
     gap: var(--spacing-base);
-    /* grid-area: centre / nav; */
+    grid-auto-flow: column;
     grid-column: nav;
     grid-row: centre;
-    grid-auto-flow: column;
     justify-content: end;
+    padding: var(--nav-padding, var(--spacing-md));
+    position-anchor: var(--nav-position-anchor, --buttonToggle);
+    position: var(--nav-position, absolute);
+    right: var(--nav-right, anchor(right));
+    top: var(--nav-top, anchor(bottom));
+
+    &[aria-hidden="false"] {
+      --nav-display: grid;
+    }
+
+    @media screen and (width >= 1480px) {
+      --nav-display: grid;
+      --nav-background: transparent;
+      --nav-padding: 0;
+      --nav-position: static;
+      --nav-position-anchor: unset;
+      --nav-right: unset;
+      --nav-top: unset;
+    }
   }
 
   .nav-item {

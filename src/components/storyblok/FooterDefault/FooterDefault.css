@@ -12,22 +12,32 @@
     grid-template-columns: subgrid;
     justify-content: center;
     padding-block: var(--spacing-xl);
-    view-transition-name: footer;
     row-gap: var(--spacing-xxl);
+    view-transition-name: footer;
   }
 
   .footer-content {
-    grid-column: content;
     display: grid;
-    grid-template-columns: subgrid [logo-start] [logo-end] [nav-start] [] [] [] [nav-end];
-    grid-template-rows: [full-start] min-content [full-end];
-    align-items: start;
+    grid-column: content;
+    grid-template-columns: [nav-start logo-start] 1fr [nav-end logo-end];
+    row-gap: var(--spacing-lg);
+
+    @media screen and (width >= 1480px) {
+      align-items: start;
+      grid-template-columns: subgrid [logo-start] [logo-end] [nav-start] [] [] [] [nav-end];
+      grid-template-rows: [full-start] min-content [full-end];
+    }
   }
 
   .footer-nav {
     display: grid;
     grid-column: nav;
-    grid-template-columns: subgrid;
+    grid-template-columns: repeat(auto-fit, 10rem);
+    row-gap: var(--spacing-md);
+
+    @media screen and (width >= 1480px) {
+      grid-template-columns: subgrid;
+    }
   }
 
   .copyright {

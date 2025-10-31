@@ -16,6 +16,7 @@
 @import "./components/properties.css";
 @import "./components/layout.css";
 @import "./components/typography.css";
+@import "./icons/hamburger.css";
 
 @view-transition {
   navigation: auto;

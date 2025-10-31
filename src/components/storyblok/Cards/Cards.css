@@ -5,5 +5,10 @@
     grid-auto-rows: min-content;
     grid-column: content;
     grid-template-columns: subgrid;
+
+    box-grid {
+      --grid-offset: left;
+      --grid-column: span 3;
+    }
   }
 }
