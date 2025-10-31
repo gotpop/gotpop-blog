@@ -13,6 +13,24 @@
     view-transition-name: header;
     z-index: 1;
 
+    &::before {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      z-index: 0;
+      width: 12rem;
+      height: 4rem;
+      grid-column: 2 / -3;
+      grid-row: 1 / -1;
+      translate: 0 0;
+      background-image: var(--crosshatch-white-pattern);
+      background-size: var(--box-hero-grid-size) var(--box-hero-grid-size);
+      background-position:
+        0 0,
+        0 0;
+      background-repeat: repeat, repeat;
+    }
+
     @media screen and (width >= 480px) {
       grid-template-columns: [logo] 1fr [button-toggle] minmax(6rem, auto);
       grid-template-rows: 1fr;
@@ -30,7 +48,7 @@
 
     @media screen and (width >= 1480px) {
       grid-template-rows: [full-start] 1rem [centre-start] 2rem [centre-end] 1rem [full-end];
-      grid-template-columns: subgrid [] [logo-start] [][logo-end nav-start] [] [] [] [] [nav-end] [] [];
+      grid-template-columns: subgrid [] [] [logo-start][logo-end nav-start] [] [] [] [] [nav-end] [] [];
     }
   }
 }
