@@ -9,11 +9,16 @@
   }
 
   .filters-with-output {
-    grid-column: breakout;
     display: grid;
-    row-gap: var(--spacing-lg);
-    grid-template-columns: subgrid;
     grid-auto-rows: min-content;
+    grid-column: content;
+    grid-template-columns: subgrid;
+    row-gap: var(--spacing-lg);
+
+    box-grid[auto-columns] {
+      --column-gap: var(--spacing-md);
+      --columns: repeat(auto-fit, minmax(5rem, 12rem));
+    }
   }
 
   .posts-grid {
@@ -21,6 +26,14 @@
     grid-template-columns: subgrid;
     grid-column: content;
     row-gap: var(--spacing-md);
+
+    box-grid {
+      --grid-offset: left;
+
+      @media screen and (width >= 1480px) {
+        --grid-column: span 3;
+      }
+    }
   }
 }
 

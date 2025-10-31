@@ -1,0 +1,97 @@
+@view-transition {
+  navigation: auto;
+}
+
+/* Debug: Make transitions visible */
+/* ::view-transition-group(*) {
+  border: 2px solid red !important;
+}
+
+::view-transition-old(*) {
+  border: 2px solid blue !important;
+}
+
+::view-transition-new(*) {
+  border: 2px solid green !important;
+} */
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: fade-in 150ms ease-in-out both !important;
+  }
+}
+
+html:active-view-transition-type(forwards, backwards) {
+  .feature-content {
+    view-transition-name: feature-content;
+    will-change: transform, opacity;
+  }
+
+  :root {
+    view-transition-name: none;
+  }
+
+  &::view-transition-image-pair(feature-content) {
+    animation-duration: 300ms;
+    /* Ensure GPU acceleration for view transition elements */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+html:active-view-transition-type(forwards) {
+  &::view-transition-old(feature-content) {
+    animation-name: slide-out-to-left;
+    animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    /* Performance optimizations */
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
+  &::view-transition-new(feature-content) {
+    animation-name: slide-in-from-right;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    /* Performance optimizations */
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+}
+
+html:active-view-transition-type(backwards) {
+  &::view-transition-old(feature-content) {
+    animation-name: slide-out-to-right;
+    animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    /* Performance optimizations */
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
+  &::view-transition-new(feature-content) {
+    animation-name: slide-in-from-left;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    /* Performance optimizations */
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+}
+
+/* Optimize based on connection speed */
+@media (prefers-reduced-data: reduce) {
+  html:active-view-transition-type(forwards, backwards) {
+    &::view-transition-image-pair(feature-content) {
+      animation-duration: 100ms !important;
+    }
+
+    &::view-transition-old(feature-content),
+    &::view-transition-new(feature-content) {
+      animation-name: fadeIn !important;
+    }
+  }
+}
