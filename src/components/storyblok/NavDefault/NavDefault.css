@@ -7,6 +7,16 @@
     grid-auto-flow: column;
     justify-content: end;
 
+    /* Anchor positioning */
+    position: absolute;
+    position-anchor: --buttonToggle;
+    top: anchor(bottom);
+    right: anchor(right);
+    left: auto;
+
+    padding: var(--spacing-md);
+    background-color: var(--secondary-800);
+
     /* Default: hidden on small screens */
     display: none;
 
@@ -18,6 +28,13 @@
     /* Always visible on large screens regardless of aria-hidden */
     @media screen and (width >= 1480px) {
       display: grid;
+      position: static;
+      position-anchor: unset;
+      top: unset;
+      left: unset;
+      margin-block-start: unset;
+      padding: 0;
+      background-color: transparent;
     }
   }
 
