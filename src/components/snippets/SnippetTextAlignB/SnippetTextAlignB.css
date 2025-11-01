@@ -14,15 +14,19 @@
       var(--light-300) 1rem
     );
     min-height: var(--spacing-lg);
-    max-width: max-content;
+    max-width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(5rem, 5rem));
     grid-template-rows: auto auto;
     background-position: 0 -1px;
     background-size: 100% 1rem;
     column-gap: var(--spacing-lg);
     row-gap: var(--spacing-md);
     height: var(--round-up);
+
+    @media screen and (width >= 480px) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .container-row {

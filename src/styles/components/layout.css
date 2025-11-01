@@ -14,7 +14,7 @@ main-content {
   grid-template-columns: subgrid;
 }
 
-box-crosshatch {
+.box-crosshatch {
   background: var(--crosshatch);
   background-size: var(--box-hero-grid-size) var(--box-hero-grid-size);
   background-repeat: repeat, repeat;

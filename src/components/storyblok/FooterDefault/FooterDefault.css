@@ -12,6 +12,11 @@
     padding-block: var(--spacing-xl);
     row-gap: var(--spacing-xxl);
     view-transition-name: footer;
+
+    background-color: var(--secondary-700);
+    background-image: var(--grid-light-pattern);
+    background-size: var(--grid-light-bg-size);
+    background-position: var(--grid-light-bg-position);
   }
 
   .footer-content {

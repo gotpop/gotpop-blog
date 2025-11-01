@@ -1,57 +1,40 @@
 import { useCallback, useEffect, useState } from "react"
 import { MEDIA_QUERIES } from "@/constants/breakpoints"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 
 export function useNavigationToggle(navId: string) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const isDesktop = useMediaQuery(MEDIA_QUERIES.large)
 
   const closeMenu = useCallback(() => {
-    const isDesktop = () => window.matchMedia(MEDIA_QUERIES.large).matches
-    if (isDesktop()) return
+    if (isDesktop) return
+
     setIsExpanded(false)
-  }, [])
+  }, [isDesktop])
 
   useEffect(() => {
     const navElement = document.getElementById(navId)
+
     if (!navElement) return
 
-    const isDesktop = () => window.matchMedia(MEDIA_QUERIES.large).matches
-
-    if (isDesktop()) {
+    if (isDesktop) {
       navElement.removeAttribute("aria-hidden")
     } else {
       navElement.setAttribute("aria-hidden", (!isExpanded).toString())
     }
-  }, [navId, isExpanded])
+  }, [navId, isExpanded, isDesktop])
 
   useEffect(() => {
-    const navElement = document.getElementById(navId)
-    if (!navElement) return
-
-    const isDesktop = () => window.matchMedia(MEDIA_QUERIES.large).matches
-
-    const handleResize = () => {
-      if (isDesktop()) {
-        setIsExpanded(true)
-      }
-    }
-
-    if (isDesktop()) {
+    if (isDesktop) {
       setIsExpanded(true)
     } else {
-      const isCurrentlyHidden =
-        navElement.getAttribute("aria-hidden") === "true"
-      setIsExpanded(!isCurrentlyHidden)
+      setIsExpanded(false)
     }
-
-    const mediaQuery = window.matchMedia(MEDIA_QUERIES.large)
-    mediaQuery.addEventListener("change", handleResize)
-
-    return () => mediaQuery.removeEventListener("change", handleResize)
-  }, [navId])
+  }, [isDesktop])
 
   const toggleMenu = () => {
-    const isDesktop = () => window.matchMedia(MEDIA_QUERIES.large).matches
-    if (isDesktop()) return
+    if (isDesktop) return
+
     setIsExpanded(!isExpanded)
   }
 

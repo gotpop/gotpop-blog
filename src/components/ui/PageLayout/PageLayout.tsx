@@ -18,13 +18,13 @@ export default function PageLayout({
   const styles = getInlineStyles("PageLayout.css")
 
   return (
-    <page-layout>
+    <div className="page-layout">
       {styles && <style>{styles}</style>}
       <HeaderDefault uuid={header} />
       <main>
-        <box-crosshatch>{children}</box-crosshatch>
+        <div className="box-crosshatch">{children}</div>
       </main>
       <FooterDefault uuid={footer} />
-    </page-layout>
+    </div>
   )
 }

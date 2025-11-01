@@ -1,21 +1,20 @@
 @scope {
   & {
-    background-color: var(--nav-background, var(--secondary-800));
+    background-color: var(--nav-background, var(--light-100));
     display: var(--nav-display, none);
     gap: var(--spacing-base);
     grid-auto-flow: column;
     grid-column: nav;
     grid-row: full;
     justify-content: end;
+    margin: 0 0 0 auto;
+    max-width: max-content;
     padding: var(--nav-padding, var(--spacing-md));
+    padding: var(--spacing-base);
     position-anchor: var(--nav-position-anchor, --buttonToggle);
     position: var(--nav-position, absolute);
     right: var(--nav-right, anchor(right));
     top: var(--nav-top, anchor(bottom));
-
-    max-width: max-content;
-    margin: 0 0 0 auto;
-    padding: var(--spacing-base);
     z-index: 1;
 
     &[aria-hidden="false"] {

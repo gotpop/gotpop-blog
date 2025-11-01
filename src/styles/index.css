@@ -18,3 +18,74 @@
 @import "./components/layout.css";
 @import "./components/typography.css";
 @import "./icons/hamburger.css";
+
+/* Add to your global CSS or typography.css */
+html {
+  /* Improve font smoothing on macOS/Safari */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Better text rendering */
+  text-rendering: optimizeLegibility;
+
+  /* Prevent font size inflation on mobile Safari */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* For better subpixel rendering */
+body {
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1,
+    "calt" 1;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+
+  /* Improve font weight consistency */
+  font-synthesis: none;
+}
+
+/* For headings - use font-optical-sizing for better rendering at different sizes */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-optical-sizing: auto;
+  text-wrap: balance; /* Better line breaks */
+}
+
+/* Better rendering for small text */
+small,
+.small-text {
+  font-size-adjust: 0.5; /* Helps with x-height consistency */
+}
+
+/* Add to your globals.css or typography CSS */
+
+/* Improve font rendering consistency across browsers */
+html {
+  /* Better font smoothing on macOS/Safari */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Better text rendering */
+  text-rendering: optimizeLegibility;
+
+  /* Prevent font size inflation on mobile Safari */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  /* Improve font weight consistency */
+  font-synthesis: none;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+
+  /* Better subpixel rendering */
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1,
+    "calt" 1;
+}
