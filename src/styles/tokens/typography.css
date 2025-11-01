@@ -81,7 +81,7 @@
   --text-weight-light: 300;
   --text-weight-regular: 400;
   --text-weight-medium: 500;
-  --text-weight-semibold: 600;
+  --text-weight-semibold: 580;
   --text-weight-bold: 700;
   --text-weight-black: 900;
 
@@ -99,6 +99,6 @@
   --font-wght-regular: 400;
   --font-wght-medium: 500;
   --font-wght-semibold: 600;
-  --font-wght-bold: 700;
+  --font-wght-bold: 580;
   --font-wght-black: 900;
 }
