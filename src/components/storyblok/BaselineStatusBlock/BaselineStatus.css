@@ -8,10 +8,12 @@
     --baseline-icon-newly-back: #a8c7fa;
     --baseline-icon-no_data: #909090;
 
-    /* grid-column: content; */
-    width: var(--round-up);
-    min-width: 38rem;
+    width: auto;
     margin-bottom: var(--spacing-md);
+
+    @media screen and (width >= 768px) {
+      width: var(--round-up);
+    }
   }
 
   details {
@@ -21,15 +23,21 @@
   summary {
     background: var(--light-100);
     cursor: pointer;
-    gap: var(--spacing-xl);
     list-style: none;
     padding: var(--spacing-base);
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr;
     height: min-content;
     align-content: center;
+    gap: var(--spacing-base);
     background-color: var(--light-200);
-    height: 3rem;
+    width: 100%;
+
+    @media screen and (width >= 768px) {
+      gap: var(--spacing-xl);
+      height: 3rem;
+      grid-template-columns: 1fr auto;
+    }
 
     &::-webkit-details-marker {
       display: none;
@@ -52,6 +60,11 @@
     align-items: center;
     gap: var(--spacing-base);
     justify-content: start;
+    flex-direction: column;
+
+    @media screen and (width >= 768px) {
+      flex-direction: row;
+    }
   }
 
   .feature-name {

@@ -1,26 +1,30 @@
 @scope {
   & {
-    /* grid-column: content; */
-    width: max-content;
-    min-width: 38rem;
     margin-block: var(--spacing-base) var(--spacing-md);
+    width: 100%;
+    overflow: hidden;
   }
 
   pre {
+    overflow-x: auto;
+    overflow-y: hidden;
     background-color: var(--light-200);
     color: var(--dark-500);
-    margin: unset;
+    margin: 0;
     padding: var(--spacing-lg);
-    height: var(--round-up);
+    width: 100%;
+    max-width: 100%;
+  }
 
-    code {
-      background-color: transparent;
-      font-family: var(--font-monaspace);
-      font-palette: --github;
-      font-size: var(--font-size-base);
-      line-height: 1.8;
-      padding: 0;
-      white-space: pre-wrap;
-    }
+  code {
+    min-width: 38rem;
+    background-color: transparent;
+    font-family: var(--font-monaspace);
+    font-palette: --github;
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    padding: 0;
+    white-space: pre;
+    display: block;
   }
 }
