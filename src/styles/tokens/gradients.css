@@ -96,6 +96,41 @@
 
   --grid-css: var(--grid-horizontal), var(--grid-vertical);
 
+  /* Centered grid system - customizable colors */
+  --grid-centered-color: var(--light-300); /* Default white */
+  --grid-centered-opacity: 0.5; /* Default 50% opacity */
+  --grid-centered-size: var(--crosshatch-grid-size);
+  --grid-centered-line-width: var(--crosshatch-line-width);
+
+  --grid-centered-horizontal: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent
+      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
+    oklch(from var(--grid-centered-color) l c h / var(--grid-centered-opacity))
+      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
+    oklch(from var(--grid-centered-color) l c h / var(--grid-centered-opacity))
+      var(--grid-centered-size)
+  );
+
+  --grid-centered-vertical: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent
+      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
+    oklch(from var(--grid-centered-color) l c h / var(--grid-centered-opacity))
+      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
+    oklch(from var(--grid-centered-color) l c h / var(--grid-centered-opacity))
+      var(--grid-centered-size)
+  );
+
+  --grid-centered-pattern:
+    var(--grid-centered-horizontal), var(--grid-centered-vertical);
+
+  /* Grid centering utilities */
+  --grid-centered-bg-size: var(--grid-centered-size) var(--grid-centered-size);
+  --grid-centered-bg-position: center center;
+
   /* Legacy support */
   --box-hero-line-color: var(--crosshatch-color);
   --box-hero-grid-size: var(--crosshatch-grid-size);
@@ -115,35 +150,36 @@
     var(--light-300) 1rem
   );
 
-  /* Centered grid system - new implementation */
-  --grid-centered-size: var(--crosshatch-grid-size);
-  --grid-centered-line-width: var(--crosshatch-line-width);
-  --grid-centered-color: var(--crosshatch-grid);
+  /* Light grid system - for headers/light backgrounds */
+  --grid-light-color: var(--light-100); /* White */
+  --grid-light-opacity: 0.1; /* Subtle opacity */
+  --grid-light-size: var(--crosshatch-grid-size);
+  --grid-light-line-width: var(--crosshatch-line-width);
 
-  --grid-centered-horizontal: repeating-linear-gradient(
+  --grid-light-horizontal: repeating-linear-gradient(
     0deg,
     transparent 0,
-    transparent
-      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
-    var(--grid-centered-color)
-      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
-    var(--grid-centered-color) var(--grid-centered-size)
+    transparent calc(var(--grid-light-size) - var(--grid-light-line-width)),
+    oklch(from var(--grid-light-color) l c h / var(--grid-light-opacity))
+      calc(var(--grid-light-size) - var(--grid-light-line-width)),
+    oklch(from var(--grid-light-color) l c h / var(--grid-light-opacity))
+      var(--grid-light-size)
   );
 
-  --grid-centered-vertical: repeating-linear-gradient(
+  --grid-light-vertical: repeating-linear-gradient(
     90deg,
     transparent 0,
-    transparent
-      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
-    var(--grid-centered-color)
-      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
-    var(--grid-centered-color) var(--grid-centered-size)
+    transparent calc(var(--grid-light-size) - var(--grid-light-line-width)),
+    oklch(from var(--grid-light-color) l c h / var(--grid-light-opacity))
+      calc(var(--grid-light-size) - var(--grid-light-line-width)),
+    oklch(from var(--grid-light-color) l c h / var(--grid-light-opacity))
+      var(--grid-light-size)
   );
 
-  --grid-centered-pattern:
-    var(--grid-centered-horizontal), var(--grid-centered-vertical);
+  --grid-light-pattern:
+    var(--grid-light-horizontal), var(--grid-light-vertical);
 
-  /* Grid centering utilities - to be used with background-position and background-size */
-  --grid-centered-bg-size: var(--grid-centered-size) var(--grid-centered-size);
-  --grid-centered-bg-position: center center;
+  /* Grid light utilities */
+  --grid-light-bg-size: var(--grid-light-size) var(--grid-light-size);
+  --grid-light-bg-position: center top;
 }

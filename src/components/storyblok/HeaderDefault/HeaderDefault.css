@@ -2,6 +2,10 @@
   --grid-vertical-color: oklch(from var(--light-200) l c h / 0.08);
   --grid-horizontal-color: oklch(from var(--light-200) l c h / 0.08);
 
+  /* Customize centered grid colors for header */
+  --grid-light-color: var(--light-100); /* White */
+  --grid-light-opacity: 0.4; /* Subtle visibility */
+
   /* background: paint(grid) var(--secondary-700); */
   display: grid;
   grid-area: header / full;
@@ -13,10 +17,9 @@
   z-index: 1;
 
   background-color: var(--secondary-700);
-  background-image: var(--grid-centered-pattern);
-  background-size: var(--grid-centered-bg-size);
-  background-position: var(--grid-centered-bg-position);
-  background-position: center top;
+  background-image: var(--grid-light-pattern);
+  background-size: var(--grid-light-bg-size);
+  background-position: var(--grid-light-bg-position);
 
   &::before {
     content: "";
