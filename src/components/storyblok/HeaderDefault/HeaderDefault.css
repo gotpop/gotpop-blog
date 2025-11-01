@@ -13,7 +13,7 @@
   z-index: 1;
 
   background-color: var(--secondary-700);
-  background-image: var(--grid-centered-pattern), var(--grain-uri);
+  background-image: var(--grid-centered-pattern);
   background-size: var(--grid-centered-bg-size);
   background-position: var(--grid-centered-bg-position);
 
