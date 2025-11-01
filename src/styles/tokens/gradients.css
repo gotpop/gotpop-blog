@@ -114,4 +114,36 @@
     var(--light-300) calc(1rem - 1px),
     var(--light-300) 1rem
   );
+
+  /* Centered grid system - new implementation */
+  --grid-centered-size: var(--crosshatch-grid-size);
+  --grid-centered-line-width: var(--crosshatch-line-width);
+  --grid-centered-color: var(--crosshatch-grid);
+
+  --grid-centered-horizontal: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent
+      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
+    var(--grid-centered-color)
+      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
+    var(--grid-centered-color) var(--grid-centered-size)
+  );
+
+  --grid-centered-vertical: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent
+      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
+    var(--grid-centered-color)
+      calc(var(--grid-centered-size) - var(--grid-centered-line-width)),
+    var(--grid-centered-color) var(--grid-centered-size)
+  );
+
+  --grid-centered-pattern:
+    var(--grid-centered-horizontal), var(--grid-centered-vertical);
+
+  /* Grid centering utilities - to be used with background-position and background-size */
+  --grid-centered-bg-size: var(--grid-centered-size) var(--grid-centered-size);
+  --grid-centered-bg-position: center center;
 }

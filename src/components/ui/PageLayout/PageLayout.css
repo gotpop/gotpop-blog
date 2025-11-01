@@ -1,5 +1,5 @@
 @scope {
-  & {
+  :scope {
     --col-width: 21rem;
     --grid-horizontal-color: --opacity(var(--secondary-600), 0.2);
     --grid-offset: centre;
@@ -22,6 +22,10 @@
       repeat(var(--repeat), var(--col-width)) [content-end] 0 [breakout-end]
       minmax(0, 1fr) [full-end];
     column-gap: var(--spacing-base);
+
+    background-image: var(--grid-centered-pattern), var(--grain-uri);
+    background-size: var(--grid-centered-bg-size);
+    background-position: var(--grid-centered-bg-position);
 
     @media screen and (width >= 480px) {
       --repeat: 2;
