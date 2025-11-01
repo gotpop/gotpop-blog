@@ -16,6 +16,7 @@
   background-image: var(--grid-centered-pattern);
   background-size: var(--grid-centered-bg-size);
   background-position: var(--grid-centered-bg-position);
+  background-position: center top;
 
   &::before {
     content: "";
