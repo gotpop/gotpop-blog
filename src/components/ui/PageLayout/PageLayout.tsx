@@ -22,7 +22,7 @@ export default function PageLayout({
       {styles && <style>{styles}</style>}
       <HeaderDefault uuid={header} />
       <main>
-        <box-hero>{children}</box-hero>
+        <box-crosshatch>{children}</box-crosshatch>
       </main>
       <FooterDefault uuid={footer} />
     </page-layout>

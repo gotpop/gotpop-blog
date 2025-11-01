@@ -10,12 +10,13 @@ interface CardProps {
 
 export async function Card({ blok }: CardProps) {
   const { cards } = blok
+  const card = cards?.[0]
 
-  if (!cards?.[0]) {
+  if (!card) {
     return null
   }
 
-  const story = await fetchStoryByUuid(cards[0])
+  const story = await fetchStoryByUuid(card)
 
   if (!story) {
     return null
@@ -29,7 +30,7 @@ export async function Card({ blok }: CardProps) {
   return (
     <box-grid
       style={{
-        viewTransitionName: `post-${story.content._uid}`,
+        viewTransitionName: story.content.view_transition_name,
       }}
     >
       <Typography tag="h3" variant="text-xl" shade="dark">

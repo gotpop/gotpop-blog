@@ -7,7 +7,7 @@
 
   /* Crosshatch color variants */
   --crosshatch-default: rgb(from var(--secondary-700) r g b / 0.3);
-  --crosshatch-white: rgb(from var(--light-100) r g b / 0.2);
+  --crosshatch-white: rgb(from var(--light-100) r g b / 0.15);
   --crosshatch-grid: rgb(from var(--light-400) r g b / 0.4);
 
   /* Active crosshatch color (can be overridden) */

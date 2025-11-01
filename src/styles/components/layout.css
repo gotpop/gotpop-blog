@@ -14,16 +14,13 @@ main-content {
   grid-template-columns: subgrid;
 }
 
-box-hero {
+box-crosshatch {
   background: var(--crosshatch);
   background-size: var(--box-hero-grid-size) var(--box-hero-grid-size);
-  background-position:
-    0 0,
-    0 0;
   background-repeat: repeat, repeat;
-  grid-column: content;
-  padding: var(--spacing-base);
-  view-transition-name: hero-background;
+  grid-column: breakout;
+  padding-block: var(--spacing-base);
+  view-transition-name: box-crosshatch;
   grid-template-columns: subgrid;
   display: grid;
   row-gap: var(--spacing-md);

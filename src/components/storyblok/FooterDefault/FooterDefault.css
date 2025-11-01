@@ -5,39 +5,31 @@
 
     background: paint(grid) var(--secondary-700);
     display: grid;
+    grid-area: footer / full;
     grid-auto-columns: auto;
     grid-auto-flow: row dense;
-    grid-column: full;
-    grid-row: footer;
     grid-template-columns: subgrid;
-    justify-content: center;
     padding-block: var(--spacing-xl);
     row-gap: var(--spacing-xxl);
     view-transition-name: footer;
   }
 
   .footer-content {
-    display: grid;
-    grid-column: content;
-    grid-template-columns: [nav-start logo-start] 1fr [nav-end logo-end];
-    row-gap: var(--spacing-lg);
-
     background-image: var(--crosshatch-white-pattern);
     background-size: var(--box-hero-grid-size) var(--box-hero-grid-size);
-    background-position:
-      0 0,
-      0 0;
-    background-repeat: repeat, repeat;
+    display: grid;
+    grid-column: breakout;
+    grid-template-columns: [nav-start logo-start] 1fr [nav-end logo-end];
     padding-block: var(--spacing-lg);
+    row-gap: var(--spacing-lg);
 
     logo-main {
-      margin-inline: 2rem;
       padding: 1rem;
     }
 
     @media screen and (width >= 1480px) {
       align-items: start;
-      grid-template-columns: subgrid [logo-start] [] [logo-end nav-start] [] [] [] [nav-end];
+      grid-template-columns: subgrid [] [logo-start] [logo-end] [nav-start] [] [] [] [nav-end];
       grid-template-rows: [full-start] min-content [full-end];
     }
   }
@@ -55,6 +47,8 @@
 
   .copyright {
     grid-column: 3 / -3;
+    justify-self: center;
+    max-width: max-content;
     text-align: center;
   }
 }
