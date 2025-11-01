@@ -15,13 +15,8 @@
 
     max-width: max-content;
     margin: 0 0 0 auto;
-    padding: 1rem;
-    background-image: var(--crosshatch-white-pattern);
-    background-size: var(--box-hero-grid-size) var(--box-hero-grid-size);
-    background-position:
-      0 0,
-      0 0;
-    background-repeat: repeat, repeat;
+    padding: var(--spacing-base);
+    z-index: 1;
 
     &[aria-hidden="false"] {
       --nav-display: grid;

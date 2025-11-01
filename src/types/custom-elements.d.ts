@@ -12,7 +12,7 @@ declare module "react" {
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >
-      "box-hero": React.DetailedHTMLProps<
+      "box-crosshatch": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >

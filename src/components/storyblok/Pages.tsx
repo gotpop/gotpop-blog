@@ -41,17 +41,26 @@ export async function PageFilter({ blok }: { blok: PageFilterStoryblok }) {
 }
 
 export async function PagePost({ blok }: { blok: PagePostStoryblok }) {
-  const { Header, Footer, Heading, published_date, body } = blok
+  const {
+    Header,
+    Footer,
+    Heading,
+    published_date,
+    body,
+    view_transition_name,
+  } = blok
   const blocks = body?.map((nestedBlok) => (
     <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
   ))
 
   return (
     <PageLayout header={Header} footer={Footer}>
-      <PostHeader heading={Heading} publishedDate={published_date} />
-      <main-content style={{ viewTransitionName: `post-${blok._uid}` }}>
-        {blocks}
-      </main-content>
+      <PostHeader
+        heading={Heading}
+        publishedDate={published_date}
+        style={{ viewTransitionName: view_transition_name }}
+      />
+      <main-content>{blocks}</main-content>
     </PageLayout>
   )
 }

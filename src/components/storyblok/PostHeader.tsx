@@ -5,11 +5,13 @@ import Typography from "./Typography"
 interface PostHeaderProps {
   heading?: string
   publishedDate?: string
+  style?: React.CSSProperties
 }
 
 export default function PostHeader({
   heading,
   publishedDate,
+  style,
 }: PostHeaderProps) {
   const id = useId()
 
@@ -18,7 +20,7 @@ export default function PostHeader({
   const formattedDate = formatDate(publishedDate)
 
   return (
-    <box-grid aria-labelledby={id}>
+    <box-grid aria-labelledby={id} style={style}>
       <Typography tag="h1" variant="text-xl" shade="dark" id={id}>
         {heading}
       </Typography>
