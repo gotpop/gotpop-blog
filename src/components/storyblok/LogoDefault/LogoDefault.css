@@ -56,6 +56,12 @@
   /* Morphing animation styles */
   .morphing-logo {
     transition: transform var(--morph-rotation-duration) ease;
+    /* Safari animation stabilization */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
   }
 
   .morph-shape {
@@ -64,17 +70,37 @@
       ry var(--morph-duration) var(--morph-easing),
       transform var(--morph-duration) var(--morph-easing);
     transform-origin: center;
+    /* Safari animation stabilization */
+    will-change: rx, ry, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    /* Prevent sub-pixel rendering issues */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* Hover state - morph circles to squares */
   .link-logo:hover .morph-shape {
     rx: 0;
     ry: 0;
+    /* Ensure smooth completion */
+    transform: translateZ(0) scale(1);
   }
 
   /* Add rotation on hover */
   .link-logo:hover .morphing-logo {
-    transform: rotate(90deg);
+    transform: rotate(90deg) translateZ(0);
+  }
+
+  /* Additional Safari stabilization for the entire logo container */
+  .link-logo {
+    /* Force hardware acceleration */
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    /* Prevent layout shifts during animation */
+    contain: layout style paint;
   }
 
   /* Staggered animation delays for each shape */
