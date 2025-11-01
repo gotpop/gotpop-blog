@@ -1,6 +1,6 @@
 @scope {
   & {
-    --main-circle-color: --opacity(var(--secondary-400), 0.2);
+    /* --main-circle-color: --opacity(var(--secondary-400), 0.2); */
     --main-circle-color: var(--secondary-400);
     --small-circle-color: var(--triad-2);
     --main-circle-size: 1.2rem;
@@ -12,6 +12,8 @@
     );
 
     --border-radius: 50%;
+    --icon-fallback-display: block;
+    --icon-animated-display: none;
 
     aspect-ratio: 1;
     position: relative;
@@ -22,6 +24,11 @@
     width: var(--main-circle-size);
     height: var(--main-circle-size);
     transform: rotate(0deg) translateZ(0);
+
+    @supports (--test: sibling-index()) {
+      --icon-fallback-display: none;
+      --icon-animated-display: block;
+    }
 
     .link-logo:hover & {
       transform: rotate(90deg);
@@ -52,5 +59,10 @@
     top: calc(var(--center-offset) - var(--orbit-y));
     transform-origin: center;
     width: var(--small-circle-size);
+  }
+
+  svg {
+    max-width: 45px;
+    max-height: 45px;
   }
 }
