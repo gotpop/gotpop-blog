@@ -1,6 +1,6 @@
 import { StoryblokStory } from "@storyblok/react/rsc"
 import PostsPage from "@/components/PostsPage"
-import StoryNotFound from "@/components/utils/ClientLoader/StoryNotFound"
+import StoryNotFound from "@/components/utils/StoryNotFound"
 import { getStoryblokApi } from "@/lib/storyblok"
 import { normalizeStoryblokPath } from "@/lib/storyblok-utils"
 import {

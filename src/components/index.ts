@@ -16,7 +16,7 @@ export { default as Icon } from "./ui/Icon"
 export { default as PageLayout } from "./ui/PageLayout"
 export { default as RichText } from "./ui/RichText"
 // Utils Components
-export { StoryblokServerComponent } from "./utils/ClientLoader/StoryblokServerComponent"
+export { StoryblokServerComponent } from "./utils/StoryblokServerComponent"
 
 // Type-only exports for component props (if needed)
 // Add any component prop types here if they need to be exported

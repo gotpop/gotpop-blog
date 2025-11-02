@@ -3,7 +3,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import Script from "next/script"
-import ClientLoader from "@/components/utils/ClientLoader"
+// import ClientLoader from "@/components/utils/ClientLoader"
 import StoryblokProvider from "@/providers/StoryblokProvider"
 
 const inter = localFont({
@@ -35,9 +35,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${monaspace.variable} antialiased`}>
         <StoryblokProvider>{children}</StoryblokProvider>
-
-        {/* Load client-side code globally */}
-        <ClientLoader />
 
         {/* Storyblok Bridge for Visual Editor - Development only */}
         {process.env.NODE_ENV === "development" && (
