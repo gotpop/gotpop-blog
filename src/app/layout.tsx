@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: "Blog - gotpop.io",
   description: "Personal blog built with Next.js and Storyblok",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.svg",
   },
 }
 
