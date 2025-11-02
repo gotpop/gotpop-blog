@@ -8,10 +8,7 @@ interface HeaderDefaultProps {
   uuid?: string
 }
 
-export default async function HeaderDefault({
-  blok,
-  uuid,
-}: HeaderDefaultProps) {
+export async function HeaderDefault({ blok, uuid }: HeaderDefaultProps) {
   const styles = getInlineStyles("HeaderDefault.css")
 
   let headerData = blok

@@ -46,7 +46,7 @@ interface TypographyProps {
   dateTime?: string
 }
 
-export default function Typography({
+export function Typography({
   children,
   tag,
   shade,

@@ -1,6 +1,6 @@
 // import Link from "next/link"
 import { getStoryPath } from "@/lib/storyblok-utils"
-import Typography from "@/storyblok/Typography"
+import { Typography } from "@/storyblok/Typography"
 import type { CardStoryblok } from "@/types/storyblok-components"
 import { fetchStoryByUuid } from "@/utils/storyblok-fetch"
 

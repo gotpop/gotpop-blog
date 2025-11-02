@@ -3,7 +3,7 @@ import Link from "next/link"
 import type { BaselineStatusBlockStoryblok } from "@/types/storyblok-components"
 import { formatMonthYear } from "@/utils/date-formatter"
 import { getInlineStyles } from "@/utils/inline-styles"
-import Typography from "../Typography"
+import { Typography } from "../Typography"
 import { fetchFeatureData } from "./api"
 
 import { BaselineIcon } from "./BaselineIcon"

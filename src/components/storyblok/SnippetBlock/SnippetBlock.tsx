@@ -22,7 +22,7 @@ function renderSnippet(snippetType?: string) {
   }
 }
 
-export default function SnippetBlock({ blok }: SnippetBlockProps) {
+export function SnippetBlock({ blok }: SnippetBlockProps) {
   const { snippet } = blok
   const styles = getInlineStyles("SnippetBlock.css")
 

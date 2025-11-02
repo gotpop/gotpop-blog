@@ -45,7 +45,6 @@ export default function ClientSidePostsApp({
 
   return (
     <div className="filters-with-output">
-      {/* <box-hero> */}
       <box-grid auto-columns>
         <ClientSidePostsFilter
           availableTags={availableTags}
@@ -57,7 +56,6 @@ export default function ClientSidePostsApp({
           currentSort={currentSort}
         />
       </box-grid>
-      {/* </box-hero> */}
       <ViewTransition update="reorder-list">
         <output className="posts-grid" aria-live="polite">
           {output}

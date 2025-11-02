@@ -2,17 +2,14 @@ import { StoryblokServerComponent } from "@/components"
 import type { FooterDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { fetchStoryByUuid } from "@/utils/storyblok-fetch"
-import Typography from "../Typography"
+import { Typography } from "../Typography"
 
 interface FooterDefaultProps {
   blok?: FooterDefaultStoryblok | null
   uuid?: string
 }
 
-export default async function FooterDefault({
-  blok,
-  uuid,
-}: FooterDefaultProps) {
+export async function FooterDefault({ blok, uuid }: FooterDefaultProps) {
   const styles = getInlineStyles("FooterDefault.css")
 
   let footerData = blok

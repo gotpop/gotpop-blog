@@ -3,7 +3,7 @@ import { getInlineStyles } from "@/utils/inline-styles"
 import { getAllPostsWithTags, getTagsFromDatasource } from "@/utils/tags"
 import ClientSidePostsApp from "./ClientSidePostsApp"
 
-export default async function FilterContent() {
+export async function FilterContent() {
   const styles = getInlineStyles("FilterContent.css")
   const stylesCard = getInlineStyles("FilterContent/ClientSidePostCard.css")
 

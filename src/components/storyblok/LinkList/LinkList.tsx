@@ -1,12 +1,12 @@
 import type { LinkListStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
-import Typography from "../Typography"
+import { Typography } from "../Typography"
 
 interface LinkListProps {
   blok: LinkListStoryblok
 }
 
-export default function LinkList({ blok }: LinkListProps) {
+export function LinkList({ blok }: LinkListProps) {
   const styles = getInlineStyles("LinkList.css")
 
   return (
