@@ -1,1 +1,1 @@
-export { default } from "./SnippetBlock"
+export * from "./SnippetBlock"

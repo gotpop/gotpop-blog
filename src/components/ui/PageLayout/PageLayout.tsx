@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
-import FooterDefault from "@/components/storyblok/FooterDefault/FooterDefault"
-import HeaderDefault from "@/components/storyblok/HeaderDefault/HeaderDefault"
+import { FooterDefault } from "@/components/storyblok/FooterDefault/FooterDefault"
+import { HeaderDefault } from "@/components/storyblok/HeaderDefault/HeaderDefault"
 import { getInlineStyles } from "@/utils/inline-styles"
 
 interface PageLayoutProps {

@@ -3,10 +3,10 @@ import Link from "next/link"
 import type { BaselineStatusBlockStoryblok } from "@/types/storyblok-components"
 import { formatMonthYear } from "@/utils/date-formatter"
 import { getInlineStyles } from "@/utils/inline-styles"
-import Typography from "../Typography"
+import { Typography } from "../Typography"
 import { fetchFeatureData } from "./api"
 
-import BaselineIcon from "./BaselineIcon"
+import { BaselineIcon } from "./BaselineIcon"
 import {
   IconChrome,
   IconEdge,
@@ -20,9 +20,7 @@ interface BaselineStatusBlockProps {
   blok: BaselineStatusBlockStoryblok
 }
 
-export default async function BaselineStatusBlock({
-  blok,
-}: BaselineStatusBlockProps) {
+export async function BaselineStatusBlock({ blok }: BaselineStatusBlockProps) {
   const featureId = blok.feature
 
   if (!featureId) return null

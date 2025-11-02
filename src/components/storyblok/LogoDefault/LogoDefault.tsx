@@ -1,4 +1,3 @@
-import IconLogo from "@/components/icons/IconLogo"
 import type { LogoDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { getStoryblokLinkProps } from "@/utils/storyblok"
@@ -7,7 +6,7 @@ interface LogoDefaultProps {
   blok: LogoDefaultStoryblok
 }
 
-export default function LogoDefault({ blok }: LogoDefaultProps) {
+export function LogoDefault({ blok }: LogoDefaultProps) {
   const linkProps = getStoryblokLinkProps(blok.link)
   const styles = getInlineStyles("LogoDefault.css")
 

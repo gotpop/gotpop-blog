@@ -1,1 +1,1 @@
-export { default } from "./RichTextBlock"
+export * from "./RichTextBlock"

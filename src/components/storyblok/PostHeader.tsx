@@ -1,6 +1,6 @@
 import { useId } from "react"
 import { formatDate } from "@/utils/date-formatter"
-import Typography from "./Typography"
+import { Typography } from "./Typography"
 
 interface PostHeaderProps {
   heading?: string

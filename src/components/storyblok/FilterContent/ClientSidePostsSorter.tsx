@@ -2,6 +2,13 @@
 
 import { useId } from "react"
 
+const SORT_OPTIONS = {
+  published_desc: "Newest First",
+  published_asc: "Oldest First",
+  name_asc: "Title A-Z",
+  name_desc: "Title Z-A",
+} as const
+
 interface ClientSidePostsSorterProps {
   onSortChange: (sortBy: string) => void
   currentSort: string
@@ -24,10 +31,11 @@ export default function ClientSidePostsSorter({
         onChange={(e) => onSortChange(e.target.value)}
         className="select"
       >
-        <option value="published_desc">Newest First</option>
-        <option value="published_asc">Oldest First</option>
-        <option value="name_asc">Title A-Z</option>
-        <option value="name_desc">Title Z-A</option>
+        {Object.entries(SORT_OPTIONS).map(([value, label]) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
       </select>
     </div>
   )

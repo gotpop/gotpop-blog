@@ -1,6 +1,6 @@
 import { useId } from "react"
 import { ButtonToggleMenu } from "@/components"
-import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
+import { StoryblokServerComponent } from "@/components/utils/StoryblokServerComponent"
 import type { NavDefaultStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 

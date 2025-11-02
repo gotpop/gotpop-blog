@@ -1,4 +1,4 @@
-import { StoryblokServerComponent } from "@/components/utils/ClientLoader/StoryblokServerComponent"
+import { StoryblokServerComponent } from "@/components/utils/StoryblokServerComponent"
 import type { CardsStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 

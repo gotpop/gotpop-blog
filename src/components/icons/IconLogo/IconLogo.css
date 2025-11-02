@@ -1,6 +1,5 @@
 @scope {
   & {
-    /* --main-circle-color: --opacity(var(--secondary-400), 0.2); */
     --main-circle-color: var(--secondary-400);
     --small-circle-color: var(--triad-2);
     --main-circle-size: 1.2rem;
@@ -49,16 +48,15 @@
 
     aspect-ratio: 1;
     background-color: oklch(100% 100% var(--hue) / 0.5);
-    /* clip-path: circle(50%); */
-    will-change: border-radius;
     border-radius: var(--border-radius);
-    transition: border-radius 0.5s ease;
     inset: 0;
     left: calc(var(--center-offset) + var(--orbit-x));
     position: absolute;
     top: calc(var(--center-offset) - var(--orbit-y));
     transform-origin: center;
+    transition: border-radius 0.5s ease;
     width: var(--small-circle-size);
+    will-change: border-radius;
   }
 
   svg {

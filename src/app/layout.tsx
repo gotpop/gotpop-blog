@@ -3,7 +3,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import Script from "next/script"
-import ClientLoader from "@/components/utils/ClientLoader"
+// import ClientLoader from "@/components/utils/ClientLoader"
 import StoryblokProvider from "@/providers/StoryblokProvider"
 
 const inter = localFont({
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: "Blog - gotpop.io",
   description: "Personal blog built with Next.js and Storyblok",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.svg",
   },
 }
 
@@ -36,14 +36,13 @@ export default function RootLayout({
       <body className={`${inter.variable} ${monaspace.variable} antialiased`}>
         <StoryblokProvider>{children}</StoryblokProvider>
 
-        {/* Load client-side code globally */}
-        <ClientLoader />
-
-        {/* Storyblok Bridge for Visual Editor */}
-        <Script
-          src="//app.storyblok.com/f/storyblok-v2-latest.js"
-          strategy="beforeInteractive"
-        />
+        {/* Storyblok Bridge for Visual Editor - Development only */}
+        {process.env.NODE_ENV === "development" && (
+          <Script
+            src="//app.storyblok.com/f/storyblok-v2-latest.js"
+            strategy="beforeInteractive"
+          />
+        )}
       </body>
     </html>
   )

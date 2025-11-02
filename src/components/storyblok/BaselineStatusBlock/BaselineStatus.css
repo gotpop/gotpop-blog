@@ -88,13 +88,12 @@
   }
 
   .baseline-status-browsers {
+    --icon-size: 1.5rem;
+
     display: none;
     gap: var(--spacing-base);
     margin: auto 0 auto auto;
     height: min-content;
-    /* background: yellow; */
-
-    --icon-size: 1.5rem;
 
     svg {
       width: var(--icon-size);
@@ -105,7 +104,6 @@
       }
       &[aria-label="Supported"] {
         color: green;
-        /* height: var(--icon-size); */
       }
       &[aria-label="Unknown"] {
         color: #76736d;

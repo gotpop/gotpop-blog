@@ -1,13 +1,13 @@
 import { render } from "storyblok-rich-text-react-renderer"
-import BaselineStatusBlock from "@/components/storyblok/BaselineStatusBlock"
+import { BaselineStatusBlock } from "@/components/storyblok/BaselineStatusBlock"
 import { Card, Cards } from "@/components/storyblok/Cards"
-import FilterContent from "@/components/storyblok/FilterContent"
-import HeroDefault from "@/components/storyblok/HeroDefault"
-import LogoDefault from "@/components/storyblok/LogoDefault"
-import RichTextBlock from "@/components/storyblok/RichTextBlock"
-import RichTextCodeBlock from "@/components/storyblok/RichTextCodeBlock"
-import SnippetBlock from "@/components/storyblok/SnippetBlock"
-import Typography from "@/components/storyblok/Typography"
+import { FilterContent } from "@/components/storyblok/FilterContent"
+import { HeroDefault } from "@/components/storyblok/HeroDefault"
+import { LogoDefault } from "@/components/storyblok/LogoDefault"
+import { RichTextBlock } from "@/components/storyblok/RichTextBlock"
+import { RichTextCodeBlock } from "@/components/storyblok/RichTextCodeBlock"
+import { SnippetBlock } from "@/components/storyblok/SnippetBlock"
+import { Typography } from "@/components/storyblok/Typography"
 import type {
   BaselineStatusBlockStoryblok,
   CardStoryblok,
@@ -25,12 +25,11 @@ interface RichTextProps {
   className?: string
 }
 
-export default function RichText({ content }: RichTextProps) {
+export function RichText({ content }: RichTextProps) {
   if (!content) return null
 
   const renderedContent = render(content, {
     blokResolvers: {
-      // This enables embedded Storyblok components in rich text
       baseline_status_block: (props) => (
         <BaselineStatusBlock blok={props as BaselineStatusBlockStoryblok} />
       ),
