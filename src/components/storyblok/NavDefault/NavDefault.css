@@ -17,7 +17,7 @@
     top: var(--nav-top, anchor(bottom));
     z-index: 1;
 
-    &[aria-hidden="false"] {
+    &:not([hidden]) {
       --nav-display: grid;
     }
 

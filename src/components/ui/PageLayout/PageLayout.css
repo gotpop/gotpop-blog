@@ -15,21 +15,27 @@
     background-image: paint(grid), var(--grain-uri);
     display: grid;
     grid-template-rows: [header] min-content [main] 1fr [double-col] 0 [footer] min-content;
-    row-gap: var(--spacing-xl);
+    row-gap: var(--spacing-base);
     min-height: 100dvh;
     grid-template-columns:
       [full-start] minmax(0, 1fr) [breakout-start] 0 [content-start]
       repeat(var(--repeat), var(--col-width)) [content-end] 0 [breakout-end]
       minmax(0, 1fr) [full-end];
-    column-gap: var(--spacing-base);
 
     background-image: var(--grid-centered-pattern), var(--grain-uri);
     background-size: var(--grid-centered-bg-size);
-    background-position: var(--grid-centered-bg-position);
+    background-position: top center;
 
     @media screen and (width >= 480px) {
       --repeat: 2;
       --col-width: 12rem;
+
+      grid-template-columns:
+        [full-start] minmax(0, 1fr) [breakout-start] 0 [content-start]
+        repeat(var(--repeat), var(--col-width)) [content-end] 0 [breakout-end]
+        minmax(0, 1fr) [full-end];
+      column-gap: var(--spacing-base);
+      row-gap: var(--spacing-xl);
     }
 
     @media screen and (width >= 768px) {

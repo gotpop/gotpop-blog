@@ -19,8 +19,16 @@ export function useNavigationToggle(navId: string) {
 
     if (isDesktop) {
       navElement.removeAttribute("aria-hidden")
+      navElement.removeAttribute("hidden")
     } else {
-      navElement.setAttribute("aria-hidden", (!isExpanded).toString())
+      const isHidden = !isExpanded
+      navElement.setAttribute("aria-hidden", isHidden.toString())
+
+      if (isHidden) {
+        navElement.setAttribute("hidden", "")
+      } else {
+        navElement.removeAttribute("hidden")
+      }
     }
   }, [navId, isExpanded, isDesktop])
 
