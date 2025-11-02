@@ -45,38 +45,14 @@
     text-align: center;
     text-decoration: none;
     transition: var(--transition);
+    min-width: 7rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 
-    &.with-text {
-      /* padding-inline: var(--spacing-base); */
-      width: round(up, max-content, 1rem);
-    }
-
-    &.with-icon {
-      background-color: var(--secondary-700);
-
-      svg {
-        height: 1.1rem;
-        width: 1.1rem;
-      }
-
-      &:hover {
-        --colour: var(--light-100);
-        background-color: var(--secondary-800);
-      }
-    }
-
-    &.text-and-icon {
-      background-color: var(--secondary-700);
-
-      svg {
-        height: 1.1rem;
-        width: 1.1rem;
-      }
-
-      &:hover {
-        --colour: var(--light-100);
-        background-color: var(--secondary-800);
-      }
+    svg {
+      height: 1.1rem;
+      width: 1.1rem;
     }
 
     &.active {

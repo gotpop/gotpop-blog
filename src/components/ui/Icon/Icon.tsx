@@ -14,6 +14,7 @@ import {
   FaUser,
 } from "react-icons/fa"
 import { FaSquareGithub } from "react-icons/fa6"
+import { MdArticle } from "react-icons/md"
 import { TfiGithub } from "react-icons/tfi"
 
 /**
@@ -37,6 +38,7 @@ const ICON_REGISTRY = {
   FaTimes,
   FaUser,
   TfiGithub,
+  MdArticle,
 } as const
 
 // Export for sync scripts and type generation
