@@ -39,11 +39,13 @@ export default function RootLayout({
         {/* Load client-side code globally */}
         <ClientLoader />
 
-        {/* Storyblok Bridge for Visual Editor */}
-        <Script
-          src="//app.storyblok.com/f/storyblok-v2-latest.js"
-          strategy="beforeInteractive"
-        />
+        {/* Storyblok Bridge for Visual Editor - Development only */}
+        {process.env.NODE_ENV === "development" && (
+          <Script
+            src="//app.storyblok.com/f/storyblok-v2-latest.js"
+            strategy="beforeInteractive"
+          />
+        )}
       </body>
     </html>
   )
