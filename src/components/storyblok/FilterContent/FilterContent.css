@@ -18,6 +18,7 @@
     box-grid[auto-columns] {
       --column-gap: var(--spacing-md);
       --columns: repeat(auto-fit, minmax(5rem, 12rem));
+      --direction: row;
     }
   }
 

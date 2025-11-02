@@ -28,13 +28,11 @@ main-content {
 
 box-grid {
   background-color: var(--light-100);
-  background-image: paint(grid);
   background-image: var(--grid-css);
   column-gap: var(--column-gap, 0);
-  display: grid;
+  display: flex;
+  flex-direction: var(--direction, column);
   grid-column: var(--grid-column, content);
-  grid-template-columns: var(--columns, 1fr);
-  grid-template-rows: max-content;
   padding-block: var(--spacing-lg);
   padding-inline: var(--spacing-lg);
 
