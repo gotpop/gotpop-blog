@@ -2,6 +2,7 @@
 import Icon from "@/components/ui/Icon"
 import type { IconName } from "@/components/ui/Icon/Icon"
 import type { NavItemDefaultStoryblok } from "@/types/storyblok-components"
+import { cn } from "@/utils/cn"
 import { getStoryblokLinkProps } from "@/utils/storyblok"
 
 interface NavItemDefaultProps {
@@ -20,14 +21,12 @@ export default function NavItemDefault({ blok }: NavItemDefaultProps) {
     return <span className="nav-item">{blok.text}</span>
   }
 
-  const classNames = [
+  const classNames = cn(
     "nav-item",
     withText && "with-text",
     withIcon && "with-icon",
-    textAndIcon && "text-and-icon",
-  ]
-    .filter(Boolean)
-    .join(" ")
+    textAndIcon && "with-text-and-icon"
+  )
 
   return (
     <a href={href} target={target} rel={rel} className={classNames}>

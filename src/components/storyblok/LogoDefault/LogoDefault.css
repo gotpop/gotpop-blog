@@ -90,9 +90,9 @@
   }
 
   /* Add rotation on hover */
-  .link-logo:hover .morphing-logo {
+  /* .link-logo:hover .morphing-logo {
     transform: rotate(90deg) translateZ(0);
-  }
+  } */
 
   /* Additional Safari stabilization for the entire logo container */
   .link-logo {
