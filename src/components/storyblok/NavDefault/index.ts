@@ -1,2 +1,2 @@
-export { default as NavDefault } from "./NavDefault"
-export { default as NavItemDefault } from "./NavItemDefault"
+export * from "./NavDefault"
+export * from "./NavItemDefault"
