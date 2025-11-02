@@ -15,7 +15,7 @@ export default function NavDefault({ blok }: NavDefaultProps) {
   return (
     <>
       <ButtonToggleMenu navId={navId} />
-      <nav className="nav" id={navId} aria-hidden="true">
+      <nav className="nav" id={navId} aria-hidden="true" hidden>
         {styles && <style>{styles}</style>}
         {blok.nav_items?.map((nestedBlok) => (
           <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
