@@ -1,5 +1,5 @@
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
-import BaselineStatusBlock from "@/storyblok/BaselineStatusBlock"
+import { BaselineStatusBlock } from "@/storyblok/BaselineStatusBlock"
 import { Card, Cards } from "@/storyblok/Cards"
 import FilterContent from "@/storyblok/FilterContent"
 import FooterDefault from "@/storyblok/FooterDefault"

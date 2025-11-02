@@ -1,4 +1,4 @@
-import BaselineStatusBlock from "./BaselineStatusBlock"
+import { BaselineStatusBlock } from "./BaselineStatusBlock"
 import { Card, Cards } from "./Cards"
 import FilterContent from "./FilterContent"
 import FooterDefault from "./FooterDefault"

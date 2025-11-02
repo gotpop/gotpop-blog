@@ -23,16 +23,16 @@ export async function fetchFeatureData(
   featureId: string
 ): Promise<BaselineData> {
   try {
-    const response = await fetch(
-      `https://api.webstatus.dev/v1/features/${featureId}`,
-      {
-        headers: {
-          "User-Agent": "gotpop-blog-baseline-status/1.0",
-        },
-        // Cache for 24 hours
-        next: { revalidate: 86400 },
-      }
-    )
+    const url = new URL("https://api.webstatus.dev")
+    url.pathname = `/v1/features/${featureId}`
+
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "gotpop-blog-baseline-status/1.0",
+      },
+      // Cache for 24 hours
+      next: { revalidate: 86400 },
+    })
 
     if (!response.ok) {
       console.warn(

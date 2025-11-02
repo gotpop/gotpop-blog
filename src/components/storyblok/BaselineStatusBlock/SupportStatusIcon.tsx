@@ -2,7 +2,7 @@ interface SupportStatusIconProps {
   status: "available" | "unavailable" | "no_data"
 }
 
-export default function SupportStatusIcon({ status }: SupportStatusIconProps) {
+export function SupportStatusIcon({ status }: SupportStatusIconProps) {
   if (status === "available") {
     return (
       <svg

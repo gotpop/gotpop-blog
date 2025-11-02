@@ -2,9 +2,7 @@ interface BaselineIconProps {
   status?: string
 }
 
-export default function BaselineIcon({
-  status = "no_data",
-}: BaselineIconProps) {
+export function BaselineIcon({ status = "no_data" }: BaselineIconProps) {
   const iconPaths = {
     widely: (
       <>

@@ -20,21 +20,21 @@
 
   .select {
     appearance: none;
-    appearance: base-select;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--light-300);
+    background-image: none;
     background: var(--light-100);
     border-radius: 0px;
-    font-size: var(--text-sm);
-    color: var(--dark-500);
-    height: 2rem;
-    display: flex;
-    line-height: 0.8;
-    /* Safari */
-    background-image: none;
-    outline: none;
+    border: 1px solid var(--light-300);
     box-sizing: border-box;
+    color: var(--dark-500);
+    display: flex;
+    font-size: var(--text-sm);
+    height: 2rem;
+    line-height: 0.8;
+    outline: none;
+    padding: 0.5rem 0.75rem;
+
+    @supports (appearance: base-select) {
+      appearance: base-select;
+    }
   }
 }

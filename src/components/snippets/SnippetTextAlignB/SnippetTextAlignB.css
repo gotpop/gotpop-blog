@@ -13,16 +13,16 @@
       var(--light-300) calc(1rem - 1px),
       var(--light-300) 1rem
     );
-    min-height: var(--spacing-lg);
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(5rem, 5rem));
-    grid-template-rows: auto auto;
     background-position: 0 -1px;
     background-size: 100% 1rem;
     column-gap: var(--spacing-lg);
-    row-gap: var(--spacing-md);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(5rem, 5rem));
+    grid-template-rows: auto auto;
     height: var(--round-up);
+    max-width: 100%;
+    min-height: var(--spacing-lg);
+    row-gap: var(--spacing-md);
 
     @media screen and (width >= 480px) {
       grid-template-columns: 1fr 1fr;
@@ -30,25 +30,25 @@
   }
 
   .container-row {
-    grid-column: 1 / -1;
     display: flex;
+    grid-column: 1 / -1;
     justify-content: end;
     padding-top: var(--spacing-lg);
   }
 
   .checkbox-container {
-    display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    cursor: pointer;
-    font-size: 0.875rem;
     color: var(--dark-500);
+    cursor: pointer;
+    display: flex;
+    font-size: 0.875rem;
+    gap: var(--spacing-sm);
   }
 
   .checkbox-container input[type="checkbox"] {
-    width: 1rem;
-    height: 1rem;
     cursor: pointer;
+    height: 1rem;
+    width: 1rem;
   }
 
   h3,
@@ -60,18 +60,18 @@
     --padding: calc(1rem - 1cap);
 
     color: var(--dark-500);
+    line-height: 1.7;
     margin-block: 0 2rem;
     padding-block-start: var(--padding);
     position: relative;
-    line-height: 1.7;
   }
 
   p {
     color: var(--dark-600);
-    margin: 0;
-    padding: 0;
     display: block;
     line-height: 2;
+    margin: 0;
     padding-block-start: calc(var(--spacing-base) - 1cap);
+    padding: 0;
   }
 }

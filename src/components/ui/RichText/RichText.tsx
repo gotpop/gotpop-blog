@@ -1,5 +1,5 @@
 import { render } from "storyblok-rich-text-react-renderer"
-import BaselineStatusBlock from "@/components/storyblok/BaselineStatusBlock"
+import { BaselineStatusBlock } from "@/components/storyblok/BaselineStatusBlock"
 import { Card, Cards } from "@/components/storyblok/Cards"
 import FilterContent from "@/components/storyblok/FilterContent"
 import HeroDefault from "@/components/storyblok/HeroDefault"
