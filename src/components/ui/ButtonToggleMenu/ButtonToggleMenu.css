@@ -15,8 +15,6 @@
     grid-column: button-toggle;
     grid-row: full;
     justify-content: center;
-    padding-block: var(--spacing-base);
-    padding-inline: var(--spacing-md) var(--padding-right);
     transition:
       background-color 0.2s ease,
       color 0.2s ease;
@@ -26,10 +24,14 @@
     button {
       background: none;
       border: none;
-      outline: none;
-      padding: 0;
       color: var(--light-100);
       cursor: pointer;
+      display: flex;
+      justify-content: center;
+      outline: none;
+      padding-block: var(--spacing-base);
+      padding-inline: var(--spacing-md) var(--padding-right);
+      width: 100%;
     }
 
     &:is(:hover, :active) {

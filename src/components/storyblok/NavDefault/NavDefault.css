@@ -3,14 +3,12 @@
     background-color: var(--nav-background, var(--light-100));
     display: var(--nav-display, none);
     gap: var(--spacing-base);
-    grid-auto-flow: column;
+    grid-auto-flow: var(--nav-auto-flow, row);
     grid-column: nav;
     grid-row: full;
-    justify-content: end;
     margin: 0 0 0 auto;
     max-width: max-content;
     padding: var(--nav-padding, var(--spacing-md));
-    padding: var(--spacing-base);
     position-anchor: var(--nav-position-anchor, --buttonToggle);
     position: var(--nav-position, absolute);
     right: var(--nav-right, anchor(right));
@@ -24,11 +22,12 @@
     @media screen and (width >= 1480px) {
       --nav-display: grid;
       --nav-background: transparent;
-      --nav-padding: 0;
+      --nav-padding: var(--spacing-base);
       --nav-position: static;
       --nav-position-anchor: unset;
       --nav-right: unset;
       --nav-top: unset;
+      --nav-auto-flow: column;
     }
   }
 
@@ -49,6 +48,11 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
+    padding: var(--padding, 1rem 2rem);
+
+    @media screen and (width >= 1480px) {
+      --padding: 0;
+    }
 
     svg {
       height: 1.1rem;

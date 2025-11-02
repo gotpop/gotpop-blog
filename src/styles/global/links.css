@@ -8,7 +8,8 @@
   text-underline-offset: calc(var(--spacing-base) - 0.1em);
   transition: all 0.2s ease-in-out;
   width: max-content;
-  align-self: end;
+  justify-self: flex-end;
+  margin: auto auto 0 0;
 
   &:focus {
     color: var(--color-primary);
