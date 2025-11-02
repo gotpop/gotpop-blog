@@ -42,29 +42,17 @@
     color: var(--colour);
     display: flex;
     font-size: var(--text-base);
-    min-width: var(--round-up);
-    place-content: center;
     text-align: center;
     text-decoration: none;
     transition: var(--transition);
-    width: stretch;
+    min-width: 7rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 
-    &.with-text {
-      padding-inline: var(--spacing-base);
-    }
-
-    &.with-icon {
-      background-color: var(--secondary-700);
-
-      svg {
-        height: 1.1rem;
-        width: 1.1rem;
-      }
-
-      &:hover {
-        --colour: var(--light-100);
-        background-color: var(--secondary-800);
-      }
+    svg {
+      height: 1.1rem;
+      width: 1.1rem;
     }
 
     &.active {

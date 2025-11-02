@@ -34,8 +34,9 @@
 
     @media screen and (width >= 1480px) {
       align-items: start;
-      grid-template-columns: subgrid [] [logo-start] [logo-end] [nav-start] [] [] [] [nav-end];
+      grid-template-columns: subgrid [] [logo-start] [] [logo-end nav-start] [] [] [] [nav-end];
       grid-template-rows: [full-start] min-content [full-end];
+      column-gap: 3rem;
     }
   }
 
@@ -44,9 +45,11 @@
     grid-column: nav;
     grid-template-columns: repeat(auto-fit, 10rem);
     row-gap: var(--spacing-md);
+    margin-inline: 2rem 0;
 
     @media screen and (width >= 1480px) {
       grid-template-columns: subgrid;
+      margin-inline: unset;
     }
   }
 
