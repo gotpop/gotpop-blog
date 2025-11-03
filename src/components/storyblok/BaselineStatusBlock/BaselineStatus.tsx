@@ -1,19 +1,13 @@
 import "server-only"
 import Link from "next/link"
+import { IconChrome, IconEdge, IconFirefox, IconSafari } from "@/icons"
 import type { BaselineStatusBlockStoryblok } from "@/types/storyblok-components"
 import { formatMonthYear } from "@/utils/date-formatter"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { Typography } from "../Typography"
 import { fetchFeatureData } from "./api"
-
 import { BaselineIcon } from "./BaselineIcon"
-import {
-  IconChrome,
-  IconEdge,
-  IconFirefox,
-  IconSafari,
-  SupportStatusIcon,
-} from "./index"
+import { SupportStatusIcon } from "./SupportStatusIcon"
 import { getStatusDisplay, normalizeFeatureName } from "./utils"
 
 interface BaselineStatusBlockProps {

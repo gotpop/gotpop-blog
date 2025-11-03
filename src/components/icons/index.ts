@@ -1,2 +1,5 @@
-export * from "./IconLogo"
+export { default as IconChrome } from "./IconChrome"
+export { default as IconEdge } from "./IconEdge"
+export { default as IconFirefox } from "./IconFirefox"
 export * from "./IconLogoSVG"
+export { default as IconSafari } from "./IconSafari"
