@@ -10,11 +10,7 @@ interface PageLayoutProps {
   footer?: string
 }
 
-export default function PageLayout({
-  children,
-  header,
-  footer,
-}: PageLayoutProps) {
+export function PageLayout({ children, header, footer }: PageLayoutProps) {
   const styles = getInlineStyles("PageLayout.css")
 
   return (

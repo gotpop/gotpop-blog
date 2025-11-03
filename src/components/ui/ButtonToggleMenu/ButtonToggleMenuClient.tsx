@@ -9,7 +9,7 @@ interface ButtonToggleMenuClientProps {
   navId: string
 }
 
-export default function ButtonToggleMenuClient({
+export function ButtonToggleMenuClient({
   styles,
   navId,
 }: ButtonToggleMenuClientProps) {
