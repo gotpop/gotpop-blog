@@ -37,9 +37,8 @@ export async function BaselineStatusBlock({ blok }: BaselineStatusBlockProps) {
     ? formatMonthYear(data.baseline.high_date)
     : null
 
-  // Browser support status helpers
   const browserImpl = data.browser_implementations || {}
-  // Map browser keys to display order and icon
+
   const browsers = [
     {
       key: "chrome" as keyof typeof browserImpl,
@@ -58,7 +57,7 @@ export async function BaselineStatusBlock({ blok }: BaselineStatusBlockProps) {
       Icon: IconSafari,
     },
   ]
-  // Helper to get support status for icon
+
   function getSupportStatus(status: string | undefined, baseline: string) {
     if (baseline === "limited") {
       if (status === "available" || status === "widely" || status === "newly")
