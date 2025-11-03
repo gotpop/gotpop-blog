@@ -4,7 +4,7 @@ interface StoryNotFoundProps {
   availableStories?: string[]
 }
 
-export default function StoryNotFound({
+export function StoryNotFound({
   path,
   errorMessage,
   availableStories = [],

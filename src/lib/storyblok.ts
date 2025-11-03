@@ -1,17 +1,23 @@
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
-import { BaselineStatusBlock } from "@/storyblok/BaselineStatusBlock"
-import { Card, Cards } from "@/storyblok/Cards"
-import { FilterContent } from "@/storyblok/FilterContent"
-import { FooterDefault } from "@/storyblok/FooterDefault"
-import { HeaderDefault } from "@/storyblok/HeaderDefault"
-import { HeroDefault } from "@/storyblok/HeroDefault"
-import { LinkList } from "@/storyblok/LinkList"
-import { LogoDefault } from "@/storyblok/LogoDefault"
-import { NavDefault, NavItemDefault } from "@/storyblok/NavDefault"
-import { PageDefault, PageFilter, PagePost } from "@/storyblok/Pages"
-import { RichTextBlock } from "@/storyblok/RichTextBlock"
-import { RichTextCodeBlock } from "@/storyblok/RichTextCodeBlock"
-import { SnippetBlock } from "@/storyblok/SnippetBlock"
+import {
+  BaselineStatusBlock,
+  Card,
+  Cards,
+  FilterContent,
+  FooterDefault,
+  HeaderDefault,
+  HeroDefault,
+  LinkList,
+  LogoDefault,
+  NavDefault,
+  NavItemDefault,
+  PageDefault,
+  PageFilter,
+  PagePost,
+  RichTextBlock,
+  RichTextCodeBlock,
+  SnippetBlock,
+} from "@/storyblok"
 
 const components = {
   baseline_status_block: BaselineStatusBlock,

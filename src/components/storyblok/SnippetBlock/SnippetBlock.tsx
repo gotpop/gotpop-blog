@@ -1,5 +1,5 @@
-import SnippetTextAlignA from "@/components/snippets/SnippetTextAlignA/SnippetTextAlignA"
-import SnippetTextAlignB from "@/components/snippets/SnippetTextAlignB/SnippetTextAlignB"
+import { SnippetTextAlignA } from "@/components/snippets/SnippetTextAlignA/SnippetTextAlignA"
+import { SnippetTextAlignB } from "@/components/snippets/SnippetTextAlignB/SnippetTextAlignB"
 import type { SnippetBlockStoryblok } from "@/types/storyblok-components"
 import { getInlineStyles } from "@/utils/inline-styles"
 

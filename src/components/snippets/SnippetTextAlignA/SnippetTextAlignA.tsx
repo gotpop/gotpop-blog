@@ -1,6 +1,6 @@
 import { getInlineStyles } from "@/utils/inline-styles"
 
-export default function SnippetTextAlignA() {
+export function SnippetTextAlignA() {
   const styles = getInlineStyles("SnippetTextAlignA.css")
 
   return (
