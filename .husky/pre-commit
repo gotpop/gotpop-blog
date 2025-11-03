@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-# Auto-format staged files
-yarn format:fix
-
-# Re-stage formatted files
-git add .

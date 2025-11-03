@@ -3,7 +3,6 @@ import "./globals.css"
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import Script from "next/script"
-// import ClientLoader from "@/components/utils/ClientLoader"
 import StoryblokProvider from "@/providers/StoryblokProvider"
 
 const inter = localFont({

@@ -8,7 +8,7 @@ interface NavDefaultProps {
   blok: NavDefaultStoryblok
 }
 
-export default function NavDefault({ blok }: NavDefaultProps) {
+export function NavDefault({ blok }: NavDefaultProps) {
   const styles = getInlineStyles("NavDefault.css")
   const navId = useId()
 
