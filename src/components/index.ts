@@ -1,15 +1,15 @@
-export { default as IconLogo } from "./icons/IconLogo"
+export * from "./icons/IconLogo"
 // Direct components
-export { default as PostsPage } from "./PostsPage"
+export * from "./pages/PostsPage"
 // Snippet Components
-export { default as SnippetTextAlignA } from "./snippets/SnippetTextAlignA"
-export { default as SnippetTextAlignB } from "./snippets/SnippetTextAlignB"
+export * from "./snippets/SnippetTextAlignA"
+export * from "./snippets/SnippetTextAlignB"
 // Storyblok Components (re-export from their index)
 export * from "./storyblok"
 // UI Components
-export { default as ButtonToggleMenu } from "./ui/ButtonToggleMenu"
-export { default as Icon } from "./ui/Icon"
-export { default as PageLayout } from "./ui/PageLayout"
+export * from "./ui/ButtonToggleMenu"
+export * from "./ui/Icon"
+export * from "./ui/PageLayout"
 export * from "./ui/RichText"
 // Utils Components
-export { StoryblokServerComponent } from "./utils/StoryblokServerComponent"
+export * from "./utils/StoryblokServerComponent"

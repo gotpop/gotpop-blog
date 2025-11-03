@@ -1,6 +1,6 @@
 import { getInlineStyles } from "@/utils/inline-styles"
 
-export default function IconLogo() {
+export function IconLogo() {
   const styles = getInlineStyles("IconLogo.css")
 
   return (

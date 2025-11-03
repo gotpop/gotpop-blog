@@ -1,1 +1,1 @@
-export { default } from "./SnippetTextAlignA"
+export * from "./SnippetTextAlignA"

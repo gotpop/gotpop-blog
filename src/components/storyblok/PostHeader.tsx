@@ -8,11 +8,7 @@ interface PostHeaderProps {
   style?: React.CSSProperties
 }
 
-export default function PostHeader({
-  heading,
-  publishedDate,
-  style,
-}: PostHeaderProps) {
+export function PostHeader({ heading, publishedDate, style }: PostHeaderProps) {
   const id = useId()
 
   if (!publishedDate || !heading) return null

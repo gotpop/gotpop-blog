@@ -1,4 +1,4 @@
-import Icon from "@/components/ui/Icon"
+import { Icon } from "@/components"
 import type { IconName } from "@/components/ui/Icon/Icon"
 import type { NavItemDefaultStoryblok } from "@/types/storyblok-components"
 import { cn } from "@/utils/cn"

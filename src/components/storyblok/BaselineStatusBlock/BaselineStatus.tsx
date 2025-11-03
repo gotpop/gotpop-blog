@@ -1,19 +1,13 @@
 import "server-only"
 import Link from "next/link"
+import { IconChrome, IconEdge, IconFirefox, IconSafari } from "@/icons"
 import type { BaselineStatusBlockStoryblok } from "@/types/storyblok-components"
 import { formatMonthYear } from "@/utils/date-formatter"
 import { getInlineStyles } from "@/utils/inline-styles"
 import { Typography } from "../Typography"
 import { fetchFeatureData } from "./api"
-
 import { BaselineIcon } from "./BaselineIcon"
-import {
-  IconChrome,
-  IconEdge,
-  IconFirefox,
-  IconSafari,
-  SupportStatusIcon,
-} from "./index"
+import { SupportStatusIcon } from "./SupportStatusIcon"
 import { getStatusDisplay, normalizeFeatureName } from "./utils"
 
 interface BaselineStatusBlockProps {
@@ -43,9 +37,8 @@ export async function BaselineStatusBlock({ blok }: BaselineStatusBlockProps) {
     ? formatMonthYear(data.baseline.high_date)
     : null
 
-  // Browser support status helpers
   const browserImpl = data.browser_implementations || {}
-  // Map browser keys to display order and icon
+
   const browsers = [
     {
       key: "chrome" as keyof typeof browserImpl,
@@ -64,7 +57,7 @@ export async function BaselineStatusBlock({ blok }: BaselineStatusBlockProps) {
       Icon: IconSafari,
     },
   ]
-  // Helper to get support status for icon
+
   function getSupportStatus(status: string | undefined, baseline: string) {
     if (baseline === "limited") {
       if (status === "available" || status === "widely" || status === "newly")

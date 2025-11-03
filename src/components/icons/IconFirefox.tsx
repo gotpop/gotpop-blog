@@ -1,6 +1,6 @@
 import { useId } from "react"
 
-export default function IconFirefox() {
+export function IconFirefox() {
   const gradientAId = useId()
   const clipMId = useId()
 

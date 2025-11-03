@@ -6,7 +6,7 @@ import type {
   PagePostStoryblok,
   StoryblokComponent,
 } from "@/types/storyblok-components"
-import PostHeader from "./PostHeader"
+import { PostHeader } from "./PostHeader"
 
 interface BasePageProps {
   Header?: string

@@ -56,7 +56,7 @@ interface IconProps {
   className?: string
 }
 
-export default function Icon({ name, size = 24, color, className }: IconProps) {
+export function Icon({ name, size = 24, color, className }: IconProps) {
   if (!name) {
     console.log("Invalid icon name:", JSON.stringify({ name }, null, 2))
     return null
