@@ -8,7 +8,7 @@ import { LinkList } from "./LinkList"
 import { LogoDefault } from "./LogoDefault"
 import { NavDefault, NavItemDefault } from "./NavDefault"
 import { PageDefault, PageFilter, PagePost } from "./Pages"
-import PostHeader from "./PostHeader"
+import { PostHeader } from "./PostHeader"
 import { RichTextBlock } from "./RichTextBlock"
 import { RichTextCodeBlock } from "./RichTextCodeBlock"
 import { SnippetBlock } from "./SnippetBlock"
@@ -33,7 +33,6 @@ export const components = {
   snippet_block: SnippetBlock,
 }
 
-// Individual component exports
 export {
   BaselineStatusBlock,
   Card,
