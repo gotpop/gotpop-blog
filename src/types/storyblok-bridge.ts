@@ -4,7 +4,6 @@ export interface StoryblokBlok {
   blok: SbBlokData
 }
 
-// Storyblok Bridge API types
 export interface StoryblokBridgeEvent {
   action: "input" | "published" | "change"
   story?: unknown
@@ -22,7 +21,6 @@ export interface StoryblokBridgeAPI {
   enterEditmode: () => void
 }
 
-// Extend Window interface for TypeScript
 declare global {
   interface Window {
     storyblok?: StoryblokBridgeAPI
