@@ -1,18 +1,17 @@
 import type { LinkListStoryblok } from "@/types/storyblok-components"
-import { getInlineStyles } from "@/utils/inline-styles"
+// import { getInlineStyles } from "@/utils/inline-styles"
 import { Typography } from "../Typography"
+import "./LinkList.css"
 
 interface LinkListProps {
   blok: LinkListStoryblok
 }
 
 export function LinkList({ blok }: LinkListProps) {
-  const styles = getInlineStyles("LinkList.css")
+  // const styles = getInlineStyles("LinkList.css")
 
   return (
-    <div>
-      {styles && <style>{styles}</style>}
-
+    <link-list>
       <div className="link-list-heading">
         <Typography tag="h4" variant="text-xl" shade="light">
           {blok.heading}
@@ -30,6 +29,6 @@ export function LinkList({ blok }: LinkListProps) {
           ))}
         </ul>
       )}
-    </div>
+    </link-list>
   )
 }
