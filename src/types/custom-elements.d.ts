@@ -44,6 +44,10 @@ declare module "react" {
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >
+      "link-list": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >
     }
   }
 }

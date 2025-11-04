@@ -3,7 +3,7 @@ import Link from "next/link"
 import { IconChrome, IconEdge, IconFirefox, IconSafari } from "@/icons"
 import type { BaselineStatusBlockStoryblok } from "@/types/storyblok-components"
 import { formatMonthYear } from "@/utils/date-formatter"
-import { getInlineStyles } from "@/utils/inline-styles"
+import "./BaselineStatus.css"
 import { Typography } from "../Typography"
 import { fetchFeatureData } from "./api"
 import { BaselineIcon } from "./BaselineIcon"
@@ -24,7 +24,6 @@ export async function BaselineStatusBlock({ blok }: BaselineStatusBlockProps) {
 
   const status = data.baseline?.status || "no_data"
   const { label, badgeText } = getStatusDisplay(status, data.baseline?.low_date)
-  const styles = getInlineStyles("BaselineStatus.css")
   const normalizedName = normalizeFeatureName(name)
 
   const featureUrl = `https://github.com/web-platform-dx/web-features/blob/main/features/${featureId}.yml`
@@ -71,7 +70,6 @@ export async function BaselineStatusBlock({ blok }: BaselineStatusBlockProps) {
 
   return (
     <baseline-status className="baseline-status" data-status={status}>
-      {styles && <style>{styles}</style>}
       <details>
         <summary>
           <div className="title">

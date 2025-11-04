@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build --turbopack",
+    "build": "next build",
     "prebuild": "yarn format:fix && yarn generate-types",
     "dev:https": "yarn dev & yarn dev:wait && yarn proxy",
     "dev:wait": "sleep 3",
@@ -46,6 +46,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "prettier": "^3.6.2",
+    "raw-loader": "^4.0.2",
     "storyblok": "^4.6.9",
     "storyblok-generate-ts": "^2.2.0",
     "typescript": "^5"

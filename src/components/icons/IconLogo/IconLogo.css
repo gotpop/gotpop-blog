@@ -1,4 +1,4 @@
-@scope {
+@scope (.circles) {
   & {
     --main-circle-color: var(--secondary-400);
     --small-circle-color: var(--triad-2);

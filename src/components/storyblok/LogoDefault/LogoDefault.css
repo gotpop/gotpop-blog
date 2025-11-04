@@ -1,5 +1,5 @@
-@scope {
-  & {
+@scope (logo-main) {
+  :scope {
     --morph-duration: 0.4s;
     --morph-rotation-duration: 0.5s;
     --morph-delay-step: 50ms;

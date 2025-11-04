@@ -1,4 +1,4 @@
-@scope {
+@scope (main) {
   & {
     row-gap: var(--spacing-base);
   }
@@ -35,69 +35,5 @@
         --grid-column: span 3;
       }
     }
-  }
-}
-
-/* View Transition styles for reordering list */
-::view-transition-old(.reorder-list),
-::view-transition-new(.reorder-list) {
-  animation-duration: 400ms;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Individual post transitions */
-::view-transition-old(post-*),
-::view-transition-new(post-*) {
-  animation-duration: 350ms;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Custom reorder animations */
-::view-transition-old(post-*) {
-  animation-name: slide-out-subtle;
-}
-
-::view-transition-new(post-*) {
-  animation-name: slide-in-subtle;
-}
-
-@keyframes slide-out-subtle {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0.8;
-    transform: translateY(-8px) scale(0.98);
-  }
-}
-
-@keyframes slide-in-subtle {
-  from {
-    opacity: 0.8;
-    transform: translateY(8px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(post-*),
-  ::view-transition-new(post-*),
-  ::view-transition-old(.reorder-list),
-  ::view-transition-new(.reorder-list) {
-    animation: fade-in 150ms ease-in-out both !important;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }

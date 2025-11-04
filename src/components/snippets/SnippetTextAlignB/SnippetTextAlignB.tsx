@@ -1,12 +1,8 @@
-import { getInlineStyles } from "@/utils/inline-styles"
+import "./SnippetTextAlignB.css"
 
 export function SnippetTextAlignB() {
-  const styles = getInlineStyles("SnippetTextAlignB.css")
-
   return (
     <div className="snippet-text-align-b">
-      {styles && <style>{styles}</style>}
-
       <div className="wrapper">
         <article className="article article-1">
           <h3>

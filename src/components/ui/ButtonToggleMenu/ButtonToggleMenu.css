@@ -1,5 +1,5 @@
-@scope {
-  & {
+@scope (button-toggle) {
+  :scope {
     --background-color: var(--secondary-500);
     --button-toggle-color: var(--light-100);
     --padding-right: calc(var(--spacing-md) + var(--scrollbar-width));

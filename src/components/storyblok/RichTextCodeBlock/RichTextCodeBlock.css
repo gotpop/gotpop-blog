@@ -1,4 +1,4 @@
-@scope {
+@scope (code-block) {
   & {
     margin-block: var(--spacing-base) var(--spacing-md);
     width: 100%;

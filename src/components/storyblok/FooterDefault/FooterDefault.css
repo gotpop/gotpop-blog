@@ -1,5 +1,5 @@
-@scope {
-  & {
+@scope (.footer) {
+  &:scope {
     --grid-vertical-color: oklch(from var(--light-200) l c h / 0.08);
     --grid-horizontal-color: oklch(from var(--light-200) l c h / 0.08);
 

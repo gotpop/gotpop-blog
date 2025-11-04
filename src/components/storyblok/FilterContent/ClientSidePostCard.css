@@ -1,4 +1,4 @@
-@scope {
+@scope (box-grid) {
   .meta {
     align-items: flex-start;
     display: flex;

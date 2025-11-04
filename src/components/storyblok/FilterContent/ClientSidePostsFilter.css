@@ -1,4 +1,4 @@
-@scope {
+@scope (box-grid) {
   .select-wrap {
     display: grid;
     grid-template-columns: auto 1fr;

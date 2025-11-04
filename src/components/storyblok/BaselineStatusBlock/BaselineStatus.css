@@ -1,5 +1,5 @@
-@scope {
-  & {
+@scope (baseline-status) {
+  :scope {
     --baseline-icon-limited-front: #f09409;
     --baseline-icon-limited-back: #c6c6c6;
     --baseline-icon-widely-front: #1ea446;
