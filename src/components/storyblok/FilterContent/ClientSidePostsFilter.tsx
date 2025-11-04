@@ -1,6 +1,7 @@
 "use client"
 
 import { useId } from "react"
+import "./ClientSidePostsFilter.css"
 
 interface TagEntry {
   name: string

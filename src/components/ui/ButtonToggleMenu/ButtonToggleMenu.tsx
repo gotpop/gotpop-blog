@@ -6,7 +6,6 @@ import { useNavigationToggle } from "./useNavigationToggle"
 import "./ButtonToggleMenu.css"
 
 interface ButtonToggleMenuClientProps {
-  styles?: string
   navId: string
 }
 

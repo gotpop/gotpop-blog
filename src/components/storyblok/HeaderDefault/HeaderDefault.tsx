@@ -1,6 +1,6 @@
 import { StoryblokServerComponent } from "@/components"
 import type { HeaderDefaultStoryblok } from "@/types/storyblok-components"
-import { getInlineStyles } from "@/utils/inline-styles"
+import "./HeaderDefault.css"
 import { fetchStoryByUuid } from "@/utils/storyblok-fetch"
 
 interface HeaderDefaultProps {
@@ -9,8 +9,6 @@ interface HeaderDefaultProps {
 }
 
 export async function HeaderDefault({ blok, uuid }: HeaderDefaultProps) {
-  const styles = getInlineStyles("HeaderDefault.css")
-
   let headerData = blok
 
   if (uuid && !blok) {
@@ -26,7 +24,6 @@ export async function HeaderDefault({ blok, uuid }: HeaderDefaultProps) {
 
   return (
     <header className="header">
-      <style>{styles}</style>
       {logo?.[0] && <StoryblokServerComponent blok={logo[0]} />}
       {nav?.[0] && <StoryblokServerComponent blok={nav[0]} />}
     </header>

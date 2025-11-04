@@ -1,4 +1,3 @@
-import { getInlineStyles } from "@/utils/inline-styles"
 import { getAllPostsWithTags } from "@/utils/tags"
 import PostCard from "../storyblok/FilterContent/ClientSidePostCard"
 
@@ -7,7 +6,6 @@ interface PostsPageProps {
 }
 
 export async function PostsPage({ currentTag = "all" }: PostsPageProps) {
-  const styles = getInlineStyles("FilterContent.css")
   const posts = await getAllPostsWithTags()
 
   const filteredPosts =
@@ -27,7 +25,6 @@ export async function PostsPage({ currentTag = "all" }: PostsPageProps) {
 
   return (
     <>
-      {styles && <style>{styles}</style>}
       <div className="filter-header">
         <h1>{title}</h1>
         <p>{description}</p>

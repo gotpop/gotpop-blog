@@ -1,7 +1,7 @@
 import type { ReactNode } from "react"
 import { FooterDefault } from "@/components/storyblok/FooterDefault/FooterDefault"
 import { HeaderDefault } from "@/components/storyblok/HeaderDefault/HeaderDefault"
-import { getInlineStyles } from "@/utils/inline-styles"
+import "./PageLayout.css"
 
 interface PageLayoutProps {
   children?: ReactNode
@@ -11,11 +11,8 @@ interface PageLayoutProps {
 }
 
 export function PageLayout({ children, header, footer }: PageLayoutProps) {
-  const styles = getInlineStyles("PageLayout.css")
-
   return (
     <page-layout className="page-layout">
-      {styles && <style>{styles}</style>}
       <HeaderDefault uuid={header} />
       <main>
         <box-crosshatch className="box-crosshatch">{children}</box-crosshatch>

@@ -1,6 +1,6 @@
 import { RichText } from "@/components/ui/RichText"
 import type { RichTextCodeBlockStoryblok } from "@/types/storyblok-components"
-import { getInlineStyles } from "@/utils/inline-styles"
+import "./RichTextCodeBlock.css"
 
 interface RichTextCodeBlockProps {
   blok: RichTextCodeBlockStoryblok
@@ -8,12 +8,6 @@ interface RichTextCodeBlockProps {
 
 export function RichTextCodeBlock({ blok }: RichTextCodeBlockProps) {
   const { content } = blok
-  const styles = getInlineStyles("RichTextCodeBlock.css")
 
-  return (
-    <code-block>
-      {styles && <style>{styles}</style>}
-      {content && <RichText content={content} />}
-    </code-block>
-  )
+  return <code-block>{content && <RichText content={content} />}</code-block>
 }

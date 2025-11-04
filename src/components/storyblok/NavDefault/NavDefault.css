@@ -1,5 +1,5 @@
-@scope {
-  & {
+@scope (.nav) {
+  :scope {
     background-color: var(--nav-background, var(--light-100));
     display: var(--nav-display, grid);
     gap: var(--spacing-base);

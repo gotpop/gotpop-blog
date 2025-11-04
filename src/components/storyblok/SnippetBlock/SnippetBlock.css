@@ -1,5 +1,5 @@
-@scope {
-  & {
+@scope (snippet-block) {
+  :scope {
     background-color: var(--light-100);
     grid-column: 1 / -1;
     height: var(--round-up);

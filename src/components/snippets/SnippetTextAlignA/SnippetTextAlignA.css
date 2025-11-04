@@ -1,5 +1,5 @@
-@scope {
-  & {
+@scope (.snippet-text-align-a) {
+  &:scope {
     background-image: var(--horizontal-lines);
     min-height: var(--spacing-lg);
     padding: var(--spacing-md);
