@@ -1,6 +1,6 @@
+import styles from "!!raw-loader!./LogoDefault.css"
 import { IconLogoSVG } from "@/icons"
 import type { LogoDefaultStoryblok } from "@/types/storyblok-components"
-import { getInlineStyles } from "@/utils/inline-styles"
 import { getStoryblokLinkProps } from "@/utils/storyblok"
 
 interface LogoDefaultProps {
@@ -9,11 +9,10 @@ interface LogoDefaultProps {
 
 export function LogoDefault({ blok: { link } }: LogoDefaultProps) {
   const linkProps = getStoryblokLinkProps(link)
-  const styles = getInlineStyles("LogoDefault.css")
 
   return (
     <logo-main>
-      <style>{styles}</style>
+      {styles && <style>{styles}</style>}
       <a
         className="link-logo"
         href={linkProps.href}
