@@ -1,9 +1,9 @@
 "use client"
 
-import styles from "!!raw-loader!./ButtonToggleMenu.css"
 import { useId } from "react"
 import { useClickOutside } from "@/hooks/useClickOutside"
 import { useNavigationToggle } from "./useNavigationToggle"
+import "./ButtonToggleMenu.css"
 
 interface ButtonToggleMenuClientProps {
   styles?: string
@@ -18,7 +18,6 @@ export function ButtonToggleMenu({ navId }: ButtonToggleMenuClientProps) {
 
   return (
     <button-toggle>
-      {styles && <style>{styles}</style>}
       <button
         aria-controls={navId}
         aria-expanded={isExpanded}

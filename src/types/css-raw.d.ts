@@ -1,4 +1,7 @@
-// TypeScript declarations for raw CSS imports using webpack loader syntax
+// TypeScript declarations for raw CSS imports.
+// Support both `raw-loader`-style imports (e.g. `!!raw-loader!...`) and the
+// `?raw` query approach (e.g. `import css from './file.css?raw'`).
+// These declarations let TypeScript treat raw CSS/text imports as strings.
 
 // Support for !!raw-loader! syntax
 declare module "!!raw-loader!*" {

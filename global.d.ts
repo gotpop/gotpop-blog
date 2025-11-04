@@ -1,4 +1,4 @@
-// Global TypeScript declarations for webpack raw-loader
+// Global TypeScript declarations for raw imports (supports raw-loader and ?raw)
 
 declare module "!!raw-loader!*" {
   const content: string

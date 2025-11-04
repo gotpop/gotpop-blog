@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build --webpack",
+    "build": "next build",
     "prebuild": "yarn format:fix && yarn generate-types",
     "dev:https": "yarn dev & yarn dev:wait && yarn proxy",
     "dev:wait": "sleep 3",
-    "dev": "next dev --webpack",
+    "dev": "next dev",
     "docker:build": "source .env && docker build --build-arg STORYBLOK_ACCESS_TOKEN=$STORYBLOK_ACCESS_TOKEN -t gotpop-blog .",
     "docker:build:fast": "source .env && docker build --build-arg STORYBLOK_ACCESS_TOKEN=$STORYBLOK_ACCESS_TOKEN --target builder -t gotpop-blog-builder .",
     "docker:run": "docker run -d -p 3000:3000 --env STORYBLOK_ACCESS_TOKEN=$STORYBLOK_ACCESS_TOKEN --name gotpop-blog gotpop-blog",
