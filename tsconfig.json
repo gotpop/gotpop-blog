@@ -1,23 +1,39 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
+    // Modern module resolution (matches @gotpop/server package)
     "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+
+    // React & JSX (matches @gotpop/server package)
     "jsx": "react-jsx",
+    "jsxImportSource": "react",
+
+    // Module system (matches @gotpop/server package)
+    "module": "ESNext",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    // Type checking (matches @gotpop/server package)
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "exactOptionalPropertyTypes": false,
+
+    // Next.js specific
+    "noEmit": true,
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
+    "isolatedModules": true,
+
+    // Resolution (matches @gotpop/server package)
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Path mappings for blog
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@/components/*": ["./src/components/*"],
@@ -30,7 +46,10 @@
       "@/types/*": ["./src/types/*"],
       "@/ui/*": ["./src/components/ui/*"],
       "@/utils/*": ["./src/utils/*"]
-    }
+    },
+
+    // Node.js types (matches @gotpop/server package)
+    "types": ["node"]
   },
   "include": [
     "next-env.d.ts",
@@ -41,5 +60,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/*.test.*", "**/*.spec.*"]
 }
