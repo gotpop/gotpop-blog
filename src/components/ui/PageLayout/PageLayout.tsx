@@ -1,5 +1,5 @@
+import { FooterDefaultBlock } from "@gotpop/system"
 import type { ReactNode } from "react"
-import { FooterDefault } from "@/components/storyblok/FooterDefault/FooterDefault"
 import { HeaderDefault } from "@/components/storyblok/HeaderDefault/HeaderDefault"
 import "./PageLayout.css"
 
@@ -17,7 +17,7 @@ export function PageLayout({ children, header, footer }: PageLayoutProps) {
       <main>
         <box-crosshatch className="box-crosshatch">{children}</box-crosshatch>
       </main>
-      <FooterDefault uuid={footer} />
+      <FooterDefaultBlock uuid={footer} />
     </page-layout>
   )
 }
