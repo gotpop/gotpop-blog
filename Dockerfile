@@ -13,7 +13,10 @@ COPY package.json yarn.lock ./
 
 # Setup npm authentication for GitHub Packages and other settings
 RUN if [ -n "$GITHUB_TOKEN" ]; then \
-        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /app/.npmrc; \
+        echo "@gotpop:registry=https://npm.pkg.github.com" > /app/.npmrc && \
+        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> /app/.npmrc; \
+    else \
+        touch /app/.npmrc; \
     fi && \
     echo "registry=https://registry.npmjs.org/" >> /app/.npmrc && \
     echo "fetch-retries=5" >> /app/.npmrc && \
@@ -82,7 +85,10 @@ COPY package.json yarn.lock ./
 
 # Setup npm authentication and install ONLY production dependencies
 RUN if [ -n "$GITHUB_TOKEN" ]; then \
-        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /app/.npmrc; \
+        echo "@gotpop:registry=https://npm.pkg.github.com" > /app/.npmrc && \
+        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> /app/.npmrc; \
+    else \
+        touch /app/.npmrc; \
     fi && \
     echo "registry=https://registry.npmjs.org/" >> /app/.npmrc && \
     echo "fetch-retries=5" >> /app/.npmrc && \
