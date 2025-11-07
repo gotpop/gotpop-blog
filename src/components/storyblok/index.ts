@@ -1,4 +1,10 @@
-import { BaselineStatusBlock, LogoDefault, SnippetBlock } from "@gotpop/system"
+import {
+  BaselineStatusBlock,
+  LogoDefault,
+  RichTextBlock,
+  RichTextCodeBlock,
+  SnippetBlock,
+} from "@gotpop/system"
 import { Card, Cards } from "./Cards"
 import { FilterContent } from "./FilterContent"
 import { FooterDefault } from "./FooterDefault"
@@ -8,8 +14,6 @@ import { LinkList } from "./LinkList"
 import { NavDefault, NavItemDefault } from "./NavDefault"
 import { PageDefault, PageFilter, PagePost } from "./Pages"
 import { PostHeader } from "./PostHeader"
-import { RichTextBlock } from "./RichTextBlock"
-import { RichTextCodeBlock } from "./RichTextCodeBlock"
 
 export const components = {
   baseline_status_block: BaselineStatusBlock,
