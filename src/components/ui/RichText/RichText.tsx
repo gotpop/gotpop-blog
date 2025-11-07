@@ -1,19 +1,13 @@
+import {
+  BaselineStatusBlock,
+  RichTextBlock,
+  RichTextCodeBlock,
+  SnippetBlock,
+} from "@gotpop/system"
 import { render } from "storyblok-rich-text-react-renderer"
-import { BaselineStatusBlock } from "@/components/storyblok/BaselineStatusBlock"
-import { Card, Cards } from "@/components/storyblok/Cards"
-import { FilterContent } from "@/components/storyblok/FilterContent"
-import { HeroDefault } from "@/components/storyblok/HeroDefault"
-import { LogoDefault } from "@/components/storyblok/LogoDefault"
-import { RichTextBlock } from "@/components/storyblok/RichTextBlock"
-import { RichTextCodeBlock } from "@/components/storyblok/RichTextCodeBlock"
-import { SnippetBlock } from "@/components/storyblok/SnippetBlock"
 import { Typography } from "@/components/storyblok/Typography"
 import type {
   BaselineStatusBlockStoryblok,
-  CardStoryblok,
-  CardsStoryblok,
-  HeroDefaultStoryblok,
-  LogoDefaultStoryblok,
   RichTextBlockStoryblok,
   RichTextCodeBlockStoryblok,
   RichtextStoryblok,
@@ -32,15 +26,6 @@ export function RichText({ content }: RichTextProps) {
     blokResolvers: {
       baseline_status_block: (props) => (
         <BaselineStatusBlock blok={props as BaselineStatusBlockStoryblok} />
-      ),
-      card: (props) => <Card blok={props as CardStoryblok} />,
-      cards: (props) => <Cards blok={props as CardsStoryblok} />,
-      filter_content: () => <FilterContent />,
-      hero_default: (props) => (
-        <HeroDefault blok={props as HeroDefaultStoryblok} />
-      ),
-      logo_default: (props) => (
-        <LogoDefault blok={props as LogoDefaultStoryblok} />
       ),
       rich_text_block: (props) => (
         <RichTextBlock blok={props as RichTextBlockStoryblok} />

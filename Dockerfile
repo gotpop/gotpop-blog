@@ -3,10 +3,16 @@
 # ========================================
 FROM node:22-alpine AS deps
 
+# Build argument for GitHub token
+ARG GITHUB_TOKEN
+
 WORKDIR /app
 
-# Setup better npm mirrors and cache settings
-RUN echo "registry=https://registry.npmjs.org/" > .npmrc && \
+# Setup npm authentication for GitHub Packages
+RUN if [ -n "$GITHUB_TOKEN" ]; then \
+        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > .npmrc; \
+    fi && \
+    echo "registry=https://registry.npmjs.org/" >> .npmrc && \
     echo "fetch-retries=5" >> .npmrc && \
     echo "fetch-retry-mintimeout=20000" >> .npmrc && \
     echo "fetch-retry-maxtimeout=120000" >> .npmrc && \
