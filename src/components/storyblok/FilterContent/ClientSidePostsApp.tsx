@@ -17,14 +17,13 @@ export default function ClientSidePostsApp({
   availableTags,
 }: ClientSidePostsAppProps) {
   const {
-    currentTag,
-    setCurrentTag,
     currentSort,
-    setCurrentSort,
+    currentTag,
     filteredAndSortedPosts,
+    setCurrentSort,
+    setCurrentTag,
   } = usePostsFilter(posts)
 
-  // Wrap filter/sort changes in startTransition for ViewTransition
   const handleTagChange = (tag: string) => {
     startTransition(() => {
       setCurrentTag(tag)

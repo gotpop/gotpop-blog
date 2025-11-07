@@ -206,6 +206,18 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.17.19.tgz#8cfaf2ff603e9aabb910e9c0558c26cf32744061"
   integrity sha512-lAhycmKnVOuRYNtRtatQR1LPQf2oYCkRGkSFnseDAKPl8lu5SOsK/e1sXe5a0Pc5kHIHe6P2I/ilntNv2xf3cA==
 
+"@gotpop/system@0.1.8":
+  version "0.1.8"
+  resolved "https://npm.pkg.github.com/download/@gotpop/system/0.1.8/3090b49ad1cc60a68d4b8ed58b585dd735223694#3090b49ad1cc60a68d4b8ed58b585dd735223694"
+  integrity sha512-j2Jj7DGY/S7KIOC5gNQTkuMgZr1Tf1cFBWmvh4iNY7SVghdlZMtIs2xd4Q6/oK5O8XMp4W/B4sUgB6envsbOTQ==
+  dependencies:
+    "@next/font" "^14.2.15"
+    "@storyblok/react" "^5.4.18"
+    react "19.2.0"
+    react-icons "^5.4.0"
+    server-only "^0.0.1"
+    storyblok-rich-text-react-renderer "^3.0.1"
+
 "@img/colour@^1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@img/colour/-/colour-1.0.0.tgz"
@@ -546,6 +558,11 @@
   resolved "https://registry.yarnpkg.com/@next/env/-/env-16.0.0.tgz#52df6ea4efa447ae9f7df0105dce088505bc8f3d"
   integrity sha512-s5j2iFGp38QsG1LWRQaE2iUY3h1jc014/melHFfLdrsMJPqxqDQwWNwyQTcNoUSGZlCVZuM7t7JDMmSyRilsnA==
 
+"@next/font@^14.2.15":
+  version "14.2.15"
+  resolved "https://registry.yarnpkg.com/@next/font/-/font-14.2.15.tgz#4e6f0d5b14ecc6b6dea7c1b07e42855e5f14823a"
+  integrity sha512-QopYhBmCDDrNDynbi+ZD1hDZXmQXVFo7TmAFp4DQgO/kogz1OLbQ92hPigJbj572eZ3GaaVxNIyYVn3/eAsehg==
+
 "@next/swc-darwin-arm64@16.0.0":
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/@next/swc-darwin-arm64/-/swc-darwin-arm64-16.0.0.tgz#bca00a28469352ad9259143f2a3bc2a3dc36e29b"
@@ -856,6 +873,14 @@
     "@storyblok/richtext" "3.8.2"
     storyblok-js-client "7.1.5"
 
+"@storyblok/js@4.4.1":
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-4.4.1.tgz#248118cdb594bd0ad6475eafedf9038806e9ebe6"
+  integrity sha512-GAMDHiEkNSMd3lQgoHa9GEM5/Vgc/AWXKZVAMIxXX8Hf8f1FFratswpXgL2JIfjKz+Vj0UwYBGbWpjx+6svJHQ==
+  dependencies:
+    "@storyblok/richtext" "3.8.2"
+    storyblok-js-client "7.1.6"
+
 "@storyblok/management-api-client@0.1.5":
   version "0.1.5"
   resolved "https://registry.npmjs.org/@storyblok/management-api-client/-/management-api-client-0.1.5.tgz"
@@ -869,6 +894,13 @@
   integrity sha512-KEFPLXRpy2yRuSCsQtsDzm74Kh2Yf1uWPXXWuSGq89y5nxEfUXZ3zdYi7trM+a2TMsa5qx3X8pzw6jtsbhGNUQ==
   dependencies:
     "@storyblok/js" "4.4.0"
+
+"@storyblok/react@^5.4.18":
+  version "5.4.18"
+  resolved "https://registry.yarnpkg.com/@storyblok/react/-/react-5.4.18.tgz#43f4b82bc41a25d5189fd76ec621eff24524ec95"
+  integrity sha512-b4k/bgB/hdumgZBRIWl7B+IVJgH3ktz8fiRMmqOLjCWakICfavbIAMOLKqOanG5UNjT+JT7dfDvNajQVbpnw6Q==
+  dependencies:
+    "@storyblok/js" "4.4.1"
 
 "@storyblok/region-helper@1.3.1":
   version "1.3.1"
@@ -2298,7 +2330,7 @@ react-dom@19.2.0:
   dependencies:
     scheduler "^0.27.0"
 
-react-icons@^5.5.0:
+react-icons@^5.4.0, react-icons@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.5.0.tgz#8aa25d3543ff84231685d3331164c00299cdfaf2"
   integrity sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==
@@ -2517,6 +2549,11 @@ storyblok-js-client@7.1.5:
   version "7.1.5"
   resolved "https://registry.npmjs.org/storyblok-js-client/-/storyblok-js-client-7.1.5.tgz"
   integrity sha512-N+DWilPdbXfnb54O3jbJ7IfPyQMs+Jn7KrTCO3lpS8JAEfb+BXQH3sLPri3qzy+tyk0IhXj+8ao4wOX1z89FNg==
+
+storyblok-js-client@7.1.6:
+  version "7.1.6"
+  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-7.1.6.tgz#4a7b711929994f3507d0741a5c990ef206252d30"
+  integrity sha512-LWXL4rUT8vM9it6Kodjh1pMicLokgLXAGswpdYi5lEgMsgn+yGjt8Hs1Yg5z3gOtW0m0O6aQ3dTZuc7r+Q+/8w==
 
 storyblok-rich-text-react-renderer@^3.0.1:
   version "3.0.1"
