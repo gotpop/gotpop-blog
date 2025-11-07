@@ -76,42 +76,17 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-# Build argument for GitHub token (needed for production deps install)
-ARG GITHUB_TOKEN
-
-# Copy production-only node_modules from deps stage
-# Filter out dev dependencies by reinstalling production only
+# Copy package files
 COPY package.json yarn.lock ./
 
-# Setup npm authentication and install ONLY production dependencies
-RUN if [ -n "$GITHUB_TOKEN" ]; then \
-        echo "@gotpop:registry=https://npm.pkg.github.com" > /app/.npmrc && \
-        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> /app/.npmrc; \
-    else \
-        touch /app/.npmrc; \
-    fi && \
-    echo "registry=https://registry.npmjs.org/" >> /app/.npmrc && \
-    echo "fetch-retries=5" >> /app/.npmrc && \
-    echo "fetch-retry-mintimeout=20000" >> /app/.npmrc && \
-    echo "fetch-retry-maxtimeout=120000" >> /app/.npmrc && \
-    echo "network-timeout=300000" >> /app/.npmrc && \
-    apk add --no-cache libc6-compat && \
-    yarn config set network-timeout 600000 && \
-    yarn install --production --frozen-lockfile --network-timeout 600000 --network-concurrency 1 && \
-    # Add TypeScript for next.config.ts (needed at runtime)
-    yarn add typescript --network-timeout 300000 && \
-    yarn cache clean && \
-    rm -f /app/.npmrc && \
-    apk del libc6-compat
+# Copy node_modules from deps stage (already has all dependencies including @gotpop/system)
+COPY --from=deps --chown=nextjs:nodejs /app/node_modules ./node_modules
 
 # Copy built application from builder
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder /app/next.config.ts ./
 COPY --from=builder --chown=nextjs:nodejs /app/src ./src
-
-# Ensure correct permissions for node_modules
-RUN chown -R nextjs:nodejs /app/node_modules
 
 # Switch to non-root user
 USER nextjs
