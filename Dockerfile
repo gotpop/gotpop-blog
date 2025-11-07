@@ -8,18 +8,18 @@ ARG GITHUB_TOKEN
 
 WORKDIR /app
 
-# Setup npm authentication for GitHub Packages
-RUN if [ -n "$GITHUB_TOKEN" ]; then \
-        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > .npmrc; \
-    fi && \
-    echo "registry=https://registry.npmjs.org/" >> .npmrc && \
-    echo "fetch-retries=5" >> .npmrc && \
-    echo "fetch-retry-mintimeout=20000" >> .npmrc && \
-    echo "fetch-retry-maxtimeout=120000" >> .npmrc && \
-    echo "network-timeout=300000" >> .npmrc
-
-# Copy package files
+# Copy package files first
 COPY package.json yarn.lock ./
+
+# Setup npm authentication for GitHub Packages and other settings
+RUN if [ -n "$GITHUB_TOKEN" ]; then \
+        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /app/.npmrc; \
+    fi && \
+    echo "registry=https://registry.npmjs.org/" >> /app/.npmrc && \
+    echo "fetch-retries=5" >> /app/.npmrc && \
+    echo "fetch-retry-mintimeout=20000" >> /app/.npmrc && \
+    echo "fetch-retry-maxtimeout=120000" >> /app/.npmrc && \
+    echo "network-timeout=300000" >> /app/.npmrc
 
 # Install ALL dependencies (including dev) with retry logic - we need dev deps for build
 RUN apk add --no-cache libc6-compat python3 make g++ && \
@@ -29,7 +29,8 @@ RUN apk add --no-cache libc6-compat python3 make g++ && \
         yarn install --frozen-lockfile --network-timeout 600000 --network-concurrency 1 && break || \
         echo "Attempt $i failed, retrying in 10 seconds..." && \
         sleep 10; \
-    done
+    done && \
+    rm -f /app/.npmrc
 
 # ========================================
 # Stage 2: Builder
@@ -72,19 +73,29 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
+# Build argument for GitHub token (needed for production deps install)
+ARG GITHUB_TOKEN
+
 # Copy production-only node_modules from deps stage
 # Filter out dev dependencies by reinstalling production only
 COPY package.json yarn.lock ./
-COPY --from=deps /app/.npmrc ./.npmrc
 
-# Install ONLY production dependencies (much smaller, faster, less network calls)
-RUN apk add --no-cache libc6-compat && \
+# Setup npm authentication and install ONLY production dependencies
+RUN if [ -n "$GITHUB_TOKEN" ]; then \
+        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /app/.npmrc; \
+    fi && \
+    echo "registry=https://registry.npmjs.org/" >> /app/.npmrc && \
+    echo "fetch-retries=5" >> /app/.npmrc && \
+    echo "fetch-retry-mintimeout=20000" >> /app/.npmrc && \
+    echo "fetch-retry-maxtimeout=120000" >> /app/.npmrc && \
+    echo "network-timeout=300000" >> /app/.npmrc && \
+    apk add --no-cache libc6-compat && \
     yarn config set network-timeout 600000 && \
     yarn install --production --frozen-lockfile --network-timeout 600000 --network-concurrency 1 && \
     # Add TypeScript for next.config.ts (needed at runtime)
     yarn add typescript --network-timeout 300000 && \
     yarn cache clean && \
-    rm -f .npmrc && \
+    rm -f /app/.npmrc && \
     apk del libc6-compat
 
 # Copy built application from builder
