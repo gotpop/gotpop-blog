@@ -32,7 +32,7 @@
     "node": ">=22.20.0"
   },
   "dependencies": {
-    "@gotpop/system": "0.1.8",
+    "@gotpop/system": "^0.1.91",
     "@storyblok/react": "^5.4.17",
     "next": "16.0.0",
     "react": "19.2.0",

@@ -1,8 +1,7 @@
+import { BaselineStatusBlock, SnippetBlock } from "@gotpop/system"
 import { render } from "storyblok-rich-text-react-renderer"
-import { BaselineStatusBlock } from "@/components/storyblok/BaselineStatusBlock"
 import { RichTextBlock } from "@/components/storyblok/RichTextBlock"
 import { RichTextCodeBlock } from "@/components/storyblok/RichTextCodeBlock"
-import { SnippetBlock } from "@/components/storyblok/SnippetBlock"
 import { Typography } from "@/components/storyblok/Typography"
 import type {
   BaselineStatusBlockStoryblok,
