@@ -3,21 +3,13 @@
 # ========================================
 FROM node:22-alpine AS deps
 
-# Build argument for GitHub token
-ARG GITHUB_TOKEN
-
 WORKDIR /app
 
 # Copy package files first
 COPY package.json yarn.lock ./
 
-# Setup npm authentication for GitHub Packages and other settings
-RUN if [ -n "$GITHUB_TOKEN" ]; then \
-        echo "@gotpop:registry=https://npm.pkg.github.com" > /app/.npmrc && \
-        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> /app/.npmrc; \
-    else \
-        touch /app/.npmrc; \
-    fi && \
+# Setup npm configuration for GitHub Packages (public package - no auth needed)
+RUN echo "@gotpop:registry=https://npm.pkg.github.com" > /app/.npmrc && \
     echo "registry=https://registry.npmjs.org/" >> /app/.npmrc && \
     echo "fetch-retries=5" >> /app/.npmrc && \
     echo "fetch-retry-mintimeout=20000" >> /app/.npmrc && \
