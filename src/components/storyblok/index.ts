@@ -1,6 +1,7 @@
 import {
   BaselineStatusBlock,
   FooterDefaultBlock,
+  LinkList,
   LogoDefault,
   RichTextBlock,
   RichTextCodeBlock,
@@ -8,10 +9,8 @@ import {
 } from "@gotpop/system"
 import { Card, Cards } from "./Cards"
 import { FilterContent } from "./FilterContent"
-// import { FooterDefault } from "./FooterDefault"
 import { HeaderDefault } from "./HeaderDefault"
 import { HeroDefault } from "./HeroDefault"
-import { LinkList } from "./LinkList"
 import { NavDefault, NavItemDefault } from "./NavDefault"
 import { PageDefault, PageFilter, PagePost } from "./Pages"
 import { PostHeader } from "./PostHeader"
