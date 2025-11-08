@@ -3,9 +3,9 @@ import {
   RichTextBlock,
   RichTextCodeBlock,
   SnippetBlock,
+  Typography,
 } from "@gotpop/system"
 import { render } from "storyblok-rich-text-react-renderer"
-import { Typography } from "@/components/storyblok/Typography"
 import type {
   BaselineStatusBlockStoryblok,
   RichTextBlockStoryblok,

@@ -206,10 +206,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.17.19.tgz#8cfaf2ff603e9aabb910e9c0558c26cf32744061"
   integrity sha512-lAhycmKnVOuRYNtRtatQR1LPQf2oYCkRGkSFnseDAKPl8lu5SOsK/e1sXe5a0Pc5kHIHe6P2I/ilntNv2xf3cA==
 
-"@gotpop/system@0.1.102":
-  version "0.1.102"
-  resolved "https://npm.pkg.github.com/download/@gotpop/system/0.1.102/3a8a8a3f71132d601953400e1e5da2ff0d34f84a#3a8a8a3f71132d601953400e1e5da2ff0d34f84a"
-  integrity sha512-a12RpOQfVVHERcl9TsLzmxUFthuMUq16yuUtlwVzJ02kNaaKKMj7WKWSEP+Ekj97LuTUficW8q1uvuPIWxg+ew==
+"@gotpop/system@^0.1.104":
+  version "0.1.104"
+  resolved "https://npm.pkg.github.com/download/@gotpop/system/0.1.104/34ef64c6697a2bf8d6333da1730f47a1bae1856f#34ef64c6697a2bf8d6333da1730f47a1bae1856f"
+  integrity sha512-MDpqFbLBx8Pdz55BPBbek4CpBsEgzXzzdRyeV2lfh9rOr37UqwobRrr21hE4t7cSvSakl6FcWf9HDsOL1EdRgA==
   dependencies:
     "@next/font" "^14.2.15"
     "@storyblok/react" "^5.4.18"
