@@ -1,5 +1,4 @@
 import {
-  BaselineStatusBlock,
   HeroDefault,
   LinkList,
   LogoDefault,
@@ -8,6 +7,7 @@ import {
   RichTextCodeBlock,
   SnippetBlock,
 } from "@gotpop/system"
+import { BaselineStatusBlock } from "./BaselineStatusBlock"
 import { Card, Cards } from "./Cards"
 import { FilterContent } from "./FilterContent"
 import { HeaderDefault } from "./HeaderDefault"

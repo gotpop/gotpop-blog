@@ -1,0 +1,143 @@
+@scope (baseline-status) {
+  :scope {
+    --baseline-icon-limited-front: #f09409;
+    --baseline-icon-limited-back: #c6c6c6;
+    --baseline-icon-widely-front: #1ea446;
+    --baseline-icon-widely-back: #c4eed0;
+    --baseline-icon-newly-front: #1b6ef3;
+    --baseline-icon-newly-back: #a8c7fa;
+    --baseline-icon-no_data: #909090;
+
+    width: auto;
+    margin-bottom: var(--spacing-md);
+
+    @media screen and (width >= 768px) {
+      width: var(--round-up);
+    }
+  }
+
+  details {
+    overflow: hidden;
+  }
+
+  summary {
+    background: var(--light-100);
+    cursor: pointer;
+    list-style: none;
+    padding: var(--spacing-base);
+    display: grid;
+    grid-template-columns: 1fr;
+    height: min-content;
+    align-content: center;
+    gap: var(--spacing-base);
+    background-color: var(--light-200);
+    width: 100%;
+
+    @media screen and (width >= 768px) {
+      gap: var(--spacing-xl);
+      height: 3rem;
+      grid-template-columns: 1fr auto;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  .title {
+    display: grid;
+    grid-template-columns: max-content;
+    font-size: var(--font-scaled-base);
+    align-items: center;
+
+    strong {
+      font-weight: var(--text-weight-semibold);
+    }
+  }
+
+  .feature-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-base);
+    justify-content: start;
+    flex-direction: column;
+
+    @media screen and (width >= 768px) {
+      flex-direction: row;
+    }
+  }
+
+  .feature-name {
+    margin: unset;
+  }
+
+  .baseline-badge {
+    background: var(--badge-bg, #0969da);
+    color: var(--light-100);
+    padding: 4px 6px;
+    font-size: var(--font-scaled-base);
+    font-weight: var(--text-weight-medium);
+  }
+
+  .content {
+    background-color: var(--light-100);
+    background-image: paint(grid);
+    height: var(--round-up);
+    padding-block: var(--spacing-md) var(--spacing-xl);
+    padding-inline: var(--spacing-lg);
+  }
+
+  .baseline-status-browsers {
+    --icon-size: 1.5rem;
+
+    display: none;
+    gap: var(--spacing-base);
+    margin: auto 0 auto auto;
+    height: min-content;
+
+    svg {
+      width: var(--icon-size);
+      height: auto;
+
+      &[aria-label="Not supported"] {
+        color: red;
+      }
+      &[aria-label="Supported"] {
+        color: green;
+      }
+      &[aria-label="Unknown"] {
+        color: #76736d;
+        max-height: var(--icon-size);
+      }
+    }
+  }
+
+  .browser-icon {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0;
+  }
+
+  .support-available {
+    color: var(--baseline-icon-widely-front, #1ea446);
+  }
+  .support-unavailable {
+    color: var(--baseline-icon-limited-front, #f09409);
+  }
+  .support-no_data {
+    color: var(--baseline-icon-no_data, #909090);
+  }
+
+  &[data-status="newly"] {
+    --badge-bg: #1b6ef3;
+  }
+
+  &[data-status="limited"] {
+    --badge-bg: #f09409;
+  }
+
+  &[data-status="widely"] {
+    --badge-bg: #1ea446;
+  }
+}

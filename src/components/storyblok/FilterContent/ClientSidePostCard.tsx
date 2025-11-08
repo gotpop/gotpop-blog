@@ -1,7 +1,7 @@
 import { getStoryPath } from "@/lib/storyblok-utils"
-import { Typography } from "@/storyblok/Typography"
 import { formatDate } from "@/utils/date-formatter"
 import type { PostStory } from "@/utils/tags"
+import { Typography } from "../Typography"
 import "./ClientSidePostCard.css"
 
 interface PostCardProps {
