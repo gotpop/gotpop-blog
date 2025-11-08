@@ -2,17 +2,18 @@ import {
   HeroDefault,
   LinkList,
   LogoDefault,
+  NavDefault,
+  NavItemDefault,
   PostHeader,
   RichTextBlock,
   RichTextCodeBlock,
   SnippetBlock,
 } from "@gotpop/system"
+import { PageDefault, PageFilter, PagePost } from "../pages/Pages"
 import { BaselineStatusBlock } from "./BaselineStatusBlock"
 import { Card, Cards } from "./Cards"
 import { FilterContent } from "./FilterContent"
 import { HeaderDefault } from "./HeaderDefault"
-import { NavDefault, NavItemDefault } from "./NavDefault"
-import { PageDefault, PageFilter, PagePost } from "./Pages"
 
 export const components = {
   baseline_status_block: BaselineStatusBlock,
