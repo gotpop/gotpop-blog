@@ -6,13 +6,13 @@ import Script from "next/script"
 import StoryblokProvider from "@/providers/StoryblokProvider"
 
 const inter = localFont({
-  src: "../fonts/inter/Inter.woff2",
+  src: "../../node_modules/@gotpop/system/src/fonts/inter/Inter.woff2",
   variable: "--font-inter",
   display: "swap",
 })
 
 const monaspace = localFont({
-  src: "../fonts/monaspace/Monaspace.woff2",
+  src: "../../node_modules/@gotpop/system/src/fonts/monaspace/Monaspace.woff2",
   variable: "--font-monaspace",
   display: "swap",
 })
