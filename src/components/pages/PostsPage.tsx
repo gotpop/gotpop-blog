@@ -42,14 +42,6 @@ export async function PostsPage({ currentTag = "all" }: PostsPageProps) {
         {filteredPosts.map((post) => (
           <PostCard key={post.uuid} post={post} />
         ))}
-        {filteredPosts.length === 0 && (
-          <div className="filter-empty">
-            <p>
-              No posts found
-              {currentTag !== "all" && ` with the tag "${currentTag}"`}.
-            </p>
-          </div>
-        )}
       </div>
     </>
   )

@@ -1,3 +1,4 @@
+import { PostHeader } from "@gotpop/system"
 import type { ReactNode } from "react"
 import { PageLayout, StoryblokServerComponent } from "@/components"
 import type {
@@ -6,7 +7,6 @@ import type {
   PagePostStoryblok,
   StoryblokComponent,
 } from "@/types/storyblok-components"
-import { PostHeader } from "./PostHeader"
 
 interface BasePageProps {
   Header?: string

@@ -1,13 +1,13 @@
 import {
-  BaselineStatusBlock,
+  // BaselineStatusBlock,
   RichTextBlock,
   RichTextCodeBlock,
   SnippetBlock,
+  Typography,
 } from "@gotpop/system"
 import { render } from "storyblok-rich-text-react-renderer"
-import { Typography } from "@/components/storyblok/Typography"
 import type {
-  BaselineStatusBlockStoryblok,
+  // BaselineStatusBlockStoryblok,
   RichTextBlockStoryblok,
   RichTextCodeBlockStoryblok,
   RichtextStoryblok,
@@ -24,9 +24,9 @@ export function RichText({ content }: RichTextProps) {
 
   const renderedContent = render(content, {
     blokResolvers: {
-      baseline_status_block: (props) => (
-        <BaselineStatusBlock blok={props as BaselineStatusBlockStoryblok} />
-      ),
+      // baseline_status_block: (props) => (
+      //   <BaselineStatusBlock blok={props as BaselineStatusBlockStoryblok} />
+      // ),
       rich_text_block: (props) => (
         <RichTextBlock blok={props as RichTextBlockStoryblok} />
       ),

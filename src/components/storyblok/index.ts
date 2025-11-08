@@ -1,26 +1,25 @@
 import {
-  BaselineStatusBlock,
-  FooterDefaultBlock,
+  HeaderDefault,
+  HeroDefault,
   LinkList,
   LogoDefault,
+  NavDefault,
+  NavItemDefault,
+  PostHeader,
   RichTextBlock,
   RichTextCodeBlock,
   SnippetBlock,
 } from "@gotpop/system"
+import { PageDefault, PageFilter, PagePost } from "../pages/Pages"
+import { BaselineStatusBlock } from "./BaselineStatusBlock"
 import { Card, Cards } from "./Cards"
 import { FilterContent } from "./FilterContent"
-import { HeaderDefault } from "./HeaderDefault"
-import { HeroDefault } from "./HeroDefault"
-import { NavDefault, NavItemDefault } from "./NavDefault"
-import { PageDefault, PageFilter, PagePost } from "./Pages"
-import { PostHeader } from "./PostHeader"
 
 export const components = {
   baseline_status_block: BaselineStatusBlock,
   card: Card,
   cards: Cards,
   filter_content: FilterContent,
-  footer_default: FooterDefaultBlock,
   header_default: HeaderDefault,
   hero_default: HeroDefault,
   link_list: LinkList,
@@ -40,7 +39,6 @@ export {
   Card,
   Cards,
   FilterContent,
-  FooterDefaultBlock,
   HeaderDefault,
   HeroDefault,
   LinkList,
