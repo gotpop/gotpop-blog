@@ -8,7 +8,7 @@ interface PostCardProps {
   post: PostStory
 }
 
-export default function PostCard({ post }: PostCardProps) {
+export function ClientSidePostCard({ post }: PostCardProps) {
   const { full_slug, name, published_at, content } = post
   const { Heading, description, published_date, tags = [] } = content || {}
 

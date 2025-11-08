@@ -15,7 +15,7 @@ interface ClientSidePostsFilterProps {
   currentTag: string
 }
 
-export default function ClientSidePostsFilter({
+export function ClientSidePostsFilter({
   availableTags,
   onTagChange,
   currentTag,
