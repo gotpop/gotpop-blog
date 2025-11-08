@@ -1,5 +1,3 @@
-// import Link from "next/link"
-
 import { Typography } from "@gotpop/system"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import type { CardStoryblok } from "@/types/storyblok-components"
