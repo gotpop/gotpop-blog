@@ -10,7 +10,7 @@ import {
   RichTextCodeBlock,
   SnippetBlock,
 } from "@gotpop/system"
-import { PageDefault, PageFilter, PagePost } from "../pages/Pages"
+import { PageDefault, PageFilter, PagePost } from "../pages"
 import { BaselineStatusBlock } from "./BaselineStatusBlock"
 import { Card, Cards } from "./Cards"
 import { FilterContent } from "./FilterContent"

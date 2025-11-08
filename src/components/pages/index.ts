@@ -1,1 +1,1 @@
-export * from "./PostsPage"
+export * from "./Pages"

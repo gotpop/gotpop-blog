@@ -1,5 +1,4 @@
 import { StoryblokStory } from "@storyblok/react/rsc"
-import { PostsPage } from "@/components/pages/PostsPage"
 import { StoryNotFound } from "@/components/utils/StoryNotFound"
 import { getStoryblokApi } from "@/lib/storyblok"
 import { normalizeStoryblokPath } from "@/lib/storyblok-utils"
@@ -8,7 +7,6 @@ import {
   getErrorMessage,
 } from "@/utils/error-handling"
 import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
-import { isPostsPage, isTagPage } from "@/utils/route-detection"
 import { generateAllStaticParams } from "@/utils/static-params"
 
 export const dynamicParams = true
@@ -39,16 +37,6 @@ export default async function Page({ params }: PageParams) {
 
     return <StoryblokStory story={data.story} />
   } catch (error: unknown) {
-    if (isPostsPage(fullPath, slug)) {
-      return <PostsPage />
-    }
-
-    const { isTagPage: isTag, tagSlug } = isTagPage(slug)
-
-    if (isTag && tagSlug) {
-      return <PostsPage currentTag={tagSlug} />
-    }
-
     const availableStories = await getAvailableStoriesForError()
     const errorMessage = getErrorMessage(error)
 
