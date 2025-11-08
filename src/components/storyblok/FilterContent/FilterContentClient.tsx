@@ -2,20 +2,20 @@
 
 import { startTransition, ViewTransition } from "react"
 import type { PostStory, TagDatasourceEntry } from "@/utils/tags"
-import { ClientSidePostCard } from "./ClientSidePostCard"
-import { ClientSidePostsFilter } from "./ClientSidePostsFilter"
-import ClientSidePostsSorter from "./ClientSidePostsSorter"
+import { ClientSidePostCard } from "../ClientSidePostCard/ClientSidePostCard"
+import { ClientSidePostsFilter } from "../ClientSidePostsFilter/ClientSidePostsFilter"
+import ClientSidePostsSorter from "../ClientSidePostsFilter/ClientSidePostsSorter"
 import { usePostsFilter } from "./use-posts-filter"
 
-interface ClientSidePostsAppProps {
+interface FilterContentClientProps {
   posts: PostStory[]
   availableTags: TagDatasourceEntry[]
 }
 
-export default function ClientSidePostsApp({
+export function FilterContentClient({
   posts,
   availableTags,
-}: ClientSidePostsAppProps) {
+}: FilterContentClientProps) {
   const {
     currentSort,
     currentTag,

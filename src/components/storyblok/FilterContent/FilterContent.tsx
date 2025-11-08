@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import "./FilterContent.css"
 import { getAllPostsWithTags, getTagsFromDatasource } from "@/utils/tags"
-import ClientSidePostsApp from "./ClientSidePostsApp"
+import { FilterContentClient } from "./FilterContentClient"
 
 export async function FilterContent() {
   const [posts, availableTags] = await Promise.all([
@@ -11,7 +11,7 @@ export async function FilterContent() {
 
   return (
     <Suspense fallback={<div>Loading posts...</div>}>
-      <ClientSidePostsApp posts={posts} availableTags={availableTags} />
+      <FilterContentClient posts={posts} availableTags={availableTags} />
     </Suspense>
   )
 }
