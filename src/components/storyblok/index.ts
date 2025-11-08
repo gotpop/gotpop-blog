@@ -13,7 +13,7 @@ import {
 import { PageDefault, PageFilter, PagePost } from "../pages"
 import { BaselineStatusBlock } from "./BaselineStatusBlock"
 import { Card, Cards } from "./Cards"
-import { FilterContent } from "./FilterContent"
+import { FilterContent } from "./FilterCards"
 
 export const components = {
   baseline_status_block: BaselineStatusBlock,

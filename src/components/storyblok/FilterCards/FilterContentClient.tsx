@@ -3,9 +3,15 @@
 import { startTransition, ViewTransition } from "react"
 import type { PostStory, TagDatasourceEntry } from "@/utils/tags"
 import { ClientSidePostCard } from "../ClientSidePostCard/ClientSidePostCard"
-import { ClientSidePostsFilter } from "../ClientSidePostsFilter/ClientSidePostsFilter"
-import ClientSidePostsSorter from "../ClientSidePostsFilter/ClientSidePostsSorter"
+import { PostsControl } from "./PostsControl"
 import { usePostsFilter } from "./use-posts-filter"
+
+const SORT_OPTIONS = [
+  { value: "published_desc", label: "Newest First" },
+  { value: "published_asc", label: "Oldest First" },
+  { value: "name_asc", label: "Title A-Z" },
+  { value: "name_desc", label: "Title Z-A" },
+]
 
 interface FilterContentClientProps {
   posts: PostStory[]
@@ -36,6 +42,15 @@ export function FilterContentClient({
     })
   }
 
+  // Transform tags for PostsControl options format
+  const tagOptions = [
+    { value: "all", label: "All Posts" },
+    ...availableTags.map((tag) => ({
+      value: tag.value,
+      label: tag.name,
+    })),
+  ]
+
   const output =
     filteredAndSortedPosts.length > 0 &&
     filteredAndSortedPosts.map((post) => (
@@ -45,14 +60,17 @@ export function FilterContentClient({
   return (
     <div className="filters-with-output">
       <box-grid auto-columns>
-        <ClientSidePostsFilter
-          availableTags={availableTags}
-          onTagChange={handleTagChange}
-          currentTag={currentTag}
+        <PostsControl
+          label="Filter"
+          value={currentTag}
+          onChange={handleTagChange}
+          options={tagOptions}
         />
-        <ClientSidePostsSorter
-          onSortChange={handleSortChange}
-          currentSort={currentSort}
+        <PostsControl
+          label="Sort"
+          value={currentSort}
+          onChange={handleSortChange}
+          options={SORT_OPTIONS}
         />
       </box-grid>
       <ViewTransition update="reorder-list">
