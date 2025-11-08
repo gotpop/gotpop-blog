@@ -1,15 +1,18 @@
-import { FooterDefault } from "@gotpop/system/components/storyblok/FooterDefaultBlock"
+import { FooterDefault, HeaderDefault } from "@gotpop/system"
 import type { ReactNode } from "react"
-import { HeaderDefault } from "@/components/storyblok/HeaderDefault/HeaderDefault"
 import { fetchStoryByUuid } from "@/utils/storyblok-fetch"
 import "./PageLayout.css"
-import type { FooterDefaultStoryblok } from "@/types/storyblok-components"
+import type {
+  FooterDefaultStoryblok,
+  HeaderDefaultStoryblok,
+} from "@/types/storyblok-components"
 
 interface PageLayoutProps {
   children?: ReactNode
   className?: string
   header?: string
   footer?: string
+  headerData?: HeaderDefaultStoryblok | null
   footerData?: FooterDefaultStoryblok | null
 }
 
@@ -17,9 +20,16 @@ export async function PageLayout({
   children,
   header,
   footer,
+  headerData,
   footerData,
 }: PageLayoutProps) {
+  let resolvedHeaderData = headerData
   let resolvedFooterData = footerData
+
+  if (header && !headerData) {
+    const story = await fetchStoryByUuid(header)
+    resolvedHeaderData = story?.content
+  }
 
   if (footer && !footerData) {
     const story = await fetchStoryByUuid(footer)
@@ -28,7 +38,7 @@ export async function PageLayout({
 
   return (
     <page-layout className="page-layout">
-      <HeaderDefault uuid={header} />
+      <HeaderDefault blok={resolvedHeaderData} />
       <main>
         <box-crosshatch className="box-crosshatch">{children}</box-crosshatch>
       </main>

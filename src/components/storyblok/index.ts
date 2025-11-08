@@ -1,4 +1,5 @@
 import {
+  HeaderDefault,
   HeroDefault,
   LinkList,
   LogoDefault,
@@ -13,7 +14,6 @@ import { PageDefault, PageFilter, PagePost } from "../pages/Pages"
 import { BaselineStatusBlock } from "./BaselineStatusBlock"
 import { Card, Cards } from "./Cards"
 import { FilterContent } from "./FilterContent"
-import { HeaderDefault } from "./HeaderDefault"
 
 export const components = {
   baseline_status_block: BaselineStatusBlock,
