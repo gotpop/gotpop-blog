@@ -4,7 +4,6 @@ import {
   Card,
   Cards,
   FilterContent,
-  FooterDefaultBlock,
   HeaderDefault,
   HeroDefault,
   LinkList,
@@ -24,7 +23,7 @@ const components = {
   card: Card,
   cards: Cards,
   filter_content: FilterContent,
-  footer_default: FooterDefaultBlock,
+  // footer_default: Removed - now handled in templates with data fetching
   header_default: HeaderDefault,
   hero_default: HeroDefault,
   link_list: LinkList,
