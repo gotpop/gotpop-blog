@@ -35,11 +35,11 @@ function getAvailableIcons() {
 async function syncIconDatasource() {
   const MANAGEMENT_TOKEN = process.env.STORYBLOK_MANAGEMENT_API_TOKEN
   const SPACE_ID = process.env.STORYBLOK_SPACE_ID
-  const DATASOURCE_ID = process.env.STORYBLOK_DATASOURCE_ID
+  const DATASOURCE_ID = process.env.STORYBLOK_ICONS_DATASOURCE_ID
 
   if (!MANAGEMENT_TOKEN || !SPACE_ID || !DATASOURCE_ID) {
     throw new Error(
-      "Missing required environment variables: STORYBLOK_MANAGEMENT_API_TOKEN, STORYBLOK_SPACE_ID, STORYBLOK_DATASOURCE_ID"
+      "Missing required environment variables: STORYBLOK_MANAGEMENT_API_TOKEN, STORYBLOK_SPACE_ID, STORYBLOK_ICONS_DATASOURCE_ID"
     )
   }
 
