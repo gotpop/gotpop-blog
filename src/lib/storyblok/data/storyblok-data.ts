@@ -1,12 +1,15 @@
 import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
-import { getStoryblokApi } from "@/lib/storyblok"
-import { getStoryPath, shouldIncludeStory } from "@/lib/storyblok-utils"
+import { getStoryblokApi } from "@/lib/storyblok/storyblok"
+import {
+  getStoryPath,
+  shouldIncludeStory,
+} from "@/lib/storyblok/storyblok-utils"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
 import {
   deduplicateTags,
   getErrorMessage,
   HARDCODED_TAGS,
-} from "./storyblok-unified-data"
+} from "../storyblok-unified-data"
 import type {
   BaseConfig,
   DatasourceEntriesConfig,
@@ -17,7 +20,7 @@ import type {
   StoryblokDataConfig,
   StoryblokDataType,
   StoryConfig,
-} from "./storyblok-unified-data.types"
+} from "../storyblok-unified-data.types"
 
 /**
  * Unified Storyblok data fetching function

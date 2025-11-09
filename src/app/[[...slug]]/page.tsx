@@ -3,10 +3,10 @@ import { StoryNotFound } from "@/components/utils/StoryNotFound"
 import {
   getAvailableStoriesForError,
   getErrorMessage,
-} from "@/lib/storyblok-error-handling"
-import { generateAllStaticParams } from "@/lib/storyblok-static-params"
-import { getStoryblokData } from "@/lib/storyblok-unified-data"
-import { normalizeStoryblokPath } from "@/lib/storyblok-utils"
+} from "@/lib/storyblok/storyblok-error-handling"
+import { generateAllStaticParams } from "@/lib/storyblok/storyblok-static-params"
+import { getStoryblokData } from "@/lib/storyblok/storyblok-unified-data"
+import { normalizeStoryblokPath } from "@/lib/storyblok/storyblok-utils"
 import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
 
 export const dynamicParams = true

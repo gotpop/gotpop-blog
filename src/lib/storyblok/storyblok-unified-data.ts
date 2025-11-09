@@ -1,6 +1,6 @@
 import "server-only"
 import type { TagDatasourceEntry } from "@gotpop/system"
-import { getStoryblokData } from "./storyblok-data"
+import { getStoryblokData } from "./data/storyblok-data"
 
 // Re-export the main function
 export { getStoryblokData }

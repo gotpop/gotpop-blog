@@ -1,9 +1,10 @@
 import "server-only"
 
-import { getStoryblokData } from "@/lib/storyblok-unified-data"
+import { getStoryblokData } from "@/lib/storyblok/storyblok-unified-data"
 
 export async function getAvailableStoriesForError(): Promise<string[]> {
   const { data } = await getStoryblokData("availableStoriesForError")
+
   return data as string[]
 }
 

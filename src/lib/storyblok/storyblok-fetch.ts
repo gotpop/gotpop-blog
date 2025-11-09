@@ -1,5 +1,5 @@
 import "server-only"
-import { getStoryblokData } from "@/lib/storyblok-unified-data"
+import { getStoryblokData } from "@/lib/storyblok/storyblok-unified-data"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
 
 /**

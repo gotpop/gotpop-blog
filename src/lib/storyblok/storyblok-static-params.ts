@@ -1,6 +1,6 @@
 import "server-only"
 
-import { getStoryblokData } from "@/lib/storyblok-unified-data"
+import { getStoryblokData } from "@/lib/storyblok/storyblok-unified-data"
 
 export async function generateAllStaticParams() {
   const { data } = await getStoryblokData("staticParams")
