@@ -1,5 +1,6 @@
 import "server-only"
-import { getStoryblokApi } from "@/lib/storyblok"
+import { getStoryblokData } from "@/lib/storyblok-unified-data"
+import type { StoryblokStoryResponse } from "@/types/storyblok"
 
 /**
  * Fetches a story by UUID from Storyblok
@@ -10,31 +11,23 @@ import { getStoryblokApi } from "@/lib/storyblok"
 export async function fetchStoryByUuid(
   uuid: string,
   version: "draft" | "published" = "draft"
-) {
+): Promise<StoryblokStoryResponse | null> {
   if (!uuid) {
     console.log("fetchStoryByUuid: No UUID provided")
     return null
   }
 
-  try {
-    const storyblokApi = getStoryblokApi()
-    const { data } = await storyblokApi.get(`cdn/stories`, {
-      version,
-      by_uuids: uuid,
-    })
+  const { data, error } = await getStoryblokData("storyByUuid", {
+    uuid,
+    version,
+  })
 
-    const story = data?.stories?.[0]
-
-    if (!story) {
-      console.log("fetchStoryByUuid: No story found for UUID:", uuid)
-      return null
-    }
-
-    return story
-  } catch (error) {
+  if (error) {
     console.error("fetchStoryByUuid: Error fetching story:", error)
     return null
   }
+
+  return data as StoryblokStoryResponse
 }
 
 /**
@@ -46,22 +39,21 @@ export async function fetchStoryByUuid(
 export async function fetchStoriesByUuids(
   uuids: string[],
   version: "draft" | "published" = "draft"
-) {
+): Promise<StoryblokStoryResponse[]> {
   if (!uuids || uuids.length === 0) {
     console.log("fetchStoriesByUuids: No UUIDs provided")
     return []
   }
 
-  try {
-    const storyblokApi = getStoryblokApi()
-    const { data } = await storyblokApi.get(`cdn/stories`, {
-      version,
-      by_uuids: uuids.join(","),
-    })
+  const { data, error } = await getStoryblokData("storiesByUuids", {
+    uuids,
+    version,
+  })
 
-    return data?.stories || []
-  } catch (error) {
+  if (error) {
     console.error("fetchStoriesByUuids: Error fetching stories:", error)
     return []
   }
+
+  return (data || []) as StoryblokStoryResponse[]
 }

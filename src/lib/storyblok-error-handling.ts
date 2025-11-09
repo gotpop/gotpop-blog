@@ -1,22 +1,10 @@
 import "server-only"
 
-import { getStoryblokApi } from "@/lib/storyblok"
-import type { StoryblokStoryResponse } from "@/types/storyblok"
+import { getStoryblokData } from "@/lib/storyblok-unified-data"
 
 export async function getAvailableStoriesForError(): Promise<string[]> {
-  try {
-    const storyblokApi = getStoryblokApi()
-
-    const { data } = await storyblokApi.get("cdn/stories", {
-      version: "draft",
-      starts_with: "blog/",
-    })
-
-    return data.stories.map((s: StoryblokStoryResponse) => s.full_slug)
-  } catch {
-    // Ignore if we can't fetch stories
-    return []
-  }
+  const { data } = await getStoryblokData("availableStoriesForError")
+  return data as string[]
 }
 
 export function getErrorMessage(error: unknown): string {

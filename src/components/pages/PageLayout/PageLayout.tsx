@@ -28,12 +28,12 @@ export async function PageLayout({
 
   if (header && !headerData) {
     const story = await fetchStoryByUuid(header)
-    resolvedHeaderData = story?.content
+    resolvedHeaderData = story?.content as HeaderDefaultStoryblok
   }
 
   if (footer && !footerData) {
     const story = await fetchStoryByUuid(footer)
-    resolvedFooterData = story?.content
+    resolvedFooterData = story?.content as FooterDefaultStoryblok
   }
 
   return (
