@@ -1,3 +1,5 @@
+"use client"
+
 import type { PostProps } from "@gotpop/system"
 import { useMemo, useState } from "react"
 

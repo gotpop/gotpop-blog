@@ -12,11 +12,11 @@ import {
 } from "@gotpop/system"
 import { PageDefault, PageFilter, PagePost } from "../pages"
 import { BaselineStatusBlock } from "./BaselineStatusBlock"
-import { FilterContent } from "./FilterCards"
+import { Cards } from "./Cards"
 
 export const components = {
   baseline_status_block: BaselineStatusBlock,
-  cards: FilterContent,
+  cards: Cards,
   header_default: HeaderDefault,
   hero_default: HeroDefault,
   link_list: LinkList,
@@ -33,7 +33,7 @@ export const components = {
 
 export {
   BaselineStatusBlock,
-  FilterContent,
+  Cards,
   HeaderDefault,
   HeroDefault,
   LinkList,

@@ -73,7 +73,7 @@ export function CardsFilterClient({
         />
       </box-grid>
       <ViewTransition update="reorder-list">
-        <output className="posts-grid" aria-live="polite">
+        <output className="grid-cards" aria-live="polite">
           {output}
         </output>
       </ViewTransition>

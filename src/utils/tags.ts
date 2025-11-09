@@ -1,12 +1,6 @@
 import type { PostProps } from "@gotpop/system"
 import { getStoryblokApi } from "@/lib/storyblok"
 
-export interface TagDatasourceEntry {
-  name: string
-  value: string
-  id: number
-}
-
 /**
  * Removes duplicate tags based on value (case-insensitive) and keeps the first occurrence
  */
