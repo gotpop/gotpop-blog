@@ -1,4 +1,5 @@
 import {
+  BaselineStatusBlock,
   HeaderDefault,
   HeroDefault,
   LinkList,
@@ -11,7 +12,6 @@ import {
   SnippetBlock,
 } from "@gotpop/system"
 import { PageDefault, PageFilter, PagePost } from "../pages"
-import { BaselineStatusBlock } from "./BaselineStatusBlock"
 import { Cards } from "./Cards"
 
 export const components = {
