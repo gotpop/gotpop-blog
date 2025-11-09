@@ -1,15 +1,14 @@
 import { Suspense } from "react"
-import "./FilterContent.css"
-import { Card } from "@gotpop/system"
+import "./Cards.css"
+import { Card, CardsFilterClient } from "@gotpop/system"
 import type { CardsStoryblok } from "@/types"
 import { getAllPostsWithTags, getTagsFromDatasource } from "@/utils/tags"
-import { FilterContentClient } from "./FilterContentClient"
 
-interface FilterContentProps {
+interface CardsProps {
   blok: CardsStoryblok
 }
 
-export async function FilterContent({ blok }: FilterContentProps) {
+export async function Cards({ blok }: CardsProps) {
   const { use_filters: useFilters } = blok
 
   const [posts, availableTags] = await Promise.all([
@@ -19,10 +18,10 @@ export async function FilterContent({ blok }: FilterContentProps) {
 
   return useFilters ? (
     <Suspense fallback={<div>Loading posts...</div>}>
-      <FilterContentClient posts={posts} availableTags={availableTags} />
+      <CardsFilterClient posts={posts} availableTags={availableTags} />
     </Suspense>
   ) : (
-    <div className="posts-grid">
+    <div className="grid-cards">
       {posts.map((post) => (
         <Card key={post.uuid} post={post} />
       ))}

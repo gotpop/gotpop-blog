@@ -3,18 +3,6 @@
     row-gap: var(--spacing-base);
   }
 
-  .filter-header {
-    grid-column: content;
-    text-align: center;
-  }
-
-  /* .posts-list-only {
-    display: grid;
-    grid-template-columns: subgrid;
-    grid-column: content;
-    row-gap: var(--spacing-md);
-  } */
-
   .filters-with-output {
     display: grid;
     grid-auto-rows: min-content;
@@ -22,14 +10,14 @@
     grid-template-columns: subgrid;
     row-gap: var(--spacing-lg);
 
-    box-grid[auto-columns] {
+    > box-grid {
       --column-gap: var(--spacing-md);
       --columns: repeat(auto-fit, minmax(5rem, 12rem));
       --direction: row;
     }
   }
 
-  .posts-grid {
+  .grid-cards {
     display: grid;
     grid-template-columns: subgrid;
     grid-column: content;

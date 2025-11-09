@@ -1,7 +1,7 @@
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
 import {
   BaselineStatusBlock,
-  FilterContent,
+  Cards,
   HeaderDefault,
   HeroDefault,
   LinkList,
@@ -18,7 +18,7 @@ import {
 
 const components = {
   baseline_status_block: BaselineStatusBlock,
-  filter_content: FilterContent,
+  cards: Cards,
   header_default: HeaderDefault,
   hero_default: HeroDefault,
   link_list: LinkList,
