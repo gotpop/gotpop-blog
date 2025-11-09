@@ -16,7 +16,7 @@ import { FilterContent } from "./FilterCards"
 
 export const components = {
   baseline_status_block: BaselineStatusBlock,
-  filter_content: FilterContent,
+  cards: FilterContent,
   header_default: HeaderDefault,
   hero_default: HeroDefault,
   link_list: LinkList,

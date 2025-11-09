@@ -1,7 +1,7 @@
+import type { PostProps } from "@gotpop/system"
 import { useMemo, useState } from "react"
-import type { PostStory } from "@/utils/tags"
 
-export function usePostsFilter(posts: PostStory[]) {
+export function usePostsFilter(posts: PostProps[]) {
   const [currentTag, setCurrentTag] = useState("all")
   const [currentSort, setCurrentSort] = useState("published_desc")
 

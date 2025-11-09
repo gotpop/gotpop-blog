@@ -1,8 +1,9 @@
 "use client"
 
+import type { PostProps } from "@gotpop/system"
+import { Card } from "@gotpop/system"
 import { startTransition, ViewTransition } from "react"
-import type { PostStory, TagDatasourceEntry } from "@/utils/tags"
-import { Card } from "../Card"
+import type { TagDatasourceEntry } from "@/utils/tags"
 import { PostsControl } from "./PostsControl"
 import { usePostsFilter } from "./use-posts-filter"
 
@@ -14,7 +15,7 @@ const SORT_OPTIONS = [
 ]
 
 interface FilterContentClientProps {
-  posts: PostStory[]
+  posts: PostProps[]
   availableTags: TagDatasourceEntry[]
 }
 
