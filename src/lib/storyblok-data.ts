@@ -94,45 +94,23 @@ async function getTagsFromPosts(): Promise<TagDatasourceEntry[]> {
 export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
   try {
     const TAGS_DATASOURCE_ID = process.env.STORYBLOK_TAGS_DATASOURCE_ID
-    const PUBLIC_TOKEN = process.env.STORYBLOK_ACCESS_TOKEN
-
-    if (!PUBLIC_TOKEN) {
-      const postsTagsStory = await getTagsFromPosts()
-      return [...HARDCODED_TAGS, ...postsTagsStory]
-    }
 
     if (!TAGS_DATASOURCE_ID) {
-      const postsTagsStory = await getTagsFromPosts()
-      return [...HARDCODED_TAGS, ...postsTagsStory]
+      throw new Error("No datasource ID configured")
     }
 
-    const response = await fetch(
-      `https://api.storyblok.com/v2/cdn/datasource_entries?datasource=${TAGS_DATASOURCE_ID}&token=${PUBLIC_TOKEN}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    const storyblokApi = getStoryblokApi()
+    const { data } = await storyblokApi.get("cdn/datasource_entries", {
+      datasource: TAGS_DATASOURCE_ID,
+    })
 
-    if (!response.ok) {
-      const postsTagsStory = await getTagsFromPosts()
-      return [...HARDCODED_TAGS, ...postsTagsStory]
-    }
-
-    const data = await response.json()
     const datasourceTags = data.datasource_entries || []
 
-    // If datasource is empty, fall back to posts
-    if (datasourceTags.length === 0) {
-      const postsTagsStory = await getTagsFromPosts()
-      return [...HARDCODED_TAGS, ...postsTagsStory]
+    if (datasourceTags.length > 0) {
+      return deduplicateTags([...HARDCODED_TAGS, ...datasourceTags])
     }
 
-    // Merge hardcoded tags with datasource tags, avoiding duplicates
-    const allTags = [...HARDCODED_TAGS, ...datasourceTags]
-
-    return deduplicateTags(allTags)
+    throw new Error("Datasource empty, falling back")
   } catch {
     const postsTagsStory = await getTagsFromPosts()
     return [...HARDCODED_TAGS, ...postsTagsStory]
