@@ -1,24 +1,10 @@
+import type { PostProps } from "@gotpop/system"
 import { getStoryblokApi } from "@/lib/storyblok"
 
 export interface TagDatasourceEntry {
   name: string
   value: string
   id: number
-}
-
-export interface PostStory {
-  uuid: string
-  name: string
-  full_slug: string
-  published_at: string
-  content: {
-    tags?: string[]
-    component: string
-    Heading?: string
-    description?: string
-    published_date?: string
-    [key: string]: unknown
-  }
 }
 
 /**
@@ -129,7 +115,7 @@ async function getTagsFromPosts(): Promise<TagDatasourceEntry[]> {
 
     const allTags = new Set<string>()
 
-    data.stories.forEach((story: PostStory) => {
+    data.stories.forEach((story: PostProps) => {
       if (story.content?.tags && Array.isArray(story.content.tags)) {
         story.content.tags.forEach((tag: string) => {
           if (typeof tag === "string" && tag.trim()) {
@@ -198,7 +184,7 @@ export async function getTagFromSlug(tagSlug: string): Promise<string | null> {
 export async function getPostsByTag(
   tagName: string,
   sortBy: "date-desc" | "date-asc" | "title-asc" | "title-desc" = "date-desc"
-): Promise<PostStory[]> {
+): Promise<PostProps[]> {
   try {
     const storyblokApi = getStoryblokApi()
 
@@ -209,13 +195,13 @@ export async function getPostsByTag(
     })
 
     // Filter posts that have the specified tag
-    const filteredPosts = data.stories.filter((story: PostStory) => {
+    const filteredPosts = data.stories.filter((story: PostProps) => {
       const tags = story.content?.tags || []
       return tags.includes(tagName)
     })
 
     // Sort the posts based on the sortBy parameter
-    const sortedPosts = filteredPosts.sort((a: PostStory, b: PostStory) => {
+    const sortedPosts = filteredPosts.sort((a: PostProps, b: PostProps) => {
       switch (sortBy) {
         case "date-desc": {
           const dateA = a.content?.published_date || a.published_at
@@ -252,7 +238,7 @@ export async function getPostsByTag(
  * Gets all posts from the blog with their tags
  * Only returns actual blog posts (page_post component) that have tags
  */
-export async function getAllPostsWithTags(): Promise<PostStory[]> {
+export async function getAllPostsWithTags(): Promise<PostProps[]> {
   try {
     const storyblokApi = getStoryblokApi()
 
@@ -268,7 +254,7 @@ export async function getAllPostsWithTags(): Promise<PostStory[]> {
     })
 
     // Further filter to only include posts that have tags
-    const postsWithTags = (data.stories || []).filter((story: PostStory) => {
+    const postsWithTags = (data.stories || []).filter((story: PostProps) => {
       const tags = story.content?.tags || []
       return (
         Array.isArray(tags) &&
@@ -298,7 +284,7 @@ export async function getAllTagsFromPosts(): Promise<string[]> {
 
     const allTags = new Set<string>()
 
-    data.stories.forEach((story: PostStory) => {
+    data.stories.forEach((story: PostProps) => {
       const tags = story.content?.tags || []
       for (const tag of tags) {
         allTags.add(tag)

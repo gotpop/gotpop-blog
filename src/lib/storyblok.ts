@@ -1,8 +1,6 @@
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
 import {
   BaselineStatusBlock,
-  Card,
-  Cards,
   FilterContent,
   HeaderDefault,
   HeroDefault,
@@ -20,10 +18,7 @@ import {
 
 const components = {
   baseline_status_block: BaselineStatusBlock,
-  card: Card,
-  cards: Cards,
   filter_content: FilterContent,
-  // footer_default: Removed - now handled in templates with data fetching
   header_default: HeaderDefault,
   hero_default: HeroDefault,
   link_list: LinkList,

@@ -10,16 +10,13 @@ import {
   RichTextCodeBlock,
   SnippetBlock,
 } from "@gotpop/system"
-import { PageDefault, PageFilter, PagePost } from "../pages/Pages"
+import { PageDefault, PageFilter, PagePost } from "../pages"
 import { BaselineStatusBlock } from "./BaselineStatusBlock"
-import { Card, Cards } from "./Cards"
-import { FilterContent } from "./FilterContent"
+import { FilterContent } from "./FilterCards"
 
 export const components = {
   baseline_status_block: BaselineStatusBlock,
-  card: Card,
-  cards: Cards,
-  filter_content: FilterContent,
+  cards: FilterContent,
   header_default: HeaderDefault,
   hero_default: HeroDefault,
   link_list: LinkList,
@@ -36,8 +33,6 @@ export const components = {
 
 export {
   BaselineStatusBlock,
-  Card,
-  Cards,
   FilterContent,
   HeaderDefault,
   HeroDefault,
