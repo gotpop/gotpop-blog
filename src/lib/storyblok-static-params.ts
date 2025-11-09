@@ -1,9 +1,9 @@
 import "server-only"
 
 import { getStoryblokApi } from "@/lib/storyblok"
+import { getTagsFromDatasource } from "@/lib/storyblok-data"
 import { getStoryPath, shouldIncludeStory } from "@/lib/storyblok-utils"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
-import { getTagsFromDatasource } from "@/utils/tags"
 
 export async function generateAllStaticParams() {
   const storyblokApi = getStoryblokApi()

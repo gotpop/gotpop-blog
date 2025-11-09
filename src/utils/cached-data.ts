@@ -1,5 +1,8 @@
 import { cache } from "react"
-import { getAllPostsWithTags, getTagsFromDatasource } from "./tags"
+import {
+  getAllPostsWithTags,
+  getTagsFromDatasource,
+} from "@/lib/storyblok-data"
 
 /**
  * Cached version of getAllPostsWithTags using React's cache()

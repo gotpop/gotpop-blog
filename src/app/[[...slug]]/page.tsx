@@ -1,13 +1,13 @@
 import { StoryblokStory } from "@storyblok/react/rsc"
 import { StoryNotFound } from "@/components/utils/StoryNotFound"
 import { getStoryblokApi } from "@/lib/storyblok"
-import { normalizeStoryblokPath } from "@/lib/storyblok-utils"
 import {
   getAvailableStoriesForError,
   getErrorMessage,
-} from "@/utils/error-handling"
+} from "@/lib/storyblok-error-handling"
+import { generateAllStaticParams } from "@/lib/storyblok-static-params"
+import { normalizeStoryblokPath } from "@/lib/storyblok-utils"
 import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
-import { generateAllStaticParams } from "@/utils/static-params"
 
 export const dynamicParams = true
 
