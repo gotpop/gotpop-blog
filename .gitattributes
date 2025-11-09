@@ -1,0 +1,10 @@
+.next/** linguist-generated=true
+out/** linguist-generated=true
+build/** linguist-generated=true
+dist/** linguist-generated=true
+node_modules/** linguist-vendored=true
+src/types/storyblok-components.ts linguist-generated=true
+scripts/** linguist-documentation=true
+*.css linguist-language=CSS
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
