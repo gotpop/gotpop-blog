@@ -1,9 +1,9 @@
 "use client"
 
 import { useId } from "react"
-import "./PostsControl.css"
+import "./CardsControl.css"
 
-interface PostsControlProps {
+interface CardsControlProps {
   label: string
   value: string
   onChange: (value: string) => void
@@ -11,13 +11,13 @@ interface PostsControlProps {
   className?: string
 }
 
-export function PostsControl({
+export function CardsControl({
   label,
   value,
   onChange,
   options,
   className = "select-wrap",
-}: PostsControlProps) {
+}: CardsControlProps) {
   const selectId = useId()
 
   return (

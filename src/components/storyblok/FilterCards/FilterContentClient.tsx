@@ -4,7 +4,7 @@ import type { PostProps } from "@gotpop/system"
 import { Card } from "@gotpop/system"
 import { startTransition, ViewTransition } from "react"
 import type { TagDatasourceEntry } from "@/utils/tags"
-import { PostsControl } from "./PostsControl"
+import { CardsControl } from "../CardsControl"
 import { usePostsFilter } from "./use-posts-filter"
 
 const SORT_OPTIONS = [
@@ -43,7 +43,7 @@ export function FilterContentClient({
     })
   }
 
-  // Transform tags for PostsControl options format
+  // Transform tags for CardsControl options format
   const tagOptions = [
     { value: "all", label: "All Posts" },
     ...availableTags.map((tag) => ({
@@ -59,13 +59,13 @@ export function FilterContentClient({
   return (
     <div className="filters-with-output">
       <box-grid auto-columns>
-        <PostsControl
+        <CardsControl
           label="Filter"
           value={currentTag}
           onChange={handleTagChange}
           options={tagOptions}
         />
-        <PostsControl
+        <CardsControl
           label="Sort"
           value={currentSort}
           onChange={handleSortChange}
