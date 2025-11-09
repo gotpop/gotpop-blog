@@ -1,22 +1,19 @@
-import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
 import {
   BaselineStatusBlock,
-  Cards,
   HeaderDefault,
   HeroDefault,
   LinkList,
   LogoDefault,
   NavDefault,
   NavItemDefault,
-  PageDefault,
-  PageFilter,
-  PagePost,
   RichTextBlock,
   RichTextCodeBlock,
   SnippetBlock,
-} from "@/storyblok"
+} from "@gotpop/system"
+import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
+import { Cards, PageDefault, PageFilter, PagePost } from "@/storyblok"
 
-const components = {
+export const components = {
   baseline_status_block: BaselineStatusBlock,
   cards: Cards,
   header_default: HeaderDefault,
@@ -33,7 +30,6 @@ const components = {
   snippet_block: SnippetBlock,
 }
 
-// Server-side initialization
 export const getStoryblokApi = storyblokInit({
   accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
   use: [apiPlugin],
