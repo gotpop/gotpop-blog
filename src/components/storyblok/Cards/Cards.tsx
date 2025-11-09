@@ -9,14 +9,14 @@ interface CardsProps {
 }
 
 export async function Cards({ blok }: CardsProps) {
-  const { use_filters: useFilters } = blok
+  const { use_filters: useClientSideFilters } = blok
 
   const [posts, availableTags] = await Promise.all([
     getAllPostsWithTags(),
     getTagsFromDatasource(),
   ])
 
-  return useFilters ? (
+  return useClientSideFilters ? (
     <Suspense fallback={<div>Loading posts...</div>}>
       <CardsFilterClient posts={posts} availableTags={availableTags} />
     </Suspense>
