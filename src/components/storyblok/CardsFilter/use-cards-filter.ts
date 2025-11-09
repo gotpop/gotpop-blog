@@ -1,7 +1,7 @@
 import type { PostProps } from "@gotpop/system"
 import { useMemo, useState } from "react"
 
-export function usePostsFilter(posts: PostProps[]) {
+export function useCardsFilter(posts: PostProps[]) {
   const [currentTag, setCurrentTag] = useState("all")
   const [currentSort, setCurrentSort] = useState("published_desc")
 

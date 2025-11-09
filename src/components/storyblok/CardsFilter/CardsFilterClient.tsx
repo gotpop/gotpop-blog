@@ -5,7 +5,7 @@ import { Card } from "@gotpop/system"
 import { startTransition, ViewTransition } from "react"
 import type { TagDatasourceEntry } from "@/utils/tags"
 import { CardsControl } from "../CardsControl"
-import { usePostsFilter } from "./use-posts-filter"
+import { useCardsFilter } from "./use-cards-filter"
 
 const SORT_OPTIONS = [
   { value: "published_desc", label: "Newest First" },
@@ -14,22 +14,22 @@ const SORT_OPTIONS = [
   { value: "name_desc", label: "Title Z-A" },
 ]
 
-interface FilterContentClientProps {
+interface CardsFilterClientProps {
   posts: PostProps[]
   availableTags: TagDatasourceEntry[]
 }
 
-export function FilterContentClient({
+export function CardsFilterClient({
   posts,
   availableTags,
-}: FilterContentClientProps) {
+}: CardsFilterClientProps) {
   const {
     currentSort,
     currentTag,
     filteredAndSortedPosts,
     setCurrentSort,
     setCurrentTag,
-  } = usePostsFilter(posts)
+  } = useCardsFilter(posts)
 
   const handleTagChange = (tag: string) => {
     startTransition(() => {

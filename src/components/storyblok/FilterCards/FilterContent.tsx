@@ -3,7 +3,7 @@ import "./FilterContent.css"
 import { Card } from "@gotpop/system"
 import type { CardsStoryblok } from "@/types"
 import { getAllPostsWithTags, getTagsFromDatasource } from "@/utils/tags"
-import { FilterContentClient } from "./FilterContentClient"
+import { CardsFilterClient } from "../CardsFilter"
 
 interface FilterContentProps {
   blok: CardsStoryblok
@@ -19,7 +19,7 @@ export async function FilterContent({ blok }: FilterContentProps) {
 
   return useFilters ? (
     <Suspense fallback={<div>Loading posts...</div>}>
-      <FilterContentClient posts={posts} availableTags={availableTags} />
+      <CardsFilterClient posts={posts} availableTags={availableTags} />
     </Suspense>
   ) : (
     <div className="posts-grid">
