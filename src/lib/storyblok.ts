@@ -19,7 +19,7 @@ import {
   getCachedTags as fetchTags,
 } from "@/utils/cached-data"
 
-const CardsWithData = async (blok: CardsStoryblok) =>
+const CardsWithData = async ({ blok }: { blok: CardsStoryblok }) =>
   await Cards({
     blok,
     fetchPosts,
