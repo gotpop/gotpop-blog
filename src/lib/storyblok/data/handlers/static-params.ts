@@ -1,4 +1,3 @@
-import type { TagDatasourceEntry } from "@gotpop/system"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
 import type {
   StoryblokDataConfig,
@@ -17,7 +16,8 @@ export async function handleStaticParams(
     starts_with: "blog/",
   })) as { data: StoryblokStoryResponse[] }
 
-  // Generate params for regular stories
+  // Generate params for regular stories only
+  // Tag pages are rendered dynamically on-demand (dynamicParams = true)
   const storyParams = allStories
     .filter((story: StoryblokStoryResponse) =>
       shouldIncludeStory(story.full_slug)
@@ -28,20 +28,5 @@ export async function handleStaticParams(
       return { slug }
     })
 
-  // Generate params for tag pages and all posts page
-  const { data: tags } = (await getStoryblokData("tagsFromDatasource")) as {
-    data: TagDatasourceEntry[]
-  }
-  const tagParams = tags.map((tag) => {
-    const tagSlug = tag.value
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "")
-    return { slug: ["posts", tagSlug] }
-  })
-
-  // Add the "all posts" page
-  const allPostsParam = { slug: ["posts"] }
-
-  return { data: [...storyParams, ...tagParams, allPostsParam] }
+  return { data: storyParams }
 }
