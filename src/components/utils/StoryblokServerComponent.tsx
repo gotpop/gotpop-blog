@@ -1,5 +1,5 @@
 import type { SbBlokData } from "@storyblok/react/rsc"
-import { components } from "@/components/storyblok"
+import { components } from "@/lib/storyblok"
 
 interface StoryblokServerComponentProps {
   blok: SbBlokData | null | undefined

@@ -1,4 +1,4 @@
-import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
+import type { CardsStoryblok } from "@gotpop/system"
 import {
   BaselineStatusBlock,
   Cards,
@@ -8,17 +8,27 @@ import {
   LogoDefault,
   NavDefault,
   NavItemDefault,
-  PageDefault,
-  PageFilter,
-  PagePost,
   RichTextBlock,
   RichTextCodeBlock,
   SnippetBlock,
-} from "@/storyblok"
+} from "@gotpop/system"
+import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
+import { PageDefault, PageFilter, PagePost } from "@/storyblok"
+import {
+  getCachedPostsWithTags as fetchPosts,
+  getCachedTags as fetchTags,
+} from "@/utils/cached-data"
 
-const components = {
+const CardsWithData = async ({ blok }: { blok: CardsStoryblok }) =>
+  await Cards({
+    blok,
+    fetchPosts,
+    fetchTags,
+  })
+
+export const components = {
   baseline_status_block: BaselineStatusBlock,
-  cards: Cards,
+  cards: CardsWithData,
   header_default: HeaderDefault,
   hero_default: HeroDefault,
   link_list: LinkList,
@@ -33,7 +43,6 @@ const components = {
   snippet_block: SnippetBlock,
 }
 
-// Server-side initialization
 export const getStoryblokApi = storyblokInit({
   accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
   use: [apiPlugin],
