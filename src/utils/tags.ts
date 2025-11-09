@@ -1,4 +1,4 @@
-import type { PostProps } from "@gotpop/system"
+import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
 import { getStoryblokApi } from "@/lib/storyblok"
 
 /**
