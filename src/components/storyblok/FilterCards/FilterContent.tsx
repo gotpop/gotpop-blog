@@ -1,12 +1,12 @@
 import { Suspense } from "react"
 import "./FilterContent.css"
 import { Card } from "@gotpop/system"
-import type { FilterContentStoryblok } from "@/types"
+import type { CardsStoryblok } from "@/types"
 import { getAllPostsWithTags, getTagsFromDatasource } from "@/utils/tags"
 import { FilterContentClient } from "./FilterContentClient"
 
 interface FilterContentProps {
-  blok: FilterContentStoryblok
+  blok: CardsStoryblok
 }
 
 export async function FilterContent({ blok }: FilterContentProps) {
