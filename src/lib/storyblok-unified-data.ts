@@ -188,17 +188,8 @@ export async function getStoryblokData(
 
       case "datasourceEntries": {
         const { datasource } = config as DatasourceEntriesConfig
-        console.log("🔍 Fetching datasource entries:", {
-          datasourceId: datasource,
-          hasToken: !!process.env.STORYBLOK_ACCESS_TOKEN,
-          tokenPrefix: process.env.STORYBLOK_ACCESS_TOKEN?.slice(0, 10),
-        })
         const response = await storyblokApi.get("cdn/datasource_entries", {
           datasource,
-        })
-        console.log("✅ Datasource response:", {
-          entriesCount: response.data.datasource_entries?.length || 0,
-          entries: response.data.datasource_entries,
         })
         return { data: response.data.datasource_entries || [] }
       }
@@ -231,14 +222,8 @@ export async function getStoryblokData(
           }
 
           throw new Error("Datasource empty, falling back to posts")
-        } catch (error) {
+        } catch {
           // Datasource not available, fall back to extracting tags from posts
-          // This is expected behavior when datasource doesn't exist yet
-          const errorMsg = getErrorMessage(error)
-          console.log(
-            `ℹ️ Datasource unavailable (${errorMsg}), extracting tags from posts as fallback`
-          )
-
           const { data: postsTagsStory } = (await getStoryblokData(
             "tagsFromPosts",
             config
@@ -431,19 +416,12 @@ export async function getStoryblokData(
       dataType === "datasourceEntries" &&
       errorMessage.includes("could not be found")
     ) {
-      console.error("❌ Datasource API Error:", {
-        dataType,
-        errorMessage,
-        datasourceId: (config as DatasourceEntriesConfig)?.datasource,
-        fullError: error,
-      })
       return {
         data: null,
-        error: `Datasource not found - this is expected if the datasource hasn't been created yet in Storyblok`,
+        error: `Datasource not found`,
       }
     }
 
-    console.error(`Error fetching ${dataType}:`, errorMessage)
     return {
       data: null,
       error: errorMessage,
