@@ -1,4 +1,4 @@
-import { Typography } from "@gotpop/system"
+import { CustomElement, Typography } from "@gotpop/system"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import { formatDate } from "@/utils/date-formatter"
 import type { PostStory } from "@/utils/tags"
@@ -24,7 +24,8 @@ export function ClientSidePostCard({ post }: PostCardProps) {
   ))
 
   return (
-    <box-grid
+    <CustomElement
+      tag="box-grid"
       style={{
         viewTransitionName: `post-${post.uuid}`,
       }}
@@ -52,6 +53,6 @@ export function ClientSidePostCard({ post }: PostCardProps) {
       <a href={linkPath} className="link-simple">
         Read more
       </a>
-    </box-grid>
+    </CustomElement>
   )
 }

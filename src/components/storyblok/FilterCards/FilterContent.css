@@ -8,6 +8,13 @@
     text-align: center;
   }
 
+  /* .posts-list-only {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: content;
+    row-gap: var(--spacing-md);
+  } */
+
   .filters-with-output {
     display: grid;
     grid-auto-rows: min-content;
