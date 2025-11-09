@@ -1,6 +1,5 @@
 export * from "./date-formatter"
 export * from "./error-handling"
-// export * from "./inline-styles"
 export * from "./redirect-utils"
 export * from "./static-params"
 export * from "./storyblok-fetch"
