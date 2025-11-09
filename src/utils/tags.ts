@@ -3,7 +3,7 @@ import type { TagDatasourceEntry } from "@gotpop/system"
 /**
  * Hardcoded tags that are not included in the API call but should be available for filtering
  */
-const HARDCODED_TAGS: TagDatasourceEntry[] = [
+export const HARDCODED_TAGS: TagDatasourceEntry[] = [
   // Add hardcoded tags here as needed
   // {
   //   id: 999001,
