@@ -1,12 +1,12 @@
 import { StoryblokStory } from "@storyblok/react/rsc"
 import { StoryNotFound } from "@/components/utils/StoryNotFound"
-import { getStoryblokApi } from "@/lib/storyblok"
 import {
   getAvailableStoriesForError,
   getErrorMessage,
-} from "@/lib/storyblok-error-handling"
-import { generateAllStaticParams } from "@/lib/storyblok-static-params"
-import { normalizeStoryblokPath } from "@/lib/storyblok-utils"
+} from "@/lib/storyblok/storyblok-error-handling"
+import { generateAllStaticParams } from "@/lib/storyblok/storyblok-static-params"
+import { getStoryblokData } from "@/lib/storyblok/storyblok-unified-data"
+import { normalizeStoryblokPath } from "@/lib/storyblok/storyblok-utils"
 import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
 
 export const dynamicParams = true
@@ -28,15 +28,9 @@ export default async function Page({ params }: PageParams) {
 
   const fullPath = normalizeStoryblokPath(slug)
 
-  try {
-    const storyblokApi = getStoryblokApi()
+  const { data: story, error } = await getStoryblokData("story", { fullPath })
 
-    const { data } = await storyblokApi.get(`cdn/stories/${fullPath}`, {
-      version: "draft",
-    })
-
-    return <StoryblokStory story={data.story} />
-  } catch (error: unknown) {
+  if (error) {
     const availableStories = await getAvailableStoriesForError()
     const errorMessage = getErrorMessage(error)
 
@@ -48,4 +42,6 @@ export default async function Page({ params }: PageParams) {
       />
     )
   }
+
+  return <StoryblokStory story={story} />
 }

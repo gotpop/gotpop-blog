@@ -1,0 +1,126 @@
+import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
+import { getStoryblokApi } from "@/lib/storyblok/storyblok"
+import { getErrorMessage } from "../storyblok-unified-data"
+import type {
+  BaseConfig,
+  DatasourceEntriesConfig,
+  PostsByTagConfig,
+  StoriesByUuidsConfig,
+  StoriesConfig,
+  StoryByUuidConfig,
+  StoryblokDataConfig,
+  StoryblokDataType,
+  StoryConfig,
+} from "../storyblok-unified-data.types"
+import {
+  handleAllPostsWithTags,
+  handleAllTagsFromPosts,
+  handleAvailableStoriesForError,
+  handleDatasourceEntries,
+  handlePostsByTag,
+  handleStaticParams,
+  handleStories,
+  handleStoriesByUuids,
+  handleStory,
+  handleStoryByUuid,
+  handleTagsFromDatasource,
+  handleTagsFromPosts,
+} from "./handlers"
+
+/**
+ * Unified Storyblok data fetching function
+ * @param dataType - The type of data to fetch
+ * @param config - Configuration object specific to the data type
+ * @returns Promise with the fetched data and optional error
+ */
+export async function getStoryblokData(
+  dataType: StoryblokDataType,
+  config: StoryblokDataConfig = {}
+): Promise<{ data: unknown; error?: string }> {
+  try {
+    const storyblokApi = getStoryblokApi()
+
+    switch (dataType) {
+      case "story":
+        return handleStory(storyblokApi, config as StoryConfig)
+
+      case "stories":
+        return handleStories(storyblokApi, config as StoriesConfig)
+
+      case "storyByUuid":
+        return handleStoryByUuid(storyblokApi, config as StoryByUuidConfig)
+
+      case "storiesByUuids":
+        return handleStoriesByUuids(
+          storyblokApi,
+          config as StoriesByUuidsConfig
+        )
+
+      case "datasourceEntries":
+        return handleDatasourceEntries(
+          storyblokApi,
+          config as DatasourceEntriesConfig
+        )
+
+      case "tagsFromDatasource":
+        return handleTagsFromDatasource(getStoryblokData, config)
+
+      case "tagsFromPosts":
+        return handleTagsFromPosts(getStoryblokData)
+
+      case "postsByTag":
+        return handlePostsByTag(getStoryblokData, config as PostsByTagConfig)
+
+      case "allPostsWithTags":
+        return handleAllPostsWithTags(getStoryblokData, config as BaseConfig)
+
+      case "allTagsFromPosts":
+        return handleAllTagsFromPosts(getStoryblokData, config as BaseConfig)
+
+      case "availableStoriesForError":
+        return handleAvailableStoriesForError(getStoryblokData)
+
+      case "staticParams":
+        return handleStaticParams(getStoryblokData)
+
+      default:
+        return { data: null, error: `Unknown data type: ${dataType}` }
+    }
+  } catch (error) {
+    const errorMessage = getErrorMessage(error)
+
+    // For datasource errors, provide a more helpful message
+    if (
+      dataType === "datasourceEntries" &&
+      errorMessage.includes("could not be found")
+    ) {
+      return {
+        data: null,
+        error: `Datasource not found`,
+      }
+    }
+
+    return {
+      data: null,
+      error: errorMessage,
+    }
+  }
+}
+
+/**
+ * Fetches all tags from the Storyblok tags datasource
+ * Falls back to extracting tags from posts if datasource is not available
+ */
+export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
+  const { data } = await getStoryblokData("tagsFromDatasource")
+  return data as TagDatasourceEntry[]
+}
+
+/**
+ * Gets all posts from the blog with their tags
+ * Only returns actual blog posts (page_post component) that have tags
+ */
+export async function getAllPostsWithTags(): Promise<PostProps[]> {
+  const { data } = await getStoryblokData("allPostsWithTags")
+  return data as PostProps[]
+}
