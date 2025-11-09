@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import "./FilterContent.css"
 import type { FilterContentStoryblok } from "@/types"
 import { getAllPostsWithTags, getTagsFromDatasource } from "@/utils/tags"
-import { ClientSidePostCard } from "../ClientSidePostCard"
+import { Card } from "../Card"
 import { FilterContentClient } from "./FilterContentClient"
 
 interface FilterContentProps {
@@ -24,7 +24,7 @@ export async function FilterContent({ blok }: FilterContentProps) {
   ) : (
     <div className="posts-grid">
       {posts.map((post) => (
-        <ClientSidePostCard key={post.uuid} post={post} />
+        <Card key={post.uuid} post={post} />
       ))}
     </div>
   )

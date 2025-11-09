@@ -2,13 +2,13 @@ import { CustomElement, Typography } from "@gotpop/system"
 import { getStoryPath } from "@/lib/storyblok-utils"
 import { formatDate } from "@/utils/date-formatter"
 import type { PostStory } from "@/utils/tags"
-import "./ClientSidePostCard.css"
+import "./Card.css"
 
-interface PostCardProps {
+interface CardProps {
   post: PostStory
 }
 
-export function ClientSidePostCard({ post }: PostCardProps) {
+export function Card({ post }: CardProps) {
   const { full_slug, name, published_at, content } = post
   const { Heading, description, published_date, tags = [] } = content || {}
 

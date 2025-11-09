@@ -2,7 +2,7 @@
 
 import { startTransition, ViewTransition } from "react"
 import type { PostStory, TagDatasourceEntry } from "@/utils/tags"
-import { ClientSidePostCard } from "../ClientSidePostCard/ClientSidePostCard"
+import { Card } from "../Card"
 import { PostsControl } from "./PostsControl"
 import { usePostsFilter } from "./use-posts-filter"
 
@@ -53,9 +53,7 @@ export function FilterContentClient({
 
   const output =
     filteredAndSortedPosts.length > 0 &&
-    filteredAndSortedPosts.map((post) => (
-      <ClientSidePostCard key={post.uuid} post={post} />
-    ))
+    filteredAndSortedPosts.map((post) => <Card key={post.uuid} post={post} />)
 
   return (
     <div className="filters-with-output">
