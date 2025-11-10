@@ -1,6 +1,5 @@
 import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
 import { getErrorMessage, getStoryblokApi } from "@/lib/storyblok"
-import type { StoryblokStoryResponse } from "@/types/storyblok"
 import type {
   BaseConfig,
   DatasourceEntriesConfig,
@@ -11,6 +10,7 @@ import type {
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
+  StoryblokStoryResponse,
   StoryConfig,
 } from "../types"
 import {

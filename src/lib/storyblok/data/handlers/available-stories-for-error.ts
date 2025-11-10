@@ -1,8 +1,8 @@
-import type { StoryblokStoryResponse } from "@/types/storyblok"
 import type {
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
+  StoryblokStoryResponse,
 } from "../../types"
 
 export async function handleAvailableStoriesForError(

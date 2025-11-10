@@ -62,3 +62,14 @@ export type StoryblokDataConfig =
   | DatasourceEntriesConfig
   | PostsByTagConfig
   | BaseConfig
+
+export interface StoryblokStoryResponse<T = unknown> {
+  full_slug: string
+  slug: string
+  content: T
+  // Add other fields as needed
+}
+
+export interface StoryblokStoriesResponse {
+  stories: StoryblokStoryResponse[]
+}
