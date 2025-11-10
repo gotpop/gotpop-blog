@@ -1,4 +1,4 @@
-import { FooterDefault, HeaderDefault } from "@gotpop/system"
+import { CustomElement, FooterDefault, HeaderDefault } from "@gotpop/system"
 import { getStoryblokData } from "@/lib/storyblok"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
 import "./PageLayout.css"
@@ -31,12 +31,12 @@ export async function PageLayout({
   const { content: resolvedFooterData } = footerData as StoryblokStoryResponse
 
   return (
-    <page-layout>
+    <CustomElement tag="page-layout">
       <HeaderDefault blok={resolvedHeaderData as HeaderDefaultStoryblok} />
       <main>
-        <box-crosshatch className="box-crosshatch">{children}</box-crosshatch>
+        <CustomElement tag="box-crosshatch">{children}</CustomElement>
       </main>
       <FooterDefault data={resolvedFooterData as FooterDefaultStoryblok} />
-    </page-layout>
+    </CustomElement>
   )
 }
