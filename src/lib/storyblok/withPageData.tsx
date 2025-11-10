@@ -1,11 +1,11 @@
 import type { SbBlokData } from "@storyblok/react/rsc"
 import type { ReactNode } from "react"
-import { getStoryblokData } from "@/lib/storyblok"
+import { StoryblokServerComponent } from "@/components/utils"
 import type {
   FooterDefaultStoryblok,
   HeaderDefaultStoryblok,
 } from "@/types/storyblok-components"
-import { StoryblokServerComponent } from "../utils"
+import { getStoryblokData } from "./data/get-storyblok-data"
 
 interface PageBlok {
   Header?: string

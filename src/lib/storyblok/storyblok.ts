@@ -16,11 +16,11 @@ import {
   SnippetBlock,
 } from "@gotpop/system"
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
-import { withPageData } from "@/components/pages/withPageData"
 import {
   getCachedPostsWithTags as fetchPosts,
   getCachedTags as fetchTags,
 } from "@/utils/cached-data"
+import { withPageData } from "./withPageData"
 
 const CardsWithData = async ({ blok }: { blok: CardsStoryblok }) =>
   await Cards({
