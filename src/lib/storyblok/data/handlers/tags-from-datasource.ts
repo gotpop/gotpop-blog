@@ -1,5 +1,5 @@
 import type { TagDatasourceEntry } from "@gotpop/system"
-import { deduplicateTags, HARDCODED_TAGS } from "../../storyblok-unified-data"
+import { deduplicateTags, HARDCODED_TAGS } from "../../storyblok-tags"
 import type {
   StoryblokDataConfig,
   StoryblokDataType,
