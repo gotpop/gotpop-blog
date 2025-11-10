@@ -11,37 +11,26 @@ import type {
 interface PageLayoutProps {
   children?: ReactNode
   className?: string
-  header?: string
-  footer?: string
-  headerData?: HeaderDefaultStoryblok | null
-  footerData?: FooterDefaultStoryblok | null
+  header: string
+  footer: string
 }
 
 export async function PageLayout({
   children,
   footer,
-  footerData,
   header,
-  headerData,
 }: PageLayoutProps) {
-  let resolvedHeaderData = headerData
-  let resolvedFooterData = footerData
+  const { data: headerData } = await getStoryblokData("storyByUuid", {
+    uuid: header,
+  })
+  const resolvedHeaderData = (headerData as StoryblokStoryResponse)
+    ?.content as HeaderDefaultStoryblok
 
-  if (header && !headerData) {
-    const { data } = await getStoryblokData("storyByUuid", {
-      uuid: header,
-    })
-    const story = data as StoryblokStoryResponse
-    resolvedHeaderData = story?.content as HeaderDefaultStoryblok
-  }
-
-  if (footer && !footerData) {
-    const { data } = await getStoryblokData("storyByUuid", {
-      uuid: footer,
-    })
-    const story = data as StoryblokStoryResponse
-    resolvedFooterData = story?.content as FooterDefaultStoryblok
-  }
+  const { data: footerData } = await getStoryblokData("storyByUuid", {
+    uuid: footer,
+  })
+  const resolvedFooterData = (footerData as StoryblokStoryResponse)
+    ?.content as FooterDefaultStoryblok
 
   return (
     <page-layout className="page-layout">
@@ -49,7 +38,7 @@ export async function PageLayout({
       <main>
         <box-crosshatch className="box-crosshatch">{children}</box-crosshatch>
       </main>
-      {resolvedFooterData && <FooterDefault data={resolvedFooterData} />}
+      <FooterDefault data={resolvedFooterData} />
     </page-layout>
   )
 }
