@@ -1,9 +1,6 @@
 import type { TagDatasourceEntry } from "@gotpop/system"
 import { deduplicateTags, HARDCODED_TAGS } from "../../storyblok-tags"
-import type {
-  StoryblokDataConfig,
-  StoryblokDataType,
-} from "../../types"
+import type { StoryblokDataConfig, StoryblokDataType } from "../../types"
 
 export async function handleTagsFromDatasource(
   getStoryblokData: (
