@@ -1,6 +1,6 @@
 import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
 import { getStoryblokApi } from "@/lib/storyblok/storyblok"
-import { getErrorMessage } from "../storyblok-unified-data"
+import { getErrorMessage } from "../storyblok-error-handling"
 import type {
   BaseConfig,
   DatasourceEntriesConfig,
