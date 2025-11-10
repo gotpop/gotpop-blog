@@ -1,6 +1,6 @@
 import { FooterDefault, HeaderDefault } from "@gotpop/system"
 import type { ReactNode } from "react"
-import { getStoryblokData } from "@/lib/storyblok/data"
+import { getStoryblokData } from "@/lib/storyblok"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
 import "./PageLayout.css"
 import type {
@@ -19,10 +19,10 @@ interface PageLayoutProps {
 
 export async function PageLayout({
   children,
-  header,
   footer,
-  headerData,
   footerData,
+  header,
+  headerData,
 }: PageLayoutProps) {
   let resolvedHeaderData = headerData
   let resolvedFooterData = footerData
@@ -30,7 +30,6 @@ export async function PageLayout({
   if (header && !headerData) {
     const { data } = await getStoryblokData("storyByUuid", {
       uuid: header,
-      version: "draft",
     })
     const story = data as StoryblokStoryResponse
     resolvedHeaderData = story?.content as HeaderDefaultStoryblok
@@ -39,7 +38,6 @@ export async function PageLayout({
   if (footer && !footerData) {
     const { data } = await getStoryblokData("storyByUuid", {
       uuid: footer,
-      version: "draft",
     })
     const story = data as StoryblokStoryResponse
     resolvedFooterData = story?.content as FooterDefaultStoryblok

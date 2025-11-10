@@ -5,7 +5,8 @@ export async function handleStoryByUuid(
   storyblokApi: StoryblokClient,
   config: StoryByUuidConfig
 ): Promise<StoryblokDataResult> {
-  const { uuid, version = "draft" } = config
+  const { uuid, version = "published" } = config
+
   if (!uuid) {
     return { data: null, error: "No UUID provided" }
   }
