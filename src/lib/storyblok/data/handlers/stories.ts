@@ -1,10 +1,10 @@
 import type { StoryblokClient } from "@storyblok/react/rsc"
-import type { StoriesConfig } from "../../types"
+import type { StoriesConfig, StoryblokDataResult } from "../../types"
 
 export async function handleStories(
   storyblokApi: StoryblokClient,
   config: StoriesConfig
-): Promise<{ data: unknown; error?: string }> {
+): Promise<StoryblokDataResult> {
   const {
     version = "draft",
     starts_with,

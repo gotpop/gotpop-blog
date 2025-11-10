@@ -1,3 +1,8 @@
+export type StoryblokDataResult<T = unknown> = {
+  data: T
+  error?: string
+}
+
 export type StoryblokDataType =
   | "story"
   | "stories"

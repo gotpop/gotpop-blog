@@ -2,6 +2,7 @@ import type { PostProps } from "@gotpop/system"
 import type {
   PostsByTagConfig,
   StoryblokDataConfig,
+  StoryblokDataResult,
   StoryblokDataType,
 } from "../../types"
 
@@ -9,9 +10,9 @@ export async function handlePostsByTag(
   getStoryblokData: (
     dataType: StoryblokDataType,
     config?: StoryblokDataConfig
-  ) => Promise<{ data: unknown; error?: string }>,
+  ) => Promise<StoryblokDataResult>,
   config: PostsByTagConfig
-): Promise<{ data: unknown; error?: string }> {
+): Promise<StoryblokDataResult> {
   const { tagName, sortBy = "date-desc", version = "published" } = config
 
   const { data: stories } = (await getStoryblokData("stories", {

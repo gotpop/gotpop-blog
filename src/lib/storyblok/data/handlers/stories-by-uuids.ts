@@ -1,11 +1,12 @@
 import type { StoryblokClient } from "@storyblok/react/rsc"
-import type { StoriesByUuidsConfig } from "../../types"
+import type { StoriesByUuidsConfig, StoryblokDataResult } from "../../types"
 
 export async function handleStoriesByUuids(
   storyblokApi: StoryblokClient,
   config: StoriesByUuidsConfig
-): Promise<{ data: unknown; error?: string }> {
+): Promise<StoryblokDataResult> {
   const { uuids, version = "draft" } = config
+
   if (!uuids || uuids.length === 0) {
     return { data: [], error: "No UUIDs provided" }
   }
