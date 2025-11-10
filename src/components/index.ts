@@ -1,2 +1,1 @@
-export * from "./snippets"
-export * from "./utils"
+export * from "./StoryblokServerComponent"

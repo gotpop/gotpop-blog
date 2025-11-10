@@ -1,6 +1,6 @@
 import type { SbBlokData } from "@storyblok/react/rsc"
 import type { ReactNode } from "react"
-import { StoryblokServerComponent } from "@/components/utils"
+import { StoryblokServerComponent } from "@/components"
 import type {
   FooterDefaultStoryblok,
   HeaderDefaultStoryblok,
