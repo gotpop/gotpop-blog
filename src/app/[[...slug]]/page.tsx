@@ -1,14 +1,12 @@
 import { StoryNotFound } from "@gotpop/system"
 import { StoryblokStory } from "@storyblok/react/rsc"
-import { getStoryblokData } from "@/lib/storyblok/data"
-import {
-  getAvailableStoriesForError,
-  getErrorMessage,
-} from "@/lib/storyblok/error-handling"
 import {
   generateAllStaticParams,
+  getAvailableStoriesForError,
+  getErrorMessage,
+  getStoryblokData,
   normalizeStoryblokPath,
-} from "@/lib/storyblok/routing"
+} from "@/lib/storyblok"
 import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
 
 export const dynamicParams = true
