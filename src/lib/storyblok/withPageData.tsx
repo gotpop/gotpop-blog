@@ -1,9 +1,9 @@
-import type { SbBlokData } from "@storyblok/react/rsc"
-import type { ReactNode } from "react"
 import type {
   FooterDefaultStoryblok,
   HeaderDefaultStoryblok,
-} from "@/types/storyblok-components"
+} from "@gotpop/system"
+import type { SbBlokData } from "@storyblok/react/rsc"
+import type { ReactNode } from "react"
 import { getStoryblokData } from "./data/get-storyblok-data"
 import { StoryblokServerComponent } from "./StoryblokServerComponent"
 
