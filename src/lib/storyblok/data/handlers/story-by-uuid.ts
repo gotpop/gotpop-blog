@@ -1,10 +1,11 @@
 import type { StoryblokClient } from "@storyblok/react/rsc"
+import type { StoryblokStoryResponse } from "@/types/storyblok"
 import type { StoryByUuidConfig, StoryblokDataResult } from "../../types"
 
 export async function handleStoryByUuid(
   storyblokApi: StoryblokClient,
   config: StoryByUuidConfig
-): Promise<StoryblokDataResult> {
+): Promise<StoryblokDataResult<StoryblokStoryResponse | null>> {
   const { uuid, version = "published" } = config
 
   if (!uuid) {
