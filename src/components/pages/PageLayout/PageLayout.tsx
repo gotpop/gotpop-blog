@@ -23,7 +23,7 @@ export async function PageLayout({
       <main>
         <CustomElement tag="box-crosshatch">{children}</CustomElement>
       </main>
-      <FooterDefault data={footer} />
+      <FooterDefault blok={footer} />
     </CustomElement>
   )
 }
