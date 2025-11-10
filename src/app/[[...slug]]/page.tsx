@@ -5,8 +5,10 @@ import {
   getAvailableStoriesForError,
   getErrorMessage,
 } from "@/lib/storyblok/error-handling"
-import { normalizeStoryblokPath } from "@/lib/storyblok/path-utils"
-import { generateAllStaticParams } from "@/lib/storyblok/static-params"
+import {
+  generateAllStaticParams,
+  normalizeStoryblokPath,
+} from "@/lib/storyblok/routing"
 import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
 
 export const dynamicParams = true

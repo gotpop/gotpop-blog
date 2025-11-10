@@ -2,9 +2,9 @@ import type {
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
-} from "@/lib/storyblok"
-import { getStoryPath, shouldIncludeStory } from "@/lib/storyblok"
-import type { StoryblokStoryResponse } from "../../types"
+  StoryblokStoryResponse,
+} from "../../core/types"
+import { getStoryPath, shouldIncludeStory } from "../../routing"
 
 export async function handleStaticParams(
   getStoryblokData: (

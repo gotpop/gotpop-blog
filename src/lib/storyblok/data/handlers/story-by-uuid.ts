@@ -3,7 +3,7 @@ import type {
   StoryByUuidConfig,
   StoryblokDataResult,
   StoryblokStoryResponse,
-} from "../../types"
+} from "../../core/types"
 
 export async function handleStoryByUuid(
   storyblokApi: StoryblokClient,

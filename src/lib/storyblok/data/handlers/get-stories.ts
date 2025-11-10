@@ -3,7 +3,7 @@ import type {
   StoriesConfig,
   StoryblokDataResult,
   StoryblokStoryResponse,
-} from "../../types"
+} from "../../core/types"
 
 export async function handleStories(
   storyblokApi: StoryblokClient,

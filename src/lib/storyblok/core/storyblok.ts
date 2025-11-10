@@ -20,7 +20,7 @@ import {
   getCachedPostsWithTags as fetchPosts,
   getCachedTags as fetchTags,
 } from "@/utils/cached-data"
-import { withPageData } from "./withPageData"
+import { withPageData } from "../components/withPageData"
 
 const CardsWithData = async ({ blok }: { blok: CardsStoryblok }) =>
   await Cards({

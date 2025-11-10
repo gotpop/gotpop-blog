@@ -1,5 +1,5 @@
 import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
-import { getErrorMessage, getStoryblokApi } from "@/lib/storyblok"
+import { getStoryblokApi } from "../core"
 import type {
   BaseConfig,
   DatasourceEntriesConfig,
@@ -12,7 +12,8 @@ import type {
   StoryblokDataType,
   StoryblokStoryResponse,
   StoryConfig,
-} from "../types"
+} from "../core/types"
+import { getErrorMessage } from "../error-handling"
 import {
   handleAllPostsWithTags,
   handleAllTagsFromPosts,
@@ -20,13 +21,13 @@ import {
   handleDatasourceEntries,
   handlePostsByTag,
   handleStaticParams,
-  handleStories,
   handleStoriesByUuids,
-  handleStory,
   handleStoryByUuid,
   handleTagsFromDatasource,
   handleTagsFromPosts,
 } from "./handlers"
+import { handleStories } from "./handlers/get-stories"
+import { handleStory } from "./handlers/get-story"
 
 // Function overloads for better type inference
 export async function getStoryblokData<T = unknown>(

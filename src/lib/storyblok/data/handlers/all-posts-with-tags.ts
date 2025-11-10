@@ -4,7 +4,7 @@ import type {
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
-} from "../../types"
+} from "../../core/types"
 
 export async function handleAllPostsWithTags(
   getStoryblokData: (
