@@ -1,6 +1,6 @@
 import { FooterDefault, HeaderDefault } from "@gotpop/system"
 import type { ReactNode } from "react"
-import { fetchStoryByUuid } from "@/lib/storyblok/storyblok-fetch"
+import { fetchStoryByUuid } from "@/lib/storyblok/fetch"
 import "./PageLayout.css"
 import type {
   FooterDefaultStoryblok,
