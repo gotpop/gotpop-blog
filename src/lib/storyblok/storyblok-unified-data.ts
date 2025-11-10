@@ -1,9 +1,6 @@
 import type { TagDatasourceEntry } from "@gotpop/system"
 import { getStoryblokData } from "./data/get-storyblok-data"
 
-// Re-export the main function
-export { getStoryblokData }
-
 // Re-export types for convenience
 export type {
   StoryblokDataConfig,
