@@ -11,7 +11,7 @@ import type {
   StoryblokDataConfig,
   StoryblokDataType,
   StoryConfig,
-} from "../storyblok-unified-data.types"
+} from "../types"
 import {
   handleAllPostsWithTags,
   handleAllTagsFromPosts,

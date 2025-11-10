@@ -2,7 +2,7 @@ import type { StoryblokStoryResponse } from "@/types/storyblok"
 import type {
   StoryblokDataConfig,
   StoryblokDataType,
-} from "../../storyblok-unified-data.types"
+} from "../../types"
 
 export async function handleAvailableStoriesForError(
   getStoryblokData: (

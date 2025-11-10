@@ -1,5 +1,5 @@
 import type { StoryblokClient } from "@storyblok/react/rsc"
-import type { StoryConfig } from "../../storyblok-unified-data.types"
+import type { StoryConfig } from "../../types"
 
 export async function handleStory(
   storyblokApi: StoryblokClient,

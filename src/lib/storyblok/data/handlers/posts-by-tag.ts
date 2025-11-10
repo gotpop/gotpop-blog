@@ -3,7 +3,7 @@ import type {
   PostsByTagConfig,
   StoryblokDataConfig,
   StoryblokDataType,
-} from "../../storyblok-unified-data.types"
+} from "../../types"
 
 export async function handlePostsByTag(
   getStoryblokData: (

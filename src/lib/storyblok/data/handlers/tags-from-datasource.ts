@@ -3,7 +3,7 @@ import { deduplicateTags, HARDCODED_TAGS } from "../../storyblok-unified-data"
 import type {
   StoryblokDataConfig,
   StoryblokDataType,
-} from "../../storyblok-unified-data.types"
+} from "../../types"
 
 export async function handleTagsFromDatasource(
   getStoryblokData: (

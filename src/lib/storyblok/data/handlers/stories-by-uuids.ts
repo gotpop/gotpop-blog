@@ -1,5 +1,5 @@
 import type { StoryblokClient } from "@storyblok/react/rsc"
-import type { StoriesByUuidsConfig } from "../../storyblok-unified-data.types"
+import type { StoriesByUuidsConfig } from "../../types"
 
 export async function handleStoriesByUuids(
   storyblokApi: StoryblokClient,

@@ -9,7 +9,7 @@ export { getStoryblokData }
 export type {
   StoryblokDataConfig,
   StoryblokDataType,
-} from "./storyblok-unified-data.types"
+} from "./types"
 
 // Hardcoded tags that are not included in the API call but should be available for filtering
 export const HARDCODED_TAGS: TagDatasourceEntry[] = []
