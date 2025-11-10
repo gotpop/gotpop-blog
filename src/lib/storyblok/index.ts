@@ -1,6 +1,7 @@
 export * from "./data"
 export * from "./error-handling"
 export * from "./path-utils"
+export * from "./StoryblokServerComponent"
 export * from "./should-include-story"
 export * from "./static-params"
 export * from "./storyblok"
