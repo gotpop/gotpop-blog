@@ -1,9 +1,6 @@
+import type { StoryblokDataConfig, StoryblokDataType } from "@/lib/storyblok"
+import { getStoryPath, shouldIncludeStory } from "@/lib/storyblok"
 import type { StoryblokStoryResponse } from "@/types/storyblok"
-import type {
-  StoryblokDataConfig,
-  StoryblokDataType,
-} from "../../types"
-import { getStoryPath, shouldIncludeStory } from "../../storyblok-utils"
 
 export async function handleStaticParams(
   getStoryblokData: (
