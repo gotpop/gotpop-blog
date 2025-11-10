@@ -1,12 +1,16 @@
+import type { SbBlokData } from "@storyblok/react/rsc"
+import type { ReactNode } from "react"
 import { getStoryblokData } from "@/lib/storyblok"
 import type {
   FooterDefaultStoryblok,
   HeaderDefaultStoryblok,
 } from "@/types/storyblok-components"
+import { StoryblokServerComponent } from "../utils"
 
 interface PageBlok {
   Header?: string
   Footer?: string
+  body?: SbBlokData[]
   [key: string]: unknown
 }
 
@@ -14,6 +18,7 @@ interface WithPageDataProps<T extends PageBlok> {
   header: HeaderDefaultStoryblok
   footer: FooterDefaultStoryblok
   blok: T
+  blocks: ReactNode
 }
 
 export function withPageData<T extends PageBlok>(
@@ -32,9 +37,14 @@ export function withPageData<T extends PageBlok>(
       { uuid: Footer }
     )
 
+    const blocks = blok.body?.map((nestedBlok) => (
+      <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+    ))
+
     return (
       <ViewComponent
         blok={blok}
+        blocks={blocks}
         header={headerData.content}
         footer={footerData.content}
       />
