@@ -34,14 +34,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${monaspace.variable} antialiased`}>
         <StoryblokProvider>{children}</StoryblokProvider>
-
-        {/* Storyblok Bridge for Visual Editor - Development only */}
-        {process.env.NODE_ENV === "development" && (
-          <Script
-            src="//app.storyblok.com/f/storyblok-v2-latest.js"
-            strategy="beforeInteractive"
-          />
-        )}
       </body>
     </html>
   )
