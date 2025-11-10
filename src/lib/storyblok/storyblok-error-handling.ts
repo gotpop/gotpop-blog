@@ -1,5 +1,3 @@
-import "server-only"
-
 import { getStoryblokData } from "@/lib/storyblok/data"
 
 export async function getAvailableStoriesForError(): Promise<string[]> {
