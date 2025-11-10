@@ -1,6 +1,7 @@
 import { FooterDefault, HeaderDefault } from "@gotpop/system"
 import type { ReactNode } from "react"
-import { fetchStoryByUuid } from "@/lib/storyblok/fetch"
+import { getStoryblokData } from "@/lib/storyblok/data"
+import type { StoryblokStoryResponse } from "@/types/storyblok"
 import "./PageLayout.css"
 import type {
   FooterDefaultStoryblok,
@@ -27,12 +28,20 @@ export async function PageLayout({
   let resolvedFooterData = footerData
 
   if (header && !headerData) {
-    const story = await fetchStoryByUuid(header)
+    const { data } = await getStoryblokData("storyByUuid", {
+      uuid: header,
+      version: "draft",
+    })
+    const story = data as StoryblokStoryResponse
     resolvedHeaderData = story?.content as HeaderDefaultStoryblok
   }
 
   if (footer && !footerData) {
-    const story = await fetchStoryByUuid(footer)
+    const { data } = await getStoryblokData("storyByUuid", {
+      uuid: footer,
+      version: "draft",
+    })
+    const story = data as StoryblokStoryResponse
     resolvedFooterData = story?.content as FooterDefaultStoryblok
   }
 
