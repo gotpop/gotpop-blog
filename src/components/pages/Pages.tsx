@@ -1,6 +1,6 @@
-import { PostHeader } from "@gotpop/system"
+import { PageLayout, PostHeader } from "@gotpop/system"
 import type { ReactNode } from "react"
-import { PageLayout, StoryblokServerComponent } from "@/components"
+import { StoryblokServerComponent } from "@/components"
 import { getStoryblokData } from "@/lib/storyblok"
 import type {
   FooterDefaultStoryblok,
