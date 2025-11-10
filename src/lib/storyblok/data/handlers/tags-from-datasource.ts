@@ -1,17 +1,18 @@
 import type { TagDatasourceEntry } from "@gotpop/system"
-import { deduplicateTags, HARDCODED_TAGS } from "../../storyblok-unified-data"
+import { deduplicateTags, HARDCODED_TAGS } from "../../tags"
 import type {
   StoryblokDataConfig,
+  StoryblokDataResult,
   StoryblokDataType,
-} from "../../storyblok-unified-data.types"
+} from "../../types"
 
 export async function handleTagsFromDatasource(
   getStoryblokData: (
     dataType: StoryblokDataType,
     config?: StoryblokDataConfig
-  ) => Promise<{ data: unknown; error?: string }>,
+  ) => Promise<StoryblokDataResult>,
   config: StoryblokDataConfig
-): Promise<{ data: unknown; error?: string }> {
+): Promise<StoryblokDataResult> {
   try {
     const TAGS_DATASOURCE_ID = process.env.STORYBLOK_TAGS_DATASOURCE_ID
 

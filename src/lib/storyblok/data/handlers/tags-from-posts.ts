@@ -1,16 +1,17 @@
 import type { PostProps } from "@gotpop/system"
-import { deduplicateTags, HARDCODED_TAGS } from "../../storyblok-unified-data"
+import { deduplicateTags, HARDCODED_TAGS } from "../../tags"
 import type {
   StoryblokDataConfig,
+  StoryblokDataResult,
   StoryblokDataType,
-} from "../../storyblok-unified-data.types"
+} from "../../types"
 
 export async function handleTagsFromPosts(
   getStoryblokData: (
     dataType: StoryblokDataType,
     config?: StoryblokDataConfig
-  ) => Promise<{ data: unknown; error?: string }>
-): Promise<{ data: unknown; error?: string }> {
+  ) => Promise<StoryblokDataResult>
+): Promise<StoryblokDataResult> {
   const { data: stories } = (await getStoryblokData("stories", {
     version: "draft",
     starts_with: "blog/",

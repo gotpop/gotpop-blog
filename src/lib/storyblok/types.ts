@@ -1,4 +1,8 @@
-// Define all available data types
+export type StoryblokDataResult<T = unknown> = {
+  data: T
+  error?: string
+}
+
 export type StoryblokDataType =
   | "story"
   | "stories"
@@ -13,7 +17,6 @@ export type StoryblokDataType =
   | "availableStoriesForError"
   | "staticParams"
 
-// Configuration interfaces for different data types
 export interface BaseConfig {
   version?: "draft" | "published"
 }

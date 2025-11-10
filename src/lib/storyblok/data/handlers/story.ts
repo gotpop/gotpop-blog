@@ -1,13 +1,16 @@
 import type { StoryblokClient } from "@storyblok/react/rsc"
-import type { StoryConfig } from "../../storyblok-unified-data.types"
+import type { StoryblokDataResult, StoryConfig } from "@/lib/storyblok"
+import type { StoryblokStoryResponse } from "@/types/storyblok"
 
 export async function handleStory(
   storyblokApi: StoryblokClient,
   config: StoryConfig
-): Promise<{ data: unknown; error?: string }> {
-  const { fullPath, version = "draft" } = config
+): Promise<StoryblokDataResult<StoryblokStoryResponse>> {
+  const { fullPath, version = "published" } = config
+
   const response = await storyblokApi.get(`cdn/stories/${fullPath}`, {
     version,
   })
+
   return { data: response.data.story }
 }

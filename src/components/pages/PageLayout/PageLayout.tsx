@@ -1,6 +1,6 @@
-import { FooterDefault, HeaderDefault } from "@gotpop/system"
-import type { ReactNode } from "react"
-import { fetchStoryByUuid } from "@/lib/storyblok/storyblok-fetch"
+import { CustomElement, FooterDefault, HeaderDefault } from "@gotpop/system"
+import { getStoryblokData } from "@/lib/storyblok"
+import type { StoryblokStoryResponse } from "@/types/storyblok"
 import "./PageLayout.css"
 import type {
   FooterDefaultStoryblok,
@@ -8,41 +8,35 @@ import type {
 } from "@/types/storyblok-components"
 
 interface PageLayoutProps {
-  children?: ReactNode
+  children?: React.ReactNode
   className?: string
   header?: string
   footer?: string
-  headerData?: HeaderDefaultStoryblok | null
-  footerData?: FooterDefaultStoryblok | null
 }
 
 export async function PageLayout({
   children,
-  header,
-  footer,
-  headerData,
-  footerData,
+  footer = "",
+  header = "",
 }: PageLayoutProps) {
-  let resolvedHeaderData = headerData
-  let resolvedFooterData = footerData
+  const { data: headerData } = await getStoryblokData("storyByUuid", {
+    uuid: header,
+  })
 
-  if (header && !headerData) {
-    const story = await fetchStoryByUuid(header)
-    resolvedHeaderData = story?.content as HeaderDefaultStoryblok
-  }
+  const { data: footerData } = await getStoryblokData("storyByUuid", {
+    uuid: footer,
+  })
 
-  if (footer && !footerData) {
-    const story = await fetchStoryByUuid(footer)
-    resolvedFooterData = story?.content as FooterDefaultStoryblok
-  }
+  const { content: resolvedHeaderData } = headerData as StoryblokStoryResponse
+  const { content: resolvedFooterData } = footerData as StoryblokStoryResponse
 
   return (
-    <page-layout className="page-layout">
-      <HeaderDefault blok={resolvedHeaderData} />
+    <CustomElement tag="page-layout">
+      <HeaderDefault blok={resolvedHeaderData as HeaderDefaultStoryblok} />
       <main>
-        <box-crosshatch className="box-crosshatch">{children}</box-crosshatch>
+        <CustomElement tag="box-crosshatch">{children}</CustomElement>
       </main>
-      {resolvedFooterData && <FooterDefault data={resolvedFooterData} />}
-    </page-layout>
+      <FooterDefault data={resolvedFooterData as FooterDefaultStoryblok} />
+    </CustomElement>
   )
 }

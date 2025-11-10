@@ -1,15 +1,11 @@
-import "server-only"
 import type { TagDatasourceEntry } from "@gotpop/system"
-import { getStoryblokData } from "./data/storyblok-data"
-
-// Re-export the main function
-export { getStoryblokData }
+import { getStoryblokData } from "./data/get-storyblok-data"
 
 // Re-export types for convenience
 export type {
   StoryblokDataConfig,
   StoryblokDataType,
-} from "./storyblok-unified-data.types"
+} from "./types"
 
 // Hardcoded tags that are not included in the API call but should be available for filtering
 export const HARDCODED_TAGS: TagDatasourceEntry[] = []
@@ -39,24 +35,6 @@ export function deduplicateTags(
     seen.add(normalizedValue)
     return true
   })
-}
-
-/**
- * Extracts error message from various error types
- */
-export function getErrorMessage(error: unknown): string {
-  if (error instanceof Error) {
-    return error.message
-  }
-  if (typeof error === "object" && error !== null) {
-    if ("message" in error && typeof error.message === "string") {
-      return error.message
-    }
-    if ("status" in error && "statusText" in error) {
-      return `${error.status}: ${error.statusText}`
-    }
-  }
-  return "Unknown error"
 }
 
 export async function isValidTag(tagSlug: string): Promise<boolean> {

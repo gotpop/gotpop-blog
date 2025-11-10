@@ -1,15 +1,16 @@
 import type { StoryblokStoryResponse } from "@/types/storyblok"
 import type {
   StoryblokDataConfig,
+  StoryblokDataResult,
   StoryblokDataType,
-} from "../../storyblok-unified-data.types"
+} from "../../types"
 
 export async function handleAvailableStoriesForError(
   getStoryblokData: (
     dataType: StoryblokDataType,
     config?: StoryblokDataConfig
-  ) => Promise<{ data: unknown; error?: string }>
-): Promise<{ data: unknown; error?: string }> {
+  ) => Promise<StoryblokDataResult>
+): Promise<StoryblokDataResult> {
   const { data: stories } = (await getStoryblokData("stories", {
     version: "draft",
     starts_with: "blog/",

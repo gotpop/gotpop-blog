@@ -1,16 +1,17 @@
-import type { StoryblokStoryResponse } from "@/types/storyblok"
 import type {
   StoryblokDataConfig,
+  StoryblokDataResult,
   StoryblokDataType,
-} from "../../storyblok-unified-data.types"
-import { getStoryPath, shouldIncludeStory } from "../../storyblok-utils"
+} from "@/lib/storyblok"
+import { getStoryPath, shouldIncludeStory } from "@/lib/storyblok"
+import type { StoryblokStoryResponse } from "@/types/storyblok"
 
 export async function handleStaticParams(
   getStoryblokData: (
     dataType: StoryblokDataType,
     config?: StoryblokDataConfig
-  ) => Promise<{ data: unknown; error?: string }>
-): Promise<{ data: unknown; error?: string }> {
+  ) => Promise<StoryblokDataResult>
+): Promise<StoryblokDataResult> {
   const { data: allStories } = (await getStoryblokData("stories", {
     version: "published",
     starts_with: "blog/",
