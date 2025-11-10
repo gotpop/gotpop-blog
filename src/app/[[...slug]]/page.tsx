@@ -1,5 +1,5 @@
+import { StoryNotFound } from "@gotpop/system"
 import { StoryblokStory } from "@storyblok/react/rsc"
-import { StoryNotFound } from "@/components/utils/StoryNotFound"
 import { getStoryblokData } from "@/lib/storyblok/data"
 import {
   getAvailableStoriesForError,

@@ -4,7 +4,7 @@ import type {
   StoryblokDataType,
 } from "@/lib/storyblok"
 import { getStoryPath, shouldIncludeStory } from "@/lib/storyblok"
-import type { StoryblokStoryResponse } from "@/types/storyblok"
+import type { StoryblokStoryResponse } from "../../types"
 
 export async function handleStaticParams(
   getStoryblokData: (

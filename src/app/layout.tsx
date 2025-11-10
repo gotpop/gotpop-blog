@@ -2,8 +2,6 @@ import "./globals.css"
 
 import type { Metadata } from "next"
 import localFont from "next/font/local"
-import Script from "next/script"
-import StoryblokProvider from "@/providers/StoryblokProvider"
 
 const inter = localFont({
   src: "../../node_modules/@gotpop/system/src/fonts/inter/Inter.woff2",
@@ -33,15 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${monaspace.variable} antialiased`}>
-        <StoryblokProvider>{children}</StoryblokProvider>
-
-        {/* Storyblok Bridge for Visual Editor - Development only */}
-        {process.env.NODE_ENV === "development" && (
-          <Script
-            src="//app.storyblok.com/f/storyblok-v2-latest.js"
-            strategy="beforeInteractive"
-          />
-        )}
+        {children}
       </body>
     </html>
   )
