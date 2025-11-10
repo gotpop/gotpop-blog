@@ -2,7 +2,6 @@ import "./globals.css"
 
 import type { Metadata } from "next"
 import localFont from "next/font/local"
-import StoryblokProvider from "@/providers/StoryblokProvider"
 
 const inter = localFont({
   src: "../../node_modules/@gotpop/system/src/fonts/inter/Inter.woff2",
@@ -32,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${monaspace.variable} antialiased`}>
-        <StoryblokProvider>{children}</StoryblokProvider>
+        {children}
       </body>
     </html>
   )

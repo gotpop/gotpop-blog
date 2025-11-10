@@ -1,9 +1,9 @@
 // Storyblok API response types
 
-export interface StoryblokStoryResponse {
+export interface StoryblokStoryResponse<T = unknown> {
   full_slug: string
   slug: string
-  content: unknown
+  content: T
   // Add other fields as needed
 }
 

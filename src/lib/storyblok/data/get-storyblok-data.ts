@@ -1,5 +1,6 @@
 import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
 import { getErrorMessage, getStoryblokApi } from "@/lib/storyblok"
+import type { StoryblokStoryResponse } from "@/types/storyblok"
 import type {
   BaseConfig,
   DatasourceEntriesConfig,
@@ -26,6 +27,32 @@ import {
   handleTagsFromDatasource,
   handleTagsFromPosts,
 } from "./handlers"
+
+// Function overloads for better type inference
+export async function getStoryblokData<T = unknown>(
+  dataType: "storyByUuid",
+  config: StoryByUuidConfig
+): Promise<StoryblokDataResult<StoryblokStoryResponse<T>>>
+
+export async function getStoryblokData(
+  dataType: "story",
+  config: StoryConfig
+): Promise<StoryblokDataResult<StoryblokStoryResponse>>
+
+export async function getStoryblokData(
+  dataType: "stories",
+  config: StoriesConfig
+): Promise<StoryblokDataResult<StoryblokStoryResponse[]>>
+
+export async function getStoryblokData(
+  dataType: "storiesByUuids",
+  config: StoriesByUuidsConfig
+): Promise<StoryblokDataResult<StoryblokStoryResponse[]>>
+
+export async function getStoryblokData(
+  dataType: StoryblokDataType,
+  config?: StoryblokDataConfig
+): Promise<StoryblokDataResult>
 
 /**
  * Unified Storyblok data fetching function

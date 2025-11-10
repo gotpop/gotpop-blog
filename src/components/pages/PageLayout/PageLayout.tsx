@@ -1,6 +1,4 @@
 import { CustomElement, FooterDefault, HeaderDefault } from "@gotpop/system"
-import { getStoryblokData } from "@/lib/storyblok"
-import type { StoryblokStoryResponse } from "@/types/storyblok"
 import "./PageLayout.css"
 import type {
   FooterDefaultStoryblok,
@@ -10,33 +8,22 @@ import type {
 interface PageLayoutProps {
   children?: React.ReactNode
   className?: string
-  header?: string
-  footer?: string
+  header: HeaderDefaultStoryblok
+  footer: FooterDefaultStoryblok
 }
 
 export async function PageLayout({
   children,
-  footer = "",
-  header = "",
+  footer,
+  header,
 }: PageLayoutProps) {
-  const { data: headerData } = await getStoryblokData("storyByUuid", {
-    uuid: header,
-  })
-
-  const { data: footerData } = await getStoryblokData("storyByUuid", {
-    uuid: footer,
-  })
-
-  const { content: resolvedHeaderData } = headerData as StoryblokStoryResponse
-  const { content: resolvedFooterData } = footerData as StoryblokStoryResponse
-
   return (
     <CustomElement tag="page-layout">
-      <HeaderDefault blok={resolvedHeaderData as HeaderDefaultStoryblok} />
+      <HeaderDefault blok={header} />
       <main>
         <CustomElement tag="box-crosshatch">{children}</CustomElement>
       </main>
-      <FooterDefault data={resolvedFooterData as FooterDefaultStoryblok} />
+      <FooterDefault data={footer} />
     </CustomElement>
   )
 }

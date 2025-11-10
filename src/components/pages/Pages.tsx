@@ -1,7 +1,10 @@
 import { PostHeader } from "@gotpop/system"
 import type { ReactNode } from "react"
 import { PageLayout, StoryblokServerComponent } from "@/components"
+import { getStoryblokData } from "@/lib/storyblok"
 import type {
+  FooterDefaultStoryblok,
+  HeaderDefaultStoryblok,
   PageDefaultStoryblok,
   PageFilterStoryblok,
   PagePostStoryblok,
@@ -9,19 +12,38 @@ import type {
 } from "@/types/storyblok-components"
 
 interface BasePageProps {
-  Header?: string
-  Footer?: string
+  header?: string
+  footer?: string
   body?: StoryblokComponent[]
   children?: ReactNode
 }
 
-async function BasePage({ Header, Footer, body, children }: BasePageProps) {
+async function BasePage({
+  header = "",
+  footer = "",
+  body,
+  children,
+}: BasePageProps) {
+  const { data: headerData } = await getStoryblokData<HeaderDefaultStoryblok>(
+    "storyByUuid",
+    {
+      uuid: header,
+    }
+  )
+
+  const { data: footerData } = await getStoryblokData<FooterDefaultStoryblok>(
+    "storyByUuid",
+    {
+      uuid: footer,
+    }
+  )
+
   const blocks = body?.map((nestedBlok) => (
     <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
   ))
 
   return (
-    <PageLayout header={Header} footer={Footer}>
+    <PageLayout header={headerData.content} footer={footerData.content}>
       {children}
       {blocks}
     </PageLayout>
@@ -31,13 +53,13 @@ async function BasePage({ Header, Footer, body, children }: BasePageProps) {
 export async function PageDefault({ blok }: { blok: PageDefaultStoryblok }) {
   const { Header, Footer, body } = blok
 
-  return <BasePage Header={Header} Footer={Footer} body={body} />
+  return <BasePage header={Header} footer={Footer} body={body} />
 }
 
 export async function PageFilter({ blok }: { blok: PageFilterStoryblok }) {
   const { Header, Footer, body } = blok
 
-  return <BasePage Header={Header} Footer={Footer} body={body} />
+  return <BasePage header={Header} footer={Footer} body={body} />
 }
 
 export async function PagePost({ blok }: { blok: PagePostStoryblok }) {
@@ -49,18 +71,14 @@ export async function PagePost({ blok }: { blok: PagePostStoryblok }) {
     body,
     view_transition_name,
   } = blok
-  const blocks = body?.map((nestedBlok) => (
-    <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
-  ))
 
   return (
-    <PageLayout header={Header} footer={Footer}>
+    <BasePage header={Header} footer={Footer} body={body}>
       <PostHeader
         heading={Heading}
         publishedDate={published_date}
         style={{ viewTransitionName: view_transition_name }}
       />
-      <main-content>{blocks}</main-content>
-    </PageLayout>
+    </BasePage>
   )
 }
