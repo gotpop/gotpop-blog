@@ -1,4 +1,3 @@
-import "server-only"
 import type { TagDatasourceEntry } from "@gotpop/system"
 import { getStoryblokData } from "./data/storyblok-data"
 
