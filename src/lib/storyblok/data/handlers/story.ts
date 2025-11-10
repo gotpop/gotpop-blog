@@ -6,9 +6,11 @@ export async function handleStory(
   storyblokApi: StoryblokClient,
   config: StoryConfig
 ): Promise<StoryblokDataResult<StoryblokStoryResponse>> {
-  const { fullPath, version = "draft" } = config
+  const { fullPath, version = "published" } = config
+
   const response = await storyblokApi.get(`cdn/stories/${fullPath}`, {
     version,
   })
+
   return { data: response.data.story }
 }
