@@ -10,14 +10,14 @@ import type {
 interface PageLayoutProps {
   children?: React.ReactNode
   className?: string
-  header: string
-  footer: string
+  header?: string
+  footer?: string
 }
 
 export async function PageLayout({
   children,
-  footer,
-  header,
+  footer = "",
+  header = "",
 }: PageLayoutProps) {
   const { data: headerData } = await getStoryblokData("storyByUuid", {
     uuid: header,
