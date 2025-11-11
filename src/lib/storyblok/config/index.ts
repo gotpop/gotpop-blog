@@ -5,6 +5,11 @@
 
 export { CONTENT_PREFIX, validateContentPrefix } from "./content-prefix"
 export {
+  getContentTypeFullPath,
+  getContentTypePath,
+  isContentType,
+} from "./content-types"
+export {
   getContentPath,
   getStoryPath,
   normalizeStoryblokPath,
@@ -13,8 +18,3 @@ export {
   getStartsWithPrefix,
   shouldIncludeStory,
 } from "./static-generation"
-export {
-  getContentTypePath,
-  getContentTypeFullPath,
-  isContentType,
-} from "./content-types"
