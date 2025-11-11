@@ -18,9 +18,11 @@ import {
 } from "@gotpop/system"
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
 import { withCardsData } from "../components/withCardsData"
+import { withNavData } from "../components/withNavData"
 import { withPageData } from "../components/withPageData"
 
 const CardsWithData = withCardsData(Cards)
+const NavDefaultWithData = withNavData(NavDefault)
 const PageDefaultWithData = withPageData(PageDefault)
 const PageFilterWithData = withPageData(PageFilter)
 const PagePostWithData = withPageData(PagePost)
@@ -33,7 +35,7 @@ export const components = {
   hero_default: HeroDefault,
   link_list: LinkList,
   logo_default: LogoDefault,
-  nav_default: NavDefault,
+  nav_default: NavDefaultWithData,
   nav_item_default: NavItemDefault,
   page_default: PageDefaultWithData,
   page_filter: PageFilterWithData,

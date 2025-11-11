@@ -44,10 +44,6 @@ export function withPageData<T extends PageBlok>(
       fullPath: configPath,
     })
 
-    console.log(
-      "[withPageData] Fetched config data:",
-      JSON.stringify(configStory, null, 2)
-    )
     config = (configStory as { content: ConfigStoryblok }).content
 
     const header = (
