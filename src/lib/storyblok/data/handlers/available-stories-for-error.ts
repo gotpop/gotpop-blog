@@ -1,3 +1,4 @@
+import { getStartsWithPrefix } from "../../config"
 import type {
   StoryblokDataConfig,
   StoryblokDataResult,
@@ -13,7 +14,7 @@ export async function handleAvailableStoriesForError(
 ): Promise<StoryblokDataResult> {
   const { data: stories } = (await getStoryblokData("stories", {
     version: "draft",
-    starts_with: "blog/",
+    starts_with: getStartsWithPrefix(),
   })) as { data: StoryblokStoryResponse[] }
 
   return { data: stories.map((s: StoryblokStoryResponse) => s.full_slug) }

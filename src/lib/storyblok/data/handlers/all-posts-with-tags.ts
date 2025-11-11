@@ -1,4 +1,5 @@
 import type { PostProps } from "@gotpop/system"
+import { getStartsWithPrefix } from "../../config"
 import type {
   BaseConfig,
   StoryblokDataConfig,
@@ -16,7 +17,7 @@ export async function handleAllPostsWithTags(
   const { version = "published" } = config
 
   const { data: stories } = (await getStoryblokData("stories", {
-    starts_with: "blog/",
+    starts_with: getStartsWithPrefix(),
     version,
     excluding_fields: "body",
     filter_query: {

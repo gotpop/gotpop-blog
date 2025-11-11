@@ -1,3 +1,4 @@
+import { getStartsWithPrefix } from "../../config"
 import type {
   StoryblokDataConfig,
   StoryblokDataResult,
@@ -14,7 +15,7 @@ export async function handleStaticParams(
 ): Promise<StoryblokDataResult> {
   const { data: allStories } = (await getStoryblokData("stories", {
     version: "published",
-    starts_with: "blog/",
+    starts_with: getStartsWithPrefix(),
   })) as { data: StoryblokStoryResponse[] }
 
   // Generate params for regular stories only
