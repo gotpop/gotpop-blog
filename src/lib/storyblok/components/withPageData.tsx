@@ -1,4 +1,5 @@
 import type {
+  ConfigStoryblok,
   FooterDefaultStoryblok,
   HeaderDefaultStoryblok,
 } from "@gotpop/system"
@@ -37,8 +38,24 @@ export function withPageData<T extends PageBlok>(
       { uuid: Footer }
     )
 
+    let config: ConfigStoryblok | null = null
+    const configPath = `blog/config`
+    const { data: configStory } = await getStoryblokData("story", {
+      fullPath: configPath,
+    })
+
+    console.log(
+      "[withConfigData] Fetched config data:",
+      JSON.stringify(configStory, null, 2)
+    )
+    config = (configStory as { content: ConfigStoryblok }).content
+
     const blocks = blok.body?.map((nestedBlok) => (
-      <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+      <StoryblokServerComponent
+        blok={nestedBlok}
+        key={nestedBlok._uid}
+        config={config}
+      />
     ))
 
     return (
