@@ -37,9 +37,15 @@ export function withNavData<T extends NavBlok>(
         fullPath: configPath,
       })
 
-      console.log("[withNavData] Fetched config story:", JSON.stringify(configStory, null, 2))
+      console.log(
+        "[withNavData] Fetched config story:",
+        JSON.stringify(configStory, null, 2)
+      )
       config = (configStory as { content: ConfigStoryblok }).content
-      console.log("[withNavData] Extracted config content:", JSON.stringify(config, null, 2))
+      console.log(
+        "[withNavData] Extracted config content:",
+        JSON.stringify(config, null, 2)
+      )
     } catch (error) {
       console.error("[withNavData] Failed to fetch config:", error)
     }
@@ -52,7 +58,10 @@ export function withNavData<T extends NavBlok>(
       />
     ))
 
-    console.log("[withNavData] Passing config to NavDefault:", JSON.stringify(config, null, 2))
+    console.log(
+      "[withNavData] Passing config to NavDefault:",
+      JSON.stringify(config, null, 2)
+    )
     return <ViewComponent blok={blok} blocks={blocks} config={config} />
   }
 }
