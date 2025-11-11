@@ -1,6 +1,6 @@
-import type { CardsStoryblok } from "@gotpop/system"
 import {
   BaselineStatusBlock,
+  Card,
   Cards,
   FooterDefault,
   HeaderDefault,
@@ -17,19 +17,10 @@ import {
   SnippetBlock,
 } from "@gotpop/system"
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
-import {
-  getCachedPostsWithTags as fetchPosts,
-  getCachedTags as fetchTags,
-} from "@/utils/cached-data"
+import { withCardsData } from "../components/withCardsData"
 import { withPageData } from "../components/withPageData"
 
-const CardsWithData = async ({ blok }: { blok: CardsStoryblok }) =>
-  await Cards({
-    blok,
-    fetchPosts,
-    fetchTags,
-  })
-
+const CardsWithData = withCardsData(Cards)
 const PageDefaultWithData = withPageData(PageDefault)
 const PageFilterWithData = withPageData(PageFilter)
 const PagePostWithData = withPageData(PagePost)
@@ -37,6 +28,7 @@ const PagePostWithData = withPageData(PagePost)
 export const components = {
   baseline_status_block: BaselineStatusBlock,
   cards: CardsWithData,
+  card: Card,
   header_default: HeaderDefault,
   hero_default: HeroDefault,
   link_list: LinkList,
