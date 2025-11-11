@@ -16,8 +16,8 @@ interface PageBlok {
 }
 
 interface WithPageDataProps<T extends PageBlok> {
-  header: HeaderDefaultStoryblok
-  footer: FooterDefaultStoryblok
+  header: ReactNode
+  footer: ReactNode
   blok: T
   blocks: ReactNode
 }
@@ -45,11 +45,17 @@ export function withPageData<T extends PageBlok>(
     })
 
     console.log(
-      "[withConfigData] Fetched config data:",
+      "[withPageData] Fetched config data:",
       JSON.stringify(configStory, null, 2)
     )
     config = (configStory as { content: ConfigStoryblok }).content
 
+    const header = (
+      <StoryblokServerComponent blok={headerData.content} config={config} />
+    )
+    const footer = (
+      <StoryblokServerComponent blok={footerData.content} config={config} />
+    )
     const blocks = blok.body?.map((nestedBlok) => (
       <StoryblokServerComponent
         blok={nestedBlok}
@@ -62,8 +68,8 @@ export function withPageData<T extends PageBlok>(
       <ViewComponent
         blok={blok}
         blocks={blocks}
-        header={headerData.content}
-        footer={footerData.content}
+        header={header}
+        footer={footer}
       />
     )
   }
