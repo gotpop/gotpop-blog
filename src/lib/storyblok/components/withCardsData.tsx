@@ -40,7 +40,12 @@ export function withCardsData(
 
     // Render Card components directly (Card is not a Storyblok component)
     const blocks = posts.map((blok) => (
-      <Card key={blok.uuid} blok={blok} config={config} />
+      <Card
+        key={blok.uuid}
+        blok={blok}
+        config={config}
+        contentPrefix={CONTENT_PREFIX}
+      />
     ))
 
     return (
@@ -49,6 +54,8 @@ export function withCardsData(
         blocks={blocks}
         posts={posts}
         availableTags={availableTags}
+        config={config}
+        contentPrefix={CONTENT_PREFIX}
       />
     )
   }
