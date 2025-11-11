@@ -1,49 +1,40 @@
-import "server-only"
-
 import type { ConfigStoryblok } from "@gotpop/system"
-import { cache } from "react"
-import { CONTENT_PREFIX } from "../config"
+import type { HeaderDefaultStoryblok } from "@/types/storyblok-components"
 import { getStoryblokData } from "../data/get-storyblok-data"
 
-/**
- * Cached config fetcher - only fetches once per request
- * Automatically uses current content prefix (blog/config or portfolio/config)
- */
-export const getSiteConfig = cache(
-  async (): Promise<ConfigStoryblok | null> => {
-    try {
-      const configPath = `${CONTENT_PREFIX}/config`
+interface WithConfigDataProps<T extends object> {
+  blok: T
+  config: ConfigStoryblok | null
+  header: HeaderDefaultStoryblok
+}
 
-      const { data: configStory } = await getStoryblokData("story", {
-        fullPath: configPath,
-      })
-
-      return (configStory as { content: ConfigStoryblok }).content
-    } catch (error) {
-      console.error(
-        `[withConfigData] Failed to fetch config from ${CONTENT_PREFIX}/config:`,
-        error
-      )
-      return null
-    }
-  }
-)
-
-/**
- * HOC that adds site config to component props
- * Config is automatically fetched based on STORYBLOK_CONTENT_PREFIX env var
- *
- * Usage:
- * ```tsx
- * const MyComponentWithConfig = withConfigData(MyComponent)
- * ```
- */
-export function withConfigData<P extends object>(
-  Component: React.ComponentType<P & { config: ConfigStoryblok | null }>
+export function withConfigData<T extends object>(
+  ViewComponent: React.ComponentType<WithConfigDataProps<T>>
 ) {
-  return async (props: P) => {
-    const config = await getSiteConfig()
+  return async ({ blok }: { blok: T }) => {
+    let config: ConfigStoryblok | null = null
 
-    return <Component {...props} config={config} />
+    const configPath = `blog/config`
+    const { data: configStory } = await getStoryblokData("story", {
+      fullPath: configPath,
+    })
+
+    const { data: headerData } = await getStoryblokData<HeaderDefaultStoryblok>(
+      "storyByUuid",
+      { uuid: "37cd2b08-ec1f-452f-a282-a9ffb21fa6eb" }
+    )
+
+    // log headerData for debugging
+    console.log("Header Data:", JSON.stringify(headerData, null, 2))
+
+    console.log(
+      "[withConfigData] Fetched config data:",
+      JSON.stringify(configStory, null, 2)
+    )
+    config = (configStory as { content: ConfigStoryblok }).content
+
+    return (
+      <ViewComponent blok={blok} config={config} header={headerData.content} />
+    )
   }
 }

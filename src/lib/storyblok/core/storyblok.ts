@@ -20,6 +20,7 @@ import {
   getCachedPostsWithTags as fetchPosts,
   getCachedTags as fetchTags,
 } from "@/utils/cached-data"
+import { withConfigData } from "../components"
 import { withPageData } from "../components/withPageData"
 
 const CardsWithData = async ({ blok }: { blok: CardsStoryblok }) =>
@@ -33,6 +34,10 @@ const PageDefaultWithData = withPageData(PageDefault)
 const PageFilterWithData = withPageData(PageFilter)
 const PagePostWithData = withPageData(PagePost)
 
+// const NavItemDefaultWithConfig = withConfigData(NavItemDefault)
+const NavDefaultWithConfig = withConfigData(NavDefault)
+const NavDefaultWithConfigTest = withPageData(NavDefault)
+
 export const components = {
   baseline_status_block: BaselineStatusBlock,
   cards: CardsWithData,
@@ -40,8 +45,8 @@ export const components = {
   hero_default: HeroDefault,
   link_list: LinkList,
   logo_default: LogoDefault,
-  nav_default: NavDefault,
-  nav_item_default: NavItemDefault,
+  nav_default: NavDefaultWithConfigTest,
+  // nav_item_default: NavItemDefaultWithConfig,
   page_default: PageDefaultWithData,
   page_filter: PageFilterWithData,
   page_post: PagePostWithData,
