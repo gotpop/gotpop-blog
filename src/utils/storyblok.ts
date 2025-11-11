@@ -1,7 +1,7 @@
 import "server-only"
 
-import StgetStoryPathlib/storybllibnfig"/config
-import type tyMultilinkStorybloknkStorybloktypesfrom "@/ty-componentsryblok-components"
+import { getStoryPath } from "@/lib/storyblok/config"
+import type { MultilinkStoryblok } from "@/types/storyblok-components"
 
 /**
  * Converts a Storyblok multilink field to Next.js Link props
