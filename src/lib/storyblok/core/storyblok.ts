@@ -34,9 +34,8 @@ const PageDefaultWithData = withPageData(PageDefault)
 const PageFilterWithData = withPageData(PageFilter)
 const PagePostWithData = withPageData(PagePost)
 
-// const NavItemDefaultWithConfig = withConfigData(NavItemDefault)
+const NavItemDefaultWithConfig = withConfigData(NavItemDefault)
 const NavDefaultWithConfig = withConfigData(NavDefault)
-const NavDefaultWithConfigTest = withPageData(NavDefault)
 
 export const components = {
   baseline_status_block: BaselineStatusBlock,
@@ -45,8 +44,8 @@ export const components = {
   hero_default: HeroDefault,
   link_list: LinkList,
   logo_default: LogoDefault,
-  nav_default: NavDefaultWithConfigTest,
-  // nav_item_default: NavItemDefaultWithConfig,
+  nav_default: NavDefaultWithConfig,
+  nav_item_default: NavItemDefaultWithConfig,
   page_default: PageDefaultWithData,
   page_filter: PageFilterWithData,
   page_post: PagePostWithData,

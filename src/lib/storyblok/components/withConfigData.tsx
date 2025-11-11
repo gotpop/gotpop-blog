@@ -1,40 +1,45 @@
+import "server-only"
+
 import type { ConfigStoryblok } from "@gotpop/system"
-import type { HeaderDefaultStoryblok } from "@/types/storyblok-components"
 import { getStoryblokData } from "../data/get-storyblok-data"
 
-interface WithConfigDataProps<T extends object> {
-  blok: T
-  config: ConfigStoryblok | null
-  header: HeaderDefaultStoryblok
-}
-
+/**
+ * HOC that adds site config to component props
+ * Fetches config from blog/config for each component that uses it
+ *
+ * Usage:
+ * ```tsx
+ * const MyComponentWithConfig = withConfigData(MyComponent)
+ * ```
+ */
 export function withConfigData<T extends object>(
-  ViewComponent: React.ComponentType<WithConfigDataProps<T>>
+  Component: React.ComponentType<T & { config: ConfigStoryblok | null }>
 ) {
-  return async ({ blok }: { blok: T }) => {
+  return async (props: T) => {
+    console.log("[withConfigData] Starting to fetch config...")
+
     let config: ConfigStoryblok | null = null
 
-    const configPath = `blog/config`
-    const { data: configStory } = await getStoryblokData("story", {
-      fullPath: configPath,
-    })
+    try {
+      const configPath = `blog/config`
+      const { data: configStory } = await getStoryblokData("story", {
+        fullPath: configPath,
+      })
 
-    const { data: headerData } = await getStoryblokData<HeaderDefaultStoryblok>(
-      "storyByUuid",
-      { uuid: "37cd2b08-ec1f-452f-a282-a9ffb21fa6eb" }
-    )
-
-    // log headerData for debugging
-    console.log("Header Data:", JSON.stringify(headerData, null, 2))
+      console.log(
+        "[withConfigData] Fetched config data:",
+        JSON.stringify(configStory, null, 2)
+      )
+      config = (configStory as { content: ConfigStoryblok }).content
+    } catch (error) {
+      console.error("[withConfigData] Failed to fetch config:", error)
+    }
 
     console.log(
-      "[withConfigData] Fetched config data:",
-      JSON.stringify(configStory, null, 2)
+      "[withConfigData] Final config:",
+      JSON.stringify(config, null, 2)
     )
-    config = (configStory as { content: ConfigStoryblok }).content
 
-    return (
-      <ViewComponent blok={blok} config={config} header={headerData.content} />
-    )
+    return <Component {...props} config={config} />
   }
 }
