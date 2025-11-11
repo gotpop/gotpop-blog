@@ -11,9 +11,11 @@ import type { MultilinkStoryblok } from "@/types/storyblok-components"
  * getStoryblokLinkProps({ linktype: "story", story: { full_slug: "portfolio/work/post-1" } })
  * → { href: "/work/post-1" }
  */
-export function getStoryblokLinkProps(
-  link?: MultilinkStoryblok
-): { href: string; target?: string; rel?: string } {
+export function getStoryblokLinkProps(link?: MultilinkStoryblok): {
+  href: string
+  target?: string
+  rel?: string
+} {
   if (!link) {
     return { href: "#" }
   }
