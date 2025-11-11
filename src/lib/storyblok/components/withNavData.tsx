@@ -2,6 +2,7 @@ import "server-only"
 
 import type { ConfigStoryblok, NavDefaultStoryblok } from "@gotpop/system"
 import type { ReactNode } from "react"
+import { CONTENT_PREFIX } from "../config"
 import { getStoryblokData } from "../data/get-storyblok-data"
 import { StoryblokServerComponent } from "./StoryblokServerComponent"
 
@@ -23,7 +24,7 @@ export function withNavData<T extends NavBlok>(
     let config: ConfigStoryblok | null = null
 
     try {
-      const configPath = `blog/config`
+      const configPath = `${CONTENT_PREFIX}/config`
       const { data: configStory } = await getStoryblokData("story", {
         fullPath: configPath,
       })

@@ -8,6 +8,7 @@ import type {
 import { Card } from "@gotpop/system"
 import type { ReactNode } from "react"
 import type { ConfigStoryblok } from "@/types/storyblok-components"
+import { CONTENT_PREFIX } from "../config"
 import { getStoryblokData } from "../data/get-storyblok-data"
 
 interface WithCardsDataProps {
@@ -30,7 +31,7 @@ export function withCardsData(
     const availableTags = tagsResult.data as TagDatasourceEntry[]
 
     let config: ConfigStoryblok | null = null
-    const configPath = `blog/config`
+    const configPath = `${CONTENT_PREFIX}/config`
     const { data: configStory } = await getStoryblokData("story", {
       fullPath: configPath,
     })
@@ -38,8 +39,8 @@ export function withCardsData(
     config = (configStory as { content: ConfigStoryblok }).content
 
     // Render Card components directly (Card is not a Storyblok component)
-    const blocks = posts.map((post) => (
-      <Card key={post.uuid} post={post} config={config} />
+    const blocks = posts.map((blok) => (
+      <Card key={blok.uuid} blok={blok} config={config} />
     ))
 
     return (

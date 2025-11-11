@@ -2,6 +2,7 @@ import "server-only"
 
 import type { ConfigStoryblok, HeaderDefaultStoryblok } from "@gotpop/system"
 import type { ReactNode } from "react"
+import { CONTENT_PREFIX } from "../config"
 import { getStoryblokData } from "../data/get-storyblok-data"
 import { StoryblokServerComponent } from "./StoryblokServerComponent"
 
@@ -12,14 +13,6 @@ interface WithHeaderDataProps {
   config: ConfigStoryblok | null
 }
 
-/**
- * HOC that adds config data and renders header children as StoryblokServerComponents
- *
- * Usage:
- * ```tsx
- * const HeaderDefaultWithData = withHeaderData(HeaderDefault)
- * ```
- */
 export function withHeaderData(
   ViewComponent: React.ComponentType<WithHeaderDataProps>
 ) {
@@ -28,7 +21,7 @@ export function withHeaderData(
     let config: ConfigStoryblok | null = null
 
     try {
-      const configPath = `blog/config`
+      const configPath = `${CONTENT_PREFIX}/config`
       const { data: configStory } = await getStoryblokData("story", {
         fullPath: configPath,
       })
