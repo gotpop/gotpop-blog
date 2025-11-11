@@ -16,19 +16,10 @@ interface WithNavDataProps<T extends NavBlok> {
   config: ConfigStoryblok | null
 }
 
-/**
- * HOC that adds config data and renders nav items as StoryblokServerComponents
- *
- * Usage:
- * ```tsx
- * const NavDefaultWithData = withNavData(NavDefault)
- * ```
- */
 export function withNavData<T extends NavBlok>(
   ViewComponent: React.ComponentType<WithNavDataProps<T>>
 ) {
   return async ({ blok }: { blok: T }) => {
-    console.log("[withNavData] Starting to fetch config...")
     let config: ConfigStoryblok | null = null
 
     try {
@@ -37,15 +28,7 @@ export function withNavData<T extends NavBlok>(
         fullPath: configPath,
       })
 
-      console.log(
-        "[withNavData] Fetched config story:",
-        JSON.stringify(configStory, null, 2)
-      )
       config = (configStory as { content: ConfigStoryblok }).content
-      console.log(
-        "[withNavData] Extracted config content:",
-        JSON.stringify(config, null, 2)
-      )
     } catch (error) {
       console.error("[withNavData] Failed to fetch config:", error)
     }
@@ -58,10 +41,6 @@ export function withNavData<T extends NavBlok>(
       />
     ))
 
-    console.log(
-      "[withNavData] Passing config to NavDefault:",
-      JSON.stringify(config, null, 2)
-    )
     return <ViewComponent blok={blok} blocks={blocks} config={config} />
   }
 }

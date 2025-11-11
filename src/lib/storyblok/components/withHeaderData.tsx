@@ -32,16 +32,7 @@ export function withHeaderData(
       const { data: configStory } = await getStoryblokData("story", {
         fullPath: configPath,
       })
-
-      console.log(
-        "[withHeaderData] Fetched config story:",
-        JSON.stringify(configStory, null, 2)
-      )
       config = (configStory as { content: ConfigStoryblok }).content
-      console.log(
-        "[withHeaderData] Extracted config content:",
-        JSON.stringify(config, null, 2)
-      )
     } catch (error) {
       console.error("[withHeaderData] Failed to fetch config:", error)
     }
@@ -54,10 +45,6 @@ export function withHeaderData(
       <StoryblokServerComponent blok={blok.logo[0]} config={config} />
     ) : null
 
-    console.log(
-      "[withHeaderData] Passing config to HeaderDefault:",
-      JSON.stringify(config, null, 2)
-    )
     return <ViewComponent blok={blok} nav={nav} logo={logo} config={config} />
   }
 }
