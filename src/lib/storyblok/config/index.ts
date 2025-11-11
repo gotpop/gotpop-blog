@@ -13,3 +13,8 @@ export {
   getStartsWithPrefix,
   shouldIncludeStory,
 } from "./static-generation"
+export {
+  getContentTypePath,
+  getContentTypeFullPath,
+  isContentType,
+} from "./content-types"

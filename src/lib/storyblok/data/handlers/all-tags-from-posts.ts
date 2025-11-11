@@ -1,5 +1,5 @@
 import type { PostProps } from "@gotpop/system"
-import { CONTENT_PREFIX } from "../../config"
+import { getContentTypeFullPath } from "../../config"
 import type {
   BaseConfig,
   StoryblokDataConfig,
@@ -17,7 +17,7 @@ export async function handleAllTagsFromPosts(
   const { version = "published" } = config
 
   const { data: stories } = (await getStoryblokData("stories", {
-    starts_with: `${CONTENT_PREFIX}/posts/`,
+    starts_with: getContentTypeFullPath("posts"),
     version,
     excluding_fields: "body",
   })) as { data: PostProps[] }
