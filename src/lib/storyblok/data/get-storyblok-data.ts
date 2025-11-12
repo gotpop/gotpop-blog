@@ -6,7 +6,8 @@ import type {
   TagDatasourceEntry,
 } from "@gotpop/system"
 import { CONTENT_PREFIX } from "../config"
-import { getStoryblokApi } from "../core"
+import { getErrorMessage } from "../error-handling"
+import { getStoryblokApi } from "../storyblok"
 import type {
   BaseConfig,
   DatasourceEntriesConfig,
@@ -19,8 +20,7 @@ import type {
   StoryblokDataType,
   StoryblokStoryResponse,
   StoryConfig,
-} from "../core/types"
-import { getErrorMessage } from "../error-handling"
+} from "../types"
 import {
   handleAllPostsWithTags,
   handleAllTagsFromPosts,

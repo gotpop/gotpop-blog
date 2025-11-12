@@ -5,7 +5,7 @@ import type {
   StoryblokDataResult,
   StoryblokStoryResponse,
   StoryConfig,
-} from "../../core/types"
+} from "../../types"
 
 /** Fetches a single story by its full path */
 export async function handleStory(

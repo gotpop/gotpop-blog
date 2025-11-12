@@ -5,7 +5,7 @@ import type {
   StoryblokDataResult,
   StoryblokDataType,
   StoryblokStoryResponse,
-} from "../../core/types"
+} from "../../types"
 import { getConfig } from "../get-storyblok-data"
 
 /** Generates static params for pre-rendering pages */

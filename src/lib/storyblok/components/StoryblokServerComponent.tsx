@@ -2,7 +2,7 @@ import "server-only"
 
 import type { ConfigStoryblok } from "@gotpop/system"
 import type { SbBlokData } from "@storyblok/react/rsc"
-import { components } from "../core/storyblok"
+import { components } from "../storyblok"
 
 interface StoryblokServerComponentProps {
   blok: SbBlokData | null | undefined

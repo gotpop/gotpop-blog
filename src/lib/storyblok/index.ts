@@ -1,6 +1,5 @@
 export * from "./components"
 export * from "./config"
-export * from "./core"
 export * from "./data"
 export * from "./error-handling"
 export * from "./routing"
