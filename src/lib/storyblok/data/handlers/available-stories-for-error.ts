@@ -3,7 +3,8 @@ import type {
   StoryblokDataResult,
   StoryblokDataType,
   StoryblokStoryResponse,
-} from "../../types"
+} from "../../core/types"
+import { getConfig } from "../get-storyblok-data"
 
 export async function handleAvailableStoriesForError(
   getStoryblokData: (
@@ -11,9 +12,13 @@ export async function handleAvailableStoriesForError(
     config?: StoryblokDataConfig
   ) => Promise<StoryblokDataResult>
 ): Promise<StoryblokDataResult> {
+  // Fetch Storyblok config to get root_name_space
+  const storyblokConfig = await getConfig()
+  const prefix = storyblokConfig?.root_name_space || "blog"
+
   const { data: stories } = (await getStoryblokData("stories", {
     version: "draft",
-    starts_with: "blog/",
+    starts_with: `${prefix}/`,
   })) as { data: StoryblokStoryResponse[] }
 
   return { data: stories.map((s: StoryblokStoryResponse) => s.full_slug) }

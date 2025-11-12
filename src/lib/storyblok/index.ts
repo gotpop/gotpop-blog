@@ -1,10 +1,24 @@
+export * from "./components"
+// Export config utilities (require config parameter)
+export {
+  CONTENT_PREFIX,
+  getContentPath,
+  getContentTypeFullPath,
+  getContentTypePath,
+  getStartsWithPrefix,
+  getStoryPath,
+  isContentType,
+  shouldIncludeStory,
+} from "./config"
+export * from "./core"
 export * from "./data"
 export * from "./error-handling"
-export * from "./path-utils"
-export * from "./StoryblokServerComponent"
-export * from "./should-include-story"
-export * from "./static-params"
-export * from "./storyblok"
+// Export routing utilities (bootstrap versions using CONTENT_PREFIX)
+export {
+  determinePageType,
+  extractTagSlug,
+  generateAllStaticParams,
+  handleStoryblokPathRedirect,
+  normalizeStoryblokPath,
+} from "./routing"
 export * from "./tags"
-export * from "./types"
-export * from "./withPageData"

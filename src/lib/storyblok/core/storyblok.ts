@@ -1,7 +1,8 @@
-import type { CardsStoryblok } from "@gotpop/system"
 import {
   BaselineStatusBlock,
+  Card,
   Cards,
+  FooterDefault,
   HeaderDefault,
   HeroDefault,
   LinkList,
@@ -16,19 +17,14 @@ import {
   SnippetBlock,
 } from "@gotpop/system"
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
-import {
-  getCachedPostsWithTags as fetchPosts,
-  getCachedTags as fetchTags,
-} from "@/utils/cached-data"
-import { withPageData } from "./withPageData"
+import { withCardsData } from "../components/withCardsData"
+import { withHeaderData } from "../components/withHeaderData"
+import { withNavData } from "../components/withNavData"
+import { withPageData } from "../components/withPageData"
 
-const CardsWithData = async ({ blok }: { blok: CardsStoryblok }) =>
-  await Cards({
-    blok,
-    fetchPosts,
-    fetchTags,
-  })
-
+const CardsWithData = withCardsData(Cards)
+const HeaderDefaultWithData = withHeaderData(HeaderDefault)
+const NavDefaultWithData = withNavData(NavDefault)
 const PageDefaultWithData = withPageData(PageDefault)
 const PageFilterWithData = withPageData(PageFilter)
 const PagePostWithData = withPageData(PagePost)
@@ -36,11 +32,12 @@ const PagePostWithData = withPageData(PagePost)
 export const components = {
   baseline_status_block: BaselineStatusBlock,
   cards: CardsWithData,
-  header_default: HeaderDefault,
+  card: Card,
+  header_default: HeaderDefaultWithData,
   hero_default: HeroDefault,
   link_list: LinkList,
   logo_default: LogoDefault,
-  nav_default: NavDefault,
+  nav_default: NavDefaultWithData,
   nav_item_default: NavItemDefault,
   page_default: PageDefaultWithData,
   page_filter: PageFilterWithData,
@@ -48,6 +45,7 @@ export const components = {
   rich_text_block: RichTextBlock,
   rich_text_code_block: RichTextCodeBlock,
   snippet_block: SnippetBlock,
+  footer_default: FooterDefault,
 }
 
 export const getStoryblokApi = storyblokInit({

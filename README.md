@@ -3,7 +3,7 @@
 ![Deploy Status](https://github.com/gotpop/gotpop-blog/actions/workflows/deploy.yml/badge.svg)
 [![Production](https://img.shields.io/badge/production-gotpop.io-blue)](https://gotpop.io)
 
-Personal blog built with Next.js and Storyblok CMS, deployed to AWS EC2.
+Personal blog built with Next.js & Storyblok CMS, deployed to AWS EC2.
 
 ## Tech Stack
 

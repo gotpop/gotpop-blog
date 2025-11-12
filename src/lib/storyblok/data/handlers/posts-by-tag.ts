@@ -1,10 +1,12 @@
 import type { PostProps } from "@gotpop/system"
+import { getContentTypeFullPath } from "../../config"
 import type {
   PostsByTagConfig,
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
-} from "../../types"
+} from "../../core/types"
+import { getConfig } from "../get-storyblok-data"
 
 export async function handlePostsByTag(
   getStoryblokData: (
@@ -15,8 +17,14 @@ export async function handlePostsByTag(
 ): Promise<StoryblokDataResult> {
   const { tagName, sortBy = "date-desc", version = "published" } = config
 
+  // Fetch Storyblok config to get root_name_space
+  const storyblokConfig = await getConfig()
+  if (!storyblokConfig) {
+    return { data: [], error: "Config not found" }
+  }
+
   const { data: stories } = (await getStoryblokData("stories", {
-    starts_with: "blog/posts/",
+    starts_with: getContentTypeFullPath("posts", storyblokConfig),
     version,
     excluding_fields: "body",
   })) as { data: PostProps[] }

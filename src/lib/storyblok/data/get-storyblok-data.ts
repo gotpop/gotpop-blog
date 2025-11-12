@@ -1,5 +1,10 @@
-import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
-import { getErrorMessage, getStoryblokApi } from "@/lib/storyblok"
+import type {
+  ConfigStoryblok,
+  PostProps,
+  TagDatasourceEntry,
+} from "@gotpop/system"
+import { CONTENT_PREFIX } from "../config"
+import { getStoryblokApi } from "../core"
 import type {
   BaseConfig,
   DatasourceEntriesConfig,
@@ -12,7 +17,8 @@ import type {
   StoryblokDataType,
   StoryblokStoryResponse,
   StoryConfig,
-} from "../types"
+} from "../core/types"
+import { getErrorMessage } from "../error-handling"
 import {
   handleAllPostsWithTags,
   handleAllTagsFromPosts,
@@ -20,13 +26,13 @@ import {
   handleDatasourceEntries,
   handlePostsByTag,
   handleStaticParams,
-  handleStories,
   handleStoriesByUuids,
-  handleStory,
   handleStoryByUuid,
   handleTagsFromDatasource,
   handleTagsFromPosts,
 } from "./handlers"
+import { handleStories } from "./handlers/get-stories"
+import { handleStory } from "./handlers/get-story"
 
 // Function overloads for better type inference
 export async function getStoryblokData<T = unknown>(
@@ -150,4 +156,22 @@ export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
 export async function getAllPostsWithTags(): Promise<PostProps[]> {
   const { data } = await getStoryblokData("allPostsWithTags")
   return data as PostProps[]
+}
+
+/**
+ * Fetches config story and returns just the content
+ * Uses CONTENT_PREFIX to automatically construct the config path
+ * @returns The config content object or null if not found
+ */
+export async function getConfig(): Promise<ConfigStoryblok | null> {
+  const configPath = `${CONTENT_PREFIX}/config`
+  const { data, error } = await getStoryblokData("story", {
+    fullPath: configPath,
+  })
+
+  if (error || !data) {
+    return null
+  }
+
+  return (data as { content: ConfigStoryblok }).content
 }

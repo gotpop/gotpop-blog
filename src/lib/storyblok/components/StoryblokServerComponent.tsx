@@ -1,12 +1,15 @@
+import type { ConfigStoryblok } from "@gotpop/system"
 import type { SbBlokData } from "@storyblok/react/rsc"
-import { components } from "./storyblok"
+import { components } from "../core/storyblok"
 
 interface StoryblokServerComponentProps {
   blok: SbBlokData | null | undefined
+  config: ConfigStoryblok | null
 }
 
 export function StoryblokServerComponent({
   blok,
+  config,
 }: StoryblokServerComponentProps): React.JSX.Element | null {
   if (!blok) {
     return null
@@ -26,5 +29,5 @@ export function StoryblokServerComponent({
 
   // TypeScript can't infer the correct blok type for each component
   // Safe to cast since we're checking the component exists
-  return <Component blok={blok as never} />
+  return <Component blok={blok as never} config={config} />
 }

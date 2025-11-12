@@ -1,13 +1,14 @@
 import { StoryNotFound } from "@gotpop/system"
 import { StoryblokStory } from "@storyblok/react/rsc"
-import { getStoryblokData } from "@/lib/storyblok/data"
 import {
+  generateAllStaticParams,
   getAvailableStoriesForError,
+  getConfig,
   getErrorMessage,
-} from "@/lib/storyblok/error-handling"
-import { normalizeStoryblokPath } from "@/lib/storyblok/path-utils"
-import { generateAllStaticParams } from "@/lib/storyblok/static-params"
-import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
+  getStoryblokData,
+  handleStoryblokPathRedirect,
+} from "@/lib/storyblok"
+import { normalizeStoryblokPath } from "@/lib/storyblok/config"
 
 export const dynamicParams = true
 
@@ -23,10 +24,16 @@ interface PageParams {
 
 export default async function Page({ params }: PageParams) {
   const { slug } = await params
+  const config = await getConfig()
 
-  handleStoryblokPathRedirect(slug)
+  handleStoryblokPathRedirect(slug, config)
 
-  const fullPath = normalizeStoryblokPath(slug)
+  if (!config) {
+    throw new Error("Config not found")
+  }
+
+  // Now use config for all path operations
+  const fullPath = normalizeStoryblokPath(slug, config)
 
   const { data: story, error } = await getStoryblokData("story", { fullPath })
 

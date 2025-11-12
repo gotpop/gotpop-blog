@@ -2,9 +2,9 @@ import type {
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
-} from "@/lib/storyblok"
-import { getStoryPath, shouldIncludeStory } from "@/lib/storyblok"
-import type { StoryblokStoryResponse } from "../../types"
+  StoryblokStoryResponse,
+} from "../../core/types"
+import { getConfig } from "../get-storyblok-data"
 
 export async function handleStaticParams(
   getStoryblokData: (
@@ -12,19 +12,43 @@ export async function handleStaticParams(
     config?: StoryblokDataConfig
   ) => Promise<StoryblokDataResult>
 ): Promise<StoryblokDataResult> {
+  // Fetch Storyblok config to get root_name_space
+  const config = await getConfig()
+
+  if (!config) {
+    throw new Error("Config is required for static params generation")
+  }
+
+  const prefix = config.root_name_space || "blog"
+
   const { data: allStories } = (await getStoryblokData("stories", {
     version: "published",
-    starts_with: "blog/",
+    starts_with: `${prefix}/`,
   })) as { data: StoryblokStoryResponse[] }
 
+  // Excluded stories
+  const excluded = ["header", "footer", "site-config", "config", "global"]
+
   // Generate params for regular stories only
-  // Tag pages are rendered dynamically on-demand (dynamicParams = true)
   const storyParams = allStories
-    .filter((story: StoryblokStoryResponse) =>
-      shouldIncludeStory(story.full_slug)
-    )
+    .filter((story: StoryblokStoryResponse) => {
+      if (excluded.includes(story.full_slug)) return false
+      for (const ex of excluded) {
+        if (story.full_slug.includes(`/${ex}`)) return false
+      }
+      return story.full_slug.startsWith(`${prefix}/`)
+    })
     .map((story: StoryblokStoryResponse) => {
-      const path = getStoryPath(story.full_slug)
+      // Remove prefix from path
+      let path = story.full_slug
+      if (path.startsWith(`${prefix}/`)) {
+        path = path.slice(prefix.length + 1)
+      }
+      if (path === "home" || path === "") {
+        path = "/"
+      } else {
+        path = path.startsWith("/") ? path : `/${path}`
+      }
       const slug = path === "/" ? [] : path.slice(1).split("/")
       return { slug }
     })
