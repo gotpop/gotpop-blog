@@ -1,11 +1,11 @@
 import type { PostProps } from "@gotpop/system"
-import { getStartsWithPrefix } from "../../config"
 import type {
   BaseConfig,
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
 } from "../../core/types"
+import { getConfig } from "../get-storyblok-data"
 
 export async function handleAllPostsWithTags(
   getStoryblokData: (
@@ -16,8 +16,12 @@ export async function handleAllPostsWithTags(
 ): Promise<StoryblokDataResult> {
   const { version = "published" } = config
 
+  // Fetch Storyblok config to get root_name_space
+  const storyblokConfig = await getConfig()
+  const prefix = storyblokConfig?.root_name_space || "blog"
+
   const { data: stories } = (await getStoryblokData("stories", {
-    starts_with: getStartsWithPrefix(),
+    starts_with: `${prefix}/`,
     version,
     excluding_fields: "body",
     filter_query: {

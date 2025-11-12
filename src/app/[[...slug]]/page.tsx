@@ -3,11 +3,12 @@ import { StoryblokStory } from "@storyblok/react/rsc"
 import {
   generateAllStaticParams,
   getAvailableStoriesForError,
+  getConfig,
   getErrorMessage,
   getStoryblokData,
   handleStoryblokPathRedirect,
-  normalizeStoryblokPath,
 } from "@/lib/storyblok"
+import { normalizeStoryblokPath } from "@/lib/storyblok/config"
 
 export const dynamicParams = true
 
@@ -23,10 +24,16 @@ interface PageParams {
 
 export default async function Page({ params }: PageParams) {
   const { slug } = await params
+  const config = await getConfig()
 
   handleStoryblokPathRedirect(slug)
 
-  const fullPath = normalizeStoryblokPath(slug)
+  if (!config) {
+    throw new Error("Config not found")
+  }
+
+  // Now use config for all path operations
+  const fullPath = normalizeStoryblokPath(slug, config)
 
   const { data: story, error } = await getStoryblokData("story", { fullPath })
 

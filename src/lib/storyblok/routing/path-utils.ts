@@ -1,12 +1,8 @@
 /**
- * Re-export path utilities from config
- * These are now centralized in src/lib/storyblok/config/
+ * Re-export path utilities from config folder
+ * All path utilities now require config parameter
  */
-export {
-  getContentPath,
-  getStoryPath,
-  normalizeStoryblokPath,
-} from "../config"
+export { getContentPath, getStoryPath, normalizeStoryblokPath } from "../config"
 
 /**
  * Determines the type of page based on the slug array
