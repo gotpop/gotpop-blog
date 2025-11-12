@@ -27,26 +27,31 @@ export function deduplicateTags(
   })
 }
 
+/** Checks if a tag slug is valid by comparing against hardcoded tags and datasource */
 export async function isValidTag(tagSlug: string): Promise<boolean> {
   const isHardcodedTag = HARDCODED_TAGS.some(
     (tag) => normalizeTagSlug(tag.value) === tagSlug
   )
+
   if (isHardcodedTag) {
     return true
   }
 
   const { data: tags } = await getStoryblokData("tagsFromDatasource")
   const tagsList = tags as TagDatasourceEntry[]
+
   return tagsList.some(
     (tag: TagDatasourceEntry) => normalizeTagSlug(tag.value) === tagSlug
   )
 }
 
+/** Retrieves the original tag value from a URL slug */
 export async function getTagFromSlug(tagSlug: string): Promise<string | null> {
   const { data: tags } = await getStoryblokData("tagsFromDatasource")
   const tagsList = tags as TagDatasourceEntry[]
   const tag = tagsList.find(
     (tag: TagDatasourceEntry) => normalizeTagSlug(tag.value) === tagSlug
   )
+
   return tag ? tag.value : null
 }
