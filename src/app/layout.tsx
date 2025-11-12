@@ -1,20 +1,7 @@
-// import "./globals.css"
 import "@gotpop/system/styles"
+import { inter, monaspace } from "@gotpop/system/fonts"
 
 import type { Metadata } from "next"
-import localFont from "next/font/local"
-
-const inter = localFont({
-  src: "../../node_modules/@gotpop/system/src/fonts/inter/Inter.woff2",
-  variable: "--font-inter",
-  display: "swap",
-})
-
-const monaspace = localFont({
-  src: "../../node_modules/@gotpop/system/src/fonts/monaspace/Monaspace.woff2",
-  variable: "--font-monaspace",
-  display: "swap",
-})
 
 export const metadata: Metadata = {
   title: "Blog - gotpop.io",
