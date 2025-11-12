@@ -8,7 +8,8 @@ import type {
 } from "@gotpop/system"
 import { Card } from "@gotpop/system"
 import type { ReactNode } from "react"
-import { getConfig, getStoryblokData } from "../data/get-storyblok-data"
+import { getConfig } from "../config/runtime-config"
+import { getStoryblokData } from "../data/get-storyblok-data"
 
 interface WithCardsDataProps {
   blok: CardsStoryblok

@@ -2,7 +2,7 @@ import "server-only"
 
 import type { ConfigStoryblok, NavDefaultStoryblok } from "@gotpop/system"
 import type { ReactNode } from "react"
-import { getConfig } from "../data/get-storyblok-data"
+import { getConfig } from "../config/runtime-config"
 import { StoryblokServerComponent } from "./StoryblokServerComponent"
 
 interface NavBlok {

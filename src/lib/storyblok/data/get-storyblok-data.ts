@@ -1,11 +1,6 @@
 import "server-only"
 
-import type {
-  ConfigStoryblok,
-  PostProps,
-  TagDatasourceEntry,
-} from "@gotpop/system"
-import { CONTENT_PREFIX } from "../config"
+import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
 import { getStoryblokApi } from "../storyblok"
 import type {
   BaseConfig,
@@ -137,28 +132,14 @@ export async function getStoryblokData(
   }
 }
 
-/** Fetches all tags from the Storyblok tags datasource, falls back to extracting tags from posts if datasource is not available */
-export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
-  const { data } = await getStoryblokData("tagsFromDatasource")
-  return data as TagDatasourceEntry[]
-}
-
 /** Gets all posts from the blog with their tags, only returns actual blog posts (page_post component) that have tags */
 export async function getAllPostsWithTags(): Promise<PostProps[]> {
   const { data } = await getStoryblokData("allPostsWithTags")
   return data as PostProps[]
 }
 
-/** Fetches config story and returns just the content using CONTENT_PREFIX to automatically construct the config path */
-export async function getConfig(): Promise<ConfigStoryblok | null> {
-  const configPath = `${CONTENT_PREFIX}/config`
-  const { data, error } = await getStoryblokData("story", {
-    fullPath: configPath,
-  })
-
-  if (error || !data) {
-    return null
-  }
-
-  return (data as { content: ConfigStoryblok }).content
+/** Fetches all tags from the Storyblok tags datasource, falls back to extracting tags from posts if datasource is not available */
+export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
+  const { data } = await getStoryblokData("tagsFromDatasource")
+  return data as TagDatasourceEntry[]
 }
