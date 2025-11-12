@@ -23,6 +23,7 @@ export function deduplicateTags(
       return false
     }
     seen.add(normalizedValue)
+
     return true
   })
 }
