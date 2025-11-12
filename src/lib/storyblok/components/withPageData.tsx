@@ -1,6 +1,7 @@
 import "server-only"
 
 import type {
+  ConfigStoryblok,
   FooterDefaultStoryblok,
   HeaderDefaultStoryblok,
 } from "@gotpop/system"
@@ -27,11 +28,17 @@ interface WithPageDataProps<T extends PageBlok> {
 export function withPageData<T extends PageBlok>(
   ViewComponent: React.ComponentType<WithPageDataProps<T>>
 ) {
-  return async ({ blok }: { blok: T }) => {
+  return async ({
+    blok,
+    config: providedConfig,
+  }: {
+    blok: T
+    config?: ConfigStoryblok | null
+  }) => {
     const { Header = "", Footer = "" } = blok
 
-    // Fetch config once using cached runtime config
-    const config = await getConfig()
+    // Use provided config or fetch from cache
+    const config = providedConfig ?? (await getConfig())
 
     const { data: headerData } = await getStoryblokData<HeaderDefaultStoryblok>(
       "storyByUuid",

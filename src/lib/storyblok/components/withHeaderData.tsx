@@ -15,8 +15,15 @@ interface WithHeaderDataProps {
 export function withHeaderData(
   ViewComponent: React.ComponentType<WithHeaderDataProps>
 ) {
-  return async ({ blok }: { blok: HeaderDefaultStoryblok }) => {
-    const config = await getConfig()
+  return async ({
+    blok,
+    config: providedConfig,
+  }: {
+    blok: HeaderDefaultStoryblok
+    config?: ConfigStoryblok | null
+  }) => {
+    // Use provided config or fetch from cache
+    const config = providedConfig ?? (await getConfig())
 
     const nav = blok.nav?.[0] ? (
       <StoryblokServerComponent blok={blok.nav[0]} config={config} />

@@ -19,8 +19,15 @@ interface WithNavDataProps<T extends NavBlok> {
 export function withNavData<T extends NavBlok>(
   ViewComponent: React.ComponentType<WithNavDataProps<T>>
 ) {
-  return async ({ blok }: { blok: T }) => {
-    const config = await getConfig()
+  return async ({
+    blok,
+    config: providedConfig,
+  }: {
+    blok: T
+    config?: ConfigStoryblok | null
+  }) => {
+    // Use provided config or fetch from cache
+    const config = providedConfig ?? (await getConfig())
 
     const blocks = blok.nav_items?.map((nestedBlok) => (
       <StoryblokServerComponent
