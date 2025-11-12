@@ -1,12 +1,12 @@
 import "server-only"
 
 import type { TagDatasourceEntry } from "@gotpop/system"
-import { deduplicateTags, HARDCODED_TAGS } from "../../tags"
 import type {
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
 } from "../../types"
+import { deduplicateTags, HARDCODED_TAGS } from "../../utils/tags"
 
 /** Fetches tags from Storyblok datasource with fallback to posts */
 export async function handleTagsFromDatasource(

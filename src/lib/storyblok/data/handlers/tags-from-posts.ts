@@ -1,12 +1,12 @@
 import "server-only"
 
 import type { PostProps } from "@gotpop/system"
-import { deduplicateTags, HARDCODED_TAGS } from "../../tags"
 import type {
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
 } from "../../types"
+import { deduplicateTags, HARDCODED_TAGS } from "../../utils/tags"
 
 /** Extracts and deduplicates tags from all blog posts */
 export async function handleTagsFromPosts(

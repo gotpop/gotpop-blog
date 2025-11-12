@@ -1,7 +1,7 @@
 import "server-only"
 
 import type { TagDatasourceEntry } from "@gotpop/system"
-import { getStoryblokData } from "./data/get-storyblok-data"
+import { getStoryblokData } from "../data/get-storyblok-data"
 
 /** Hardcoded tags that are not included in the API call but should be available for filtering */
 export const HARDCODED_TAGS: TagDatasourceEntry[] = []
