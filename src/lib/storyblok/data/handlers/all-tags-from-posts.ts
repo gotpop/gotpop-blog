@@ -2,13 +2,13 @@ import "server-only"
 
 import type { PostProps } from "@gotpop/system"
 import { getContentTypeFullPath } from "../../config"
+import { getConfig } from "../../config/runtime-config"
 import type {
   BaseConfig,
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
 } from "../../types"
-import { getConfig } from "../get-storyblok-data"
 
 type GetStoryblokDataFn = (
   dataType: StoryblokDataType,

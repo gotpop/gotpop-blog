@@ -2,13 +2,13 @@ import "server-only"
 
 import type { PostProps } from "@gotpop/system"
 import { getContentTypeFullPath } from "../../config"
+import { getConfig } from "../../config/runtime-config"
 import type {
   PostsByTagConfig,
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
 } from "../../types"
-import { getConfig } from "../get-storyblok-data"
 
 /** Fetches and sorts posts filtered by a specific tag */
 export async function handlePostsByTag(

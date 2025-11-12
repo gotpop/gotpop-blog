@@ -1,12 +1,12 @@
 import "server-only"
 
+import { getConfig } from "../../config/runtime-config"
 import type {
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
   StoryblokStoryResponse,
 } from "../../types"
-import { getConfig } from "../get-storyblok-data"
 
 /** Generates static params for pre-rendering pages */
 export async function handleStaticParams(

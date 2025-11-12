@@ -1,12 +1,12 @@
 import "server-only"
 
+import { getConfig } from "../../config/runtime-config"
 import type {
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
   StoryblokStoryResponse,
 } from "../../types"
-import { getConfig } from "../get-storyblok-data"
 
 type GetStoryblokDataFn = (
   dataType: StoryblokDataType,

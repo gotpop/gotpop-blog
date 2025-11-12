@@ -1,12 +1,12 @@
 import "server-only"
 
 import type {
-  ConfigStoryblok,
   FooterDefaultStoryblok,
   HeaderDefaultStoryblok,
 } from "@gotpop/system"
 import type { SbBlokData } from "@storyblok/react/rsc"
 import type { ReactNode } from "react"
+import { getConfig } from "../config/runtime-config"
 import { getStoryblokData } from "../data/get-storyblok-data"
 import { StoryblokServerComponent } from "./StoryblokServerComponent"
 
@@ -30,6 +30,9 @@ export function withPageData<T extends PageBlok>(
   return async ({ blok }: { blok: T }) => {
     const { Header = "", Footer = "" } = blok
 
+    // Fetch config once using cached runtime config
+    const config = await getConfig()
+
     const { data: headerData } = await getStoryblokData<HeaderDefaultStoryblok>(
       "storyByUuid",
       { uuid: Header }
@@ -39,14 +42,6 @@ export function withPageData<T extends PageBlok>(
       "storyByUuid",
       { uuid: Footer }
     )
-
-    let config: ConfigStoryblok | null = null
-    const configPath = `blog/config`
-    const { data: configStory } = await getStoryblokData("story", {
-      fullPath: configPath,
-    })
-
-    config = (configStory as { content: ConfigStoryblok }).content
 
     const header = (
       <StoryblokServerComponent blok={headerData.content} config={config} />
