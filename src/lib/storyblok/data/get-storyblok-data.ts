@@ -117,7 +117,7 @@ export async function getStoryblokData(
   } catch (error) {
     const errorMessage = getErrorMessage(error)
 
-    // For datasource errors, provide a more helpful message
+    /** For datasource errors, provide a more helpful message */
     if (
       dataType === "datasourceEntries" &&
       errorMessage.includes("could not be found")

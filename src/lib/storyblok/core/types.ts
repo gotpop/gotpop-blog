@@ -53,7 +53,7 @@ export interface PostsByTagConfig extends BaseConfig {
   sortBy?: "date-desc" | "date-asc" | "title-asc" | "title-desc"
 }
 
-// Union type for all possible configurations
+/** Union type for all possible configurations */
 export type StoryblokDataConfig =
   | StoryConfig
   | StoriesConfig
@@ -67,7 +67,7 @@ export interface StoryblokStoryResponse<T = unknown> {
   full_slug: string
   slug: string
   content: T
-  // Add other fields as needed
+  /** Add other fields as needed */
 }
 
 export interface StoryblokStoriesResponse {

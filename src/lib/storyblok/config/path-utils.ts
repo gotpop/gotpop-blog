@@ -10,15 +10,15 @@ function getPrefix(config: ConfigStoryblok): string {
 /** Get the full Storyblok path with content prefix */
 export function getContentPath(path: string, config: ConfigStoryblok): string {
   const prefix = getPrefix(config)
-  // Remove leading slash
+  /** Remove leading slash */
   let cleanPath = path.startsWith("/") ? path.slice(1) : path
 
-  // Remove content prefix if already present
+  /** Remove content prefix if already present */
   if (cleanPath.startsWith(`${prefix}/`)) {
     cleanPath = cleanPath.slice(prefix.length + 1)
   }
 
-  // Handle home/root path
+  /** Handle home/root path */
   if (!cleanPath || cleanPath === "home") {
     return `${prefix}/`
   }
@@ -34,18 +34,18 @@ export function getStoryPath(
   if (!fullSlug) return "/"
 
   const prefix = getPrefix(config)
-  // Remove content prefix (e.g., "blog/" or "work/")
+  /** Remove content prefix (e.g., "blog/" or "work/") */
   let withoutPrefix = fullSlug
   if (fullSlug.startsWith(`${prefix}/`)) {
     withoutPrefix = fullSlug.slice(prefix.length + 1)
   }
 
-  // Handle home page
+  /** Handle home page */
   if (withoutPrefix === "home" || withoutPrefix === "") {
     return "/"
   }
 
-  // Ensure leading slash
+  /** Ensure leading slash */
   return withoutPrefix.startsWith("/") ? withoutPrefix : `/${withoutPrefix}`
 }
 

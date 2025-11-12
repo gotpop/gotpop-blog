@@ -17,7 +17,7 @@ export async function handleAllTagsFromPosts(
 ): Promise<StoryblokDataResult> {
   const { version = "published" } = config
 
-  // Fetch Storyblok config to get root_name_space
+  /** Fetch Storyblok config to get root_name_space */
   const storyblokConfig = await getConfig()
   if (!storyblokConfig) {
     return { data: [], error: "Config not found" }

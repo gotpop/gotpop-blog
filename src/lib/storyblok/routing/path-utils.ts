@@ -18,9 +18,8 @@ export function determinePageType(
   }
 
   if (slug.length === 2 && slug[0] === "posts") {
-    // This could be either a tag page or individual post
-    // We'll need to check if the second segment is a valid tag
-    return "tag-page" // Will be validated later
+    /** This could be either a tag page or individual post - we'll need to check if the second segment is a valid tag */
+    return "tag-page"
   }
 
   return "other"

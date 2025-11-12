@@ -7,7 +7,7 @@ export function handleStoryblokPathRedirect(
   config?: ConfigStoryblok | null
 ): void {
   if (slug && slug.length > 0 && slug[0] === config?.root_name_space) {
-    // Redirect to clean URL without "blog/" prefix
+    /** Redirect to clean URL without "blog/" prefix */
     const cleanPath = slug.slice(1).join("/")
     const redirectPath = cleanPath ? `/${cleanPath}` : "/"
 
