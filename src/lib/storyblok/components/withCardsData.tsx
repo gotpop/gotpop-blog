@@ -19,7 +19,7 @@ interface WithCardsDataProps {
 }
 
 export function withCardsData(
-  Component: React.ComponentType<WithCardsDataProps>
+  ViewComponent: React.ComponentType<WithCardsDataProps>
 ) {
   return async ({ blok }: { blok: CardsStoryblok }) => {
     const [postsResult, tagsResult, config] = await Promise.all([
@@ -36,7 +36,7 @@ export function withCardsData(
     ))
 
     return (
-      <Component
+      <ViewComponent
         blok={blok}
         blocks={blocks}
         posts={posts}
