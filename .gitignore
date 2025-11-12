@@ -47,6 +47,9 @@ yarn-error.log*
 next-env.d.ts
 src/types/storyblok-components.ts
 
+# generated files
+/generated/
+
 # Docs
 /docs
 
