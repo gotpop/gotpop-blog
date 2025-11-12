@@ -7,34 +7,21 @@ function getPrefix(config: ConfigStoryblok): string {
   return config.root_name_space || "blog"
 }
 
-/** Content type paths configuration per tenant */
-const CONTENT_TYPE_PATHS: Record<string, Record<string, string>> = {
-  blog: {
-    posts: "posts",
-    home: "home",
-  },
-  portfolio: {
-    posts: "work", // Portfolio uses "work" instead of "posts"
-    home: "home",
-  },
-}
-
-/** Get the path for a specific content type */
+/** Get the path for a specific content type using runtime config when available */
 export function getContentTypePath(
   contentType: string,
   config: ConfigStoryblok
 ): string {
-  const prefix = getPrefix(config)
-  const typeConfig = CONTENT_TYPE_PATHS[prefix]
-
-  if (!typeConfig) {
-    console.warn(
-      `No content type config found for prefix: ${prefix}, falling back to: ${contentType}`
-    )
-    return contentType
+  if (contentType === "posts") {
+    const cfg = config
+    return cfg.primary_content_name_space || ""
   }
 
-  return typeConfig[contentType] || contentType
+  if (contentType === "home") {
+    return "home"
+  }
+
+  return contentType
 }
 
 /** Get the full Storyblok path for a content type */
