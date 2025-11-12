@@ -2,12 +2,12 @@ import "server-only"
 
 import type {
   CardsStoryblok,
+  ConfigStoryblok,
   PostProps,
   TagDatasourceEntry,
 } from "@gotpop/system"
 import { Card } from "@gotpop/system"
 import type { ReactNode } from "react"
-import type { ConfigStoryblok } from "@/types/storyblok-components"
 import { getConfig, getStoryblokData } from "../data/get-storyblok-data"
 
 interface WithCardsDataProps {

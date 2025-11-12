@@ -1,5 +1,8 @@
-import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
-import type { ConfigStoryblok } from "@/types/storyblok-components"
+import type {
+  ConfigStoryblok,
+  PostProps,
+  TagDatasourceEntry,
+} from "@gotpop/system"
 import { CONTENT_PREFIX } from "../config"
 import { getStoryblokApi } from "../core"
 import type {

@@ -1,6 +1,6 @@
 import "server-only"
 
-import type { ConfigStoryblok } from "@/types/storyblok-components"
+import type { ConfigStoryblok } from "@gotpop/system"
 
 /**
  * Get the content prefix from config
