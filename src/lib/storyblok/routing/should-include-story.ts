@@ -1,5 +1,2 @@
-/**
- * Re-export static generation utilities from config
- * These are now centralized in src/lib/storyblok/config/
- */
+/** Re-export static generation utilities from config */
 export { getStartsWithPrefix, shouldIncludeStory } from "../config"

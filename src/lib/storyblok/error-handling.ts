@@ -6,9 +6,7 @@ export async function getAvailableStoriesForError(): Promise<string[]> {
   return data as string[]
 }
 
-/**
- * Extracts error message from various error types
- */
+/** Extracts error message from various error types */
 export function getErrorMessage(error: unknown): string {
   if (error instanceof Error) {
     return error.message

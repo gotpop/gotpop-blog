@@ -34,7 +34,7 @@ import {
 import { handleStories } from "./handlers/get-stories"
 import { handleStory } from "./handlers/get-story"
 
-// Function overloads for better type inference
+/** Function overloads for better type inference */
 export async function getStoryblokData<T = unknown>(
   dataType: "storyByUuid",
   config: StoryByUuidConfig
@@ -60,12 +60,7 @@ export async function getStoryblokData(
   config?: StoryblokDataConfig
 ): Promise<StoryblokDataResult>
 
-/**
- * Unified Storyblok data fetching function
- * @param dataType - The type of data to fetch
- * @param config - Configuration object specific to the data type
- * @returns Promise with the fetched data and optional error
- */
+/** Unified Storyblok data fetching function */
 export async function getStoryblokData(
   dataType: StoryblokDataType,
   config: StoryblokDataConfig = {}
@@ -140,29 +135,19 @@ export async function getStoryblokData(
   }
 }
 
-/**
- * Fetches all tags from the Storyblok tags datasource
- * Falls back to extracting tags from posts if datasource is not available
- */
+/** Fetches all tags from the Storyblok tags datasource, falls back to extracting tags from posts if datasource is not available */
 export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
   const { data } = await getStoryblokData("tagsFromDatasource")
   return data as TagDatasourceEntry[]
 }
 
-/**
- * Gets all posts from the blog with their tags
- * Only returns actual blog posts (page_post component) that have tags
- */
+/** Gets all posts from the blog with their tags, only returns actual blog posts (page_post component) that have tags */
 export async function getAllPostsWithTags(): Promise<PostProps[]> {
   const { data } = await getStoryblokData("allPostsWithTags")
   return data as PostProps[]
 }
 
-/**
- * Fetches config story and returns just the content
- * Uses CONTENT_PREFIX to automatically construct the config path
- * @returns The config content object or null if not found
- */
+/** Fetches config story and returns just the content using CONTENT_PREFIX to automatically construct the config path */
 export async function getConfig(): Promise<ConfigStoryblok | null> {
   const configPath = `${CONTENT_PREFIX}/config`
   const { data, error } = await getStoryblokData("story", {

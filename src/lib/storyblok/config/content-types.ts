@@ -2,21 +2,12 @@ import "server-only"
 
 import type { ConfigStoryblok } from "@gotpop/system"
 
-/**
- * Get the content prefix from config
- */
+/** Get the content prefix from config */
 function getPrefix(config: ConfigStoryblok): string {
   return config.root_name_space || "blog"
 }
 
-/**
- * Content type paths configuration per tenant
- * Maps logical content types to their actual paths in Storyblok
- *
- * @example
- * blog → posts directory
- * portfolio → work directory
- */
+/** Content type paths configuration per tenant */
 const CONTENT_TYPE_PATHS: Record<string, Record<string, string>> = {
   blog: {
     posts: "posts",
@@ -28,15 +19,7 @@ const CONTENT_TYPE_PATHS: Record<string, Record<string, string>> = {
   },
 }
 
-/**
- * Get the path for a specific content type
- *
- * @param contentType - The type of content (e.g., "posts", "home")
- * @param config - Config with root_name_space
- * @example
- * getContentTypePath("posts", config) → "posts" (when root_name_space=blog)
- * getContentTypePath("posts", config) → "work" (when root_name_space=portfolio)
- */
+/** Get the path for a specific content type */
 export function getContentTypePath(
   contentType: string,
   config: ConfigStoryblok
@@ -54,15 +37,7 @@ export function getContentTypePath(
   return typeConfig[contentType] || contentType
 }
 
-/**
- * Get the full Storyblok path for a content type
- *
- * @param contentType - The type of content (e.g., "posts", "home")
- * @param config - Config with root_name_space
- * @example
- * getContentTypeFullPath("posts", config) → "blog/posts/" (when root_name_space=blog)
- * getContentTypeFullPath("posts", config) → "portfolio/work/" (when root_name_space=portfolio)
- */
+/** Get the full Storyblok path for a content type */
 export function getContentTypeFullPath(
   contentType: string,
   config: ConfigStoryblok
@@ -72,17 +47,7 @@ export function getContentTypeFullPath(
   return `${prefix}/${typePath}/`
 }
 
-/**
- * Check if a story belongs to a specific content type
- *
- * @param fullSlug - Full Storyblok slug (e.g., "blog/posts/post-1")
- * @param contentType - The type of content (e.g., "posts")
- * @param config - Config with root_name_space
- * @example
- * isContentType("blog/posts/post-1", "posts", config) → true
- * isContentType("portfolio/work/post-1", "posts", config) → true
- * isContentType("portfolio/home", "posts", config) → false
- */
+/** Check if a story belongs to a specific content type */
 export function isContentType(
   fullSlug: string,
   contentType: string,

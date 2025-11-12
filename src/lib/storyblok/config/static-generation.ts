@@ -2,17 +2,12 @@ import "server-only"
 
 import type { ConfigStoryblok } from "@gotpop/system"
 
-/**
- * Get the content prefix from config
- */
+/** Get the content prefix from config */
 function getPrefix(config: ConfigStoryblok): string {
   return config?.root_name_space || "blog"
 }
 
-/**
- * Global stories that should be excluded from static generation
- * These are shared across all tenants (not blog/ or work/ specific)
- */
+/** Global stories that should be excluded from static generation */
 const EXCLUDED_STORIES = new Set([
   "header",
   "footer",
@@ -21,14 +16,7 @@ const EXCLUDED_STORIES = new Set([
   "global",
 ])
 
-/**
- * Determines if a story should be included in static generation
- * Excludes global content and only includes stories under current content prefix
- *
- * @param fullSlug - Full Storyblok slug (e.g., "blog/post-title" or "work/project")
- * @param config - Config with root_name_space
- * @returns true if story should be statically generated
- */
+/** Determines if a story should be included in static generation */
 export function shouldIncludeStory(
   fullSlug: string,
   config: ConfigStoryblok
@@ -50,13 +38,7 @@ export function shouldIncludeStory(
   return fullSlug.startsWith(`${prefix}/`)
 }
 
-/**
- * Gets the starts_with parameter for Storyblok API calls
- * Used to filter stories by content prefix
- *
- * @param config - Config with root_name_space
- * @returns Storyblok API filter string (e.g., "blog/" or "work/")
- */
+/** Gets the starts_with parameter for Storyblok API calls */
 export function getStartsWithPrefix(config: ConfigStoryblok): string {
   const prefix = getPrefix(config)
   return `${prefix}/`

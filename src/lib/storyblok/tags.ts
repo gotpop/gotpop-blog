@@ -4,9 +4,7 @@ import { getStoryblokData } from "./data/get-storyblok-data"
 // Hardcoded tags that are not included in the API call but should be available for filtering
 export const HARDCODED_TAGS: TagDatasourceEntry[] = []
 
-/**
- * Converts tag name to URL-safe slug
- */
+/** Converts tag name to URL-safe slug */
 function normalizeTagSlug(tagName: string): string {
   return tagName
     .toLowerCase()

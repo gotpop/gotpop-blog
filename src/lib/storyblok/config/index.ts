@@ -1,7 +1,4 @@
-/**
- * Multi-tenant Storyblok configuration
- * Centralizes all path, prefix, and filtering logic
- */
+/** Multi-tenant Storyblok configuration */
 
 export * from "./content-prefix"
 export * from "./content-types"
