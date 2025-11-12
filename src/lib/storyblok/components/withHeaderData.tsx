@@ -2,8 +2,7 @@ import "server-only"
 
 import type { ConfigStoryblok, HeaderDefaultStoryblok } from "@gotpop/system"
 import type { ReactNode } from "react"
-import { CONTENT_PREFIX } from "../config"
-import { getStoryblokData } from "../data/get-storyblok-data"
+import { getConfig } from "../data/get-storyblok-data"
 import { StoryblokServerComponent } from "./StoryblokServerComponent"
 
 interface WithHeaderDataProps {
@@ -17,18 +16,7 @@ export function withHeaderData(
   ViewComponent: React.ComponentType<WithHeaderDataProps>
 ) {
   return async ({ blok }: { blok: HeaderDefaultStoryblok }) => {
-    console.log("[withHeaderData] Starting to fetch config...")
-    let config: ConfigStoryblok | null = null
-
-    try {
-      const configPath = `${CONTENT_PREFIX}/config`
-      const { data: configStory } = await getStoryblokData("story", {
-        fullPath: configPath,
-      })
-      config = (configStory as { content: ConfigStoryblok }).content
-    } catch (error) {
-      console.error("[withHeaderData] Failed to fetch config:", error)
-    }
+    const config = await getConfig()
 
     const nav = blok.nav?.[0] ? (
       <StoryblokServerComponent blok={blok.nav[0]} config={config} />
