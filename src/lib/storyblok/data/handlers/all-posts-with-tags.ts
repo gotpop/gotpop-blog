@@ -16,8 +16,6 @@ export async function handleAllPostsWithTags(
   config: BaseConfig
 ): Promise<StoryblokDataResult> {
   const { version = "published" } = config
-
-  /** Fetch Storyblok config to get root_name_space */
   const storyblokConfig = await getConfig()
   const prefix = storyblokConfig?.root_name_space || "blog"
 
