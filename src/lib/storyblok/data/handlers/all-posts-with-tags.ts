@@ -1,3 +1,5 @@
+import "server-only"
+
 import type { PostProps } from "@gotpop/system"
 import type {
   BaseConfig,

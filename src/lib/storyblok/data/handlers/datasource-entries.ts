@@ -1,3 +1,5 @@
+import "server-only"
+
 import type { StoryblokClient } from "@storyblok/react/rsc"
 import type {
   DatasourceEntriesConfig,
@@ -13,5 +15,6 @@ export async function handleDatasourceEntries(
   const response = await storyblokApi.get("cdn/datasource_entries", {
     datasource,
   })
+
   return { data: response.data.datasource_entries || [] }
 }

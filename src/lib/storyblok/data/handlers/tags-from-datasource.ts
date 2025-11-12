@@ -1,3 +1,5 @@
+import "server-only"
+
 import type { TagDatasourceEntry } from "@gotpop/system"
 import type {
   StoryblokDataConfig,
@@ -25,7 +27,6 @@ export async function handleTagsFromDatasource(
       datasource: TAGS_DATASOURCE_ID,
     })
 
-    /** If there's an error or empty data, fall back to posts */
     if (result.error || !result.data) {
       throw new Error(result.error || "Datasource empty, falling back to posts")
     }
@@ -40,11 +41,11 @@ export async function handleTagsFromDatasource(
 
     throw new Error("Datasource empty, falling back to posts")
   } catch {
-    /** Datasource not available, fall back to extracting tags from posts */
     const { data: postsTagsStory } = (await getStoryblokData(
       "tagsFromPosts",
       config
     )) as { data: TagDatasourceEntry[] }
+
     return { data: [...HARDCODED_TAGS, ...postsTagsStory] }
   }
 }

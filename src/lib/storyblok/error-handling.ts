@@ -1,3 +1,5 @@
+import "server-only"
+
 import { getStoryblokData } from "@/lib/storyblok/data"
 
 /** Fetches list of available story slugs for error page display */
