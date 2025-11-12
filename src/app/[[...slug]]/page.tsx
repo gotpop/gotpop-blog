@@ -5,9 +5,9 @@ import {
   getAvailableStoriesForError,
   getErrorMessage,
   getStoryblokData,
+  handleStoryblokPathRedirect,
   normalizeStoryblokPath,
 } from "@/lib/storyblok"
-import { handleStoryblokPathRedirect } from "@/utils/redirect-utils"
 
 export const dynamicParams = true
 
