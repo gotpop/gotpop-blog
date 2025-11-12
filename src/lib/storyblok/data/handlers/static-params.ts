@@ -6,6 +6,7 @@ import type {
 } from "../../core/types"
 import { getConfig } from "../get-storyblok-data"
 
+/** Generates static params for pre-rendering pages */
 export async function handleStaticParams(
   getStoryblokData: (
     dataType: StoryblokDataType,

@@ -8,6 +8,7 @@ import type {
 } from "../../core/types"
 import { getConfig } from "../get-storyblok-data"
 
+/** Extracts all tags used in posts */
 export async function handleAllTagsFromPosts(
   getStoryblokData: (
     dataType: StoryblokDataType,

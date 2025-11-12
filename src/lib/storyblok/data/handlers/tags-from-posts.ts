@@ -6,6 +6,7 @@ import type {
 } from "../../core/types"
 import { deduplicateTags, HARDCODED_TAGS } from "../../tags"
 
+/** Extracts and deduplicates tags from all blog posts */
 export async function handleTagsFromPosts(
   getStoryblokData: (
     dataType: StoryblokDataType,

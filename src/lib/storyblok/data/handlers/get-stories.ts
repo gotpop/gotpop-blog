@@ -5,6 +5,7 @@ import type {
   StoryblokStoryResponse,
 } from "../../core/types"
 
+/** Fetches multiple stories with optional filtering */
 export async function handleStories(
   storyblokApi: StoryblokClient,
   config: StoriesConfig

@@ -6,6 +6,7 @@ import type {
 } from "../../core/types"
 import { getConfig } from "../get-storyblok-data"
 
+/** Returns available story slugs for error page */
 export async function handleAvailableStoriesForError(
   getStoryblokData: (
     dataType: StoryblokDataType,

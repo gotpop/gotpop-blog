@@ -8,6 +8,7 @@ import type {
 } from "../../core/types"
 import { getConfig } from "../get-storyblok-data"
 
+/** Fetches and sorts posts filtered by a specific tag */
 export async function handlePostsByTag(
   getStoryblokData: (
     dataType: StoryblokDataType,

@@ -7,6 +7,7 @@ import type {
 } from "../../core/types"
 import { getConfig } from "../get-storyblok-data"
 
+/** Fetches all posts that have tags */
 export async function handleAllPostsWithTags(
   getStoryblokData: (
     dataType: StoryblokDataType,
