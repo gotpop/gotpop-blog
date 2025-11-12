@@ -1,3 +1,5 @@
+import "server-only"
+
 import type { ConfigStoryblok } from "@gotpop/system"
 import { redirect } from "next/navigation"
 

@@ -1,3 +1,5 @@
+import "server-only"
+
 import type { StoryblokClient } from "@storyblok/react/rsc"
 import type {
   DatasourceEntriesConfig,
