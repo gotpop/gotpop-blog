@@ -1,80 +1,80 @@
 {
-  "name": "gotpop-blog",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "next build",
-    "prebuild": "yarn format:fix && yarn generate:types",
-    "dev:https": "yarn dev & yarn dev:wait && yarn proxy",
-    "dev:wait": "sleep 3",
-    "dev": "next dev",
-    "docker:build": "source .env && docker build --build-arg STORYBLOK_ACCESS_TOKEN=$STORYBLOK_ACCESS_TOKEN -t gotpop-blog .",
-    "docker:build:fast": "source .env && docker build --build-arg STORYBLOK_ACCESS_TOKEN=$STORYBLOK_ACCESS_TOKEN --target builder -t gotpop-blog-builder .",
-    "docker:run": "docker run -d -p 3000:3000 --env STORYBLOK_ACCESS_TOKEN=$STORYBLOK_ACCESS_TOKEN --name gotpop-blog gotpop-blog",
-    "docker:stop": "docker stop gotpop-blog && docker rm gotpop-blog",
-    "docker:dev": "docker-compose -f config/docker-compose.yml up --build",
-    "docker:logs": "docker logs gotpop-blog -f",
-    "format:check": "npx biome check --config-path=config/biome.json src/ next.config.ts && (prettier --check \"src/**/*.css\" 2>/dev/null || true)",
-    "format:fix": "npx biome check --config-path=config/biome.json --write src/ next.config.ts && (prettier --write \"src/**/*.css\" 2>/dev/null || true)",
-    "generate:types": "node --env-file-if-exists=.env node_modules/.bin/generate-storyblok-types",
-    "generate:icons": "generate-icon-list",
-    "kill-ports": "kill-ports",
-    "lint": "npx biome lint --config-path=config/biome.json src/ next.config.ts",
-    "lint:fix": "npx biome lint --config-path=config/biome.json --write src/ next.config.ts",
-    "start": "next start",
-    "sync:icons": "node --env-file-if-exists=.env node_modules/.bin/sync-icon-datasource",
-    "sync:baseline": "node --env-file-if-exists=.env node_modules/.bin/sync-baseline-datasource",
-    "type-check": "tsc --noEmit"
-  },
-  "engines": {
-    "node": ">=22.20.0"
-  },
-  "dependencies": {
-    "@gotpop/scripts": "^0.1.1",
-    "@gotpop/system": "^0.1.160",
-    "@storyblok/react": "^5.4.17",
-    "next": "16.0.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-icons": "^5.5.0",
-    "server-only": "^0.0.1",
-    "storyblok-rich-text-react-renderer": "^3.0.1"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.2.6",
-    "@types/node": "^20",
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2",
-    "prettier": "^3.6.2",
-    "raw-loader": "^4.0.2",
-    "storyblok": "^4.6.9",
-    "storyblok-generate-ts": "^2.2.0",
-    "typescript": "^5"
-  },
-  "storyblok": {
-    "token": "env:STORYBLOK_ACCESS_TOKEN",
-    "space": "auto",
-    "componentsPath": "src/types/storyblok-components.ts",
-    "componentsDirectory": "src/components/storyblok"
-  },
-  "storyblok-generate-ts": {
-    "oauthToken": "env:STORYBLOK_ACCESS_TOKEN",
-    "componentsPath": "./components.json",
-    "path": "./src/types/storyblok-components.ts",
-    "componentNameSuffix": "Storyblok",
-    "internalLinksAsStrings": false,
-    "resolveRelations": false
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": false,
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "printWidth": 80,
-    "arrowParens": "always"
-  },
-  "resolutions": {
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2"
-  }
+	"name": "gotpop-blog",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"build": "next build",
+		"prebuild": "yarn format:fix",
+		"dev:https": "yarn dev & yarn dev:wait && yarn proxy",
+		"dev:wait": "sleep 3",
+		"dev": "next dev",
+		"docker:build": "source .env && docker build --build-arg STORYBLOK_ACCESS_TOKEN=$STORYBLOK_ACCESS_TOKEN -t gotpop-blog .",
+		"docker:build:fast": "source .env && docker build --build-arg STORYBLOK_ACCESS_TOKEN=$STORYBLOK_ACCESS_TOKEN --target builder -t gotpop-blog-builder .",
+		"docker:run": "docker run -d -p 3000:3000 --env STORYBLOK_ACCESS_TOKEN=$STORYBLOK_ACCESS_TOKEN --name gotpop-blog gotpop-blog",
+		"docker:stop": "docker stop gotpop-blog && docker rm gotpop-blog",
+		"docker:dev": "docker-compose -f config/docker-compose.yml up --build",
+		"docker:logs": "docker logs gotpop-blog -f",
+		"format:check": "npx biome check --config-path=config/biome.json src/ next.config.ts && (prettier --check \"src/**/*.css\" 2>/dev/null || true)",
+		"format:fix": "npx biome check --config-path=config/biome.json --write src/ next.config.ts && (prettier --write \"src/**/*.css\" 2>/dev/null || true)",
+		"generate:types": "node --env-file-if-exists=.env node_modules/.bin/generate-storyblok-types",
+		"generate:icons": "generate-icon-list",
+		"kill-ports": "kill-ports",
+		"lint": "npx biome lint --config-path=config/biome.json src/ next.config.ts",
+		"lint:fix": "npx biome lint --config-path=config/biome.json --write src/ next.config.ts",
+		"start": "next start",
+		"sync:icons": "node --env-file-if-exists=.env node_modules/.bin/sync-icon-datasource",
+		"sync:baseline": "node --env-file-if-exists=.env node_modules/.bin/sync-baseline-datasource",
+		"type-check": "tsc --noEmit"
+	},
+	"engines": {
+		"node": ">=22.20.0"
+	},
+	"dependencies": {
+		"@gotpop/scripts": "^0.1.1",
+		"@gotpop/system": "^0.1.160",
+		"@storyblok/react": "^5.4.17",
+		"next": "16.0.0",
+		"react": "19.2.0",
+		"react-dom": "19.2.0",
+		"react-icons": "^5.5.0",
+		"server-only": "^0.0.1",
+		"storyblok-rich-text-react-renderer": "^3.0.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.2.6",
+		"@types/node": "^20",
+		"@types/react": "19.2.2",
+		"@types/react-dom": "19.2.2",
+		"prettier": "^3.6.2",
+		"raw-loader": "^4.0.2",
+		"storyblok": "^4.6.9",
+		"storyblok-generate-ts": "^2.2.0",
+		"typescript": "^5"
+	},
+	"storyblok": {
+		"token": "env:STORYBLOK_ACCESS_TOKEN",
+		"space": "auto",
+		"componentsPath": "src/types/storyblok-components.ts",
+		"componentsDirectory": "src/components/storyblok"
+	},
+	"storyblok-generate-ts": {
+		"oauthToken": "env:STORYBLOK_ACCESS_TOKEN",
+		"componentsPath": "./components.json",
+		"path": "./src/types/storyblok-components.ts",
+		"componentNameSuffix": "Storyblok",
+		"internalLinksAsStrings": false,
+		"resolveRelations": false
+	},
+	"prettier": {
+		"semi": false,
+		"singleQuote": false,
+		"trailingComma": "es5",
+		"tabWidth": 2,
+		"printWidth": 80,
+		"arrowParens": "always"
+	},
+	"resolutions": {
+		"@types/react": "19.2.2",
+		"@types/react-dom": "19.2.2"
+	}
 }
