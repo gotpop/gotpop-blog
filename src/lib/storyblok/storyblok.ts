@@ -17,10 +17,10 @@ import {
   SnippetBlock,
 } from "@gotpop/system"
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
-import { withCardsData } from "../components/withCardsData"
-import { withHeaderData } from "../components/withHeaderData"
-import { withNavData } from "../components/withNavData"
-import { withPageData } from "../components/withPageData"
+import { withCardsData } from "./components/withCardsData"
+import { withHeaderData } from "./components/withHeaderData"
+import { withNavData } from "./components/withNavData"
+import { withPageData } from "./components/withPageData"
 
 const CardsWithData = withCardsData(Cards)
 const HeaderDefaultWithData = withHeaderData(HeaderDefault)

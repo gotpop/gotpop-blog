@@ -1,10 +1,7 @@
 import "server-only"
 
 import type { StoryblokClient } from "@storyblok/react/rsc"
-import type {
-  DatasourceEntriesConfig,
-  StoryblokDataResult,
-} from "../../core/types"
+import type { DatasourceEntriesConfig, StoryblokDataResult } from "../../types"
 
 /** Fetches entries from a Storyblok datasource */
 export async function handleDatasourceEntries(

@@ -7,7 +7,7 @@ import type {
   StoryblokDataConfig,
   StoryblokDataResult,
   StoryblokDataType,
-} from "../../core/types"
+} from "../../types"
 import { getConfig } from "../get-storyblok-data"
 
 /** Fetches and sorts posts filtered by a specific tag */
