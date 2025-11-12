@@ -35,7 +35,6 @@ export async function handleTagsFromPosts(
     }
   })
 
-  /** Convert to TagDatasourceEntry format */
   const postsOnlyTags = Array.from(allTags).map((tag, index) => ({
     id: index + 1000,
     name: tag,
@@ -43,5 +42,6 @@ export async function handleTagsFromPosts(
   }))
 
   const allTagsArray = [...HARDCODED_TAGS, ...postsOnlyTags]
+
   return { data: deduplicateTags(allTagsArray) }
 }

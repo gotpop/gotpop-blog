@@ -13,5 +13,6 @@ export async function handleDatasourceEntries(
   const response = await storyblokApi.get("cdn/datasource_entries", {
     datasource,
   })
+
   return { data: response.data.datasource_entries || [] }
 }
