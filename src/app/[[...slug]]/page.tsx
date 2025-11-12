@@ -26,7 +26,7 @@ export default async function Page({ params }: PageParams) {
   const { slug } = await params
   const config = await getConfig()
 
-  handleStoryblokPathRedirect(slug)
+  handleStoryblokPathRedirect(slug, config)
 
   if (!config) {
     throw new Error("Config not found")
