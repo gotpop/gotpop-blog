@@ -48,7 +48,7 @@ ENV STORYBLOK_ACCESS_TOKEN=${STORYBLOK_ACCESS_TOKEN}
 COPY --from=deps /app/node_modules ./node_modules
 
 # Copy configuration files first
-COPY biome.json .biomeignore ./
+COPY config/biome.json ./config/biome.json
 
 # Copy source code
 COPY . .
