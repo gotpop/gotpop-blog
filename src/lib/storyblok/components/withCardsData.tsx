@@ -22,11 +22,19 @@ interface WithCardsDataProps {
 export function withCardsData(
   ViewComponent: React.ComponentType<WithCardsDataProps>
 ) {
-  return async ({ blok }: { blok: CardsStoryblok }) => {
-    const [postsResult, tagsResult, config] = await Promise.all([
+  return async ({
+    blok,
+    config: providedConfig,
+  }: {
+    blok: CardsStoryblok
+    config?: ConfigStoryblok | null
+  }) => {
+    // Use provided config or fetch from cache
+    const config = providedConfig ?? (await getConfig())
+
+    const [postsResult, tagsResult] = await Promise.all([
       getStoryblokData("allPostsWithTags"),
       getStoryblokData("tagsFromDatasource"),
-      getConfig(),
     ])
 
     const posts = postsResult.data as PostProps[]
