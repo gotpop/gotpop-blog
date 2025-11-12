@@ -1,14 +1,9 @@
 import "server-only"
 
-/**
- * Content prefix for multi-tenant Storyblok setup
- * Determines which content folder to use (blog/ or work/)
- */
+/** Content prefix for multi-tenant Storyblok setup */
 export const CONTENT_PREFIX = process.env.STORYBLOK_CONTENT_PREFIX || "blog"
 
-/**
- * Validates that CONTENT_PREFIX is set correctly
- */
+/** Validates that CONTENT_PREFIX is set correctly */
 export function validateContentPrefix(): void {
   if (!CONTENT_PREFIX) {
     throw new Error("STORYBLOK_CONTENT_PREFIX environment variable must be set")

@@ -6,13 +6,14 @@ import type {
 } from "../../core/types"
 import { getConfig } from "../get-storyblok-data"
 
+/** Generates static params for pre-rendering pages */
 export async function handleStaticParams(
   getStoryblokData: (
     dataType: StoryblokDataType,
     config?: StoryblokDataConfig
   ) => Promise<StoryblokDataResult>
 ): Promise<StoryblokDataResult> {
-  // Fetch Storyblok config to get root_name_space
+  /** Fetch Storyblok config to get root_name_space */
   const config = await getConfig()
 
   if (!config) {
@@ -26,10 +27,10 @@ export async function handleStaticParams(
     starts_with: `${prefix}/`,
   })) as { data: StoryblokStoryResponse[] }
 
-  // Excluded stories
+  /** Excluded stories */
   const excluded = ["header", "footer", "site-config", "config", "global"]
 
-  // Generate params for regular stories only
+  /** Generate params for regular stories only */
   const storyParams = allStories
     .filter((story: StoryblokStoryResponse) => {
       if (excluded.includes(story.full_slug)) return false
@@ -39,7 +40,7 @@ export async function handleStaticParams(
       return story.full_slug.startsWith(`${prefix}/`)
     })
     .map((story: StoryblokStoryResponse) => {
-      // Remove prefix from path
+      /** Remove prefix from path */
       let path = story.full_slug
       if (path.startsWith(`${prefix}/`)) {
         path = path.slice(prefix.length + 1)

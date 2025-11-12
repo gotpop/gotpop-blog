@@ -1,15 +1,12 @@
-/**
- * Re-export path utilities from config folder
- * All path utilities now require config parameter
- */
-export { getContentPath, getStoryPath, normalizeStoryblokPath } from "../config"
+type PageType =
+  | "home"
+  | "posts-index"
+  | "tag-page"
+  | "individual-post"
+  | "other"
 
-/**
- * Determines the type of page based on the slug array
- */
-export function determinePageType(
-  slug?: string[]
-): "home" | "posts-index" | "tag-page" | "individual-post" | "other" {
+/** Determines the type of page based on the slug array */
+export function determinePageType(slug?: string[]): PageType {
   if (!slug || slug.length === 0) {
     return "home"
   }
@@ -19,18 +16,13 @@ export function determinePageType(
   }
 
   if (slug.length === 2 && slug[0] === "posts") {
-    // This could be either a tag page or individual post
-    // We'll need to check if the second segment is a valid tag
-    return "tag-page" // Will be validated later
+    return "tag-page"
   }
 
   return "other"
 }
 
-/**
- * Extracts tag slug from URL segments
- * e.g., ["posts", "javascript"] -> "javascript"
- */
+/** Extracts tag slug from URL segments */
 export function extractTagSlug(slug?: string[]): string | null {
   if (!slug || slug.length !== 2 || slug[0] !== "posts") {
     return null

@@ -4,6 +4,7 @@ import type {
   StoryblokDataResult,
 } from "../../core/types"
 
+/** Fetches entries from a Storyblok datasource */
 export async function handleDatasourceEntries(
   storyblokApi: StoryblokClient,
   config: DatasourceEntriesConfig

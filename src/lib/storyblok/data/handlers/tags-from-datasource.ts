@@ -6,6 +6,7 @@ import type {
 } from "../../core/types"
 import { deduplicateTags, HARDCODED_TAGS } from "../../tags"
 
+/** Fetches tags from Storyblok datasource with fallback to posts */
 export async function handleTagsFromDatasource(
   getStoryblokData: (
     dataType: StoryblokDataType,
@@ -24,7 +25,7 @@ export async function handleTagsFromDatasource(
       datasource: TAGS_DATASOURCE_ID,
     })
 
-    // If there's an error or empty data, fall back to posts
+    /** If there's an error or empty data, fall back to posts */
     if (result.error || !result.data) {
       throw new Error(result.error || "Datasource empty, falling back to posts")
     }
@@ -39,7 +40,7 @@ export async function handleTagsFromDatasource(
 
     throw new Error("Datasource empty, falling back to posts")
   } catch {
-    // Datasource not available, fall back to extracting tags from posts
+    /** Datasource not available, fall back to extracting tags from posts */
     const { data: postsTagsStory } = (await getStoryblokData(
       "tagsFromPosts",
       config

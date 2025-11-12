@@ -5,6 +5,7 @@ import type {
   StoryblokStoryResponse,
 } from "../../core/types"
 
+/** Fetches multiple stories by their UUIDs */
 export async function handleStoriesByUuids(
   storyblokApi: StoryblokClient,
   config: StoriesByUuidsConfig

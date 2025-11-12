@@ -5,6 +5,7 @@ import type {
   StoryConfig,
 } from "../../core/types"
 
+/** Fetches a single story by its full path */
 export async function handleStory(
   storyblokApi: StoryblokClient,
   config: StoryConfig

@@ -8,6 +8,7 @@ import type {
 } from "../../core/types"
 import { getConfig } from "../get-storyblok-data"
 
+/** Extracts all tags used in posts */
 export async function handleAllTagsFromPosts(
   getStoryblokData: (
     dataType: StoryblokDataType,
@@ -17,7 +18,7 @@ export async function handleAllTagsFromPosts(
 ): Promise<StoryblokDataResult> {
   const { version = "published" } = config
 
-  // Fetch Storyblok config to get root_name_space
+  /** Fetch Storyblok config to get root_name_space */
   const storyblokConfig = await getConfig()
   if (!storyblokConfig) {
     return { data: [], error: "Config not found" }

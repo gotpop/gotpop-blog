@@ -6,6 +6,7 @@ import type {
 } from "../../core/types"
 import { deduplicateTags, HARDCODED_TAGS } from "../../tags"
 
+/** Extracts and deduplicates tags from all blog posts */
 export async function handleTagsFromPosts(
   getStoryblokData: (
     dataType: StoryblokDataType,
@@ -34,7 +35,7 @@ export async function handleTagsFromPosts(
     }
   })
 
-  // Convert to TagDatasourceEntry format
+  /** Convert to TagDatasourceEntry format */
   const postsOnlyTags = Array.from(allTags).map((tag, index) => ({
     id: index + 1000,
     name: tag,

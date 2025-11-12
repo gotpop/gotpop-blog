@@ -6,13 +6,14 @@ import type {
 } from "../../core/types"
 import { getConfig } from "../get-storyblok-data"
 
+/** Returns available story slugs for error page */
 export async function handleAvailableStoriesForError(
   getStoryblokData: (
     dataType: StoryblokDataType,
     config?: StoryblokDataConfig
   ) => Promise<StoryblokDataResult>
 ): Promise<StoryblokDataResult> {
-  // Fetch Storyblok config to get root_name_space
+  /** Fetch Storyblok config to get root_name_space */
   const storyblokConfig = await getConfig()
   const prefix = storyblokConfig?.root_name_space || "blog"
 
