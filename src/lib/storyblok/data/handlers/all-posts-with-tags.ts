@@ -9,12 +9,14 @@ import type {
 } from "../../types"
 import { getConfig } from "../get-storyblok-data"
 
+type GetStoryblokDataFn = (
+  dataType: StoryblokDataType,
+  config?: StoryblokDataConfig
+) => Promise<StoryblokDataResult>
+
 /** Fetches all posts that have tags */
 export async function handleAllPostsWithTags(
-  getStoryblokData: (
-    dataType: StoryblokDataType,
-    config?: StoryblokDataConfig
-  ) => Promise<StoryblokDataResult>,
+  getStoryblokData: GetStoryblokDataFn,
   config: BaseConfig
 ): Promise<StoryblokDataResult> {
   const { version = "published" } = config
