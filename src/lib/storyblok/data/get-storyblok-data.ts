@@ -1,4 +1,6 @@
 import type { PostProps, TagDatasourceEntry } from "@gotpop/system"
+import type { ConfigStoryblok } from "@/types/storyblok-components"
+import { CONTENT_PREFIX } from "../config"
 import { getStoryblokApi } from "../core"
 import type {
   BaseConfig,
@@ -151,4 +153,22 @@ export async function getTagsFromDatasource(): Promise<TagDatasourceEntry[]> {
 export async function getAllPostsWithTags(): Promise<PostProps[]> {
   const { data } = await getStoryblokData("allPostsWithTags")
   return data as PostProps[]
+}
+
+/**
+ * Fetches config story and returns just the content
+ * Uses CONTENT_PREFIX to automatically construct the config path
+ * @returns The config content object or null if not found
+ */
+export async function getConfig(): Promise<ConfigStoryblok | null> {
+  const configPath = `${CONTENT_PREFIX}/config`
+  const { data, error } = await getStoryblokData("story", {
+    fullPath: configPath,
+  })
+
+  if (error || !data) {
+    return null
+  }
+
+  return (data as { content: ConfigStoryblok }).content
 }
