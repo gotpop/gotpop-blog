@@ -8,12 +8,14 @@ import type {
 } from "../../types"
 import { getConfig } from "../get-storyblok-data"
 
+type GetStoryblokDataFn = (
+  dataType: StoryblokDataType,
+  config?: StoryblokDataConfig
+) => Promise<StoryblokDataResult>
+
 /** Returns available story slugs for error page */
 export async function handleAvailableStoriesForError(
-  getStoryblokData: (
-    dataType: StoryblokDataType,
-    config?: StoryblokDataConfig
-  ) => Promise<StoryblokDataResult>
+  getStoryblokData: GetStoryblokDataFn
 ): Promise<StoryblokDataResult> {
   /** Fetch Storyblok config to get root_name_space */
   const storyblokConfig = await getConfig()
