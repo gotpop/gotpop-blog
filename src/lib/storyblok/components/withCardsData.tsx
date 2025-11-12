@@ -16,6 +16,8 @@ interface WithCardsDataProps {
   blocks: ReactNode
   posts: PostProps[]
   availableTags: TagDatasourceEntry[]
+  config: ConfigStoryblok | null
+  contentPrefix: string
 }
 
 export function withCardsData(
@@ -38,7 +40,6 @@ export function withCardsData(
 
     config = (configStory as { content: ConfigStoryblok }).content
 
-    // Render Card components directly (Card is not a Storyblok component)
     const blocks = posts.map((blok) => (
       <Card
         key={blok.uuid}
