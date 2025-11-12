@@ -21,12 +21,10 @@ export function shouldIncludeStory(
   fullSlug: string,
   config: ConfigStoryblok
 ): boolean {
-  /** Exclude exact matches of global stories */
   if (EXCLUDED_STORIES.has(fullSlug)) {
     return false
   }
 
-  /** Exclude paths containing global story names (e.g., "blog/config/something") */
   for (const excluded of EXCLUDED_STORIES) {
     if (fullSlug.includes(`/${excluded}`)) {
       return false
@@ -34,7 +32,7 @@ export function shouldIncludeStory(
   }
 
   const prefix = getPrefix(config)
-  /** Only include stories under current content prefix */
+
   return fullSlug.startsWith(`${prefix}/`)
 }
 
