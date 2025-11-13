@@ -6,10 +6,10 @@ import type {
   PostProps,
   TagDatasourceEntry,
 } from "@gotpop/system"
-import { Card } from "@gotpop/system"
 import type { ReactNode } from "react"
 import { getConfig } from "../config/runtime-config"
 import { getStoryblokData } from "../data/get-storyblok-data"
+import { StoryblokServerComponent } from "./StoryblokServerComponent"
 
 interface WithCardsDataProps {
   blok: CardsStoryblok
@@ -40,9 +40,21 @@ export function withCardsData(
     const posts = postsResult.data as PostProps[]
     const availableTags = tagsResult.data as TagDatasourceEntry[]
 
-    const blocks = posts.map((blok) => (
-      <Card key={blok.uuid} blok={blok} config={config} />
-    ))
+    const blocks = posts.map((postBlok) => {
+      const transformedBlok = {
+        ...postBlok,
+        component: "card",
+        _uid: postBlok.uuid,
+      }
+
+      return (
+        <StoryblokServerComponent
+          key={postBlok.uuid}
+          blok={transformedBlok as never}
+          config={config}
+        />
+      )
+    })
 
     return (
       <ViewComponent
