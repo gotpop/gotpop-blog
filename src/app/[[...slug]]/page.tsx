@@ -1,12 +1,12 @@
-import { StoryblokStory } from "@storyblok/react/rsc"
-import { notFound } from "next/navigation"
 import {
   generateAllStaticParams,
   getConfig,
   getStoryblokData,
   handleStoryblokPathRedirect,
-} from "@/lib/storyblok"
-import { normalizeStoryblokPath } from "@/lib/storyblok/config"
+  normalizeStoryblokPath,
+} from "@gotpop/storyblok"
+import { StoryblokStory } from "@storyblok/react/rsc"
+import { notFound } from "next/navigation"
 
 export const dynamicParams = true
 
