@@ -24,39 +24,71 @@ import {
   RichTextCodeBlock,
   SnippetBlock,
 } from "@gotpop/system"
-import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
+import { apiPlugin, getStoryblokApi, storyblokInit } from "@storyblok/react/rsc"
 
-const CardsWithData = withCardsData(Cards)
-const HeaderDefaultWithData = withHeaderData(HeaderDefault)
-const NavDefaultWithData = withNavData(NavDefault)
-const PageDefaultWithData = withPageData(PageDefault)
-const PageFilterWithData = withPageData(PageFilter)
-const PagePostWithData = withPageData(PagePost)
+let isInitialized = false
 
-const components = {
-  baseline_status_block: BaselineStatusBlock,
-  card: Card,
-  cards: CardsWithData,
-  footer_default: FooterDefault,
-  header_default: HeaderDefaultWithData,
-  hero_default: HeroDefault,
-  link_list: LinkList,
-  logo_default: LogoDefault,
-  nav_default: NavDefaultWithData,
-  nav_item_default: NavItemDefault,
-  page_default: PageDefaultWithData,
-  page_filter: PageFilterWithData,
-  page_post: PagePostWithData,
-  rich_text_block: RichTextBlock,
-  rich_text_code_block: RichTextCodeBlock,
-  snippet_block: SnippetBlock,
+export function ensureStoryblokInitialized() {
+  console.log(
+    "[storyblok-init] ensureStoryblokInitialized called, isInitialized:",
+    isInitialized
+  )
+  if (isInitialized) {
+    console.log("[storyblok-init] Already initialized, skipping")
+    const api = getStoryblokApi()
+    console.log("[storyblok-init] getStoryblokApi() after init check:", !!api)
+    return api
+  }
+
+  console.log("[storyblok-init] Starting initialization...")
+
+  const accessToken = process.env.STORYBLOK_ACCESS_TOKEN
+  if (!accessToken) {
+    throw new Error("STORYBLOK_ACCESS_TOKEN environment variable is required")
+  }
+
+  // Create base components map first (without HOC-wrapped components)
+  // biome-ignore lint/suspicious/noExplicitAny: Components have different prop signatures
+  const components: Record<string, React.ComponentType<any>> = {
+    baseline_status_block: BaselineStatusBlock,
+    card: Card,
+    footer_default: FooterDefault,
+    hero_default: HeroDefault,
+    link_list: LinkList,
+    logo_default: LogoDefault,
+    nav_item_default: NavItemDefault,
+    rich_text_block: RichTextBlock,
+    rich_text_code_block: RichTextCodeBlock,
+    snippet_block: SnippetBlock,
+  }
+
+  // Wrap components with HOCs, passing the components map for nested rendering
+  components.cards = withCardsData(Cards, components)
+  components.header_default = withHeaderData(HeaderDefault, components)
+  components.nav_default = withNavData(NavDefault, components)
+  components.page_default = withPageData(PageDefault, components)
+  components.page_filter = withPageData(PageFilter, components)
+  components.page_post = withPageData(PagePost, components)
+
+  // Initialize Storyblok once with all components
+  storyblokInit({
+    accessToken,
+    use: [apiPlugin],
+    components,
+    apiOptions: {
+      region: "eu",
+    },
+  })
+
+  isInitialized = true
+  console.log("[storyblok-init] Initialization complete")
+
+  // Get and return the API instance after initialization
+  const api = getStoryblokApi()
+  console.log("[storyblok-init] getStoryblokApi() after init:", !!api)
+
+  return api
 }
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
-  use: [apiPlugin],
-  components,
-  apiOptions: {
-    region: "eu",
-  },
-})
+// Auto-initialize on module load for runtime requests
+ensureStoryblokInitialized()
