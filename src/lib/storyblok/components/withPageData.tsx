@@ -53,9 +53,11 @@ export function withPageData<T extends PageBlok>(
     const header = (
       <StoryblokServerComponent blok={headerData.content} config={config} />
     )
+
     const footer = (
       <StoryblokServerComponent blok={footerData.content} config={config} />
     )
+
     const blocks = blok.body?.map((nestedBlok) => (
       <StoryblokServerComponent
         blok={nestedBlok}

@@ -1,11 +1,7 @@
 import "server-only"
 
 import type { ConfigStoryblok } from "@gotpop/system"
-
-/** Get the content prefix from config */
-function getPrefix(config: ConfigStoryblok): string {
-  return config?.root_name_space || "blog"
-}
+import { getPrefix } from "./prefix-utils"
 
 /** Global stories that should be excluded from static generation */
 const EXCLUDED_STORIES = new Set([

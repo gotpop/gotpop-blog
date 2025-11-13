@@ -12,6 +12,9 @@ let cachedConfig: ConfigStoryblok | null = null
 /**
  * Gets the content prefix from environment variable
  * This is the bootstrap prefix used to fetch the config itself
+ *
+ * Note: This replaces the old CONTENT_PREFIX constant.
+ * After config is loaded, use config.root_name_space instead.
  */
 function getBootstrapPrefix(): string {
   return process.env.STORYBLOK_CONTENT_PREFIX || "blog"
