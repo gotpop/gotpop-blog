@@ -19,12 +19,14 @@
     "generate:types": "node --env-file-if-exists=.env node_modules/.bin/generate-storyblok-types",
     "generate:icons": "generate-icon-list",
     "kill-ports": "kill-ports",
+    "link": "yarn link @gotpop/system && yarn link @gotpop/storyblok && yarn link @gotpop/scripts",
     "lint": "npx biome lint src/ next.config.ts",
     "lint:fix": "npx biome lint --write src/ next.config.ts",
     "start": "next start",
     "sync:icons": "node --env-file-if-exists=.env node_modules/.bin/sync-icon-datasource",
     "sync:baseline": "node --env-file-if-exists=.env node_modules/.bin/sync-baseline-datasource",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "unlink": "yarn unlink @gotpop/system && yarn unlink @gotpop/storyblok && yarn unlink @gotpop/scripts"
   },
   "engines": {
     "node": ">=22.20.0"
