@@ -1,10 +1,8 @@
-import { StoryNotFound } from "@gotpop/system"
 import { StoryblokStory } from "@storyblok/react/rsc"
+import { notFound } from "next/navigation"
 import {
   generateAllStaticParams,
-  getAvailableStoriesForError,
   getConfig,
-  getErrorMessage,
   getStoryblokData,
   handleStoryblokPathRedirect,
 } from "@/lib/storyblok"
@@ -37,17 +35,8 @@ export default async function Page({ params }: PageParams) {
 
   const { data: story, error } = await getStoryblokData("story", { fullPath })
 
-  if (error) {
-    const availableStories = await getAvailableStoriesForError()
-    const errorMessage = getErrorMessage(error)
-
-    return (
-      <StoryNotFound
-        path={fullPath}
-        errorMessage={errorMessage}
-        availableStories={availableStories}
-      />
-    )
+  if (error || !story) {
+    notFound()
   }
 
   return <StoryblokStory story={story} />

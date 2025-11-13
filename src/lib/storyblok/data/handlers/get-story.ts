@@ -14,9 +14,21 @@ export async function handleStory(
 ): Promise<StoryblokDataResult<StoryblokStoryResponse>> {
   const { fullPath, version = "published" } = config
 
-  const response = await storyblokApi.get(`cdn/stories/${fullPath}`, {
-    version,
-  })
+  try {
+    const response = await storyblokApi.get(`cdn/stories/${fullPath}`, {
+      version,
+    })
 
-  return { data: response.data.story }
+    return { data: response.data.story }
+  } catch (error: unknown) {
+    const errorMessage =
+      error && typeof error === "object" && "status" in error
+        ? `Story not found (${error.status})`
+        : "Failed to fetch story"
+
+    return {
+      data: null as unknown as StoryblokStoryResponse,
+      error: errorMessage,
+    }
+  }
 }
