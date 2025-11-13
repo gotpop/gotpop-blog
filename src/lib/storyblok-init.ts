@@ -35,8 +35,9 @@ const PagePostWithData = withPageData(PagePost)
 
 const components = {
   baseline_status_block: BaselineStatusBlock,
-  cards: CardsWithData,
   card: Card,
+  cards: CardsWithData,
+  footer_default: FooterDefault,
   header_default: HeaderDefaultWithData,
   hero_default: HeroDefault,
   link_list: LinkList,
@@ -49,7 +50,6 @@ const components = {
   rich_text_block: RichTextBlock,
   rich_text_code_block: RichTextCodeBlock,
   snippet_block: SnippetBlock,
-  footer_default: FooterDefault,
 }
 
 storyblokInit({
