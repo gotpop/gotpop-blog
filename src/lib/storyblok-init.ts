@@ -52,7 +52,6 @@ const components = {
   footer_default: FooterDefault,
 }
 
-// Initialize Storyblok with all components
 storyblokInit({
   accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
   use: [apiPlugin],
