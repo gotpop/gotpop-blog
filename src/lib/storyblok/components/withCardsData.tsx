@@ -6,10 +6,11 @@ import type {
   PostProps,
   TagDatasourceEntry,
 } from "@gotpop/system"
-import { Card } from "@gotpop/system"
+import type { SbBlokData } from "@storyblok/react/rsc"
 import type { ReactNode } from "react"
 import { getConfig } from "../config/runtime-config"
 import { getStoryblokData } from "../data/get-storyblok-data"
+import { StoryblokServerComponent } from "./StoryblokServerComponent"
 
 interface WithCardsDataProps {
   blok: CardsStoryblok
@@ -19,6 +20,16 @@ interface WithCardsDataProps {
   config: ConfigStoryblok | null
 }
 
+/** Transforms PostProps data to SbBlokData format for StoryblokServerComponent */
+function transformPostToBlok(post: PostProps): SbBlokData {
+  return {
+    ...post,
+    component: "card",
+    _uid: post.uuid,
+  } as SbBlokData
+}
+
+/** Higher-Order Component that fetches posts and tags data for the Cards component */
 export function withCardsData(
   ViewComponent: React.ComponentType<WithCardsDataProps>
 ) {
@@ -37,11 +48,22 @@ export function withCardsData(
       getStoryblokData("tagsFromDatasource"),
     ])
 
-    const posts = postsResult.data as PostProps[]
-    const availableTags = tagsResult.data as TagDatasourceEntry[]
+    if (postsResult.error || tagsResult.error) {
+      console.error("[withCardsData] Error fetching data:", {
+        postsError: postsResult.error,
+        tagsError: tagsResult.error,
+      })
+    }
 
-    const blocks = posts.map((blok) => (
-      <Card key={blok.uuid} blok={blok} config={config} />
+    const posts = (postsResult.data as PostProps[]) || []
+    const availableTags = (tagsResult.data as TagDatasourceEntry[]) || []
+
+    const blocks = posts.map((post) => (
+      <StoryblokServerComponent
+        key={post.uuid}
+        blok={transformPostToBlok(post)}
+        config={config}
+      />
     ))
 
     return (

@@ -25,6 +25,7 @@ interface WithPageDataProps<T extends PageBlok> {
   blocks: ReactNode
 }
 
+/** Higher-Order Component that fetches and renders header and footer components for a page */
 export function withPageData<T extends PageBlok>(
   ViewComponent: React.ComponentType<WithPageDataProps<T>>
 ) {

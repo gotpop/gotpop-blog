@@ -16,6 +16,7 @@ interface WithNavDataProps<T extends NavBlok> {
   config: ConfigStoryblok | null
 }
 
+/** Higher-Order Component that renders navigation items for the Nav component */
 export function withNavData<T extends NavBlok>(
   ViewComponent: React.ComponentType<WithNavDataProps<T>>
 ) {
