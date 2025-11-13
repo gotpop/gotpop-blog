@@ -36,7 +36,6 @@ export default async function Page({ params }: PageParams) {
   const { data: story, error } = await getStoryblokData("story", { fullPath })
 
   if (error || !story) {
-    // Trigger Next.js 404 page for story not found errors
     notFound()
   }
 
