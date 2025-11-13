@@ -1,5 +1,5 @@
+import { getAvailableStoriesForError } from "@gotpop/storyblok"
 import Link from "next/link"
-import { getAvailableStoriesForError } from "@/lib/storyblok"
 
 export default async function NotFound() {
   const availableStories = await getAvailableStoriesForError()

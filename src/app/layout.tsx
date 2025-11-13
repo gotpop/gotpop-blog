@@ -1,5 +1,6 @@
 import "@gotpop/system/styles"
 import { inter, monaspace } from "@gotpop/system/fonts"
+import "../lib/storyblok-init"
 
 import type { Metadata } from "next"
 

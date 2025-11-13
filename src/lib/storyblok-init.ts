@@ -1,3 +1,11 @@
+import "server-only"
+
+import {
+  withCardsData,
+  withHeaderData,
+  withNavData,
+  withPageData,
+} from "@gotpop/storyblok"
 import {
   BaselineStatusBlock,
   Card,
@@ -17,10 +25,6 @@ import {
   SnippetBlock,
 } from "@gotpop/system"
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
-import { withCardsData } from "./components/withCardsData"
-import { withHeaderData } from "./components/withHeaderData"
-import { withNavData } from "./components/withNavData"
-import { withPageData } from "./components/withPageData"
 
 const CardsWithData = withCardsData(Cards)
 const HeaderDefaultWithData = withHeaderData(HeaderDefault)
@@ -29,7 +33,7 @@ const PageDefaultWithData = withPageData(PageDefault)
 const PageFilterWithData = withPageData(PageFilter)
 const PagePostWithData = withPageData(PagePost)
 
-export const components = {
+const components = {
   baseline_status_block: BaselineStatusBlock,
   cards: CardsWithData,
   card: Card,
@@ -48,7 +52,8 @@ export const components = {
   footer_default: FooterDefault,
 }
 
-export const getStoryblokApi = storyblokInit({
+// Initialize Storyblok with all components
+storyblokInit({
   accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
   use: [apiPlugin],
   components,

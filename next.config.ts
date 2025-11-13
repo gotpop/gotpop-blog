@@ -5,7 +5,7 @@ import type { NextConfig } from "next"
 // supported). If you need custom webpack behavior later, re-introduce the
 // `webpack` field here.
 const nextConfig: NextConfig = {
-  transpilePackages: ["@gotpop/system"],
+  transpilePackages: ["@gotpop/system", "@gotpop/storyblok"],
   experimental: {
     optimizePackageImports: ["@gotpop/system"],
   },

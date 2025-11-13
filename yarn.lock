@@ -213,6 +213,13 @@
   dependencies:
     dotenv "^16.0.0"
 
+"@gotpop/storyblok@^0.1.1":
+  version "0.1.1"
+  resolved "https://npm.pkg.github.com/download/@gotpop/storyblok/0.1.1/5d15ad66a5cdbfd8ef9769dbcd94ba8ff8bfd223#5d15ad66a5cdbfd8ef9769dbcd94ba8ff8bfd223"
+  integrity sha512-lxwLAVsXD1fvd3EbfMwDxzCtsuQ/lVyayPe+HL5OOr/u80Wi6D04I1eIZW9Zn9/rJMhGmVo6YoAiMmkUIRQDZg==
+  dependencies:
+    "@storyblok/react" "^5.0.0"
+
 "@gotpop/system@^0.1.160":
   version "0.1.160"
   resolved "https://npm.pkg.github.com/download/@gotpop/system/0.1.160/3bc264a684175c9fc981936d450e7bf7a5a5c027#3bc264a684175c9fc981936d450e7bf7a5a5c027"
@@ -895,19 +902,19 @@
   dependencies:
     "@storyblok/region-helper" "1.3.1"
 
+"@storyblok/react@^5.0.0", "@storyblok/react@^5.4.18":
+  version "5.4.18"
+  resolved "https://registry.yarnpkg.com/@storyblok/react/-/react-5.4.18.tgz#43f4b82bc41a25d5189fd76ec621eff24524ec95"
+  integrity sha512-b4k/bgB/hdumgZBRIWl7B+IVJgH3ktz8fiRMmqOLjCWakICfavbIAMOLKqOanG5UNjT+JT7dfDvNajQVbpnw6Q==
+  dependencies:
+    "@storyblok/js" "4.4.1"
+
 "@storyblok/react@^5.4.17":
   version "5.4.17"
   resolved "https://registry.yarnpkg.com/@storyblok/react/-/react-5.4.17.tgz#d5bedf17c102d00f80215ba76fbcda596c40f79b"
   integrity sha512-KEFPLXRpy2yRuSCsQtsDzm74Kh2Yf1uWPXXWuSGq89y5nxEfUXZ3zdYi7trM+a2TMsa5qx3X8pzw6jtsbhGNUQ==
   dependencies:
     "@storyblok/js" "4.4.0"
-
-"@storyblok/react@^5.4.18":
-  version "5.4.18"
-  resolved "https://registry.yarnpkg.com/@storyblok/react/-/react-5.4.18.tgz#43f4b82bc41a25d5189fd76ec621eff24524ec95"
-  integrity sha512-b4k/bgB/hdumgZBRIWl7B+IVJgH3ktz8fiRMmqOLjCWakICfavbIAMOLKqOanG5UNjT+JT7dfDvNajQVbpnw6Q==
-  dependencies:
-    "@storyblok/js" "4.4.1"
 
 "@storyblok/region-helper@1.3.1":
   version "1.3.1"
