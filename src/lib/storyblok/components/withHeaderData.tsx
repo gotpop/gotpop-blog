@@ -12,6 +12,7 @@ interface WithHeaderDataProps {
   config: ConfigStoryblok | null
 }
 
+/** Higher-Order Component that renders nav and logo components for the Header */
 export function withHeaderData(
   ViewComponent: React.ComponentType<WithHeaderDataProps>
 ) {

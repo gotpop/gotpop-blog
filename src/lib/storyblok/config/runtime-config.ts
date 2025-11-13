@@ -3,30 +3,15 @@ import "server-only"
 import type { ConfigStoryblok } from "@gotpop/system"
 import { getStoryblokApi } from "../storyblok"
 
-/**
- * Cached config instance to prevent redundant API calls
- * Single source of truth for Storyblok configuration
- */
+/** Cached config instance to prevent redundant API calls - single source of truth for Storyblok configuration */
 let cachedConfig: ConfigStoryblok | null = null
 
-/**
- * Gets the content prefix from environment variable
- * This is the bootstrap prefix used to fetch the config itself
- *
- * Note: This replaces the old CONTENT_PREFIX constant.
- * After config is loaded, use config.root_name_space instead.
- */
+/** Gets the content prefix from environment variable - this is the bootstrap prefix used to fetch the config itself. Note: This replaces the old CONTENT_PREFIX constant. After config is loaded, use config.root_name_space instead. */
 function getBootstrapPrefix(): string {
   return process.env.STORYBLOK_CONTENT_PREFIX || "blog"
 }
 
-/**
- * Fetches config from Storyblok with caching
- * This is the ONLY place config should be fetched from the API
- *
- * @returns ConfigStoryblok object with root_name_space and other settings
- * @throws Error if config cannot be fetched
- */
+/** Fetches config from Storyblok with caching - this is the ONLY place config should be fetched from the API */
 export async function getConfig(): Promise<ConfigStoryblok> {
   if (cachedConfig) {
     return cachedConfig
@@ -54,12 +39,7 @@ export async function getConfig(): Promise<ConfigStoryblok> {
   }
 }
 
-/**
- * Gets the runtime content prefix from the cached config
- * Falls back to bootstrap prefix if config not yet loaded
- *
- * @returns The content prefix (e.g., "blog" or "work")
- */
+/** Gets the runtime content prefix from the cached config - falls back to bootstrap prefix if config not yet loaded */
 export function getRuntimePrefix(): string {
   if (cachedConfig) {
     return cachedConfig.root_name_space || "blog"
@@ -67,10 +47,7 @@ export function getRuntimePrefix(): string {
   return getBootstrapPrefix()
 }
 
-/**
- * Resets the cached config (useful for testing)
- * DO NOT use this in production code
- */
+/** Resets the cached config (useful for testing) - DO NOT use this in production code */
 export function _resetConfigCache(): void {
   cachedConfig = null
 }
