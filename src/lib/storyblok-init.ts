@@ -19,6 +19,7 @@ import {
   NavItemDefault,
   PageDefault,
   PageFilter,
+  PageNotFound,
   PagePost,
   RichTextBlock,
   RichTextCodeBlock,
@@ -29,12 +30,13 @@ import { apiPlugin, getStoryblokApi, storyblokInit } from "@storyblok/react/rsc"
 let isInitialized = false
 
 /** Ensures Storyblok is initialized with all registered components. */
-export function ensureStoryblokInitialized() {
+export function ensureStoryblokInitialised() {
   if (isInitialized) {
     return getStoryblokApi()
   }
 
   const accessToken = process.env.STORYBLOK_ACCESS_TOKEN
+
   if (!accessToken) {
     throw new Error("STORYBLOK_ACCESS_TOKEN environment variable is required")
   }
@@ -50,6 +52,7 @@ export function ensureStoryblokInitialized() {
     logo_default: LogoDefault,
     nav_default: withNavData(NavDefault),
     nav_item_default: NavItemDefault,
+    not_found: withPageData(PageNotFound),
     page_default: withPageData(PageDefault),
     page_filter: withPageData(PageFilter),
     page_post: withPageData(PagePost),
@@ -72,4 +75,4 @@ export function ensureStoryblokInitialized() {
   return getStoryblokApi()
 }
 
-ensureStoryblokInitialized()
+ensureStoryblokInitialised()

@@ -7,14 +7,13 @@ import {
 } from "@gotpop/storyblok"
 import { StoryblokStory } from "@storyblok/react/rsc"
 import { notFound } from "next/navigation"
-import { ensureStoryblokInitialized } from "@/lib/storyblok-init"
+import { ensureStoryblokInitialised } from "@/lib/storyblok-init"
 
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  // Ensure Storyblok is initialized before generating static params
-  const initResult = ensureStoryblokInitialized()
-  console.log("[page.tsx] generateStaticParams - initResult:", !!initResult)
+  ensureStoryblokInitialised()
+
   return await generateAllStaticParams()
 }
 
@@ -34,7 +33,6 @@ export default async function Page({ params }: PageParams) {
     throw new Error("Config not found")
   }
 
-  // Now use config for all path operations
   const fullPath = normalizeStoryblokPath(slug, config)
 
   const { data: story, error } = await getStoryblokData("story", { fullPath })
