@@ -2,10 +2,14 @@ import {
   getAvailableStoriesForError,
   getConfig,
   getStoryblokData,
+  withNotFoundPageData,
 } from "@gotpop/storyblok"
-import { NotFoundPage } from "@gotpop/system"
-import { StoryblokStory } from "@storyblok/react/rsc"
+import type { NotFoundStoryblok } from "@gotpop/system"
+import { PageNotFound } from "@gotpop/system"
 import { ensureStoryblokInitialised } from "@/lib/storyblok-init"
+
+/**  Wrap with the HOC outside of the component registration */
+const PageNotFoundWithData = withNotFoundPageData(PageNotFound)
 
 export default async function NotFound() {
   ensureStoryblokInitialised()
@@ -13,20 +17,22 @@ export default async function NotFound() {
   const availableStories = await getAvailableStoriesForError()
   const config = await getConfig()
 
-  if (!config) {
-    return <NotFoundPage availableStories={availableStories} />
-  }
-
-  const prefix = config.root_name_space || "blog"
+  const prefix = config?.root_name_space || "blog"
   const notFoundPath = `${prefix}/not-found`
 
   const { data: story, error } = await getStoryblokData("story", {
     fullPath: notFoundPath,
   })
 
-  if (story && !error) {
-    return <StoryblokStory story={story} />
+  if (story && !error && story.content) {
+    return (
+      <PageNotFoundWithData
+        blok={story.content as NotFoundStoryblok}
+        config={config}
+        availableStories={availableStories}
+      />
+    )
   }
 
-  return <NotFoundPage availableStories={availableStories} />
+  return null
 }

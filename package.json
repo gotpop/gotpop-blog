@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "packages:local": "rm -rf node_modules/@gotpop && yarn install --force && yarn dev",
     "dev:https": "yarn dev & yarn dev:wait && yarn proxy",
     "dev:wait": "sleep 3",
     "dev": "next dev",
@@ -31,8 +32,8 @@
   },
   "dependencies": {
     "@gotpop/scripts": "^0.1.1",
-    "@gotpop/storyblok": "^0.1.27",
-    "@gotpop/system": "^0.1.169",
+    "@gotpop/storyblok": "^0.1.28",
+    "@gotpop/system": "^0.1.171",
     "@storyblok/react": "5.4.18",
     "next": "16.0.0",
     "react": "19.2.0",
