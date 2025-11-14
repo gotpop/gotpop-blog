@@ -4,6 +4,7 @@ import {
   withCardsData,
   withHeaderData,
   withNavData,
+  withNotFoundPageData,
   withPageData,
 } from "@gotpop/storyblok"
 import {
@@ -52,7 +53,7 @@ export function ensureStoryblokInitialised() {
     logo_default: LogoDefault,
     nav_default: withNavData(NavDefault),
     nav_item_default: NavItemDefault,
-    not_found: withPageData(PageNotFound),
+    not_found: withNotFoundPageData(PageNotFound),
     page_default: withPageData(PageDefault),
     page_filter: withPageData(PageFilter),
     page_post: withPageData(PagePost),
