@@ -29,7 +29,7 @@ import { apiPlugin, getStoryblokApi, storyblokInit } from "@storyblok/react/rsc"
 let isInitialized = false
 
 /** Ensures Storyblok is initialized with all registered components. */
-export function ensureStoryblokInitialized() {
+export function ensureStoryblokInitialised() {
   if (isInitialized) {
     return getStoryblokApi()
   }
@@ -73,4 +73,4 @@ export function ensureStoryblokInitialized() {
   return getStoryblokApi()
 }
 
-ensureStoryblokInitialized()
+ensureStoryblokInitialised()

@@ -7,12 +7,12 @@ import {
 } from "@gotpop/storyblok"
 import { StoryblokStory } from "@storyblok/react/rsc"
 import { notFound } from "next/navigation"
-import { ensureStoryblokInitialized } from "@/lib/storyblok-init"
+import { ensureStoryblokInitialised } from "@/lib/storyblok-init"
 
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  ensureStoryblokInitialized()
+  ensureStoryblokInitialised()
 
   return await generateAllStaticParams()
 }
