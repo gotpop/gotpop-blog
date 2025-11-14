@@ -24,11 +24,9 @@ export default async function NotFound() {
     fullPath: notFoundPath,
   })
 
-  // If the not-found story exists in Storyblok, render it
   if (story && !error) {
     return <StoryblokStory story={story} />
   }
 
-  // Fallback to default NotFoundPage if story doesn't exist
   return <NotFoundPage availableStories={availableStories} />
 }
