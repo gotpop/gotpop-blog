@@ -24,40 +24,52 @@ import {
   RichTextCodeBlock,
   SnippetBlock,
 } from "@gotpop/system"
-import { apiPlugin, storyblokInit } from "@storyblok/react/rsc"
+import { apiPlugin, getStoryblokApi, storyblokInit } from "@storyblok/react/rsc"
 
-const CardsWithData = withCardsData(Cards)
-const HeaderDefaultWithData = withHeaderData(HeaderDefault)
-const NavDefaultWithData = withNavData(NavDefault)
-const PageDefaultWithData = withPageData(PageDefault)
-const PageFilterWithData = withPageData(PageFilter)
-const PagePostWithData = withPageData(PagePost)
+let isInitialized = false
 
-const components = {
-  baseline_status_block: BaselineStatusBlock,
-  cards: CardsWithData,
-  card: Card,
-  header_default: HeaderDefaultWithData,
-  hero_default: HeroDefault,
-  link_list: LinkList,
-  logo_default: LogoDefault,
-  nav_default: NavDefaultWithData,
-  nav_item_default: NavItemDefault,
-  page_default: PageDefaultWithData,
-  page_filter: PageFilterWithData,
-  page_post: PagePostWithData,
-  rich_text_block: RichTextBlock,
-  rich_text_code_block: RichTextCodeBlock,
-  snippet_block: SnippetBlock,
-  footer_default: FooterDefault,
+/** Ensures Storyblok is initialized with all registered components. */
+export function ensureStoryblokInitialized() {
+  if (isInitialized) {
+    return getStoryblokApi()
+  }
+
+  const accessToken = process.env.STORYBLOK_ACCESS_TOKEN
+  if (!accessToken) {
+    throw new Error("STORYBLOK_ACCESS_TOKEN environment variable is required")
+  }
+
+  const components = {
+    baseline_status_block: BaselineStatusBlock,
+    card: Card,
+    cards: withCardsData(Cards),
+    footer_default: FooterDefault,
+    header_default: withHeaderData(HeaderDefault),
+    hero_default: HeroDefault,
+    link_list: LinkList,
+    logo_default: LogoDefault,
+    nav_default: withNavData(NavDefault),
+    nav_item_default: NavItemDefault,
+    page_default: withPageData(PageDefault),
+    page_filter: withPageData(PageFilter),
+    page_post: withPageData(PagePost),
+    rich_text_block: RichTextBlock,
+    rich_text_code_block: RichTextCodeBlock,
+    snippet_block: SnippetBlock,
+  }
+
+  storyblokInit({
+    accessToken,
+    use: [apiPlugin],
+    components,
+    apiOptions: {
+      region: "eu",
+    },
+  })
+
+  isInitialized = true
+
+  return getStoryblokApi()
 }
 
-// Initialize Storyblok with all components
-storyblokInit({
-  accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
-  use: [apiPlugin],
-  components,
-  apiOptions: {
-    region: "eu",
-  },
-})
+ensureStoryblokInitialized()
