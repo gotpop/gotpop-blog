@@ -39,26 +39,24 @@ export function ensureStoryblokInitialized() {
     throw new Error("STORYBLOK_ACCESS_TOKEN environment variable is required")
   }
 
-  // biome-ignore lint/suspicious/noExplicitAny: Components have different prop signatures
-  const components: Record<string, React.ComponentType<any>> = {
+  const components = {
     baseline_status_block: BaselineStatusBlock,
     card: Card,
+    cards: withCardsData(Cards),
     footer_default: FooterDefault,
+    header_default: withHeaderData(HeaderDefault),
     hero_default: HeroDefault,
     link_list: LinkList,
     logo_default: LogoDefault,
+    nav_default: withNavData(NavDefault),
     nav_item_default: NavItemDefault,
+    page_default: withPageData(PageDefault),
+    page_filter: withPageData(PageFilter),
+    page_post: withPageData(PagePost),
     rich_text_block: RichTextBlock,
     rich_text_code_block: RichTextCodeBlock,
     snippet_block: SnippetBlock,
   }
-
-  components.cards = withCardsData(Cards, components)
-  components.header_default = withHeaderData(HeaderDefault, components)
-  components.nav_default = withNavData(NavDefault, components)
-  components.page_default = withPageData(PageDefault, components)
-  components.page_filter = withPageData(PageFilter, components)
-  components.page_post = withPageData(PagePost, components)
 
   storyblokInit({
     accessToken,
