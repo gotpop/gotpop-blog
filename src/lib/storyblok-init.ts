@@ -35,6 +35,7 @@ export function ensureStoryblokInitialized() {
   }
 
   const accessToken = process.env.STORYBLOK_ACCESS_TOKEN
+
   if (!accessToken) {
     throw new Error("STORYBLOK_ACCESS_TOKEN environment variable is required")
   }
