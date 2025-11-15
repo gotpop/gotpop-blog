@@ -1,15 +1,21 @@
 import "@/lib/storyblok-init"
 import "@gotpop/system/styles"
+import { getConfig } from "@gotpop/storyblok"
 import { inter, monaspace } from "@gotpop/system/fonts"
 
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Blog - gotpop.io",
-  description: "Personal blog built with Next.js and Storyblok",
-  icons: {
-    icon: "/logo.svg",
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getConfig()
+  const { description, app_name: title } = config || {}
+
+  return {
+    title,
+    description,
+    icons: {
+      icon: "/logo.svg",
+    },
+  }
 }
 
 export default function RootLayout({
