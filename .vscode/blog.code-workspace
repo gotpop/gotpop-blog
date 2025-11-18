@@ -5,6 +5,9 @@
     },
     {
       "path": "../../gotpop-system"
+    },
+    {
+      "path": "../../gotpop-work"
     }
   ],
   "settings": {
