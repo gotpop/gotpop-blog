@@ -9,7 +9,7 @@ Personal blog built with Next.js & Storyblok CMS, deployed to AWS EC2.
 
 | Category   | Technology       |
 | ---------- | ---------------- |
-| Framework  | Next.js 15.5.4   |
+| Framework  | Next.js 16       |
 | CMS        | Storyblok        |
 | Language   | TypeScript       |
 | Styling    | Scoped styles    |
