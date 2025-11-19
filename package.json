@@ -32,8 +32,8 @@
   },
   "dependencies": {
     "@gotpop/scripts": "^0.1.1",
-    "@gotpop/storyblok": "^0.1.29",
-    "@gotpop/system": "^0.1.174",
+    "@gotpop/storyblok": "^0.1.31",
+    "@gotpop/system": "^0.1.176",
     "@storyblok/react": "5.4.18",
     "next": "16.0.0",
     "react": "19.2.0",
