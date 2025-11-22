@@ -8,6 +8,9 @@
     },
     {
       "path": "../../system"
+    },
+    {
+      "path": "../../aws"
     }
   ],
   "settings": {
